@@ -32,7 +32,8 @@
       color: var(--text);
     }
 
-    button {
+    button,
+    input {
       font-family: inherit;
     }
 
@@ -105,7 +106,7 @@
       white-space: nowrap;
     }
 
-    .login-btn {
+    .account-btn {
       border: 1px solid #ddd;
       background: #fff;
       border-radius: 18px;
@@ -116,10 +117,16 @@
       cursor: pointer;
     }
 
-    .login-btn.logged {
+    .account-btn.logged {
       background: #111;
       color: #fff;
       border-color: #111;
+    }
+
+    .account-btn.author {
+      background: #3b1168;
+      color: #fff;
+      border-color: #3b1168;
     }
 
     .nav-bar {
@@ -194,19 +201,229 @@
       cursor: pointer;
     }
 
-    .container {
+    .page {
+      display: none;
       max-width: 1100px;
       margin: 0 auto;
       padding: 18px 14px 80px;
-      display: none;
-    }
-
-    body.logged-in .container {
-      display: block;
     }
 
     body.logged-in .locked-home {
       display: none;
+    }
+
+    body.logged-in .page.active {
+      display: block;
+    }
+
+    .dashboard-title {
+      color: #fff;
+      font-size: 26px;
+      font-weight: 900;
+      margin: 10px 0 18px;
+      letter-spacing: -1px;
+    }
+
+    .section {
+      margin-top: 24px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .section:first-child {
+      margin-top: 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-head h2 {
+      font-size: 19px;
+      letter-spacing: -0.5px;
+    }
+
+    .section-head span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .empty-box {
+      padding: 22px 18px;
+      color: #777;
+      font-weight: 800;
+      line-height: 1.6;
+    }
+
+    .work-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      border-top: 1px solid var(--line);
+      cursor: pointer;
+      transition: background .15s;
+    }
+
+    .work-row:first-of-type {
+      border-top: none;
+    }
+
+    .work-row:hover {
+      background: #f8fff9;
+    }
+
+    .mini-cover {
+      width: 72px;
+      height: 92px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      background:
+        linear-gradient(to top, rgba(0,0,0,.9), rgba(0,0,0,.05)),
+        radial-gradient(circle at 70% 20%, #7048ff, transparent 30%),
+        radial-gradient(circle at 25% 70%, #101927, #080910 55%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mini-cover::after {
+      content: "세계를";
+      position: absolute;
+      left: 8px;
+      bottom: 8px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+
+    .work-row-info {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .work-row-info h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+      letter-spacing: -0.5px;
+    }
+
+    .work-row-info p {
+      font-size: 13px;
+      color: #777;
+      line-height: 1.5;
+    }
+
+    .work-row-badge {
+      background: #f1f3f5;
+      color: #555;
+      padding: 7px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .search-empty-page {
+      min-height: calc(100vh - 150px);
+      background: #fff;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 18px;
+      margin-top: 18px;
+    }
+
+    .search-empty-page strong {
+      color: #e00000;
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .search-result-title {
+      color: #fff;
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .profile-card {
+      background: #fff;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      margin-top: 18px;
+    }
+
+    .profile-top {
+      padding: 30px 18px;
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(135deg, #f8fff9, #ffffff);
+    }
+
+    .profile-img {
+      width: 92px;
+      height: 92px;
+      margin: 0 auto 12px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 32% 28%, #fff, transparent 16%),
+        linear-gradient(135deg, #00c73c, #151515);
+      box-shadow: 0 8px 24px rgba(0,0,0,.16);
+      border: 4px solid #fff;
+    }
+
+    .profile-name {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 6px;
+    }
+
+    .profile-role {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #f1f3f5;
+      color: #555;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .profile-role.author {
+      background: #f2e8ff;
+      color: #5a1a92;
+    }
+
+    .profile-sections {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .profile-section {
+      padding: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .profile-section:last-child {
+      border-bottom: none;
+    }
+
+    .profile-section h2 {
+      font-size: 18px;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
     }
 
     .hero {
@@ -303,43 +520,6 @@
       padding: 12px 18px;
       cursor: pointer;
       font-size: 15px;
-    }
-
-    .section {
-      margin-top: 24px;
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    .section-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 18px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .section-head h2 {
-      font-size: 19px;
-      letter-spacing: -0.5px;
-    }
-
-    .section-head span {
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .search-message {
-      display: none;
-      padding: 16px 18px;
-      color: #e00000;
-      font-size: 16px;
-      font-weight: 900;
-      background: #fff5f5;
-      border-bottom: 1px solid #ffd0d0;
     }
 
     .work-card {
@@ -588,7 +768,7 @@
       margin: 0 0 22px;
     }
 
-    .novel-body .scene {
+    .scene {
       text-align: center;
       color: #888;
       letter-spacing: 8px;
@@ -778,10 +958,14 @@
         max-width: none;
       }
 
-      .login-btn {
+      .account-btn {
         position: absolute;
         right: 12px;
         top: 10px;
+      }
+
+      .dashboard-title {
+        font-size: 22px;
       }
 
       .hero-content {
@@ -858,7 +1042,7 @@
         <button class="search-btn" onclick="searchWorks()">검색</button>
       </div>
 
-      <button class="login-btn" id="loginTopBtn" onclick="openLogin()">로그인</button>
+      <button class="account-btn" id="accountBtn" onclick="handleAccountButton()">로그인</button>
     </div>
 
     <nav class="nav-bar">
@@ -879,16 +1063,95 @@
       <h1>로그인 하시면 보실수 있습니다.</h1>
       <p>
         chat웹의 작품 목록과 회차는 로그인 후 이용할 수 있습니다.<br>
-        닉네임과 비밀번호를 입력하면 계정이 저장되고, 이전에 들어온 적 있는 아이디면 그 계정으로 자동 이동합니다.
+        새로고침하면 다시 로그인해야 합니다.
       </p>
       <button onclick="openLogin()">로그인</button>
     </div>
   </section>
 
-  <main class="container" id="mainPage">
+  <main class="page" id="homePage">
+    <h1 class="dashboard-title" id="homeGreeting">홈</h1>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>최근 본 작품</h2>
+        <span id="recentCountText">0개</span>
+      </div>
+      <div id="recentWorksBox"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>추천 작품</h2>
+        <span>다크 판타지 · 액션</span>
+      </div>
+
+      <div class="work-row" onclick="openWorkDetail()">
+        <div class="mini-cover"></div>
+        <div class="work-row-info">
+          <h3>세계를 구하고, 버려졌다</h3>
+          <p>세계를 구한 용사, 자신의 세계에서 버려지다.</p>
+        </div>
+        <div class="work-row-badge">2화 공개</div>
+      </div>
+    </section>
+  </main>
+
+  <main class="page" id="searchPage">
+    <h1 class="search-result-title" id="searchTitle">검색 결과</h1>
+    <section class="section" id="searchFoundSection">
+      <div class="section-head">
+        <h2>작품</h2>
+        <span>검색 결과</span>
+      </div>
+      <div class="work-row" onclick="openWorkDetail()">
+        <div class="mini-cover"></div>
+        <div class="work-row-info">
+          <h3>세계를 구하고, 버려졌다</h3>
+          <p>세계를 구한 용사, 자신의 세계에서 버려지다.</p>
+        </div>
+        <div class="work-row-badge">바로가기</div>
+      </div>
+    </section>
+
+    <section class="search-empty-page" id="searchEmptyPage">
+      <strong>검색하신 작품이 없습니다.</strong>
+    </section>
+  </main>
+
+  <main class="page" id="profilePage">
+    <div class="profile-card">
+      <div class="profile-top">
+        <div class="profile-img"></div>
+        <div class="profile-name" id="profileNickname">닉네임</div>
+        <div class="profile-role" id="profileRole">일반 계정</div>
+      </div>
+
+      <div class="profile-sections">
+        <div class="profile-section" id="authorWorksSection">
+          <h2>제작중인 작품</h2>
+          <div class="work-row" onclick="openWorkDetail()">
+            <div class="mini-cover"></div>
+            <div class="work-row-info">
+              <h3>세계를 구하고, 버려졌다</h3>
+              <p>작가 고쓰비 · 제작중</p>
+            </div>
+            <div class="work-row-badge">작가</div>
+          </div>
+        </div>
+
+        <div class="profile-section">
+          <h2>보고있는 작품</h2>
+          <div id="watchingWorksBox"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <main class="page" id="workDetailPage">
     <section class="hero">
       <div class="hero-content">
-        <div class="badge">오늘의 추천 · 다크 판타지</div>
+        <div class="badge">고쓰비 · 다크 판타지</div>
         <h1>세계를 구하고,<br />버려졌다</h1>
         <p>
           마왕을 쓰러뜨리고 돌아온 소년. 하지만 그를 기다리던 것은 가족의 죽음,
@@ -901,15 +1164,13 @@
       </div>
     </section>
 
-    <section class="section" id="worksSection">
+    <section class="section">
       <div class="section-head">
-        <h2>인기 작품</h2>
-        <span>다크 판타지 · 액션</span>
+        <h2>작품 정보</h2>
+        <span>작가 · 고쓰비</span>
       </div>
 
-      <div class="search-message" id="searchMessage">검색하신 작품이 없습니다.</div>
-
-      <div class="work-card" id="mainWorkCard">
+      <div class="work-card">
         <div class="cover" onclick="openReader(1)" title="작품 보기"></div>
         <div class="work-info">
           <h3>세계를 구하고, 버려졌다</h3>
@@ -928,7 +1189,7 @@
             <span>★ 0</span>
             <span>조회 0</span>
             <span>관심 0</span>
-            <span>매주 자유연재</span>
+            <span>총 2화 공개</span>
           </div>
           <button class="main-btn" onclick="openReader(1)">첫 화 보기</button>
         </div>
@@ -994,7 +1255,7 @@
   <section class="login-modal" id="loginModal">
     <div class="login-panel">
       <h2>chat웹 로그인</h2>
-      <p>처음 들어오는 닉네임이면 새 계정으로 저장되고, 이전에 들어온 닉네임이면 그 계정으로 자동 이동합니다.</p>
+      <p>닉네임과 비밀번호를 입력하세요. 이전에 만든 닉네임이면 해당 계정으로 로그인됩니다.</p>
 
       <div class="login-field">
         <label for="nicknameInput">1. 닉네임 입력</label>
@@ -1016,14 +1277,13 @@
   <div class="toast" id="toast">알림</div>
 
   <script>
+    const pages = ["homePage", "searchPage", "profilePage", "workDetailPage"];
     const reader = document.getElementById("reader");
     const readerScroll = document.getElementById("readerScroll");
     const toast = document.getElementById("toast");
     const loginModal = document.getElementById("loginModal");
-    const loginTopBtn = document.getElementById("loginTopBtn");
+    const accountBtn = document.getElementById("accountBtn");
     const searchInput = document.getElementById("searchInput");
-    const searchMessage = document.getElementById("searchMessage");
-    const mainWorkCard = document.getElementById("mainWorkCard");
 
     const readerMiniTitle = document.getElementById("readerMiniTitle");
     const readerTitle = document.getElementById("readerTitle");
@@ -1033,13 +1293,25 @@
     const nextBtn = document.getElementById("nextBtn");
 
     let currentEpisode = 1;
+    let currentUser = null;
 
-    const works = [
-      {
-        title: "세계를 구하고, 버려졌다",
-        aliases: ["세계를", "세계를 구하고", "세계를 구하고 버려졌다", "버려졌다", "강도윤", "귀환"]
-      }
-    ];
+    const WORK_ID = "world_saved_abandoned";
+
+    const workData = {
+      id: WORK_ID,
+      title: "세계를 구하고, 버려졌다",
+      author: "고쓰비",
+      aliases: [
+        "세계를",
+        "세계를구하고",
+        "세계를구하고버려졌다",
+        "세계를구했더니",
+        "세계를구했더니버려졌다",
+        "버려졌다",
+        "강도윤",
+        "귀환"
+      ]
+    };
 
     const episodes = {
       1: {
@@ -1116,7 +1388,6 @@
           <p>“돌아가면… 행복하시겠죠.”</p>
 
           <p>잠깐의 침묵.</p>
-
           <p>“……그렇겠지.”</p>
 
           <p>그는 그렇게 말했다.</p>
@@ -1389,6 +1660,7 @@
           <p>하지만 아무도 대답해주지 않았다.</p>
 
           <div class="scene">—</div>
+
           <p>며칠 뒤.</p>
 
           <p>“…도윤이냐?”</p>
@@ -2076,26 +2348,51 @@
       }
     };
 
-    function checkSavedLogin() {
-      const currentUser = localStorage.getItem("chatweb_current_user");
-      if (currentUser) {
-        document.body.classList.add("logged-in");
-        loginTopBtn.textContent = currentUser;
-        loginTopBtn.classList.add("logged");
-      } else {
+    function normalizeText(text) {
+      return String(text || "").replace(/\s+/g, "").toLowerCase();
+    }
+
+    function getAccounts() {
+      const raw = localStorage.getItem("chatweb_accounts");
+      return raw ? JSON.parse(raw) : {};
+    }
+
+    function saveAccounts(accounts) {
+      localStorage.setItem("chatweb_accounts", JSON.stringify(accounts));
+    }
+
+    function showPage(pageId) {
+      if (!currentUser) {
+        return;
+      }
+
+      pages.forEach(id => {
+        document.getElementById(id).classList.toggle("active", id === pageId);
+      });
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function updateAccountButton() {
+      if (!currentUser) {
         document.body.classList.remove("logged-in");
-        loginTopBtn.textContent = "로그인";
-        loginTopBtn.classList.remove("logged");
+        accountBtn.textContent = "로그인";
+        accountBtn.classList.remove("logged", "author");
+        return;
+      }
+
+      document.body.classList.add("logged-in");
+      accountBtn.textContent = currentUser.nickname;
+      accountBtn.classList.add("logged");
+
+      if (currentUser.isAuthor) {
+        accountBtn.classList.add("author");
+      } else {
+        accountBtn.classList.remove("author");
       }
     }
 
     function openLogin() {
-      const currentUser = localStorage.getItem("chatweb_current_user");
-      if (currentUser) {
-        showToast(currentUser + " 계정으로 로그인 중입니다.");
-        return;
-      }
-
       loginModal.classList.add("open");
       setTimeout(() => {
         document.getElementById("nicknameInput").focus();
@@ -2120,66 +2417,203 @@
         return;
       }
 
-      const accountsRaw = localStorage.getItem("chatweb_accounts");
-      const accounts = accountsRaw ? JSON.parse(accountsRaw) : {};
+      const accounts = getAccounts();
+      const isAuthorLogin = nickname === "고쓰비" && password === "2012424!";
 
       if (accounts[nickname]) {
         if (accounts[nickname].password !== password) {
           showToast("비밀번호가 다릅니다.");
           return;
         }
-
-        localStorage.setItem("chatweb_current_user", nickname);
-        showToast("이전 계정으로 자동 이동했습니다.");
       } else {
         accounts[nickname] = {
           password,
-          createdAt: new Date().toISOString()
+          createdAt: new Date().toISOString(),
+          recentWorks: [],
+          watchingWorks: []
         };
-
-        localStorage.setItem("chatweb_accounts", JSON.stringify(accounts));
-        localStorage.setItem("chatweb_current_user", nickname);
-        showToast("새 계정으로 로그인되었습니다.");
       }
 
-      closeLogin();
-      checkSavedLogin();
-      goHome();
+      if (isAuthorLogin) {
+        accounts[nickname].isAuthor = true;
+      }
+
+      if (!Array.isArray(accounts[nickname].recentWorks)) {
+        accounts[nickname].recentWorks = [];
+      }
+
+      if (!Array.isArray(accounts[nickname].watchingWorks)) {
+        accounts[nickname].watchingWorks = [];
+      }
+
+      saveAccounts(accounts);
+
+      currentUser = {
+        nickname,
+        isAuthor: !!accounts[nickname].isAuthor
+      };
+
+      sessionStorage.setItem("chatweb_session_user", nickname);
 
       document.getElementById("nicknameInput").value = "";
       document.getElementById("passwordInput").value = "";
+
+      closeLogin();
+      updateAccountButton();
+      renderHome();
+      showPage("homePage");
+
+      if (isAuthorLogin) {
+        showToast("작가 계정으로 로그인되었습니다.");
+      } else {
+        showToast("로그인되었습니다.");
+      }
     }
 
-    function searchWorks() {
-      if (!localStorage.getItem("chatweb_current_user")) {
+    function handleAccountButton() {
+      if (!currentUser) {
+        openLogin();
+      } else {
+        openProfile();
+      }
+    }
+
+    function goHome() {
+      if (!currentUser) {
         openLogin();
         return;
       }
 
-      const query = searchInput.value.trim().replace(/\s+/g, "").toLowerCase();
+      searchInput.value = "";
+      renderHome();
+      showPage("homePage");
+    }
 
-      if (!query) {
-        mainWorkCard.style.display = "grid";
-        searchMessage.style.display = "none";
-        document.getElementById("worksSection").scrollIntoView({ behavior: "smooth", block: "start" });
+    function renderHome() {
+      const accounts = getAccounts();
+      const user = accounts[currentUser.nickname];
+
+      document.getElementById("homeGreeting").textContent = currentUser.nickname + "님의 홈";
+
+      const recentWorksBox = document.getElementById("recentWorksBox");
+      const recentWorks = user.recentWorks || [];
+
+      document.getElementById("recentCountText").textContent = recentWorks.length + "개";
+
+      if (recentWorks.includes(WORK_ID)) {
+        recentWorksBox.innerHTML = `
+          <div class="work-row" onclick="openWorkDetail()">
+            <div class="mini-cover"></div>
+            <div class="work-row-info">
+              <h3>세계를 구하고, 버려졌다</h3>
+              <p>최근 본 작품 · 마지막으로 읽은 작품</p>
+            </div>
+            <div class="work-row-badge">이어보기</div>
+          </div>
+        `;
+      } else {
+        recentWorksBox.innerHTML = `
+          <div class="empty-box">아직 최근 본 작품이 없습니다.</div>
+        `;
+      }
+    }
+
+    function openProfile() {
+      if (!currentUser) {
+        openLogin();
         return;
       }
 
-      const found = works.some(work => {
-        const title = work.title.replace(/\s+/g, "").toLowerCase();
-        const aliases = work.aliases.map(v => v.replace(/\s+/g, "").toLowerCase());
-        return title.includes(query) || aliases.some(alias => alias.includes(query) || query.includes(alias));
-      });
+      const accounts = getAccounts();
+      const user = accounts[currentUser.nickname];
 
-      if (found) {
-        mainWorkCard.style.display = "grid";
-        searchMessage.style.display = "none";
+      document.getElementById("profileNickname").textContent = currentUser.nickname;
+
+      const profileRole = document.getElementById("profileRole");
+      profileRole.textContent = currentUser.isAuthor ? "작가 계정" : "일반 계정";
+      profileRole.classList.toggle("author", currentUser.isAuthor);
+
+      document.getElementById("authorWorksSection").style.display = currentUser.isAuthor ? "block" : "none";
+
+      const watchingWorksBox = document.getElementById("watchingWorksBox");
+      const watching = user.watchingWorks || [];
+
+      if (watching.includes(WORK_ID)) {
+        watchingWorksBox.innerHTML = `
+          <div class="work-row" onclick="openWorkDetail()">
+            <div class="mini-cover"></div>
+            <div class="work-row-info">
+              <h3>세계를 구하고, 버려졌다</h3>
+              <p>작가 고쓰비 · 보고있는 작품</p>
+            </div>
+            <div class="work-row-badge">보기</div>
+          </div>
+        `;
       } else {
-        mainWorkCard.style.display = "none";
-        searchMessage.style.display = "block";
+        watchingWorksBox.innerHTML = `
+          <div class="empty-box">${currentUser.nickname}님은 아직 본 작품이 없습니다.</div>
+        `;
       }
 
-      document.getElementById("worksSection").scrollIntoView({ behavior: "smooth", block: "start" });
+      showPage("profilePage");
+    }
+
+    function openWorkDetail() {
+      if (!currentUser) {
+        openLogin();
+        return;
+      }
+
+      showPage("workDetailPage");
+    }
+
+    function addViewedWork() {
+      if (!currentUser) {
+        return;
+      }
+
+      const accounts = getAccounts();
+      const user = accounts[currentUser.nickname];
+
+      if (!Array.isArray(user.recentWorks)) {
+        user.recentWorks = [];
+      }
+
+      if (!Array.isArray(user.watchingWorks)) {
+        user.watchingWorks = [];
+      }
+
+      user.recentWorks = user.recentWorks.filter(id => id !== WORK_ID);
+      user.recentWorks.unshift(WORK_ID);
+
+      if (!user.watchingWorks.includes(WORK_ID)) {
+        user.watchingWorks.push(WORK_ID);
+      }
+
+      saveAccounts(accounts);
+    }
+
+    function searchWorks() {
+      if (!currentUser) {
+        openLogin();
+        return;
+      }
+
+      const query = normalizeText(searchInput.value);
+      const title = normalizeText(workData.title);
+      const aliases = workData.aliases.map(normalizeText);
+
+      const found = query && (
+        title.includes(query) ||
+        aliases.some(alias => alias.includes(query) || query.includes(alias))
+      );
+
+      document.getElementById("searchTitle").textContent = `"${searchInput.value.trim()}" 검색 결과`;
+
+      document.getElementById("searchFoundSection").style.display = found ? "block" : "none";
+      document.getElementById("searchEmptyPage").style.display = found ? "none" : "flex";
+
+      showPage("searchPage");
     }
 
     function handleSearchKey(event) {
@@ -2188,19 +2622,8 @@
       }
     }
 
-    function goHome() {
-      if (!localStorage.getItem("chatweb_current_user")) {
-        return;
-      }
-
-      searchInput.value = "";
-      mainWorkCard.style.display = "grid";
-      searchMessage.style.display = "none";
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
     function openReader(episodeNumber) {
-      if (!localStorage.getItem("chatweb_current_user")) {
+      if (!currentUser) {
         openLogin();
         return;
       }
@@ -2209,6 +2632,8 @@
         showToast("아직 공개되지 않은 회차입니다.");
         return;
       }
+
+      addViewedWork();
 
       currentEpisode = episodeNumber;
       const ep = episodes[episodeNumber];
@@ -2229,7 +2654,7 @@
     function closeReader() {
       reader.classList.remove("open");
       document.body.style.overflow = "";
-      scrollToEpisodes();
+      openWorkDetail();
     }
 
     function moveEpisode(direction) {
@@ -2244,7 +2669,7 @@
     }
 
     function scrollToEpisodes() {
-      if (!localStorage.getItem("chatweb_current_user")) {
+      if (!currentUser) {
         return;
       }
 
@@ -2258,6 +2683,25 @@
       window.toastTimer = setTimeout(() => {
         toast.style.display = "none";
       }, 1600);
+    }
+
+    function restoreSessionOnly() {
+      const sessionUser = sessionStorage.getItem("chatweb_session_user");
+      const accounts = getAccounts();
+
+      if (sessionUser && accounts[sessionUser]) {
+        currentUser = {
+          nickname: sessionUser,
+          isAuthor: !!accounts[sessionUser].isAuthor
+        };
+
+        updateAccountButton();
+        renderHome();
+        showPage("homePage");
+      } else {
+        currentUser = null;
+        updateAccountButton();
+      }
     }
 
     document.addEventListener("keydown", (e) => {
@@ -2278,7 +2722,7 @@
       }
     });
 
-    checkSavedLogin();
+    restoreSessionOnly();
   </script>
 </body>
 </html>
