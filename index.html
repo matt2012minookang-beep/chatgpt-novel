@@ -5,1025 +5,111 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>chat웹</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    :root {
-      --green: #00c73c;
-      --green-dark: #00a832;
-      --bg: #050505;
-      --text: #111;
-      --muted: #777;
-      --line: #e5e5e5;
-      --card: #fff;
-      --novel-bg: #ffffff;
-      --yellow-skill: #9a7600;
-      --red-system-bg: #4c0b0b;
-      --red-system-text: #ffe3e3;
-      --red-system-line: #d92d2d;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
-
-    button,
-    input {
-      font-family: inherit;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .top-header {
-      background: #fff;
-      border-bottom: 1px solid var(--line);
-      position: sticky;
-      top: 0;
-      z-index: 50;
-    }
-
-    .top-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      min-height: 58px;
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      padding: 10px 16px;
-    }
-
-    .logo {
-      font-size: 24px;
-      font-weight: 900;
-      color: var(--green);
-      letter-spacing: -1px;
-      white-space: nowrap;
-      cursor: pointer;
-    }
-
-    .search-area {
-      flex: 1;
-      max-width: 520px;
-      position: relative;
-      display: flex;
-      gap: 8px;
-    }
-
-    .search-box {
-      width: 100%;
-      height: 38px;
-      border: 2px solid var(--green);
-      border-radius: 20px;
-      padding: 0 15px;
-      color: #111;
-      font-size: 14px;
-      outline: none;
-      background: #fff;
-      font-weight: 700;
-    }
-
-    .search-box::placeholder {
-      color: #999;
-      font-weight: 500;
-    }
-
-    .search-btn {
-      border: none;
-      background: var(--green);
-      color: #fff;
-      border-radius: 20px;
-      padding: 0 16px;
-      font-weight: 900;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .account-btn {
-      border: 1px solid #ddd;
-      background: #fff;
-      border-radius: 18px;
-      padding: 8px 14px;
-      font-size: 13px;
-      font-weight: 800;
-      white-space: nowrap;
-      cursor: pointer;
-    }
-
-    .account-btn.logged {
-      background: #111;
-      color: #fff;
-      border-color: #111;
-    }
-
-    .account-btn.author {
-      background: #3b1168;
-      color: #fff;
-      border-color: #3b1168;
-    }
-
-    .nav-bar {
-      background: var(--green);
-      color: #fff;
-    }
-
-    .nav-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      gap: 4px;
-      overflow-x: auto;
-      padding: 0 10px;
-    }
-
-    .nav-item {
-      padding: 13px 16px;
-      font-weight: 800;
-      font-size: 15px;
-      white-space: nowrap;
-      opacity: 0.9;
-      cursor: pointer;
-    }
-
-    .nav-item.active {
-      background: var(--green-dark);
-      opacity: 1;
-    }
-
-    .locked-home {
-      min-height: calc(100vh - 104px);
-      background: #000;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 18px;
-      text-align: center;
-    }
-
-    .locked-box {
-      max-width: 520px;
-      width: 100%;
-      border: 1px solid rgba(255,255,255,.12);
-      background: linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border-radius: 22px;
-      padding: 38px 24px;
-      box-shadow: 0 20px 60px rgba(0,0,0,.35);
-    }
-
-    .locked-box h1 {
-      font-size: 30px;
-      margin-bottom: 14px;
-      letter-spacing: -1px;
-    }
-
-    .locked-box p {
-      color: rgba(255,255,255,.72);
-      line-height: 1.7;
-      margin-bottom: 24px;
-    }
-
-    .locked-box button {
-      border: none;
-      background: var(--green);
-      color: #fff;
-      border-radius: 12px;
-      padding: 13px 22px;
-      font-size: 16px;
-      font-weight: 900;
-      cursor: pointer;
-    }
-
-    .page {
-      display: none;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 18px 14px 80px;
-    }
-
-    body.logged-in .locked-home {
-      display: none;
-    }
-
-    body.logged-in .page.active {
-      display: block;
-    }
-
-    .dashboard-title {
-      color: #fff;
-      font-size: 26px;
-      font-weight: 900;
-      margin: 10px 0 18px;
-      letter-spacing: -1px;
-    }
-
-    .section {
-      margin-top: 24px;
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    .section:first-child {
-      margin-top: 0;
-    }
-
-    .section-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 18px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .section-head h2 {
-      font-size: 19px;
-      letter-spacing: -0.5px;
-    }
-
-    .section-head span {
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .empty-box {
-      padding: 22px 18px;
-      color: #777;
-      font-weight: 800;
-      line-height: 1.6;
-    }
-
-    .work-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 14px 18px;
-      border-top: 1px solid var(--line);
-      cursor: pointer;
-      transition: background .15s;
-    }
-
-    .work-row:first-of-type {
-      border-top: none;
-    }
-
-    .work-row:hover {
-      background: #f8fff9;
-    }
-
-    .mini-cover {
-      width: 72px;
-      height: 92px;
-      border-radius: 10px;
-      flex-shrink: 0;
-      background:
-        linear-gradient(to top, rgba(0,0,0,.9), rgba(0,0,0,.05)),
-        radial-gradient(circle at 70% 20%, #7048ff, transparent 30%),
-        radial-gradient(circle at 25% 70%, #101927, #080910 55%);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .mini-cover::after {
-      content: "세계를";
-      position: absolute;
-      left: 8px;
-      bottom: 8px;
-      color: #fff;
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: -0.5px;
-    }
-
-    .work-row-info {
-      min-width: 0;
-      flex: 1;
-    }
-
-    .work-row-info h3 {
-      font-size: 18px;
-      margin-bottom: 5px;
-      letter-spacing: -0.5px;
-    }
-
-    .work-row-info p {
-      font-size: 13px;
-      color: #777;
-      line-height: 1.5;
-    }
-
-    .work-row-badge {
-      background: #f1f3f5;
-      color: #555;
-      padding: 7px 9px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 900;
-      white-space: nowrap;
-    }
-
-    .search-empty-page {
-      min-height: calc(100vh - 150px);
-      background: #fff;
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px 18px;
-      margin-top: 18px;
-    }
-
-    .search-empty-page strong {
-      color: #e00000;
-      font-size: 24px;
-      font-weight: 900;
-    }
-
-    .search-result-title {
-      color: #fff;
-      font-size: 24px;
-      font-weight: 900;
-      margin-bottom: 18px;
-    }
-
-    .profile-card {
-      background: #fff;
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      margin-top: 18px;
-    }
-
-    .profile-top {
-      padding: 30px 18px;
-      text-align: center;
-      border-bottom: 1px solid var(--line);
-      background: linear-gradient(135deg, #f8fff9, #ffffff);
-    }
-
-    .profile-img {
-      width: 92px;
-      height: 92px;
-      margin: 0 auto 12px;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 32% 28%, #fff, transparent 16%),
-        linear-gradient(135deg, #00c73c, #151515);
-      box-shadow: 0 8px 24px rgba(0,0,0,.16);
-      border: 4px solid #fff;
-    }
-
-    .profile-name {
-      font-size: 24px;
-      font-weight: 900;
-      letter-spacing: -1px;
-      margin-bottom: 6px;
-    }
-
-    .profile-role {
-      display: inline-block;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: #f1f3f5;
-      color: #555;
-      font-size: 12px;
-      font-weight: 900;
-    }
-
-    .profile-role.author {
-      background: #f2e8ff;
-      color: #5a1a92;
-    }
-
-    .profile-sections {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0;
-    }
-
-    .profile-section {
-      padding: 18px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .profile-section:last-child {
-      border-bottom: none;
-    }
-
-    .profile-section h2 {
-      font-size: 18px;
-      margin-bottom: 12px;
-      letter-spacing: -0.5px;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, #111827, #191b2a 45%, #2b1246);
-      border-radius: 18px;
-      min-height: 260px;
-      color: #fff;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 78% 18%, rgba(138, 92, 255, .42), transparent 28%),
-        radial-gradient(circle at 15% 85%, rgba(0, 199, 60, .18), transparent 35%),
-        linear-gradient(90deg, rgba(0,0,0,.75), rgba(0,0,0,.2));
-    }
-
-    .hero::after {
-      content: "天 空 要 塞";
-      position: absolute;
-      right: 24px;
-      bottom: 22px;
-      color: rgba(255,255,255,.08);
-      font-size: 74px;
-      font-weight: 900;
-      letter-spacing: -8px;
-      transform: rotate(-6deg);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 32px 30px;
-      max-width: 620px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(0, 199, 60, .16);
-      border: 1px solid rgba(0, 199, 60, .5);
-      color: #7cff9e;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 800;
-      margin-bottom: 13px;
-    }
-
-    .hero h1 {
-      font-size: clamp(30px, 5vw, 52px);
-      line-height: 1.08;
-      letter-spacing: -2.4px;
-      margin-bottom: 12px;
-    }
-
-    .hero p {
-      color: rgba(255,255,255,.82);
-      line-height: 1.65;
-      font-size: 15px;
-      max-width: 560px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 22px;
-      flex-wrap: wrap;
-    }
-
-    .main-btn {
-      border: none;
-      background: var(--green);
-      color: #fff;
-      font-weight: 900;
-      border-radius: 10px;
-      padding: 12px 18px;
-      cursor: pointer;
-      font-size: 15px;
-    }
-
-    .sub-btn {
-      border: 1px solid rgba(255,255,255,.34);
-      background: rgba(255,255,255,.1);
-      color: #fff;
-      font-weight: 800;
-      border-radius: 10px;
-      padding: 12px 18px;
-      cursor: pointer;
-      font-size: 15px;
-    }
-
-    .work-card {
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 18px;
-      padding: 18px;
-    }
-
-    .cover {
-      height: 220px;
-      border-radius: 12px;
-      background:
-        linear-gradient(to top, rgba(0,0,0,.9), rgba(0,0,0,.05)),
-        radial-gradient(circle at 70% 20%, #7048ff, transparent 28%),
-        radial-gradient(circle at 25% 70%, #101927, #080910 55%);
-      position: relative;
-      overflow: hidden;
-      box-shadow: inset 0 0 45px rgba(255,255,255,.04);
-      cursor: pointer;
-    }
-
-    .cover::before {
-      content: "";
-      position: absolute;
-      width: 110px;
-      height: 110px;
-      border: 2px solid rgba(150, 120, 255, .7);
-      border-radius: 50%;
-      right: -16px;
-      top: 22px;
-      box-shadow: 0 0 30px rgba(150,120,255,.75);
-    }
-
-    .cover::after {
-      content: "세계를\A구하고,\A버려졌다";
-      white-space: pre;
-      position: absolute;
-      left: 14px;
-      bottom: 14px;
-      color: #fff;
-      font-size: 24px;
-      line-height: 1.08;
-      font-weight: 900;
-      letter-spacing: -1.2px;
-    }
-
-    .work-info h3 {
-      font-size: 26px;
-      margin-bottom: 8px;
-      letter-spacing: -1px;
-    }
-
-    .meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-bottom: 12px;
-    }
-
-    .chip {
-      background: #f1f3f5;
-      color: #555;
-      font-size: 12px;
-      font-weight: 800;
-      padding: 6px 9px;
-      border-radius: 999px;
-    }
-
-    .summary {
-      color: #444;
-      line-height: 1.7;
-      font-size: 14px;
-      max-width: 700px;
-      margin-bottom: 18px;
-    }
-
-    .stats {
-      display: flex;
-      gap: 18px;
-      color: #777;
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 18px;
-      flex-wrap: wrap;
-    }
-
-    .episode-list {
-      background: #fff;
-    }
-
-    .episode {
-      display: grid;
-      grid-template-columns: 86px 1fr auto;
-      gap: 14px;
-      align-items: center;
-      padding: 14px 18px;
-      border-top: 1px solid var(--line);
-      cursor: pointer;
-      transition: background .15s;
-    }
-
-    .episode:hover {
-      background: #f8fff9;
-    }
-
-    .thumb {
-      width: 86px;
-      height: 58px;
-      border-radius: 8px;
-      background:
-        linear-gradient(to top, rgba(0,0,0,.75), transparent),
-        radial-gradient(circle at 72% 25%, #8c6dff, #131522 48%, #07080c);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .thumb::after {
-      content: attr(data-ep);
-      position: absolute;
-      left: 8px;
-      bottom: 6px;
-      color: #fff;
-      font-weight: 900;
-      font-size: 13px;
-    }
-
-    .ep-title {
-      font-weight: 900;
-      margin-bottom: 4px;
-      font-size: 15px;
-    }
-
-    .ep-desc {
-      color: #777;
-      font-size: 13px;
-    }
-
-    .ep-date {
-      color: #999;
-      font-size: 12px;
-      white-space: nowrap;
-    }
-
-    .reader {
-      position: fixed;
-      inset: 0;
-      background: #fff;
-      z-index: 200;
-      display: none;
-      flex-direction: column;
-    }
-
-    .reader.open {
-      display: flex;
-    }
-
-    .reader-top {
-      height: 54px;
-      border-bottom: 1px solid var(--line);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 14px;
-      background: #fff;
-      position: sticky;
-      top: 0;
-      z-index: 5;
-    }
-
-    .reader-title-mini {
-      min-width: 0;
-    }
-
-    .reader-title-mini strong {
-      display: block;
-      font-size: 15px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .reader-title-mini span {
-      display: block;
-      font-size: 12px;
-      color: #888;
-      margin-top: 2px;
-    }
-
-    .close-btn {
-      border: none;
-      background: #111;
-      color: #fff;
-      border-radius: 999px;
-      padding: 8px 13px;
-      font-weight: 900;
-      cursor: pointer;
-    }
-
-    .reader-scroll {
-      overflow-y: auto;
-      flex: 1;
-      background: var(--novel-bg);
-    }
-
-    .novel-wrap {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 34px 18px 120px;
-    }
-
-    .novel-header {
-      border-bottom: 2px solid #222;
-      padding-bottom: 18px;
-      margin-bottom: 28px;
-    }
-
-    .novel-header .series-name {
-      color: var(--green);
-      font-weight: 900;
-      font-size: 14px;
-      margin-bottom: 8px;
-    }
-
-    .novel-header h1 {
-      font-size: clamp(26px, 5vw, 40px);
-      letter-spacing: -1.4px;
-      margin-bottom: 10px;
-    }
-
-    .novel-header .novel-sub {
-      color: #777;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .novel-body {
-      font-family: "Nanum Myeongjo", "Noto Serif KR", "Batang", serif;
-      font-size: 19px;
-      line-height: 2.15;
-      color: #151515;
-      word-break: keep-all;
-      white-space: normal;
-    }
-
-    .novel-body p {
-      margin: 0 0 22px;
-    }
-
-    .scene {
-      text-align: center;
-      color: #888;
-      letter-spacing: 8px;
-      margin: 36px 0;
-      font-family: inherit;
-    }
-
-    .system {
-      font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-      background: var(--red-system-bg);
-      color: var(--red-system-text);
-      border-left: 4px solid var(--red-system-line);
-      padding: 12px 14px;
-      border-radius: 8px;
-      line-height: 1.8;
-      font-size: 16px;
-      margin: 22px 0;
-      font-weight: 800;
-    }
-
-    .skill {
-      color: var(--yellow-skill);
-      font-weight: 900;
-      white-space: nowrap;
-    }
-
-    .quote-strong {
-      font-weight: 900;
-      color: #000;
-    }
-
-    .bottom-nav {
-      max-width: 760px;
-      margin: 30px auto 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #fff;
-      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", Arial, sans-serif;
-    }
-
-    .bottom-nav button {
-      border: none;
-      background: #fff;
-      padding: 16px 8px;
-      font-size: 15px;
-      font-weight: 900;
-      cursor: pointer;
-      border-right: 1px solid #ddd;
-    }
-
-    .bottom-nav button:last-child {
-      border-right: none;
-    }
-
-    .bottom-nav button:hover:not(:disabled) {
-      background: #f4fff6;
-      color: var(--green);
-    }
-
-    .bottom-nav button:disabled {
-      color: #bbb;
-      background: #fafafa;
-      cursor: not-allowed;
-    }
-
-    .login-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.72);
-      z-index: 500;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
-    }
-
-    .login-modal.open {
-      display: flex;
-    }
-
-    .login-panel {
-      width: min(420px, 100%);
-      background: #fff;
-      border-radius: 18px;
-      padding: 24px;
-      box-shadow: 0 30px 80px rgba(0,0,0,.35);
-    }
-
-    .login-panel h2 {
-      font-size: 24px;
-      margin-bottom: 8px;
-      letter-spacing: -1px;
-    }
-
-    .login-panel p {
-      color: #777;
-      line-height: 1.6;
-      font-size: 14px;
-      margin-bottom: 18px;
-    }
-
-    .login-field {
-      margin-bottom: 13px;
-    }
-
-    .login-field label {
-      display: block;
-      font-size: 14px;
-      font-weight: 900;
-      margin-bottom: 7px;
-    }
-
-    .login-field input {
-      width: 100%;
-      height: 44px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 0 12px;
-      outline: none;
-      font-size: 15px;
-      font-weight: 700;
-    }
-
-    .login-field input:focus {
-      border-color: var(--green);
-      box-shadow: 0 0 0 3px rgba(0,199,60,.12);
-    }
-
-    .login-actions {
-      display: flex;
-      gap: 8px;
-      margin-top: 18px;
-    }
-
-    .login-actions button {
-      flex: 1;
-      border: none;
-      border-radius: 10px;
-      padding: 13px 10px;
-      font-weight: 900;
-      cursor: pointer;
-      font-size: 15px;
-    }
-
-    .confirm-login {
-      background: var(--green);
-      color: #fff;
-    }
-
-    .cancel-login {
-      background: #eee;
-      color: #111;
-    }
-
-    .toast {
-      position: fixed;
-      left: 50%;
-      bottom: 24px;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,.82);
-      color: #fff;
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-size: 13px;
-      display: none;
-      z-index: 600;
-      font-weight: 800;
-    }
-
-    @media (max-width: 720px) {
-      .top-inner {
-        height: auto;
-        padding: 10px 12px;
-        flex-wrap: wrap;
-      }
-
-      .logo {
-        width: 100%;
-      }
-
-      .search-area {
-        order: 3;
-        width: 100%;
-        max-width: none;
-      }
-
-      .account-btn {
-        position: absolute;
-        right: 12px;
-        top: 10px;
-      }
-
-      .dashboard-title {
-        font-size: 22px;
-      }
-
-      .hero-content {
-        padding: 26px 20px;
-      }
-
-      .work-card {
-        grid-template-columns: 112px 1fr;
-        gap: 13px;
-        padding: 14px;
-      }
-
-      .cover {
-        height: 160px;
-      }
-
-      .cover::after {
-        font-size: 18px;
-      }
-
-      .work-info h3 {
-        font-size: 21px;
-      }
-
-      .summary {
-        font-size: 13px;
-        line-height: 1.55;
-      }
-
-      .stats {
-        gap: 10px;
-      }
-
-      .episode {
-        grid-template-columns: 76px 1fr;
-      }
-
-      .thumb {
-        width: 76px;
-        height: 52px;
-      }
-
-      .ep-date {
-        display: none;
-      }
-
-      .novel-body {
-        font-size: 17px;
-        line-height: 2.05;
-      }
-
-      .bottom-nav {
-        border-radius: 0;
-        position: sticky;
-        bottom: 0;
-        z-index: 10;
-      }
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --green:#00c73c;--green-dark:#00a832;--bg:#050505;--text:#111;
+      --muted:#777;--line:#e5e5e5;--novel-bg:#fff;
+      --yellow-skill:#9a7600;--red-system-bg:#4c0b0b;
+      --red-system-text:#ffe3e3;--red-system-line:#d92d2d;
+    }
+    body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",Arial,sans-serif;background:var(--bg);color:var(--text)}
+    button,input{font-family:inherit}a{color:inherit;text-decoration:none}
+    .top-header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+    .top-inner{max-width:1100px;margin:0 auto;min-height:58px;display:flex;align-items:center;gap:18px;padding:10px 16px}
+    .logo{font-size:24px;font-weight:900;color:var(--green);letter-spacing:-1px;white-space:nowrap;cursor:pointer}
+    .search-area{flex:1;max-width:520px;display:flex;gap:8px}
+    .search-box{width:100%;height:38px;border:2px solid var(--green);border-radius:20px;padding:0 15px;color:#111;font-size:14px;outline:none;background:#fff;font-weight:700}
+    .search-box::placeholder{color:#999;font-weight:500}
+    .search-btn{border:none;background:var(--green);color:#fff;border-radius:20px;padding:0 16px;font-weight:900;cursor:pointer;white-space:nowrap}
+    .account-btn{border:1px solid #ddd;background:#fff;border-radius:18px;padding:8px 14px;font-size:13px;font-weight:800;white-space:nowrap;cursor:pointer}
+    .account-btn.logged{background:#111;color:#fff;border-color:#111}
+    .account-btn.author{background:#3b1168;color:#fff;border-color:#3b1168}
+    .nav-bar{background:var(--green);color:#fff}
+    .nav-inner{max-width:1100px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:0 10px}
+    .nav-item{padding:13px 16px;font-weight:800;font-size:15px;white-space:nowrap;opacity:.9;cursor:pointer}
+    .nav-item.active{background:var(--green-dark);opacity:1}
+    .locked-home{min-height:calc(100vh - 104px);background:#000;color:#fff;display:flex;align-items:center;justify-content:center;padding:40px 18px;text-align:center}
+    .locked-box{max-width:520px;width:100%;border:1px solid rgba(255,255,255,.12);background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border-radius:22px;padding:38px 24px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+    .locked-box h1{font-size:30px;margin-bottom:14px;letter-spacing:-1px}
+    .locked-box p{color:rgba(255,255,255,.72);line-height:1.7;margin-bottom:24px}
+    .locked-box button{border:none;background:var(--green);color:#fff;border-radius:12px;padding:13px 22px;font-size:16px;font-weight:900;cursor:pointer}
+    .page{display:none;max-width:1100px;margin:0 auto;padding:18px 14px 80px}
+    body.logged-in .locked-home{display:none}
+    body.logged-in .page.active{display:block}
+    .dashboard-title{color:#fff;font-size:26px;font-weight:900;margin:10px 0 18px;letter-spacing:-1px}
+    .section{margin-top:24px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+    .section:first-child{margin-top:0}
+    .section-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--line)}
+    .section-head h2{font-size:19px;letter-spacing:-.5px}.section-head span{color:var(--muted);font-size:13px;font-weight:700}
+    .empty-box{padding:22px 18px;color:#777;font-weight:800;line-height:1.6}
+    .work-row{display:flex;align-items:center;gap:14px;padding:14px 18px;border-top:1px solid var(--line);cursor:pointer;transition:background .15s}
+    .work-row:first-of-type{border-top:none}.work-row:hover{background:#f8fff9}
+    .mini-cover{width:72px;height:92px;border-radius:10px;flex-shrink:0;background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.05)),radial-gradient(circle at 70% 20%,#7048ff,transparent 30%),radial-gradient(circle at 25% 70%,#101927,#080910 55%);position:relative;overflow:hidden}
+    .mini-cover::after{content:"세계를";position:absolute;left:8px;bottom:8px;color:#fff;font-size:13px;font-weight:900;letter-spacing:-.5px}
+    .work-row-info{min-width:0;flex:1}.work-row-info h3{font-size:18px;margin-bottom:5px;letter-spacing:-.5px}.work-row-info p{font-size:13px;color:#777;line-height:1.5}
+    .work-row-badge{background:#f1f3f5;color:#555;padding:7px 9px;border-radius:999px;font-size:12px;font-weight:900;white-space:nowrap}
+    .search-empty-page{min-height:calc(100vh - 150px);background:#fff;border-radius:18px;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 18px;margin-top:18px}
+    .search-empty-page strong{color:#e00000;font-size:24px;font-weight:900}
+    .search-result-title{color:#fff;font-size:24px;font-weight:900;margin-bottom:18px}
+    .profile-card{background:#fff;border-radius:18px;overflow:hidden;border:1px solid var(--line);margin-top:18px}
+    .profile-top{padding:30px 18px;text-align:center;border-bottom:1px solid var(--line);background:linear-gradient(135deg,#f8fff9,#fff)}
+    .profile-img{width:92px;height:92px;margin:0 auto 12px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff,transparent 16%),linear-gradient(135deg,#00c73c,#151515);box-shadow:0 8px 24px rgba(0,0,0,.16);border:4px solid #fff}
+    .profile-name{font-size:24px;font-weight:900;letter-spacing:-1px;margin-bottom:6px}
+    .profile-role{display:inline-block;padding:6px 10px;border-radius:999px;background:#f1f3f5;color:#555;font-size:12px;font-weight:900}
+    .profile-role.author{background:#f2e8ff;color:#5a1a92}
+    .logout-btn{margin-top:14px;border:none;background:#111;color:#fff;border-radius:999px;padding:9px 16px;font-size:13px;font-weight:900;cursor:pointer}
+    .logout-btn:hover{background:#333}
+    .profile-sections{display:grid;grid-template-columns:1fr 1fr;gap:0}
+    .profile-section{padding:18px;border-bottom:1px solid var(--line)}
+    .profile-section:first-child{border-right:1px solid var(--line)}
+    .profile-section h2{font-size:18px;margin-bottom:12px;letter-spacing:-.5px}
+    .hero{background:linear-gradient(135deg,#111827,#191b2a 45%,#2b1246);border-radius:18px;min-height:260px;color:#fff;overflow:hidden;position:relative;box-shadow:0 12px 30px rgba(0,0,0,.18)}
+    .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 78% 18%,rgba(138,92,255,.42),transparent 28%),radial-gradient(circle at 15% 85%,rgba(0,199,60,.18),transparent 35%),linear-gradient(90deg,rgba(0,0,0,.75),rgba(0,0,0,.2))}
+    .hero::after{content:"天 空 要 塞";position:absolute;right:24px;bottom:22px;color:rgba(255,255,255,.08);font-size:74px;font-weight:900;letter-spacing:-8px;transform:rotate(-6deg)}
+    .hero-content{position:relative;z-index:2;padding:32px 30px;max-width:620px}
+    .badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,199,60,.16);border:1px solid rgba(0,199,60,.5);color:#7cff9e;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800;margin-bottom:13px}
+    .hero h1{font-size:clamp(30px,5vw,52px);line-height:1.08;letter-spacing:-2.4px;margin-bottom:12px}
+    .hero p{color:rgba(255,255,255,.82);line-height:1.65;font-size:15px;max-width:560px}
+    .hero-actions{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+    .main-btn{border:none;background:var(--green);color:#fff;font-weight:900;border-radius:10px;padding:12px 18px;cursor:pointer;font-size:15px}
+    .sub-btn{border:1px solid rgba(255,255,255,.34);background:rgba(255,255,255,.1);color:#fff;font-weight:800;border-radius:10px;padding:12px 18px;cursor:pointer;font-size:15px}
+    .work-card{display:grid;grid-template-columns:160px 1fr;gap:18px;padding:18px}
+    .cover{height:220px;border-radius:12px;background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.05)),radial-gradient(circle at 70% 20%,#7048ff,transparent 28%),radial-gradient(circle at 25% 70%,#101927,#080910 55%);position:relative;overflow:hidden;box-shadow:inset 0 0 45px rgba(255,255,255,.04);cursor:pointer}
+    .cover::before{content:"";position:absolute;width:110px;height:110px;border:2px solid rgba(150,120,255,.7);border-radius:50%;right:-16px;top:22px;box-shadow:0 0 30px rgba(150,120,255,.75)}
+    .cover::after{content:"세계를\A구하고,\A버려졌다";white-space:pre;position:absolute;left:14px;bottom:14px;color:#fff;font-size:24px;line-height:1.08;font-weight:900;letter-spacing:-1.2px}
+    .work-info h3{font-size:26px;margin-bottom:8px;letter-spacing:-1px}.meta{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
+    .chip{background:#f1f3f5;color:#555;font-size:12px;font-weight:800;padding:6px 9px;border-radius:999px}
+    .summary{color:#444;line-height:1.7;font-size:14px;max-width:700px;margin-bottom:18px}
+    .stats{display:flex;gap:18px;color:#777;font-size:13px;font-weight:700;margin-bottom:18px;flex-wrap:wrap}
+    .episode-list{background:#fff}.episode{display:grid;grid-template-columns:86px 1fr auto;gap:14px;align-items:center;padding:14px 18px;border-top:1px solid var(--line);cursor:pointer;transition:background .15s,opacity .15s}
+    .episode:hover{background:#f8fff9}.episode.read{background:#f1f1f1;opacity:.78}.episode.read:hover{background:#e8e8e8}
+    .episode.read .ep-title::after{content:"  읽음";color:#999;font-size:12px;font-weight:800}
+    .thumb{width:86px;height:58px;border-radius:8px;background:linear-gradient(to top,rgba(0,0,0,.75),transparent),radial-gradient(circle at 72% 25%,#8c6dff,#131522 48%,#07080c);position:relative;overflow:hidden}
+    .thumb::after{content:attr(data-ep);position:absolute;left:8px;bottom:6px;color:#fff;font-weight:900;font-size:13px}
+    .ep-title{font-weight:900;margin-bottom:4px;font-size:15px}.ep-desc{color:#777;font-size:13px}.ep-date{color:#999;font-size:12px;white-space:nowrap}
+    .reader{position:fixed;inset:0;background:#fff;z-index:200;display:none;flex-direction:column}.reader.open{display:flex}
+    .reader-top{height:54px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 14px;background:#fff;position:sticky;top:0;z-index:5}
+    .reader-title-mini{min-width:0}.reader-title-mini strong{display:block;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.reader-title-mini span{display:block;font-size:12px;color:#888;margin-top:2px}
+    .close-btn{border:none;background:#111;color:#fff;border-radius:999px;padding:8px 13px;font-weight:900;cursor:pointer}
+    .reader-scroll{overflow-y:auto;flex:1;background:var(--novel-bg)}.novel-wrap{max-width:760px;margin:0 auto;padding:34px 18px 120px}
+    .novel-header{border-bottom:2px solid #222;padding-bottom:18px;margin-bottom:28px}.novel-header .series-name{color:var(--green);font-weight:900;font-size:14px;margin-bottom:8px}
+    .novel-header h1{font-size:clamp(26px,5vw,40px);letter-spacing:-1.4px;margin-bottom:10px}.novel-header .novel-sub{color:#777;font-size:13px;font-weight:700}
+    .novel-body{font-family:"Nanum Myeongjo","Noto Serif KR","Batang",serif;font-size:19px;line-height:2.15;color:#151515;word-break:keep-all;white-space:normal}
+    .novel-body p{margin:0 0 22px}.scene{text-align:center;color:#888;letter-spacing:8px;margin:36px 0;font-family:inherit}
+    .system{font-family:"Apple SD Gothic Neo","Noto Sans KR",sans-serif;background:var(--red-system-bg);color:var(--red-system-text);border-left:4px solid var(--red-system-line);padding:12px 14px;border-radius:8px;line-height:1.8;font-size:16px;margin:22px 0;font-weight:800}
+    .skill{color:var(--yellow-skill);font-weight:900;white-space:nowrap}.quote-strong{font-weight:900;color:#000}
+    .bottom-nav{max-width:760px;margin:30px auto 0;display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid #ddd;border-radius:12px;overflow:hidden;background:#fff;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",Arial,sans-serif}
+    .bottom-nav button{border:none;background:#fff;padding:16px 8px;font-size:15px;font-weight:900;cursor:pointer;border-right:1px solid #ddd}.bottom-nav button:last-child{border-right:none}.bottom-nav button:hover:not(:disabled){background:#f4fff6;color:var(--green)}.bottom-nav button:disabled{color:#bbb;background:#fafafa;cursor:not-allowed}
+    .login-modal{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:500;display:none;align-items:center;justify-content:center;padding:18px}.login-modal.open{display:flex}
+    .login-panel{width:min(420px,100%);background:#fff;border-radius:18px;padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.35)}.login-panel h2{font-size:24px;margin-bottom:8px;letter-spacing:-1px}.login-panel p{color:#777;line-height:1.6;font-size:14px;margin-bottom:18px}
+    .login-field{margin-bottom:13px}.login-field label{display:block;font-size:14px;font-weight:900;margin-bottom:7px}.login-field input{width:100%;height:44px;border:1px solid #ddd;border-radius:10px;padding:0 12px;outline:none;font-size:15px;font-weight:700}.login-field input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,199,60,.12)}
+    .login-actions{display:flex;gap:8px;margin-top:18px}.login-actions button{flex:1;border:none;border-radius:10px;padding:13px 10px;font-weight:900;cursor:pointer;font-size:15px}.confirm-login{background:var(--green);color:#fff}.cancel-login{background:#eee;color:#111}
+    .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:rgba(0,0,0,.82);color:#fff;padding:10px 14px;border-radius:999px;font-size:13px;display:none;z-index:600;font-weight:800}
+    @media(max-width:720px){
+      .top-inner{height:auto;padding:10px 12px;flex-wrap:wrap}.logo{width:100%}.search-area{order:3;width:100%;max-width:none}.account-btn{position:absolute;right:12px;top:10px}
+      .dashboard-title{font-size:22px}.profile-sections{grid-template-columns:1fr}.profile-section:first-child{border-right:none}
+      .hero-content{padding:26px 20px}.work-card{grid-template-columns:112px 1fr;gap:13px;padding:14px}.cover{height:160px}.cover::after{font-size:18px}.work-info h3{font-size:21px}.summary{font-size:13px;line-height:1.55}.stats{gap:10px}
+      .episode{grid-template-columns:76px 1fr}.thumb{width:76px;height:52px}.ep-date{display:none}.novel-body{font-size:17px;line-height:2.05}.bottom-nav{border-radius:0;position:sticky;bottom:0;z-index:10}
     }
   </style>
 </head>
@@ -1031,21 +117,12 @@
   <header class="top-header">
     <div class="top-inner">
       <div class="logo" onclick="goHome()">chat웹</div>
-
       <div class="search-area">
-        <input
-          class="search-box"
-          id="searchInput"
-          type="text"
-          placeholder="작품명, 작가명 검색"
-          onkeydown="handleSearchKey(event)"
-        />
+        <input class="search-box" id="searchInput" type="text" placeholder="작품명, 작가명 검색" onkeydown="handleSearchKey(event)" />
         <button class="search-btn" onclick="searchWorks()">검색</button>
       </div>
-
       <button class="account-btn" id="accountBtn" onclick="handleAccountButton()">로그인</button>
     </div>
-
     <nav class="nav-bar">
       <div class="nav-inner">
         <a class="nav-item active" onclick="goHome()">홈</a>
@@ -1062,50 +139,34 @@
   <section class="locked-home" id="lockedHome">
     <div class="locked-box">
       <h1>로그인 하시면 보실수 있습니다.</h1>
-      <p>
-        chat웹의 작품 목록과 회차는 로그인 후 이용할 수 있습니다.<br>
-        새로고침하면 보안을 위해 다시 로그인해야 합니다.
-      </p>
+      <p>chat웹의 작품 목록과 회차는 로그인 후 이용할 수 있습니다.<br>새로고침하면 보안을 위해 다시 로그인해야 합니다.</p>
       <button onclick="openLogin()">로그인</button>
     </div>
   </section>
 
   <main class="page" id="homePage">
     <h1 class="dashboard-title" id="homeGreeting">홈</h1>
-
     <section class="section">
-      <div class="section-head">
-        <h2>최근 본 작품</h2>
-        <span id="recentCountText">0개</span>
-      </div>
+      <div class="section-head"><h2>최근 본 작품</h2><span id="recentCountText">0개</span></div>
       <div id="recentWorksBox"></div>
     </section>
-
     <section class="section">
-      <div class="section-head">
-        <h2>추천 작품</h2>
-        <span>다크 판타지 · 액션</span>
-      </div>
-
+      <div class="section-head"><h2>추천 작품</h2><span>다크 판타지 · 액션</span></div>
       <div class="work-row" onclick="openWorkDetail()">
         <div class="mini-cover"></div>
         <div class="work-row-info">
           <h3>세계를 구하고, 버려졌다</h3>
           <p>작가 고쓰비 · 세계를 구한 용사, 자신의 세계에서 버려지다.</p>
         </div>
-        <div class="work-row-badge">3화 공개</div>
+        <div class="work-row-badge">4화 공개</div>
       </div>
     </section>
   </main>
 
   <main class="page" id="searchPage">
     <h1 class="search-result-title" id="searchTitle">검색 결과</h1>
-
     <section class="section" id="searchFoundSection">
-      <div class="section-head">
-        <h2>작품</h2>
-        <span>검색 결과</span>
-      </div>
+      <div class="section-head"><h2>작품</h2><span>검색 결과</span></div>
       <div class="work-row" onclick="openWorkDetail()">
         <div class="mini-cover"></div>
         <div class="work-row-info">
@@ -1115,10 +176,7 @@
         <div class="work-row-badge">바로가기</div>
       </div>
     </section>
-
-    <section class="search-empty-page" id="searchEmptyPage">
-      <strong>검색하신 작품이 없습니다.</strong>
-    </section>
+    <section class="search-empty-page" id="searchEmptyPage"><strong>검색하신 작품이 없습니다.</strong></section>
   </main>
 
   <main class="page" id="profilePage">
@@ -1127,8 +185,9 @@
         <div class="profile-img"></div>
         <div class="profile-name" id="profileNickname">닉네임</div>
         <div class="profile-role" id="profileRole">일반 계정</div>
+        <br>
+        <button class="logout-btn" onclick="logout()">로그아웃</button>
       </div>
-
       <div class="profile-sections">
         <div class="profile-section" id="authorWorksSection">
           <h2>제작중인 작품</h2>
@@ -1141,7 +200,6 @@
             <div class="work-row-badge">작가</div>
           </div>
         </div>
-
         <div class="profile-section">
           <h2>보고있는 작품</h2>
           <div id="watchingWorksBox"></div>
@@ -1154,11 +212,8 @@
     <section class="hero">
       <div class="hero-content">
         <div class="badge">고쓰비 · 다크 판타지</div>
-        <h1>세계를 구하고,<br />버려졌다</h1>
-        <p>
-          마왕을 쓰러뜨리고 돌아온 소년. 하지만 그를 기다리던 것은 가족의 죽음,
-          사라진 자리, 그리고 아무도 받아주지 않는 세계였다.
-        </p>
+        <h1>세계를 구하고,<br>버려졌다</h1>
+        <p>마왕을 쓰러뜨리고 돌아온 소년. 하지만 그를 기다리던 것은 가족의 죽음, 사라진 자리, 그리고 아무도 받아주지 않는 세계였다.</p>
         <div class="hero-actions">
           <button class="main-btn" onclick="openReader(1)">1화 바로 읽기</button>
           <button class="sub-btn" onclick="scrollToEpisodes()">회차 목록 보기</button>
@@ -1167,69 +222,35 @@
     </section>
 
     <section class="section">
-      <div class="section-head">
-        <h2>작품 정보</h2>
-        <span>작가 · 고쓰비</span>
-      </div>
-
+      <div class="section-head"><h2>작품 정보</h2><span>작가 · 고쓰비</span></div>
       <div class="work-card">
         <div class="cover" onclick="openReader(1)" title="작품 보기"></div>
         <div class="work-info">
           <h3>세계를 구하고, 버려졌다</h3>
           <div class="meta">
-            <span class="chip">다크 판타지</span>
-            <span class="chip">귀환자</span>
-            <span class="chip">복수</span>
-            <span class="chip">각성자</span>
+            <span class="chip">다크 판타지</span><span class="chip">귀환자</span><span class="chip">복수</span><span class="chip">각성자</span>
           </div>
-          <p class="summary">
-            2100년대, 각성자들은 자신의 권능과 연결된 세계로 보내진다.
-            소환의 권능을 얻은 강도윤은 마왕을 처치하고 지구로 돌아오지만,
-            그가 지킨 세계는 이미 그를 버린 뒤였다.
-          </p>
-          <div class="stats">
-            <span>★ 0</span>
-            <span>조회 0</span>
-            <span>관심 0</span>
-            <span>총 3화 공개</span>
-          </div>
+          <p class="summary">2100년대, 각성자들은 자신의 권능과 연결된 세계로 보내진다. 소환의 권능을 얻은 강도윤은 마왕을 처치하고 지구로 돌아오지만, 그가 지킨 세계는 이미 그를 버린 뒤였다.</p>
+          <div class="stats"><span>★ 0</span><span>조회 0</span><span>관심 0</span><span>총 4화 공개</span></div>
           <button class="main-btn" onclick="openReader(1)">첫 화 보기</button>
         </div>
       </div>
     </section>
 
     <section class="section" id="episodes">
-      <div class="section-head">
-        <h2>회차 목록</h2>
-        <span>총 3화 공개</span>
-      </div>
-
+      <div class="section-head"><h2>회차 목록</h2><span>총 4화 공개</span></div>
       <div class="episode-list">
-        <div class="episode" onclick="openReader(1)">
-          <div class="thumb" data-ep="1화"></div>
-          <div>
-            <div class="ep-title">1화 - 귀환</div>
-            <div class="ep-desc">세계를 구한 용사, 자신의 세계에서 버려지다.</div>
-          </div>
-          <div class="ep-date">2026.04.30</div>
+        <div class="episode" data-episode="1" onclick="openReader(1)">
+          <div class="thumb" data-ep="1화"></div><div><div class="ep-title">1화 - 귀환</div><div class="ep-desc">세계를 구한 용사, 자신의 세계에서 버려지다.</div></div><div class="ep-date">2026.04.30</div>
         </div>
-
-        <div class="episode" onclick="openReader(2)">
-          <div class="thumb" data-ep="2화"></div>
-          <div>
-            <div class="ep-title">2화 - 공모</div>
-            <div class="ep-desc">버려진 자들이 만나고, 세계를 향한 전쟁이 시작된다.</div>
-          </div>
-          <div class="ep-date">2026.04.30</div>
+        <div class="episode" data-episode="2" onclick="openReader(2)">
+          <div class="thumb" data-ep="2화"></div><div><div class="ep-title">2화 - 공모</div><div class="ep-desc">버려진 자들이 만나고, 세계를 향한 전쟁이 시작된다.</div></div><div class="ep-date">2026.04.30</div>
         </div>
-
-        <div class="episode" onclick="openReader(3)">
-          <div class="thumb" data-ep="3화"></div>
-          <div>
-            <div class="ep-title">3화 - 포위</div>
-            <div class="ep-desc">제주도에서 포위된 세 사람, 그리고 아스 길드와의 첫 충돌.</div>
-          </div>
-          <div class="ep-date">2026.04.30</div>
+        <div class="episode" data-episode="3" onclick="openReader(3)">
+          <div class="thumb" data-ep="3화"></div><div><div class="ep-title">3화 - 포위</div><div class="ep-desc">제주도에서 포위된 세 사람, 그리고 아스 길드와의 첫 충돌.</div></div><div class="ep-date">2026.04.30</div>
+        </div>
+        <div class="episode" data-episode="4" onclick="openReader(4)">
+          <div class="thumb" data-ep="4화"></div><div><div class="ep-title">4화 - 분류되지 않은 힘</div><div class="ep-desc">소환 포인트, 권능의 한계, 그리고 국방부의 대응.</div></div><div class="ep-date">2026.04.30</div>
         </div>
       </div>
     </section>
@@ -1243,7 +264,6 @@
       </div>
       <button class="close-btn" onclick="closeReader()">닫기</button>
     </div>
-
     <div class="reader-scroll" id="readerScroll">
       <article class="novel-wrap">
         <header class="novel-header">
@@ -1251,9 +271,7 @@
           <h1 id="readerTitle">1화 - 귀환</h1>
           <div class="novel-sub" id="readerSub">강도윤 · 소환의 권능 · 귀환</div>
         </header>
-
         <div class="novel-body" id="novelBody"></div>
-
         <div class="bottom-nav">
           <button id="prevBtn" onclick="moveEpisode(-1)">&lt;- 이전화</button>
           <button onclick="closeReader()">목록</button>
@@ -1267,17 +285,8 @@
     <div class="login-panel">
       <h2>chat웹 로그인</h2>
       <p>닉네임과 비밀번호를 입력하세요. 이전에 만든 닉네임이면 해당 계정으로 로그인됩니다.</p>
-
-      <div class="login-field">
-        <label for="nicknameInput">1. 닉네임 입력</label>
-        <input id="nicknameInput" type="text" placeholder="닉네임" autocomplete="username" />
-      </div>
-
-      <div class="login-field">
-        <label for="passwordInput">2. 비밀번호 입력</label>
-        <input id="passwordInput" type="password" placeholder="비밀번호" autocomplete="current-password" />
-      </div>
-
+      <div class="login-field"><label for="nicknameInput">1. 닉네임 입력</label><input id="nicknameInput" type="text" placeholder="닉네임" autocomplete="username"></div>
+      <div class="login-field"><label for="passwordInput">2. 비밀번호 입력</label><input id="passwordInput" type="password" placeholder="비밀번호" autocomplete="current-password"></div>
       <div class="login-actions">
         <button class="cancel-login" onclick="closeLogin()">취소</button>
         <button class="confirm-login" onclick="confirmLogin()">확인</button>
@@ -1295,7 +304,6 @@
     const loginModal = document.getElementById("loginModal");
     const accountBtn = document.getElementById("accountBtn");
     const searchInput = document.getElementById("searchInput");
-
     const readerMiniTitle = document.getElementById("readerMiniTitle");
     const readerTitle = document.getElementById("readerTitle");
     const readerSub = document.getElementById("readerSub");
@@ -1312,57 +320,22 @@
       id: WORK_ID,
       title: "세계를 구하고, 버려졌다",
       author: "고쓰비",
-      aliases: [
-        "세계를",
-        "세계를구하고",
-        "세계를구하고버려졌다",
-        "세계를구했더니",
-        "세계를구했더니버려졌다",
-        "버려졌다",
-        "강도윤",
-        "귀환",
-        "고쓰비"
-      ]
+      aliases: ["세계를","세계를구하고","세계를구하고버려졌다","세계를구했더니","세계를구했더니버려졌다","버려졌다","강도윤","귀환","고쓰비","포위","분류되지않은힘","아스","천공의요새"]
     };
 
-    function rawToHtml(raw) {
-      return raw
-        .trim()
-        .split(/\n\s*\n/g)
-        .map(block => block.trim())
-        .filter(Boolean)
-        .map(block => {
-          let text = escapeHtml(block).replace(/\n/g, "<br>");
-
-          text = text.replace(/「([^」]+)」/g, '<span class="skill">「$1」</span>');
-
-          if (/^\[[\s\S]*\]$/.test(block.trim())) {
-            return `<div class="system">${text}</div>`;
-          }
-
-          if (block.trim() === "—") {
-            return `<div class="scene">—</div>`;
-          }
-
-          if (
-            block.trim() === "마왕." ||
-            block.trim() === "세계를 구했더니 버려졌다." ||
-            block.trim() === "빛의 검 액스칼리버" ||
-            block.trim() === "“내가 버린다.”"
-          ) {
-            return `<p class="quote-strong">${text}</p>`;
-          }
-
-          return `<p>${text}</p>`;
-        })
-        .join("\n");
+    function escapeHtml(str){
+      return String(str).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;");
     }
 
-    function escapeHtml(str) {
-      return String(str)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;");
+    function rawToHtml(raw){
+      return String(raw||"").trim().split(/\n\s*\n/g).map(block=>block.trim()).filter(Boolean).map(block=>{
+        let text=escapeHtml(block).replace(/\n/g,"<br>");
+        text=text.replace(/「([^」]+)」/g,'<span class="skill">「$1」</span>');
+        if(/^\[[\s\S]*\]$/.test(block.trim())) return `<div class="system">${text}</div>`;
+        if(block.trim()==="—") return `<div class="scene">—</div>`;
+        if(["마왕.","세계를 구했더니 버려졌다.","빛의 검 액스칼리버","“내가 버린다.”"].includes(block.trim())) return `<p class="quote-strong">${text}</p>`;
+        return `<p>${text}</p>`;
+      }).join("\n");
     }
 
     const episodes = {
@@ -2397,7 +1370,6 @@
 시작되려 하고 있었다.
         `
       },
-
       3: {
         title: "3화 - 포위",
         sub: "아스 길드 · 포위 · 천공의 요새",
@@ -2821,35 +1793,286 @@ B3탄이, 폭우처럼 쏟아졌다.
 
 세상이, 그 아래에 눌렸다.
         `
+      },
+
+      4: {
+        title: "4화 - 분류되지 않은 힘",
+        sub: "소환 포인트 · 각성자 등급 · 이도현",
+        raw: `
+천공의 요새는 하늘 위에 떠 있었다.
+
+구름 아래로 펼쳐진 세상은 너무 멀어 보였고, 이 공간만이 유독 현실과 분리된 듯 고요했다. 방금 전까지 벌어졌던 전투의 흔적조차 이 안에서는 희미하게 가라앉아 있었다.
+
+강도윤은 창가에 서서 아래를 내려다보고 있었다. 이 공간이 자신의 권능으로 만들어졌다는 사실은 분명했지만, 완전히 통제된 느낌은 아니었다. 마치 손끝에서 조금씩 미끄러지는 세계처럼.
+
+백진우가 바닥에 털썩 주저앉았다.
+
+“야.”
+
+그가 도윤을 올려다보며 웃었다.
+
+“근데 말이야. 너 정도면 진짜 세계 하나쯤은 그냥 없앨 수 있는 거 아니냐?”
+
+유하린도 옆에서 팔짱을 낀 채 고개를 끄덕였다.
+
+“맞아. 솔직히 우리 입장에서는 좀 이상해.”
+
+“왜 안 하는데?”
+
+도윤은 잠시 말이 없었다.
+
+그리고 조용히 입을 열었다.
+
+“…나의 권능에도 한계가 있어.”
+
+두 사람의 시선이 동시에 그에게 향했다.
+
+“소환 포인트라고 불러.”
+
+도윤은 손끝을 들어 허공을 가리켰다.
+
+“이걸 다 쓰면 더 이상 소환이 안 돼.”
+
+잠깐의 침묵이 흘렀다.
+
+“방금 이 요새 소환하면서.”
+
+“…전부 썼다.”
+
+진우가 눈을 깜빡였다.
+
+“아예?”
+
+“그래.”
+
+도윤은 담담하게 말했다.
+
+“지금은 아무것도 못 만든다.”
+
+유하린이 피식 웃었다.
+
+“생각보다 현실적이네.”
+
+진우는 잠시 생각하더니 고개를 저었다.
+
+“근데 그거 진짜 위험한 설정인데.”
+
+도윤은 더 설명하지 않았다.
+
+대신 두 사람을 바라봤다.
+
+“너희는.”
+
+“어떤 건데.”
+
+진우가 먼저 입꼬리를 올렸다.
+
+“나는 무림이다.”
+
+“무협지에 나오는 건 전부 쓸 수 있다고 보면 된다.”
+
+그는 손을 가볍게 휘둘렀다.
+
+공기가 얇게 찢어지듯 흔들렸다.
+
+“검법, 장법, 보법, 내공 운용 전부.”
+
+“어릴 때 무협지 많이 봤거든.”
+
+유하린이 이어서 말했다.
+
+“나는 염화.”
+
+손끝에서 불꽃이 피어올랐다.
+
+그 불은 단순한 화염이 아니었다. 형태를 바꾸며 칼이 되었다가 바람처럼 퍼졌다가 다시 응축되었다.
+
+“불과 관련된 건 거의 다 가능해.”
+
+“어릴 때부터 불 가지고 노는 거 좋아했어.”
+
+잠깐 웃었다.
+
+“생각해보면 그게 권능이랑 연결된 것 같기도 하고.”
+
+진우가 고개를 끄덕였다.
+
+“나도 비슷한 생각 했어.”
+
+잠시 정적이 흘렀다.
+
+도윤은 천천히 입을 열었다.
+
+“…나는.”
+
+두 사람의 시선이 다시 그에게 향했다.
+
+“어릴 때 만드는 걸 좋아했어.”
+
+손을 내려다봤다.
+
+“근데.”
+
+“…만드는 거랑 소환은 다른 거 아닌가?”
+
+유하린이 물었다.
+
+도윤은 바로 대답하지 않았다.
+
+잠시 생각한 뒤 낮게 말했다.
+
+“…모르겠네.”
+
+그리고 다시 창밖을 바라봤다.
+
+아래 세상은 아무 일도 없었다는 듯 평온했다.
+
+그게 더 이상하게 느껴졌다.
+
+—
+
+지하.
+
+어두운 회의실.
+
+긴 테이블 위로 자료들이 쌓여 있었다.
+
+인원은 10명 남짓.
+국방부 핵심 인사들과 각성자 분석관들이 함께 앉아 있었다.
+
+한 남자가 서류를 내려놓았다.
+
+“제주도 상황 보고입니다.”
+
+“정체불명의 세력.”
+
+“한라산이 소멸했습니다.”
+
+잠깐의 침묵.
+
+“그리고 34위 길드 [아스]가 전멸했습니다.”
+
+회의실이 술렁였다.
+
+“그게 말이 됩니까?”
+
+한 사람이 목소리를 높였다.
+
+“아무리 각성자라도 한라산을 날려버린다고요?”
+
+“증거 확보됐습니다.”
+
+서류가 넘어갔다.
+
+사진.
+
+그 위에는 있어야 할 산 대신, 거대한 구조물이 떠 있었다.
+
+“현재 구조물 분석 중입니다.”
+
+“인근 주민은 전원 대피 완료.”
+
+“문제는…”
+
+그가 말을 멈췄다.
+
+“…그 세력이 언제 다시 움직일지 모른다는 겁니다.”
+
+회의실이 다시 소란스러워졌다.
+
+그때였다.
+
+“조용.”
+
+낮고 단단한 목소리.
+
+모든 시선이 한 사람에게 향했다.
+
+테이블 끝.
+
+가장 높은 자리에 앉아 있던 남자였다.
+
+“국방부는 해당 세력을 제거하기 위해.”
+
+잠깐의 침묵.
+
+“지휘관급 각성자.”
+
+그는 서류를 내려다봤다.
+
+“…절단의 각성자 이도현을 투입한다.”
+
+—
+
+다시 천공의 요새.
+
+도윤은 창밖을 보고 있었다.
+
+진우가 옆에서 천천히 말했다.
+
+“각성자 등급은 한국 기준으로 5단계다.”
+
+“병사급.”
+
+“병장급.”
+
+“지휘관급.”
+
+“전설급.”
+
+“신화급.”
+
+유하린이 덧붙였다.
+
+“협회 기준이라 절대적인 건 아니야.”
+
+진우는 도윤을 바라봤다.
+
+그리고 아주 짧게 웃었다.
+
+“근데 문제는 그거야.”
+
+“우리 둘은 협회에서 이미 측정받았어.”
+
+잠깐의 침묵.
+
+그리고 마지막으로, 진우가 낮게 말했다.
+
+“…우리는—”
+        `
       }
     };
-    function normalizeText(text) {
+
+    function normalizeText(text){
       return String(text || "").replace(/\s+/g, "").toLowerCase();
     }
 
-    function getAccounts() {
+    function getAccounts(){
       const raw = localStorage.getItem("chatweb_accounts");
       return raw ? JSON.parse(raw) : {};
     }
 
-    function saveAccounts(accounts) {
+    function saveAccounts(accounts){
       localStorage.setItem("chatweb_accounts", JSON.stringify(accounts));
     }
 
-    function showPage(pageId) {
-      if (!currentUser) {
-        return;
-      }
+    function showPage(pageId){
+      if(!currentUser) return;
 
-      pages.forEach(id => {
-        document.getElementById(id).classList.toggle("active", id === pageId);
+      pages.forEach(id=>{
+        const page = document.getElementById(id);
+        if(page) page.classList.toggle("active", id === pageId);
       });
+
+      if(pageId === "workDetailPage"){
+        updateReadEpisodeStyles();
+      }
 
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    function updateAccountButton() {
-      if (!currentUser) {
+    function updateAccountButton(){
+      if(!currentUser){
         document.body.classList.remove("logged-in");
         accountBtn.textContent = "로그인";
         accountBtn.classList.remove("logged", "author");
@@ -2860,34 +2083,38 @@ B3탄이, 폭우처럼 쏟아졌다.
       accountBtn.textContent = currentUser.nickname;
       accountBtn.classList.add("logged");
 
-      if (currentUser.isAuthor) {
+      if(currentUser.isAuthor){
         accountBtn.classList.add("author");
-      } else {
+      }else{
         accountBtn.classList.remove("author");
       }
     }
 
-    function openLogin() {
+    function openLogin(){
       loginModal.classList.add("open");
-      setTimeout(() => {
-        document.getElementById("nicknameInput").focus();
+      setTimeout(()=>{
+        const input = document.getElementById("nicknameInput");
+        if(input) input.focus();
       }, 50);
     }
 
-    function closeLogin() {
+    function closeLogin(){
       loginModal.classList.remove("open");
     }
 
-    function confirmLogin() {
-      const nickname = document.getElementById("nicknameInput").value.trim();
-      const password = document.getElementById("passwordInput").value.trim();
+    function confirmLogin(){
+      const nicknameInput = document.getElementById("nicknameInput");
+      const passwordInput = document.getElementById("passwordInput");
 
-      if (!nickname) {
+      const nickname = nicknameInput.value.trim();
+      const password = passwordInput.value.trim();
+
+      if(!nickname){
         showToast("닉네임을 입력하세요.");
         return;
       }
 
-      if (!password) {
+      if(!password){
         showToast("비밀번호를 입력하세요.");
         return;
       }
@@ -2895,31 +2122,29 @@ B3탄이, 폭우처럼 쏟아졌다.
       const accounts = getAccounts();
       const isAuthorLogin = nickname === "고쓰비" && password === "2012424!";
 
-      if (accounts[nickname]) {
-        if (accounts[nickname].password !== password) {
+      if(accounts[nickname]){
+        if(accounts[nickname].password !== password){
           showToast("비밀번호가 다릅니다.");
           return;
         }
-      } else {
+      }else{
         accounts[nickname] = {
           password,
           createdAt: new Date().toISOString(),
           recentWorks: [],
-          watchingWorks: []
+          watchingWorks: [],
+          readEpisodes: [],
+          isAuthor: false
         };
       }
 
-      if (isAuthorLogin) {
+      if(isAuthorLogin){
         accounts[nickname].isAuthor = true;
       }
 
-      if (!Array.isArray(accounts[nickname].recentWorks)) {
-        accounts[nickname].recentWorks = [];
-      }
-
-      if (!Array.isArray(accounts[nickname].watchingWorks)) {
-        accounts[nickname].watchingWorks = [];
-      }
+      if(!Array.isArray(accounts[nickname].recentWorks)) accounts[nickname].recentWorks = [];
+      if(!Array.isArray(accounts[nickname].watchingWorks)) accounts[nickname].watchingWorks = [];
+      if(!Array.isArray(accounts[nickname].readEpisodes)) accounts[nickname].readEpisodes = [];
 
       saveAccounts(accounts);
 
@@ -2928,37 +2153,42 @@ B3탄이, 폭우처럼 쏟아졌다.
         isAuthor: !!accounts[nickname].isAuthor
       };
 
-      /*
-        새로고침하면 다시 로그인해야 하므로
-        로그인 상태를 localStorage/sessionStorage에 저장하지 않는다.
-        계정 정보만 localStorage에 저장한다.
-      */
-
-      document.getElementById("nicknameInput").value = "";
-      document.getElementById("passwordInput").value = "";
+      nicknameInput.value = "";
+      passwordInput.value = "";
 
       closeLogin();
       updateAccountButton();
       renderHome();
       showPage("homePage");
 
-      if (isAuthorLogin) {
-        showToast("작가 계정으로 로그인되었습니다.");
-      } else {
-        showToast("로그인되었습니다.");
-      }
+      showToast(currentUser.isAuthor ? "작가 계정으로 로그인되었습니다." : "로그인되었습니다.");
     }
 
-    function handleAccountButton() {
-      if (!currentUser) {
+    function logout(){
+      currentUser = null;
+      reader.classList.remove("open");
+      document.body.style.overflow = "";
+      updateAccountButton();
+
+      pages.forEach(id=>{
+        const page = document.getElementById(id);
+        if(page) page.classList.remove("active");
+      });
+
+      searchInput.value = "";
+      showToast("로그아웃되었습니다. 다시 로그인하세요.");
+    }
+
+    function handleAccountButton(){
+      if(!currentUser){
         openLogin();
-      } else {
+      }else{
         openProfile();
       }
     }
 
-    function goHome() {
-      if (!currentUser) {
+    function goHome(){
+      if(!currentUser){
         openLogin();
         return;
       }
@@ -2968,7 +2198,7 @@ B3탄이, 폭우처럼 쏟아졌다.
       showPage("homePage");
     }
 
-    function renderHome() {
+    function renderHome(){
       const accounts = getAccounts();
       const user = accounts[currentUser.nickname];
 
@@ -2979,7 +2209,7 @@ B3탄이, 폭우처럼 쏟아졌다.
 
       document.getElementById("recentCountText").textContent = recentWorks.length + "개";
 
-      if (recentWorks.includes(WORK_ID)) {
+      if(recentWorks.includes(WORK_ID)){
         recentWorksBox.innerHTML = `
           <div class="work-row" onclick="openWorkDetail()">
             <div class="mini-cover"></div>
@@ -2990,15 +2220,13 @@ B3탄이, 폭우처럼 쏟아졌다.
             <div class="work-row-badge">이어보기</div>
           </div>
         `;
-      } else {
-        recentWorksBox.innerHTML = `
-          <div class="empty-box">아직 최근 본 작품이 없습니다.</div>
-        `;
+      }else{
+        recentWorksBox.innerHTML = `<div class="empty-box">아직 최근 본 작품이 없습니다.</div>`;
       }
     }
 
-    function openProfile() {
-      if (!currentUser) {
+    function openProfile(){
+      if(!currentUser){
         openLogin();
         return;
       }
@@ -3017,7 +2245,7 @@ B3탄이, 폭우처럼 쏟아졌다.
       const watchingWorksBox = document.getElementById("watchingWorksBox");
       const watching = user.watchingWorks || [];
 
-      if (watching.includes(WORK_ID)) {
+      if(watching.includes(WORK_ID)){
         watchingWorksBox.innerHTML = `
           <div class="work-row" onclick="openWorkDetail()">
             <div class="mini-cover"></div>
@@ -3028,17 +2256,15 @@ B3탄이, 폭우처럼 쏟아졌다.
             <div class="work-row-badge">보기</div>
           </div>
         `;
-      } else {
-        watchingWorksBox.innerHTML = `
-          <div class="empty-box">${currentUser.nickname}님은 아직 본 작품이 없습니다.</div>
-        `;
+      }else{
+        watchingWorksBox.innerHTML = `<div class="empty-box">${currentUser.nickname}님은 아직 본 작품이 없습니다.</div>`;
       }
 
       showPage("profilePage");
     }
 
-    function openWorkDetail() {
-      if (!currentUser) {
+    function openWorkDetail(){
+      if(!currentUser){
         openLogin();
         return;
       }
@@ -3046,34 +2272,45 @@ B3탄이, 폭우처럼 쏟아졌다.
       showPage("workDetailPage");
     }
 
-    function addViewedWork() {
-      if (!currentUser) {
-        return;
-      }
+    function addViewedWork(episodeNumber){
+      if(!currentUser) return;
 
       const accounts = getAccounts();
       const user = accounts[currentUser.nickname];
 
-      if (!Array.isArray(user.recentWorks)) {
-        user.recentWorks = [];
-      }
-
-      if (!Array.isArray(user.watchingWorks)) {
-        user.watchingWorks = [];
-      }
+      if(!Array.isArray(user.recentWorks)) user.recentWorks = [];
+      if(!Array.isArray(user.watchingWorks)) user.watchingWorks = [];
+      if(!Array.isArray(user.readEpisodes)) user.readEpisodes = [];
 
       user.recentWorks = user.recentWorks.filter(id => id !== WORK_ID);
       user.recentWorks.unshift(WORK_ID);
 
-      if (!user.watchingWorks.includes(WORK_ID)) {
+      if(!user.watchingWorks.includes(WORK_ID)){
         user.watchingWorks.push(WORK_ID);
+      }
+
+      if(!user.readEpisodes.includes(episodeNumber)){
+        user.readEpisodes.push(episodeNumber);
       }
 
       saveAccounts(accounts);
     }
 
-    function searchWorks() {
-      if (!currentUser) {
+    function updateReadEpisodeStyles(){
+      if(!currentUser) return;
+
+      const accounts = getAccounts();
+      const user = accounts[currentUser.nickname];
+      const readEpisodes = user && Array.isArray(user.readEpisodes) ? user.readEpisodes : [];
+
+      document.querySelectorAll(".episode[data-episode]").forEach(el=>{
+        const num = Number(el.dataset.episode);
+        el.classList.toggle("read", readEpisodes.includes(num));
+      });
+    }
+
+    function searchWorks(){
+      if(!currentUser){
         openLogin();
         return;
       }
@@ -3090,34 +2327,31 @@ B3탄이, 폭우처럼 쏟아졌다.
         aliases.some(alias => alias.includes(query) || query.includes(alias))
       );
 
-      document.getElementById("searchTitle").textContent = rawQuery
-        ? `"${rawQuery}" 검색 결과`
-        : "검색 결과";
-
+      document.getElementById("searchTitle").textContent = rawQuery ? `"${rawQuery}" 검색 결과` : "검색 결과";
       document.getElementById("searchFoundSection").style.display = found ? "block" : "none";
       document.getElementById("searchEmptyPage").style.display = found ? "none" : "flex";
 
       showPage("searchPage");
     }
 
-    function handleSearchKey(event) {
-      if (event.key === "Enter") {
+    function handleSearchKey(event){
+      if(event.key === "Enter"){
         searchWorks();
       }
     }
 
-    function openReader(episodeNumber) {
-      if (!currentUser) {
+    function openReader(episodeNumber){
+      if(!currentUser){
         openLogin();
         return;
       }
 
-      if (!episodes[episodeNumber]) {
+      if(!episodes[episodeNumber]){
         showToast("아직 공개되지 않은 회차입니다.");
         return;
       }
 
-      addViewedWork();
+      addViewedWork(episodeNumber);
 
       currentEpisode = episodeNumber;
       const ep = episodes[episodeNumber];
@@ -3133,18 +2367,20 @@ B3탄이, 폭우처럼 쏟아졌다.
       reader.classList.add("open");
       document.body.style.overflow = "hidden";
       readerScroll.scrollTo({ top: 0, behavior: "instant" });
+
+      updateReadEpisodeStyles();
     }
 
-    function closeReader() {
+    function closeReader(){
       reader.classList.remove("open");
       document.body.style.overflow = "";
       openWorkDetail();
     }
 
-    function moveEpisode(direction) {
+    function moveEpisode(direction){
       const target = currentEpisode + direction;
 
-      if (!episodes[target]) {
+      if(!episodes[target]){
         showToast("아직 공개되지 않은 회차입니다.");
         return;
       }
@@ -3152,55 +2388,42 @@ B3탄이, 폭우처럼 쏟아졌다.
       openReader(target);
     }
 
-    function scrollToEpisodes() {
-      if (!currentUser) {
-        return;
-      }
-
+    function scrollToEpisodes(){
+      if(!currentUser) return;
       document.getElementById("episodes").scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
-    function showToast(message) {
+    function showToast(message){
       toast.textContent = message;
       toast.style.display = "block";
       clearTimeout(window.toastTimer);
-      window.toastTimer = setTimeout(() => {
+      window.toastTimer = setTimeout(()=>{
         toast.style.display = "none";
       }, 1600);
     }
 
-    function initLoggedOut() {
+    function initLoggedOut(){
       currentUser = null;
       updateAccountButton();
 
-      pages.forEach(id => {
-        document.getElementById(id).classList.remove("active");
+      pages.forEach(id=>{
+        const page = document.getElementById(id);
+        if(page) page.classList.remove("active");
       });
 
       document.body.classList.remove("logged-in");
       searchInput.value = "";
     }
 
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        if (reader.classList.contains("open")) {
-          closeReader();
-        }
-
-        if (loginModal.classList.contains("open")) {
-          closeLogin();
-        }
+    document.addEventListener("keydown", e=>{
+      if(e.key === "Escape"){
+        if(reader.classList.contains("open")) closeReader();
+        if(loginModal.classList.contains("open")) closeLogin();
       }
     });
 
-    loginModal.addEventListener("click", (e) => {
-      if (e.target === loginModal) {
-        closeLogin();
-      }
-    });
-
-    window.addEventListener("beforeunload", () => {
-      currentUser = null;
+    loginModal.addEventListener("click", e=>{
+      if(e.target === loginModal) closeLogin();
     });
 
     initLoggedOut();
