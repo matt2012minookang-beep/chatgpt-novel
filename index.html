@@ -9,6 +9,7 @@
     :root{--green:#00c73c;--green-dark:#00a832;--bg:#050505;--text:#111;--muted:#777;--line:#e5e5e5;--novel-bg:#fff;--yellow-skill:#9a7600;--red-system-bg:#4c0b0b;--red-system-text:#ffe3e3;--red-system-line:#d92d2d;--blue-system-bg:#e7f1ff;--blue-system-text:#064a9b;--blue-system-line:#2b7cff}
     body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",Arial,sans-serif;background:var(--bg);color:var(--text)}
     button,input{font-family:inherit}a{color:inherit;text-decoration:none}
+
     .top-header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
     .top-inner{max-width:1100px;margin:0 auto;min-height:58px;display:flex;align-items:center;gap:18px;padding:10px 16px}
     .logo{font-size:24px;font-weight:900;color:var(--green);letter-spacing:-1px;white-space:nowrap;cursor:pointer}
@@ -19,6 +20,7 @@
     .account-btn{border:1px solid #ddd;background:#fff;border-radius:18px;padding:8px 14px;font-size:13px;font-weight:800;white-space:nowrap;cursor:pointer}
     .account-btn.logged{background:#111;color:#fff;border-color:#111}
     .account-btn.author{background:#3b1168;color:#fff;border-color:#3b1168}
+
     .nav-bar{background:var(--green);color:#fff}
     .nav-inner{max-width:1100px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:0 10px}
     .nav-item{padding:13px 16px;font-weight:800;font-size:15px;white-space:nowrap;opacity:.9;cursor:pointer}
@@ -53,15 +55,17 @@
     .work-row-badge.preview{background:#fff4d6;color:#9a6500;border:1px solid #ffd36b}
     .work-row-badge.owned{background:#e8fff0;color:#008f2b;border:1px solid #7be49a}
 
-    .weekday-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:10px;padding:18px;background:#fff}
-    .weekday-card{border:1px solid #e6e6e6;border-radius:14px;min-height:170px;overflow:hidden;background:#fafafa}
-    .weekday-card h3{background:#f1f3f5;padding:11px 10px;font-size:15px;text-align:center;font-weight:900}
-    .weekday-body{padding:10px}
-    .weekday-empty{color:#aaa;font-size:12px;font-weight:800;text-align:center;padding-top:36px}
-    .weekday-work{display:flex;flex-direction:column;gap:7px;cursor:pointer}
-    .weekday-cover{height:70px;border-radius:9px;background:linear-gradient(to top,rgba(0,0,0,.82),rgba(0,0,0,.05)),radial-gradient(circle at 70% 20%,#7048ff,transparent 30%),radial-gradient(circle at 25% 70%,#101927,#080910 55%);position:relative}
-    .weekday-cover::after{content:"세계를";position:absolute;left:8px;bottom:7px;color:#fff;font-size:13px;font-weight:900}
-    .weekday-work strong{font-size:13px;letter-spacing:-.5px}
+    .weekday-tabs{display:flex;gap:8px;overflow-x:auto;padding:14px 18px;background:#fff;border-bottom:1px solid var(--line)}
+    .weekday-tab-btn{border:1px solid #ddd;background:#fff;color:#333;border-radius:999px;padding:10px 17px;font-size:14px;font-weight:900;cursor:pointer;white-space:nowrap}
+    .weekday-tab-btn.active{background:var(--green);color:#fff;border-color:var(--green)}
+    .weekday-panel{display:none;background:#fff;padding:0}
+    .weekday-panel.active{display:block}
+    .weekday-empty-wrap{padding:48px 18px;text-align:center;color:#999;font-weight:900}
+    .weekday-work-row{display:flex;align-items:center;gap:14px;padding:16px 18px;cursor:pointer}
+    .weekday-cover{width:82px;height:104px;border-radius:12px;background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.05)),radial-gradient(circle at 70% 20%,#7048ff,transparent 30%),radial-gradient(circle at 25% 70%,#101927,#080910 55%);position:relative;overflow:hidden;flex-shrink:0}
+    .weekday-cover::after{content:"세계를";position:absolute;left:9px;bottom:9px;color:#fff;font-size:14px;font-weight:900}
+    .weekday-work-info h3{font-size:18px;margin-bottom:6px;letter-spacing:-.5px}
+    .weekday-work-info p{font-size:13px;color:#777;font-weight:800}
     .rank-row{display:flex;align-items:center;gap:14px;padding:16px 18px;border-top:1px solid var(--line);cursor:pointer}
     .rank-num{width:38px;height:38px;border-radius:12px;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;flex-shrink:0}
 
@@ -171,11 +175,8 @@
     .view-once-btn{background:#00a832}
     .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:rgba(0,0,0,.82);color:#fff;padding:10px 14px;border-radius:999px;font-size:13px;display:none;z-index:600;font-weight:800}
 
-    @media(max-width:920px){
-      .weekday-grid{grid-template-columns:repeat(4,1fr)}
-    }
     @media(max-width:720px){
-      .top-inner{height:auto;padding:10px 12px;flex-wrap:wrap}.logo{width:100%}.search-area{order:3;width:100%;max-width:none}.account-btn{position:absolute;right:12px;top:10px}.dashboard-title{font-size:22px}.profile-sections{grid-template-columns:1fr}.profile-section:first-child{border-right:none}.hero-content{padding:26px 20px}.work-card{grid-template-columns:112px 1fr;gap:13px;padding:14px}.cover{height:160px}.cover::after{font-size:18px}.work-info h3{font-size:21px}.summary{font-size:13px;line-height:1.55}.stats{gap:10px}.episode{grid-template-columns:76px 1fr}.thumb{width:76px;height:52px}.ep-date{display:none}.novel-body{font-size:17px;line-height:2.05}.bottom-nav{border-radius:0;position:sticky;bottom:0;z-index:10}.weekday-grid{grid-template-columns:repeat(2,1fr)}
+      .top-inner{height:auto;padding:10px 12px;flex-wrap:wrap}.logo{width:100%}.search-area{order:3;width:100%;max-width:none}.account-btn{position:absolute;right:12px;top:10px}.dashboard-title{font-size:22px}.profile-sections{grid-template-columns:1fr}.profile-section:first-child{border-right:none}.hero-content{padding:26px 20px}.work-card{grid-template-columns:112px 1fr;gap:13px;padding:14px}.cover{height:160px}.cover::after{font-size:18px}.work-info h3{font-size:21px}.summary{font-size:13px;line-height:1.55}.stats{gap:10px}.episode{grid-template-columns:76px 1fr}.thumb{width:76px;height:52px}.ep-date{display:none}.novel-body{font-size:17px;line-height:2.05}.bottom-nav{border-radius:0;position:sticky;bottom:0;z-index:10}
     }
   </style>
 </head>
@@ -232,23 +233,33 @@
   <main class="page" id="weekdayPage">
     <h1 class="dashboard-title">요일별</h1>
     <section class="section">
-      <div class="section-head"><h2>요일별 작품</h2><span>월~일 · 매일+</span></div>
-      <div class="weekday-grid">
-        <div class="weekday-card"><h3>월</h3><div class="weekday-body"><div class="weekday-empty">작품 없음</div></div></div>
-        <div class="weekday-card"><h3>화</h3><div class="weekday-body"><div class="weekday-empty">작품 없음</div></div></div>
-        <div class="weekday-card"><h3>수</h3><div class="weekday-body"><div class="weekday-empty">작품 없음</div></div></div>
-        <div class="weekday-card"><h3>목</h3><div class="weekday-body"><div class="weekday-empty">작품 없음</div></div></div>
-        <div class="weekday-card"><h3>금</h3><div class="weekday-body"><div class="weekday-empty">작품 없음</div></div></div>
-        <div class="weekday-card"><h3>토</h3><div class="weekday-body"><div class="weekday-empty">작품 없음</div></div></div>
-        <div class="weekday-card"><h3>일</h3><div class="weekday-body"><div class="weekday-empty">작품 없음</div></div></div>
-        <div class="weekday-card">
-          <h3>매일+</h3>
-          <div class="weekday-body">
-            <div class="weekday-work" onclick="openWorkDetail()">
-              <div class="weekday-cover"></div>
-              <strong>세계를 구하고, 버려졌다</strong>
-            </div>
+      <div class="section-head"><h2>요일별 작품</h2><span>네웹식 요일 탭</span></div>
+      <div class="weekday-tabs">
+        <button class="weekday-tab-btn active" id="weekdayBtnMon" onclick="showWeekday('mon')">월</button>
+        <button class="weekday-tab-btn" id="weekdayBtnTue" onclick="showWeekday('tue')">화</button>
+        <button class="weekday-tab-btn" id="weekdayBtnWed" onclick="showWeekday('wed')">수</button>
+        <button class="weekday-tab-btn" id="weekdayBtnThu" onclick="showWeekday('thu')">목</button>
+        <button class="weekday-tab-btn" id="weekdayBtnFri" onclick="showWeekday('fri')">금</button>
+        <button class="weekday-tab-btn" id="weekdayBtnSat" onclick="showWeekday('sat')">토</button>
+        <button class="weekday-tab-btn" id="weekdayBtnSun" onclick="showWeekday('sun')">일</button>
+        <button class="weekday-tab-btn" id="weekdayBtnDaily" onclick="showWeekday('daily')">매일+</button>
+      </div>
+
+      <div class="weekday-panel active" id="weekdayPanelMon"><div class="weekday-empty-wrap">월요일 작품은 아직 없습니다.</div></div>
+      <div class="weekday-panel" id="weekdayPanelTue"><div class="weekday-empty-wrap">화요일 작품은 아직 없습니다.</div></div>
+      <div class="weekday-panel" id="weekdayPanelWed"><div class="weekday-empty-wrap">수요일 작품은 아직 없습니다.</div></div>
+      <div class="weekday-panel" id="weekdayPanelThu"><div class="weekday-empty-wrap">목요일 작품은 아직 없습니다.</div></div>
+      <div class="weekday-panel" id="weekdayPanelFri"><div class="weekday-empty-wrap">금요일 작품은 아직 없습니다.</div></div>
+      <div class="weekday-panel" id="weekdayPanelSat"><div class="weekday-empty-wrap">토요일 작품은 아직 없습니다.</div></div>
+      <div class="weekday-panel" id="weekdayPanelSun"><div class="weekday-empty-wrap">일요일 작품은 아직 없습니다.</div></div>
+      <div class="weekday-panel" id="weekdayPanelDaily">
+        <div class="weekday-work-row" onclick="openWorkDetail()">
+          <div class="weekday-cover"></div>
+          <div class="weekday-work-info">
+            <h3>세계를 구하고, 버려졌다</h3>
+            <p>작가 고쓰비 · 매일+ 연재</p>
           </div>
+          <div class="work-row-badge">바</div>
         </div>
       </div>
     </section>
@@ -261,7 +272,7 @@
       <div class="work-row" onclick="openWorkDetail()">
         <div class="mini-cover"></div>
         <div class="work-row-info"><h3>세계를 구하고, 버려졌다</h3><p>작가 고쓰비 · 다크 판타지</p></div>
-        <div class="work-row-badge">바로가기</div>
+        <div class="work-row-badge">바</div>
       </div>
     </section>
   </main>
@@ -273,7 +284,7 @@
       <div class="work-row" onclick="openWorkDetail()">
         <div class="mini-cover"></div>
         <div class="work-row-info"><h3>세계를 구하고, 버려졌다</h3><p>작가 고쓰비 · 권능 액션</p></div>
-        <div class="work-row-badge">바로가기</div>
+        <div class="work-row-badge">바</div>
       </div>
     </section>
   </main>
@@ -285,7 +296,7 @@
       <div class="work-row" onclick="openWorkDetail()">
         <div class="mini-cover"></div>
         <div class="work-row-info"><h3>세계를 구하고, 버려졌다</h3><p>작가 고쓰비 · 신작</p></div>
-        <div class="work-row-badge">바로가기</div>
+        <div class="work-row-badge">바</div>
       </div>
     </section>
   </main>
@@ -298,7 +309,7 @@
         <div class="rank-num">1</div>
         <div class="mini-cover"></div>
         <div class="work-row-info"><h3>세계를 구하고, 버려졌다</h3><p>작가 고쓰비 · 랭킹 1위</p></div>
-        <div class="work-row-badge">바로가기</div>
+        <div class="work-row-badge">바</div>
       </div>
       <div class="empty-box">2위 작품은 아직 없습니다.</div>
       <div class="empty-box">3위 작품은 아직 없습니다.</div>
@@ -323,7 +334,7 @@
           <h3>세계를 구하고, 버려졌다</h3>
           <p>작가 고쓰비 · 세계를 구한 용사, 자신의 세계에서 버려지다.</p>
         </div>
-        <div class="work-row-badge">바로가기</div>
+        <div class="work-row-badge">바</div>
       </div>
     </section>
     <section class="search-empty-page" id="searchEmptyPage"><strong>검색하신 작품이 없습니다.</strong></section>
@@ -3419,6 +3430,32 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
       showPage(pageId,navId);
     }
 
+    function showWeekday(day){
+      const map={
+        mon:["weekdayBtnMon","weekdayPanelMon"],
+        tue:["weekdayBtnTue","weekdayPanelTue"],
+        wed:["weekdayBtnWed","weekdayPanelWed"],
+        thu:["weekdayBtnThu","weekdayPanelThu"],
+        fri:["weekdayBtnFri","weekdayPanelFri"],
+        sat:["weekdayBtnSat","weekdayPanelSat"],
+        sun:["weekdayBtnSun","weekdayPanelSun"],
+        daily:["weekdayBtnDaily","weekdayPanelDaily"]
+      };
+
+      Object.values(map).forEach(([btnId,panelId])=>{
+        const btn=document.getElementById(btnId);
+        const panel=document.getElementById(panelId);
+        if(btn)btn.classList.remove("active");
+        if(panel)panel.classList.remove("active");
+      });
+
+      const target=map[day];
+      if(!target)return;
+
+      document.getElementById(target[0]).classList.add("active");
+      document.getElementById(target[1]).classList.add("active");
+    }
+
     function updateAccountButton(){
       if(!currentUser){
         document.body.classList.remove("logged-in");
@@ -3524,12 +3561,23 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
     function collectCoins(){
       if(!currentUser)return;
       updateCoinBank();
-      const user=getUserData();ensureAccountShape(user);
-      if(user.coinBank<=0){showToast("회수할 코인이 없습니다.");return}
+
+      const user=getUserData();
+      ensureAccountShape(user);
+
+      if(user.coinBank<=0){
+        showToast("회수할 코인이 없습니다.");
+        return;
+      }
+
       user.coins+=user.coinBank;
       const got=user.coinBank;
       user.coinBank=0;
-      user.coinStartedAt=Date.now();
+
+      if(!user.coinStartedAt){
+        user.coinStartedAt=Date.now();
+      }
+
       saveUserData(user);
       showToast(`코인 ${got}개를 회수했습니다.`);
       updateTicketModal();
