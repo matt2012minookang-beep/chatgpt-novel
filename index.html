@@ -23,11 +23,13 @@
     .nav-inner{max-width:1100px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:0 10px}
     .nav-item{padding:13px 16px;font-weight:800;font-size:15px;white-space:nowrap;opacity:.9;cursor:pointer}
     .nav-item.active{background:var(--green-dark);opacity:1}
+
     .locked-home{min-height:calc(100vh - 104px);background:#000;color:#fff;display:flex;align-items:center;justify-content:center;padding:40px 18px;text-align:center}
     .locked-box{max-width:520px;width:100%;border:1px solid rgba(255,255,255,.12);background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border-radius:22px;padding:38px 24px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
     .locked-box h1{font-size:30px;margin-bottom:14px;letter-spacing:-1px}
     .locked-box p{color:rgba(255,255,255,.72);line-height:1.7;margin-bottom:24px}
     .locked-box button{border:none;background:var(--green);color:#fff;border-radius:12px;padding:13px 22px;font-size:16px;font-weight:900;cursor:pointer}
+
     .page{display:none;max-width:1100px;margin:0 auto;padding:18px 14px 80px}
     body.logged-in .locked-home{display:none}
     body.logged-in .page.active{display:block}
@@ -35,18 +37,26 @@
     .section{margin-top:24px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
     .section:first-child{margin-top:0}
     .section-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--line)}
-    .section-head h2{font-size:19px;letter-spacing:-.5px}.section-head span{color:var(--muted);font-size:13px;font-weight:700}
+    .section-head h2{font-size:19px;letter-spacing:-.5px}
+    .section-head span{color:var(--muted);font-size:13px;font-weight:700}
     .empty-box{padding:22px 18px;color:#777;font-weight:800;line-height:1.6}
+
     .work-row{display:flex;align-items:center;gap:14px;padding:14px 18px;border-top:1px solid var(--line);cursor:pointer;transition:background .15s}
-    .work-row:first-of-type{border-top:none}.work-row:hover{background:#f8fff9}
+    .work-row:first-of-type{border-top:none}
+    .work-row:hover{background:#f8fff9}
     .mini-cover{width:72px;height:92px;border-radius:10px;flex-shrink:0;background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.05)),radial-gradient(circle at 70% 20%,#7048ff,transparent 30%),radial-gradient(circle at 25% 70%,#101927,#080910 55%);position:relative;overflow:hidden}
     .mini-cover::after{content:"세계를";position:absolute;left:8px;bottom:8px;color:#fff;font-size:13px;font-weight:900;letter-spacing:-.5px}
-    .work-row-info{min-width:0;flex:1}.work-row-info h3{font-size:18px;margin-bottom:5px;letter-spacing:-.5px}.work-row-info p{font-size:13px;color:#777;line-height:1.5}
+    .work-row-info{min-width:0;flex:1}
+    .work-row-info h3{font-size:18px;margin-bottom:5px;letter-spacing:-.5px}
+    .work-row-info p{font-size:13px;color:#777;line-height:1.5}
     .work-row-badge{background:#f1f3f5;color:#555;padding:7px 9px;border-radius:999px;font-size:12px;font-weight:900;white-space:nowrap}
     .work-row-badge.preview{background:#fff4d6;color:#9a6500;border:1px solid #ffd36b}
+    .work-row-badge.owned{background:#e8fff0;color:#008f2b;border:1px solid #7be49a}
+
     .search-empty-page{min-height:calc(100vh - 150px);background:#fff;border-radius:18px;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 18px;margin-top:18px}
     .search-empty-page strong{color:#e00000;font-size:24px;font-weight:900}
     .search-result-title{color:#fff;font-size:24px;font-weight:900;margin-bottom:18px}
+
     .profile-card{background:#fff;border-radius:18px;overflow:hidden;border:1px solid var(--line);margin-top:18px}
     .profile-top{padding:30px 18px;text-align:center;border-bottom:1px solid var(--line);background:linear-gradient(135deg,#f8fff9,#fff)}
     .profile-img{width:92px;height:92px;margin:0 auto 12px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff,transparent 16%),linear-gradient(135deg,#00c73c,#151515);box-shadow:0 8px 24px rgba(0,0,0,.16);border:4px solid #fff}
@@ -55,13 +65,17 @@
     .profile-role.author{background:#f2e8ff;color:#5a1a92}
     .profile-buttons{margin-top:14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
     .logout-btn,.password-btn,.ticket-btn{border:none;background:#111;color:#fff;border-radius:999px;padding:9px 16px;font-size:13px;font-weight:900;cursor:pointer}
-    .password-btn{background:#3b1168}.ticket-btn{background:#00a832}
-    .logout-btn:hover{background:#333}.password-btn:hover{background:#51208a}.ticket-btn:hover{background:#008f2b}
+    .password-btn{background:#3b1168}
+    .ticket-btn{background:#00a832}
+    .logout-btn:hover{background:#333}
+    .password-btn:hover{background:#51208a}
+    .ticket-btn:hover{background:#008f2b}
     .profile-ticket-info{margin-top:12px;color:#555;font-size:13px;font-weight:900;display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
     .profile-sections{display:grid;grid-template-columns:1fr 1fr;gap:0}
     .profile-section{padding:18px;border-bottom:1px solid var(--line)}
     .profile-section:first-child{border-right:1px solid var(--line)}
     .profile-section h2{font-size:18px;margin-bottom:12px;letter-spacing:-.5px}
+
     .hero{background:linear-gradient(135deg,#111827,#191b2a 45%,#2b1246);border-radius:18px;min-height:260px;color:#fff;overflow:hidden;position:relative;box-shadow:0 12px 30px rgba(0,0,0,.18)}
     .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 78% 18%,rgba(138,92,255,.42),transparent 28%),radial-gradient(circle at 15% 85%,rgba(0,199,60,.18),transparent 35%),linear-gradient(90deg,rgba(0,0,0,.75),rgba(0,0,0,.2))}
     .hero::after{content:"天 空 要 塞";position:absolute;right:24px;bottom:22px;color:rgba(255,255,255,.08);font-size:74px;font-weight:900;letter-spacing:-8px;transform:rotate(-6deg)}
@@ -72,43 +86,78 @@
     .hero-actions{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
     .main-btn{border:none;background:var(--green);color:#fff;font-weight:900;border-radius:10px;padding:12px 18px;cursor:pointer;font-size:15px}
     .sub-btn{border:1px solid rgba(255,255,255,.34);background:rgba(255,255,255,.1);color:#fff;font-weight:800;border-radius:10px;padding:12px 18px;cursor:pointer;font-size:15px}
+
     .work-card{display:grid;grid-template-columns:160px 1fr;gap:18px;padding:18px}
     .cover{height:220px;border-radius:12px;background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.05)),radial-gradient(circle at 70% 20%,#7048ff,transparent 28%),radial-gradient(circle at 25% 70%,#101927,#080910 55%);position:relative;overflow:hidden;box-shadow:inset 0 0 45px rgba(255,255,255,.04);cursor:pointer}
     .cover::before{content:"";position:absolute;width:110px;height:110px;border:2px solid rgba(150,120,255,.7);border-radius:50%;right:-16px;top:22px;box-shadow:0 0 30px rgba(150,120,255,.75)}
     .cover::after{content:"세계를\A구하고,\A버려졌다";white-space:pre;position:absolute;left:14px;bottom:14px;color:#fff;font-size:24px;line-height:1.08;font-weight:900;letter-spacing:-1.2px}
-    .work-info h3{font-size:26px;margin-bottom:8px;letter-spacing:-1px}.meta{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
+    .work-info h3{font-size:26px;margin-bottom:8px;letter-spacing:-1px}
+    .meta{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
     .chip{background:#f1f3f5;color:#555;font-size:12px;font-weight:800;padding:6px 9px;border-radius:999px}
     .summary{color:#444;line-height:1.7;font-size:14px;max-width:700px;margin-bottom:18px}
     .stats{display:flex;gap:18px;color:#777;font-size:13px;font-weight:700;margin-bottom:18px;flex-wrap:wrap}
-    .episode-list{background:#fff}.episode{display:grid;grid-template-columns:86px 1fr auto;gap:14px;align-items:center;padding:14px 18px;border-top:1px solid var(--line);cursor:pointer;transition:background .15s,opacity .15s}
-    .episode:hover{background:#f8fff9}.episode.read{background:#f1f1f1;opacity:.78}.episode.read:hover{background:#e8e8e8}
+
+    .episode-list{background:#fff}
+    .episode{display:grid;grid-template-columns:86px 1fr auto;gap:14px;align-items:center;padding:14px 18px;border-top:1px solid var(--line);cursor:pointer;transition:background .15s,opacity .15s}
+    .episode:hover{background:#f8fff9}
+    .episode.read{background:#f1f1f1;opacity:.78}
+    .episode.read:hover{background:#e8e8e8}
     .episode.read .ep-title::after{content:"  읽음";color:#999;font-size:12px;font-weight:800}
     .thumb{width:86px;height:58px;border-radius:8px;background:linear-gradient(to top,rgba(0,0,0,.75),transparent),radial-gradient(circle at 72% 25%,#8c6dff,#131522 48%,#07080c);position:relative;overflow:hidden}
     .thumb::after{content:attr(data-ep);position:absolute;left:8px;bottom:6px;color:#fff;font-weight:900;font-size:13px}
-    .ep-title{font-weight:900;margin-bottom:4px;font-size:15px}.ep-desc{color:#777;font-size:13px}.ep-date{color:#999;font-size:12px;white-space:nowrap}
-    .reader{position:fixed;inset:0;background:#fff;z-index:200;display:none;flex-direction:column}.reader.open{display:flex}
+    .ep-title{font-weight:900;margin-bottom:4px;font-size:15px}
+    .ep-desc{color:#777;font-size:13px}
+    .ep-date{color:#999;font-size:12px;white-space:nowrap}
+
+    .reader{position:fixed;inset:0;background:#fff;z-index:200;display:none;flex-direction:column}
+    .reader.open{display:flex}
     .reader-top{height:54px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 14px;background:#fff;position:sticky;top:0;z-index:5}
-    .reader-title-mini{min-width:0}.reader-title-mini strong{display:block;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.reader-title-mini span{display:block;font-size:12px;color:#888;margin-top:2px}
+    .reader-title-mini{min-width:0}
+    .reader-title-mini strong{display:block;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .reader-title-mini span{display:block;font-size:12px;color:#888;margin-top:2px}
     .close-btn{border:none;background:#111;color:#fff;border-radius:999px;padding:8px 13px;font-weight:900;cursor:pointer}
-    .reader-scroll{overflow-y:auto;flex:1;background:var(--novel-bg)}.novel-wrap{max-width:760px;margin:0 auto;padding:34px 18px 120px}
-    .novel-header{border-bottom:2px solid #222;padding-bottom:18px;margin-bottom:28px}.novel-header .series-name{color:var(--green);font-weight:900;font-size:14px;margin-bottom:8px}
-    .novel-header h1{font-size:clamp(26px,5vw,40px);letter-spacing:-1.4px;margin-bottom:10px}.novel-header .novel-sub{color:#777;font-size:13px;font-weight:700}
+    .reader-scroll{overflow-y:auto;flex:1;background:var(--novel-bg)}
+    .novel-wrap{max-width:760px;margin:0 auto;padding:34px 18px 120px}
+    .novel-header{border-bottom:2px solid #222;padding-bottom:18px;margin-bottom:28px}
+    .novel-header .series-name{color:var(--green);font-weight:900;font-size:14px;margin-bottom:8px}
+    .novel-header h1{font-size:clamp(26px,5vw,40px);letter-spacing:-1.4px;margin-bottom:10px}
+    .novel-header .novel-sub{color:#777;font-size:13px;font-weight:700}
     .novel-body{font-family:"Nanum Myeongjo","Noto Serif KR","Batang",serif;font-size:19px;line-height:2.15;color:#151515;word-break:keep-all;white-space:normal}
-    .novel-body p{margin:0 0 22px}.scene{text-align:center;color:#888;letter-spacing:8px;margin:36px 0;font-family:inherit}
+    .novel-body p{margin:0 0 22px}
+    .scene{text-align:center;color:#888;letter-spacing:8px;margin:36px 0;font-family:inherit}
     .system{font-family:"Apple SD Gothic Neo","Noto Sans KR",sans-serif;background:var(--red-system-bg);color:var(--red-system-text);border-left:4px solid var(--red-system-line);padding:12px 14px;border-radius:8px;line-height:1.8;font-size:16px;margin:22px 0;font-weight:800}
-    .skill{color:var(--yellow-skill);font-weight:900;white-space:nowrap}.quote-strong{font-weight:900;color:#000}
+    .skill{color:var(--yellow-skill);font-weight:900;white-space:nowrap}
+    .quote-strong{font-weight:900;color:#000}
     .bottom-nav{max-width:760px;margin:30px auto 0;display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid #ddd;border-radius:12px;overflow:hidden;background:#fff;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",Arial,sans-serif}
-    .bottom-nav button{border:none;background:#fff;padding:16px 8px;font-size:15px;font-weight:900;cursor:pointer;border-right:1px solid #ddd}.bottom-nav button:last-child{border-right:none}.bottom-nav button:hover:not(:disabled){background:#f4fff6;color:var(--green)}.bottom-nav button:disabled{color:#bbb;background:#fafafa;cursor:not-allowed}
-    .login-modal{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:500;display:none;align-items:center;justify-content:center;padding:18px}.login-modal.open{display:flex}
-    .login-panel{width:min(440px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:18px;padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.35)}.login-panel h2{font-size:24px;margin-bottom:8px;letter-spacing:-1px}.login-panel p{color:#777;line-height:1.6;font-size:14px;margin-bottom:18px}
-    .login-field{margin-bottom:13px}.login-field label{display:block;font-size:14px;font-weight:900;margin-bottom:7px}.login-field input{width:100%;height:44px;border:1px solid #ddd;border-radius:10px;padding:0 12px;outline:none;font-size:15px;font-weight:700}.login-field input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,199,60,.12)}
-    .login-actions{display:flex;gap:8px;margin-top:18px}.login-actions button{flex:1;border:none;border-radius:10px;padding:13px 10px;font-weight:900;cursor:pointer;font-size:15px}.confirm-login{background:var(--green);color:#fff}.cancel-login{background:#eee;color:#111}
+    .bottom-nav button{border:none;background:#fff;padding:16px 8px;font-size:15px;font-weight:900;cursor:pointer;border-right:1px solid #ddd}
+    .bottom-nav button:last-child{border-right:none}
+    .bottom-nav button:hover:not(:disabled){background:#f4fff6;color:var(--green)}
+    .bottom-nav button:disabled{color:#bbb;background:#fafafa;cursor:not-allowed}
+
+    .login-modal{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:500;display:none;align-items:center;justify-content:center;padding:18px}
+    .login-modal.open{display:flex}
+    .login-panel{width:min(440px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:18px;padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+    .login-panel h2{font-size:24px;margin-bottom:8px;letter-spacing:-1px}
+    .login-panel p{color:#777;line-height:1.6;font-size:14px;margin-bottom:18px}
+    .login-field{margin-bottom:13px}
+    .login-field label{display:block;font-size:14px;font-weight:900;margin-bottom:7px}
+    .login-field input{width:100%;height:44px;border:1px solid #ddd;border-radius:10px;padding:0 12px;outline:none;font-size:15px;font-weight:700}
+    .login-field input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,199,60,.12)}
+    .login-actions{display:flex;gap:8px;margin-top:18px}
+    .login-actions button{flex:1;border:none;border-radius:10px;padding:13px 10px;font-weight:900;cursor:pointer;font-size:15px}
+    .confirm-login{background:var(--green);color:#fff}
+    .cancel-login{background:#eee;color:#111}
     .ticket-box{border:1px solid #eee;background:#fafafa;border-radius:14px;padding:14px;margin:12px 0}
-    .ticket-box strong{display:block;margin-bottom:6px}.ticket-box p{margin:4px 0;color:#555;font-weight:800}
+    .ticket-box strong{display:block;margin-bottom:6px}
+    .ticket-box p{margin:4px 0;color:#555;font-weight:800}
     .ticket-shop{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
-    .ticket-shop button,.collect-btn,.start-coin-btn,.go-ticket-btn{border:none;background:var(--green);color:#fff;border-radius:10px;padding:12px;font-weight:900;cursor:pointer}
-    .collect-btn{background:#111}.go-ticket-btn{background:#3b1168;margin-top:10px;width:100%}
+    .ticket-shop button,.collect-btn,.start-coin-btn,.go-ticket-btn,.own-btn,.view-once-btn{border:none;background:var(--green);color:#fff;border-radius:10px;padding:12px;font-weight:900;cursor:pointer}
+    .collect-btn{background:#111}
+    .go-ticket-btn{background:#3b1168;margin-top:10px;width:100%}
+    .own-btn{background:#3b1168}
+    .view-once-btn{background:#00a832}
     .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:rgba(0,0,0,.82);color:#fff;padding:10px 14px;border-radius:999px;font-size:13px;display:none;z-index:600;font-weight:800}
+
     @media(max-width:720px){
       .top-inner{height:auto;padding:10px 12px;flex-wrap:wrap}.logo{width:100%}.search-area{order:3;width:100%;max-width:none}.account-btn{position:absolute;right:12px;top:10px}.dashboard-title{font-size:22px}.profile-sections{grid-template-columns:1fr}.profile-section:first-child{border-right:none}.hero-content{padding:26px 20px}.work-card{grid-template-columns:112px 1fr;gap:13px;padding:14px}.cover{height:160px}.cover::after{font-size:18px}.work-info h3{font-size:21px}.summary{font-size:13px;line-height:1.55}.stats{gap:10px}.episode{grid-template-columns:76px 1fr}.thumb{width:76px;height:52px}.ep-date{display:none}.novel-body{font-size:17px;line-height:2.05}.bottom-nav{border-radius:0;position:sticky;bottom:0;z-index:10}
     }
@@ -256,10 +305,10 @@
           <div class="thumb" data-ep="5화"></div><div><div class="ep-title">5화 - 충전된 하늘</div><div class="ep-desc">회복된 소환 포인트와 다시 다가오는 지휘관급 각성자.</div></div><div class="ep-date">2026.04.30</div>
         </div>
         <div class="episode" data-episode="6" onclick="openReader(6)">
-          <div class="thumb" data-ep="6화"></div><div><div class="ep-title">6화 - 남겨진 것의 형태</div><div class="ep-desc">미리보기 · 이용권 3장 필요</div></div><div class="work-row-badge preview">이용권 3장</div>
+          <div class="thumb" data-ep="6화"></div><div><div class="ep-title">6화 - 남겨진 것의 형태</div><div class="ep-desc">미리보기 · 열람 3장 · 소장 5장</div></div><div class="work-row-badge preview" id="episodeBadge6">이용권</div>
         </div>
         <div class="episode" data-episode="7" onclick="openReader(7)">
-          <div class="thumb" data-ep="7화"></div><div><div class="ep-title">7화 - 해가 없는 나라</div><div class="ep-desc">미리보기 · 이용권 3장 필요</div></div><div class="work-row-badge preview">이용권 3장</div>
+          <div class="thumb" data-ep="7화"></div><div><div class="ep-title">7화 - 해가 없는 나라</div><div class="ep-desc">미리보기 · 열람 3장 · 소장 5장</div></div><div class="work-row-badge preview" id="episodeBadge7">이용권</div>
         </div>
       </div>
     </section>
@@ -326,7 +375,7 @@
       </div>
       <div class="ticket-box">
         <strong>코인 얻기</strong>
-        <p id="coinBankText">쌓인 코인: 0개 / 최대 5개</p>
+        <p id="coinBankText">쌓인 코인: 0개 / 최대 10개</p>
         <p id="coinTimerText">코인 생성 대기 중</p>
         <button class="start-coin-btn" onclick="startCoinGenerator()">코인 얻기 시작</button>
         <button class="collect-btn" onclick="collectCoins()">쌓인 코인 회수</button>
@@ -335,9 +384,9 @@
         <strong>코인상점</strong>
         <p>코인 3개 = 이용권 1장</p>
         <div class="ticket-shop">
-          <button onclick="buyTickets(1)">이용권 1장 구매</button>
-          <button onclick="buyTickets(2)">이용권 2장 구매</button>
-          <button onclick="buyTickets(3)">이용권 3장 구매</button>
+          <button onclick="buyTickets(1)">이용권 1장 구매 · 코인 3개</button>
+          <button onclick="buyTickets(2)">이용권 2장 구매 · 코인 6개</button>
+          <button onclick="buyTickets(3)">이용권 3장 구매 · 코인 9개</button>
         </div>
       </div>
       <div class="login-actions">
@@ -346,10 +395,29 @@
     </div>
   </section>
 
+  <section class="login-modal" id="paidEpisodeModal">
+    <div class="login-panel">
+      <h2 id="paidEpisodeTitle">미리보기 열람</h2>
+      <p id="paidEpisodeMessage">이용권 3장이 소모됩니다. 보시겠습니까?</p>
+      <div class="ticket-box">
+        <strong>선택</strong>
+        <p>열람은 볼 때마다 이용권 3장이 필요합니다.</p>
+        <p>소장은 이용권 5장이 필요하고, 이후 계속 볼 수 있습니다.</p>
+      </div>
+      <div class="ticket-shop">
+        <button class="view-once-btn" onclick="confirmPaidView()">이용권 3장 쓰고 보기</button>
+        <button class="own-btn" onclick="confirmOwnEpisode()">이용권 5장으로 소장하기</button>
+      </div>
+      <div class="login-actions">
+        <button class="cancel-login" onclick="closePaidEpisodeModal()">아니오</button>
+      </div>
+    </div>
+  </section>
+
   <section class="login-modal" id="needTicketModal">
     <div class="login-panel">
       <h2>보유 이용권 수가 부족합니다.</h2>
-      <p>미리보기 회차는 이용권 3장이 필요합니다.</p>
+      <p>미리보기 회차는 열람 3장, 소장 5장이 필요합니다.</p>
       <button class="go-ticket-btn" onclick="goTicketFromNeed()">내 이용권 수 보기 -&gt;</button>
       <div class="login-actions">
         <button class="cancel-login" onclick="closeNeedTicketModal()">닫기</button>
@@ -380,12 +448,18 @@
   <script>
     const pages=["homePage","searchPage","profilePage","workDetailPage"];
     const reader=document.getElementById("reader"),readerScroll=document.getElementById("readerScroll"),toast=document.getElementById("toast");
-    const loginModal=document.getElementById("loginModal"),passwordModal=document.getElementById("passwordModal"),ticketModal=document.getElementById("ticketModal"),needTicketModal=document.getElementById("needTicketModal"),freeTicketModal=document.getElementById("freeTicketModal");
+    const loginModal=document.getElementById("loginModal"),passwordModal=document.getElementById("passwordModal"),ticketModal=document.getElementById("ticketModal"),needTicketModal=document.getElementById("needTicketModal"),freeTicketModal=document.getElementById("freeTicketModal"),paidEpisodeModal=document.getElementById("paidEpisodeModal");
     const accountBtn=document.getElementById("accountBtn"),searchInput=document.getElementById("searchInput");
     const readerMiniTitle=document.getElementById("readerMiniTitle"),readerTitle=document.getElementById("readerTitle"),readerSub=document.getElementById("readerSub"),novelBody=document.getElementById("novelBody");
     const prevBtn=document.getElementById("prevBtn"),nextBtn=document.getElementById("nextBtn");
-    let currentEpisode=1,currentUser=null,coinTimer=null;
-    const WORK_ID="world_saved_abandoned",AUTHOR_NAME="고쓰비",AUTHOR_PASSWORD="2012424!",COIN_INTERVAL=3600000;
+    let currentEpisode=1,currentUser=null,coinTimer=null,pendingEpisodeNumber=null;
+    const WORK_ID="world_saved_abandoned",AUTHOR_NAME="고쓰비",AUTHOR_PASSWORD="2012424!",COIN_INTERVAL=2700000,COIN_BANK_MAX=10,ACCOUNT_RESET_VERSION="reset_2026_05_01_ticket_own_v1";
+
+    if(localStorage.getItem("chatweb_account_reset_version")!==ACCOUNT_RESET_VERSION){
+      localStorage.removeItem("chatweb_accounts");
+      localStorage.removeItem("chatweb_free_ticket_claimed");
+      localStorage.setItem("chatweb_account_reset_version",ACCOUNT_RESET_VERSION);
+    }
 
     const workData={id:WORK_ID,title:"세계를 구하고, 버려졌다",author:"고쓰비",aliases:["세계를","세계를구하고","세계를구하고버려졌다","세계를구했더니","세계를구했더니버려졌다","버려졌다","강도윤","귀환","고쓰비","포위","분류되지않은힘","충전된하늘","남겨진것의형태","해가없는나라","솔라리스","강세윤","아스","천공의요새","이도현","HG","검술의권능"]};
 
@@ -2342,7 +2416,7 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
 
 하늘 위에 남아 있었다
 `},
-      6:{title:"6화 - 남겨진 것의 형태",sub:"특수 캡슐 · 이도현 · HG",preview:true,cost:3,raw:`
+      6:{title:"6화 - 남겨진 것의 형태",sub:"특수 캡슐 · 이도현 · HG",preview:true,cost:3,ownCost:5,raw:`
 천공의 요새 내부는 이전보다 더 안정적으로 정리되어 있었다.
 
 전투 이후 흩어졌던 구조들이 자동적으로 복구되고 있었고, 도윤은 요새 내부 깊숙한 곳으로 내려가고 있었다.
@@ -2559,7 +2633,7 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
 
 “아무래도 도움이 필요할 것 같다.”
 `},
-      7:{title:"7화 - 해가 없는 나라",sub:"솔라리스 · 군단 체계 · 강세윤",preview:true,cost:3,raw:`
+      7:{title:"7화 - 해가 없는 나라",sub:"솔라리스 · 군단 체계 · 강세윤",preview:true,cost:3,ownCost:5,raw:`
 천공의 요새 중앙 회의실.
 
 네 사람이 한 자리에 모여 있었다.
@@ -2832,7 +2906,7 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
       if(!Array.isArray(user.recentWorks))user.recentWorks=[];
       if(!Array.isArray(user.watchingWorks))user.watchingWorks=[];
       if(!Array.isArray(user.readEpisodes))user.readEpisodes=[];
-      if(!Array.isArray(user.unlockedEpisodes))user.unlockedEpisodes=[];
+      if(!Array.isArray(user.ownedEpisodes))user.ownedEpisodes=[];
       if(typeof user.tickets!=="number")user.tickets=0;
       if(typeof user.coins!=="number")user.coins=0;
       if(typeof user.coinBank!=="number")user.coinBank=0;
@@ -2843,14 +2917,14 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
     function updateCoinBank(){
       const user=getUserData();if(!user)return;
       ensureAccountShape(user);
-      if(user.coinStartedAt&&user.coinBank<5){
+      if(user.coinStartedAt&&user.coinBank<COIN_BANK_MAX){
         const now=Date.now();
         const elapsed=now-user.coinStartedAt;
         const gained=Math.floor(elapsed/COIN_INTERVAL);
         if(gained>0){
-          const add=Math.min(gained,5-user.coinBank);
+          const add=Math.min(gained,COIN_BANK_MAX-user.coinBank);
           user.coinBank+=add;
-          if(user.coinBank>=5)user.coinStartedAt=0;
+          if(user.coinBank>=COIN_BANK_MAX)user.coinStartedAt=0;
           else user.coinStartedAt+=gained*COIN_INTERVAL;
           saveUserData(user);
         }
@@ -2866,6 +2940,26 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
       const coinEl=document.getElementById("profileCoinCount");
       if(ticketEl)ticketEl.textContent=`보유 이용권 ${user.tickets}장`;
       if(coinEl)coinEl.textContent=`보유 코인 ${user.coins}개`;
+      updateEpisodeBadges();
+    }
+
+    function updateEpisodeBadges(){
+      if(!currentUser)return;
+      const user=getUserData();if(!user)return;
+      ensureAccountShape(user);
+      [6,7].forEach(num=>{
+        const badge=document.getElementById("episodeBadge"+num);
+        if(!badge)return;
+        if(currentUser.isAuthor||user.ownedEpisodes.includes(num)){
+          badge.textContent="소장됨";
+          badge.classList.remove("preview");
+          badge.classList.add("owned");
+        }else{
+          badge.textContent="이용권";
+          badge.classList.add("preview");
+          badge.classList.remove("owned");
+        }
+      });
     }
 
     function showPage(pageId){
@@ -2910,8 +3004,9 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
     }
     function closeTicketModal(){ticketModal.classList.remove("open")}
     function closeNeedTicketModal(){needTicketModal.classList.remove("open")}
-    function goTicketFromNeed(){closeNeedTicketModal();openTicketModal()}
+    function goTicketFromNeed(){closeNeedTicketModal();closePaidEpisodeModal();openTicketModal()}
     function closeFreeTicketModal(){freeTicketModal.classList.remove("open")}
+    function closePaidEpisodeModal(){paidEpisodeModal.classList.remove("open");pendingEpisodeNumber=null}
 
     function maybeShowFreeTicketModal(){
       const already=localStorage.getItem("chatweb_free_ticket_claimed");
@@ -2951,14 +3046,14 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
       ensureAccountShape(user);
       document.getElementById("ticketStatusText").textContent=`현재 ${currentUser.nickname}님의 이용권 수는 ${user.tickets}개입니다.`;
       document.getElementById("coinStatusText").textContent=`현재 ${currentUser.nickname}님의 코인수는 ${user.coins}개입니다.`;
-      document.getElementById("coinBankText").textContent=`쌓인 코인: ${user.coinBank}개 / 최대 5개`;
+      document.getElementById("coinBankText").textContent=`쌓인 코인: ${user.coinBank}개 / 최대 ${COIN_BANK_MAX}개`;
 
       let timerText="코인 생성 대기 중";
-      if(user.coinBank>=5)timerText="코인이 5개까지 쌓였습니다. 회수해야 다시 쌓입니다.";
+      if(user.coinBank>=COIN_BANK_MAX)timerText=`코인이 ${COIN_BANK_MAX}개까지 쌓였습니다. 회수해야 다시 쌓입니다.`;
       else if(user.coinStartedAt){
         const next=user.coinStartedAt+COIN_INTERVAL-Date.now();
         timerText=`다음 코인까지 ${formatTime(next)}`;
-      }else timerText="코인 얻기를 누르면 1시간마다 코인이 쌓입니다.";
+      }else timerText="코인 얻기를 누르면 45분마다 코인이 쌓입니다.";
 
       document.getElementById("coinTimerText").textContent=timerText;
       updateProfileCounts();
@@ -2968,7 +3063,7 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
       if(!currentUser)return;
       const user=getUserData();ensureAccountShape(user);
       updateCoinBank();
-      if(user.coinBank>=5){showToast("코인이 이미 5개까지 쌓였습니다. 먼저 회수하세요.");updateTicketModal();return}
+      if(user.coinBank>=COIN_BANK_MAX){showToast(`코인이 이미 ${COIN_BANK_MAX}개까지 쌓였습니다. 먼저 회수하세요.`);updateTicketModal();return}
       if(!user.coinStartedAt){user.coinStartedAt=Date.now();saveUserData(user);showToast("코인 생성이 시작되었습니다.")}
       else showToast("이미 코인이 생성되고 있습니다.");
       updateTicketModal();
@@ -3043,7 +3138,7 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
           return;
         }
       }else{
-        accounts[nickname]={password:isAuthorName?AUTHOR_PASSWORD:password,createdAt:new Date().toISOString(),recentWorks:[],watchingWorks:[],readEpisodes:[],unlockedEpisodes:[],tickets:0,coins:0,coinBank:0,coinStartedAt:0,isAuthor:isAuthorName};
+        accounts[nickname]={password:isAuthorName?AUTHOR_PASSWORD:password,createdAt:new Date().toISOString(),recentWorks:[],watchingWorks:[],readEpisodes:[],ownedEpisodes:[],tickets:0,coins:0,coinBank:0,coinStartedAt:0,isAuthor:isAuthorName};
       }
 
       ensureAccountShape(accounts[nickname]);
@@ -3113,22 +3208,73 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
 
     function openWorkDetail(){if(!currentUser){openLogin();return}showPage("workDetailPage")}
 
-    function unlockEpisode(num){
+    function requestPaidEpisode(num){
+      pendingEpisodeNumber=num;
+      const ep=episodes[num];
+      document.getElementById("paidEpisodeTitle").textContent=ep.title;
+      document.getElementById("paidEpisodeMessage").textContent=`이용권 ${ep.cost}장이 소모됩니다. 보시겠습니까?`;
+      paidEpisodeModal.classList.add("open");
+    }
+
+    function confirmPaidView(){
+      if(!pendingEpisodeNumber)return;
+      const num=pendingEpisodeNumber;
+      const ep=episodes[num];
+      const user=getUserData();
+      ensureAccountShape(user);
+
+      if(user.tickets<(ep.cost||3)){
+        closePaidEpisodeModal();
+        needTicketModal.classList.add("open");
+        return;
+      }
+
+      user.tickets-=ep.cost||3;
+      saveUserData(user);
+      closePaidEpisodeModal();
+      updateProfileCounts();
+      showToast(`이용권 ${ep.cost||3}장을 사용했습니다.`);
+      actuallyOpenReader(num);
+    }
+
+    function confirmOwnEpisode(){
+      if(!pendingEpisodeNumber)return;
+      const num=pendingEpisodeNumber;
+      const ep=episodes[num];
+      const user=getUserData();
+      ensureAccountShape(user);
+      const ownCost=ep.ownCost||5;
+
+      if(user.ownedEpisodes.includes(num)){
+        closePaidEpisodeModal();
+        actuallyOpenReader(num);
+        return;
+      }
+
+      if(user.tickets<ownCost){
+        closePaidEpisodeModal();
+        needTicketModal.classList.add("open");
+        return;
+      }
+
+      user.tickets-=ownCost;
+      user.ownedEpisodes.push(num);
+      saveUserData(user);
+      closePaidEpisodeModal();
+      updateProfileCounts();
+      showToast(`이용권 ${ownCost}장으로 ${ep.title}을 소장했습니다.`);
+      actuallyOpenReader(num);
+    }
+
+    function checkEpisodeAccess(num){
       const ep=episodes[num];
       if(!ep||!ep.preview)return true;
       if(currentUser.isAuthor)return true;
-      const user=getUserData();ensureAccountShape(user);
-      if(user.unlockedEpisodes.includes(num))return true;
-      if(user.tickets<(ep.cost||0)){
-        needTicketModal.classList.add("open");
-        return false;
-      }
-      user.tickets-=ep.cost||0;
-      user.unlockedEpisodes.push(num);
-      saveUserData(user);
-      updateProfileCounts();
-      showToast(`이용권 ${ep.cost}장을 사용했습니다.`);
-      return true;
+      const user=getUserData();
+      ensureAccountShape(user);
+      if(user.ownedEpisodes.includes(num))return true;
+      requestPaidEpisode(num);
+      return false;
     }
 
     function addViewedWork(episodeNumber){
@@ -3148,6 +3294,7 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
         const num=Number(el.dataset.episode);
         el.classList.toggle("read",readEpisodes.includes(num));
       });
+      updateEpisodeBadges();
     }
 
     function searchWorks(){
@@ -3168,8 +3315,11 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
     function openReader(episodeNumber){
       if(!currentUser){openLogin();return}
       if(!episodes[episodeNumber]){showToast("아직 공개되지 않은 회차입니다.");return}
-      if(!unlockEpisode(episodeNumber))return;
+      if(!checkEpisodeAccess(episodeNumber))return;
+      actuallyOpenReader(episodeNumber);
+    }
 
+    function actuallyOpenReader(episodeNumber){
       addViewedWork(episodeNumber);
       currentEpisode=episodeNumber;
       const ep=episodes[episodeNumber];
@@ -3215,6 +3365,7 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
         if(ticketModal.classList.contains("open"))closeTicketModal();
         if(needTicketModal.classList.contains("open"))closeNeedTicketModal();
         if(freeTicketModal.classList.contains("open"))closeFreeTicketModal();
+        if(paidEpisodeModal.classList.contains("open"))closePaidEpisodeModal();
       }
     });
     loginModal.addEventListener("click",e=>{if(e.target===loginModal)closeLogin()});
@@ -3222,6 +3373,7 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
     ticketModal.addEventListener("click",e=>{if(e.target===ticketModal)closeTicketModal()});
     needTicketModal.addEventListener("click",e=>{if(e.target===needTicketModal)closeNeedTicketModal()});
     freeTicketModal.addEventListener("click",e=>{if(e.target===freeTicketModal)closeFreeTicketModal()});
+    paidEpisodeModal.addEventListener("click",e=>{if(e.target===paidEpisodeModal)closePaidEpisodeModal()});
 
     coinTimer=setInterval(()=>{if(currentUser){updateCoinBank();updateTicketModal();updateProfileCounts()}},1000);
     initLoggedOut();
