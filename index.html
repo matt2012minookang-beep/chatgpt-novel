@@ -6,12 +6,7 @@
   <title>chat웹</title>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    :root{
-      --green:#00c73c;--green-dark:#00a832;--bg:#050505;--text:#111;
-      --muted:#777;--line:#e5e5e5;--novel-bg:#fff;
-      --yellow-skill:#9a7600;--red-system-bg:#4c0b0b;
-      --red-system-text:#ffe3e3;--red-system-line:#d92d2d;
-    }
+    :root{--green:#00c73c;--green-dark:#00a832;--bg:#050505;--text:#111;--muted:#777;--line:#e5e5e5;--novel-bg:#fff;--yellow-skill:#9a7600;--red-system-bg:#4c0b0b;--red-system-text:#ffe3e3;--red-system-line:#d92d2d}
     body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",Arial,sans-serif;background:var(--bg);color:var(--text)}
     button,input{font-family:inherit}a{color:inherit;text-decoration:none}
     .top-header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
@@ -28,13 +23,11 @@
     .nav-inner{max-width:1100px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:0 10px}
     .nav-item{padding:13px 16px;font-weight:800;font-size:15px;white-space:nowrap;opacity:.9;cursor:pointer}
     .nav-item.active{background:var(--green-dark);opacity:1}
-
     .locked-home{min-height:calc(100vh - 104px);background:#000;color:#fff;display:flex;align-items:center;justify-content:center;padding:40px 18px;text-align:center}
     .locked-box{max-width:520px;width:100%;border:1px solid rgba(255,255,255,.12);background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border-radius:22px;padding:38px 24px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
     .locked-box h1{font-size:30px;margin-bottom:14px;letter-spacing:-1px}
     .locked-box p{color:rgba(255,255,255,.72);line-height:1.7;margin-bottom:24px}
     .locked-box button{border:none;background:var(--green);color:#fff;border-radius:12px;padding:13px 22px;font-size:16px;font-weight:900;cursor:pointer}
-
     .page{display:none;max-width:1100px;margin:0 auto;padding:18px 14px 80px}
     body.logged-in .locked-home{display:none}
     body.logged-in .page.active{display:block}
@@ -42,24 +35,18 @@
     .section{margin-top:24px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
     .section:first-child{margin-top:0}
     .section-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--line)}
-    .section-head h2{font-size:19px;letter-spacing:-.5px}
-    .section-head span{color:var(--muted);font-size:13px;font-weight:700}
+    .section-head h2{font-size:19px;letter-spacing:-.5px}.section-head span{color:var(--muted);font-size:13px;font-weight:700}
     .empty-box{padding:22px 18px;color:#777;font-weight:800;line-height:1.6}
-
     .work-row{display:flex;align-items:center;gap:14px;padding:14px 18px;border-top:1px solid var(--line);cursor:pointer;transition:background .15s}
-    .work-row:first-of-type{border-top:none}
-    .work-row:hover{background:#f8fff9}
+    .work-row:first-of-type{border-top:none}.work-row:hover{background:#f8fff9}
     .mini-cover{width:72px;height:92px;border-radius:10px;flex-shrink:0;background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.05)),radial-gradient(circle at 70% 20%,#7048ff,transparent 30%),radial-gradient(circle at 25% 70%,#101927,#080910 55%);position:relative;overflow:hidden}
     .mini-cover::after{content:"세계를";position:absolute;left:8px;bottom:8px;color:#fff;font-size:13px;font-weight:900;letter-spacing:-.5px}
-    .work-row-info{min-width:0;flex:1}
-    .work-row-info h3{font-size:18px;margin-bottom:5px;letter-spacing:-.5px}
-    .work-row-info p{font-size:13px;color:#777;line-height:1.5}
+    .work-row-info{min-width:0;flex:1}.work-row-info h3{font-size:18px;margin-bottom:5px;letter-spacing:-.5px}.work-row-info p{font-size:13px;color:#777;line-height:1.5}
     .work-row-badge{background:#f1f3f5;color:#555;padding:7px 9px;border-radius:999px;font-size:12px;font-weight:900;white-space:nowrap}
-
+    .work-row-badge.preview{background:#fff4d6;color:#9a6500;border:1px solid #ffd36b}
     .search-empty-page{min-height:calc(100vh - 150px);background:#fff;border-radius:18px;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 18px;margin-top:18px}
     .search-empty-page strong{color:#e00000;font-size:24px;font-weight:900}
     .search-result-title{color:#fff;font-size:24px;font-weight:900;margin-bottom:18px}
-
     .profile-card{background:#fff;border-radius:18px;overflow:hidden;border:1px solid var(--line);margin-top:18px}
     .profile-top{padding:30px 18px;text-align:center;border-bottom:1px solid var(--line);background:linear-gradient(135deg,#f8fff9,#fff)}
     .profile-img{width:92px;height:92px;margin:0 auto 12px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff,transparent 16%),linear-gradient(135deg,#00c73c,#151515);box-shadow:0 8px 24px rgba(0,0,0,.16);border:4px solid #fff}
@@ -67,15 +54,14 @@
     .profile-role{display:inline-block;padding:6px 10px;border-radius:999px;background:#f1f3f5;color:#555;font-size:12px;font-weight:900}
     .profile-role.author{background:#f2e8ff;color:#5a1a92}
     .profile-buttons{margin-top:14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-    .logout-btn,.password-btn{border:none;background:#111;color:#fff;border-radius:999px;padding:9px 16px;font-size:13px;font-weight:900;cursor:pointer}
-    .password-btn{background:#3b1168}
-    .logout-btn:hover{background:#333}
-    .password-btn:hover{background:#51208a}
+    .logout-btn,.password-btn,.ticket-btn{border:none;background:#111;color:#fff;border-radius:999px;padding:9px 16px;font-size:13px;font-weight:900;cursor:pointer}
+    .password-btn{background:#3b1168}.ticket-btn{background:#00a832}
+    .logout-btn:hover{background:#333}.password-btn:hover{background:#51208a}.ticket-btn:hover{background:#008f2b}
+    .profile-ticket-info{margin-top:12px;color:#555;font-size:13px;font-weight:900;display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
     .profile-sections{display:grid;grid-template-columns:1fr 1fr;gap:0}
     .profile-section{padding:18px;border-bottom:1px solid var(--line)}
     .profile-section:first-child{border-right:1px solid var(--line)}
     .profile-section h2{font-size:18px;margin-bottom:12px;letter-spacing:-.5px}
-
     .hero{background:linear-gradient(135deg,#111827,#191b2a 45%,#2b1246);border-radius:18px;min-height:260px;color:#fff;overflow:hidden;position:relative;box-shadow:0 12px 30px rgba(0,0,0,.18)}
     .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 78% 18%,rgba(138,92,255,.42),transparent 28%),radial-gradient(circle at 15% 85%,rgba(0,199,60,.18),transparent 35%),linear-gradient(90deg,rgba(0,0,0,.75),rgba(0,0,0,.2))}
     .hero::after{content:"天 空 要 塞";position:absolute;right:24px;bottom:22px;color:rgba(255,255,255,.08);font-size:74px;font-weight:900;letter-spacing:-8px;transform:rotate(-6deg)}
@@ -86,89 +72,45 @@
     .hero-actions{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
     .main-btn{border:none;background:var(--green);color:#fff;font-weight:900;border-radius:10px;padding:12px 18px;cursor:pointer;font-size:15px}
     .sub-btn{border:1px solid rgba(255,255,255,.34);background:rgba(255,255,255,.1);color:#fff;font-weight:800;border-radius:10px;padding:12px 18px;cursor:pointer;font-size:15px}
-
     .work-card{display:grid;grid-template-columns:160px 1fr;gap:18px;padding:18px}
     .cover{height:220px;border-radius:12px;background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.05)),radial-gradient(circle at 70% 20%,#7048ff,transparent 28%),radial-gradient(circle at 25% 70%,#101927,#080910 55%);position:relative;overflow:hidden;box-shadow:inset 0 0 45px rgba(255,255,255,.04);cursor:pointer}
     .cover::before{content:"";position:absolute;width:110px;height:110px;border:2px solid rgba(150,120,255,.7);border-radius:50%;right:-16px;top:22px;box-shadow:0 0 30px rgba(150,120,255,.75)}
     .cover::after{content:"세계를\A구하고,\A버려졌다";white-space:pre;position:absolute;left:14px;bottom:14px;color:#fff;font-size:24px;line-height:1.08;font-weight:900;letter-spacing:-1.2px}
-    .work-info h3{font-size:26px;margin-bottom:8px;letter-spacing:-1px}
-    .meta{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
+    .work-info h3{font-size:26px;margin-bottom:8px;letter-spacing:-1px}.meta{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
     .chip{background:#f1f3f5;color:#555;font-size:12px;font-weight:800;padding:6px 9px;border-radius:999px}
     .summary{color:#444;line-height:1.7;font-size:14px;max-width:700px;margin-bottom:18px}
     .stats{display:flex;gap:18px;color:#777;font-size:13px;font-weight:700;margin-bottom:18px;flex-wrap:wrap}
-
-    .episode-list{background:#fff}
-    .episode{display:grid;grid-template-columns:86px 1fr auto;gap:14px;align-items:center;padding:14px 18px;border-top:1px solid var(--line);cursor:pointer;transition:background .15s,opacity .15s}
-    .episode:hover{background:#f8fff9}
-    .episode.read{background:#f1f1f1;opacity:.78}
-    .episode.read:hover{background:#e8e8e8}
+    .episode-list{background:#fff}.episode{display:grid;grid-template-columns:86px 1fr auto;gap:14px;align-items:center;padding:14px 18px;border-top:1px solid var(--line);cursor:pointer;transition:background .15s,opacity .15s}
+    .episode:hover{background:#f8fff9}.episode.read{background:#f1f1f1;opacity:.78}.episode.read:hover{background:#e8e8e8}
     .episode.read .ep-title::after{content:"  읽음";color:#999;font-size:12px;font-weight:800}
     .thumb{width:86px;height:58px;border-radius:8px;background:linear-gradient(to top,rgba(0,0,0,.75),transparent),radial-gradient(circle at 72% 25%,#8c6dff,#131522 48%,#07080c);position:relative;overflow:hidden}
     .thumb::after{content:attr(data-ep);position:absolute;left:8px;bottom:6px;color:#fff;font-weight:900;font-size:13px}
-    .ep-title{font-weight:900;margin-bottom:4px;font-size:15px}
-    .ep-desc{color:#777;font-size:13px}
-    .ep-date{color:#999;font-size:12px;white-space:nowrap}
-
-    .reader{position:fixed;inset:0;background:#fff;z-index:200;display:none;flex-direction:column}
-    .reader.open{display:flex}
+    .ep-title{font-weight:900;margin-bottom:4px;font-size:15px}.ep-desc{color:#777;font-size:13px}.ep-date{color:#999;font-size:12px;white-space:nowrap}
+    .reader{position:fixed;inset:0;background:#fff;z-index:200;display:none;flex-direction:column}.reader.open{display:flex}
     .reader-top{height:54px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 14px;background:#fff;position:sticky;top:0;z-index:5}
-    .reader-title-mini{min-width:0}
-    .reader-title-mini strong{display:block;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .reader-title-mini span{display:block;font-size:12px;color:#888;margin-top:2px}
+    .reader-title-mini{min-width:0}.reader-title-mini strong{display:block;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.reader-title-mini span{display:block;font-size:12px;color:#888;margin-top:2px}
     .close-btn{border:none;background:#111;color:#fff;border-radius:999px;padding:8px 13px;font-weight:900;cursor:pointer}
-    .reader-scroll{overflow-y:auto;flex:1;background:var(--novel-bg)}
-    .novel-wrap{max-width:760px;margin:0 auto;padding:34px 18px 120px}
-    .novel-header{border-bottom:2px solid #222;padding-bottom:18px;margin-bottom:28px}
-    .novel-header .series-name{color:var(--green);font-weight:900;font-size:14px;margin-bottom:8px}
-    .novel-header h1{font-size:clamp(26px,5vw,40px);letter-spacing:-1.4px;margin-bottom:10px}
-    .novel-header .novel-sub{color:#777;font-size:13px;font-weight:700}
+    .reader-scroll{overflow-y:auto;flex:1;background:var(--novel-bg)}.novel-wrap{max-width:760px;margin:0 auto;padding:34px 18px 120px}
+    .novel-header{border-bottom:2px solid #222;padding-bottom:18px;margin-bottom:28px}.novel-header .series-name{color:var(--green);font-weight:900;font-size:14px;margin-bottom:8px}
+    .novel-header h1{font-size:clamp(26px,5vw,40px);letter-spacing:-1.4px;margin-bottom:10px}.novel-header .novel-sub{color:#777;font-size:13px;font-weight:700}
     .novel-body{font-family:"Nanum Myeongjo","Noto Serif KR","Batang",serif;font-size:19px;line-height:2.15;color:#151515;word-break:keep-all;white-space:normal}
-    .novel-body p{margin:0 0 22px}
-    .scene{text-align:center;color:#888;letter-spacing:8px;margin:36px 0;font-family:inherit}
+    .novel-body p{margin:0 0 22px}.scene{text-align:center;color:#888;letter-spacing:8px;margin:36px 0;font-family:inherit}
     .system{font-family:"Apple SD Gothic Neo","Noto Sans KR",sans-serif;background:var(--red-system-bg);color:var(--red-system-text);border-left:4px solid var(--red-system-line);padding:12px 14px;border-radius:8px;line-height:1.8;font-size:16px;margin:22px 0;font-weight:800}
-    .skill{color:var(--yellow-skill);font-weight:900;white-space:nowrap}
-    .quote-strong{font-weight:900;color:#000}
+    .skill{color:var(--yellow-skill);font-weight:900;white-space:nowrap}.quote-strong{font-weight:900;color:#000}
     .bottom-nav{max-width:760px;margin:30px auto 0;display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid #ddd;border-radius:12px;overflow:hidden;background:#fff;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",Arial,sans-serif}
-    .bottom-nav button{border:none;background:#fff;padding:16px 8px;font-size:15px;font-weight:900;cursor:pointer;border-right:1px solid #ddd}
-    .bottom-nav button:last-child{border-right:none}
-    .bottom-nav button:hover:not(:disabled){background:#f4fff6;color:var(--green)}
-    .bottom-nav button:disabled{color:#bbb;background:#fafafa;cursor:not-allowed}
-
-    .login-modal{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:500;display:none;align-items:center;justify-content:center;padding:18px}
-    .login-modal.open{display:flex}
-    .login-panel{width:min(420px,100%);background:#fff;border-radius:18px;padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
-    .login-panel h2{font-size:24px;margin-bottom:8px;letter-spacing:-1px}
-    .login-panel p{color:#777;line-height:1.6;font-size:14px;margin-bottom:18px}
-    .login-field{margin-bottom:13px}
-    .login-field label{display:block;font-size:14px;font-weight:900;margin-bottom:7px}
-    .login-field input{width:100%;height:44px;border:1px solid #ddd;border-radius:10px;padding:0 12px;outline:none;font-size:15px;font-weight:700}
-    .login-field input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,199,60,.12)}
-    .login-actions{display:flex;gap:8px;margin-top:18px}
-    .login-actions button{flex:1;border:none;border-radius:10px;padding:13px 10px;font-weight:900;cursor:pointer;font-size:15px}
-    .confirm-login{background:var(--green);color:#fff}
-    .cancel-login{background:#eee;color:#111}
+    .bottom-nav button{border:none;background:#fff;padding:16px 8px;font-size:15px;font-weight:900;cursor:pointer;border-right:1px solid #ddd}.bottom-nav button:last-child{border-right:none}.bottom-nav button:hover:not(:disabled){background:#f4fff6;color:var(--green)}.bottom-nav button:disabled{color:#bbb;background:#fafafa;cursor:not-allowed}
+    .login-modal{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:500;display:none;align-items:center;justify-content:center;padding:18px}.login-modal.open{display:flex}
+    .login-panel{width:min(440px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:18px;padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.35)}.login-panel h2{font-size:24px;margin-bottom:8px;letter-spacing:-1px}.login-panel p{color:#777;line-height:1.6;font-size:14px;margin-bottom:18px}
+    .login-field{margin-bottom:13px}.login-field label{display:block;font-size:14px;font-weight:900;margin-bottom:7px}.login-field input{width:100%;height:44px;border:1px solid #ddd;border-radius:10px;padding:0 12px;outline:none;font-size:15px;font-weight:700}.login-field input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,199,60,.12)}
+    .login-actions{display:flex;gap:8px;margin-top:18px}.login-actions button{flex:1;border:none;border-radius:10px;padding:13px 10px;font-weight:900;cursor:pointer;font-size:15px}.confirm-login{background:var(--green);color:#fff}.cancel-login{background:#eee;color:#111}
+    .ticket-box{border:1px solid #eee;background:#fafafa;border-radius:14px;padding:14px;margin:12px 0}
+    .ticket-box strong{display:block;margin-bottom:6px}.ticket-box p{margin:4px 0;color:#555;font-weight:800}
+    .ticket-shop{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
+    .ticket-shop button,.collect-btn,.start-coin-btn,.go-ticket-btn{border:none;background:var(--green);color:#fff;border-radius:10px;padding:12px;font-weight:900;cursor:pointer}
+    .collect-btn{background:#111}.go-ticket-btn{background:#3b1168;margin-top:10px;width:100%}
     .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:rgba(0,0,0,.82);color:#fff;padding:10px 14px;border-radius:999px;font-size:13px;display:none;z-index:600;font-weight:800}
-
     @media(max-width:720px){
-      .top-inner{height:auto;padding:10px 12px;flex-wrap:wrap}
-      .logo{width:100%}
-      .search-area{order:3;width:100%;max-width:none}
-      .account-btn{position:absolute;right:12px;top:10px}
-      .dashboard-title{font-size:22px}
-      .profile-sections{grid-template-columns:1fr}
-      .profile-section:first-child{border-right:none}
-      .hero-content{padding:26px 20px}
-      .work-card{grid-template-columns:112px 1fr;gap:13px;padding:14px}
-      .cover{height:160px}
-      .cover::after{font-size:18px}
-      .work-info h3{font-size:21px}
-      .summary{font-size:13px;line-height:1.55}
-      .stats{gap:10px}
-      .episode{grid-template-columns:76px 1fr}
-      .thumb{width:76px;height:52px}
-      .ep-date{display:none}
-      .novel-body{font-size:17px;line-height:2.05}
-      .bottom-nav{border-radius:0;position:sticky;bottom:0;z-index:10}
+      .top-inner{height:auto;padding:10px 12px;flex-wrap:wrap}.logo{width:100%}.search-area{order:3;width:100%;max-width:none}.account-btn{position:absolute;right:12px;top:10px}.dashboard-title{font-size:22px}.profile-sections{grid-template-columns:1fr}.profile-section:first-child{border-right:none}.hero-content{padding:26px 20px}.work-card{grid-template-columns:112px 1fr;gap:13px;padding:14px}.cover{height:160px}.cover::after{font-size:18px}.work-info h3{font-size:21px}.summary{font-size:13px;line-height:1.55}.stats{gap:10px}.episode{grid-template-columns:76px 1fr}.thumb{width:76px;height:52px}.ep-date{display:none}.novel-body{font-size:17px;line-height:2.05}.bottom-nav{border-radius:0;position:sticky;bottom:0;z-index:10}
     }
   </style>
 </head>
@@ -184,13 +126,7 @@
     </div>
     <nav class="nav-bar">
       <div class="nav-inner">
-        <a class="nav-item active" onclick="goHome()">홈</a>
-        <a class="nav-item">요일별</a>
-        <a class="nav-item">판타지</a>
-        <a class="nav-item">액션</a>
-        <a class="nav-item">신작</a>
-        <a class="nav-item">랭킹</a>
-        <a class="nav-item">완결</a>
+        <a class="nav-item active" onclick="goHome()">홈</a><a class="nav-item">요일별</a><a class="nav-item">판타지</a><a class="nav-item">액션</a><a class="nav-item">신작</a><a class="nav-item">랭킹</a><a class="nav-item">완결</a>
       </div>
     </nav>
   </header>
@@ -217,7 +153,7 @@
           <h3>세계를 구하고, 버려졌다</h3>
           <p>작가 고쓰비 · 세계를 구한 용사, 자신의 세계에서 버려지다.</p>
         </div>
-        <div class="work-row-badge">5화 공개</div>
+        <div class="work-row-badge">6화 공개</div>
       </div>
     </section>
   </main>
@@ -247,6 +183,11 @@
         <div class="profile-buttons">
           <button class="logout-btn" onclick="logout()">로그아웃</button>
           <button class="password-btn" onclick="openPasswordModal()">비밀번호 변경</button>
+          <button class="ticket-btn" onclick="openTicketModal()">내 이용권</button>
+        </div>
+        <div class="profile-ticket-info">
+          <span id="profileTicketCount">보유 이용권 0장</span>
+          <span id="profileCoinCount">보유 코인 0개</span>
         </div>
       </div>
       <div class="profile-sections">
@@ -288,18 +229,16 @@
         <div class="cover" onclick="openReader(1)" title="작품 보기"></div>
         <div class="work-info">
           <h3>세계를 구하고, 버려졌다</h3>
-          <div class="meta">
-            <span class="chip">다크 판타지</span><span class="chip">귀환자</span><span class="chip">복수</span><span class="chip">각성자</span>
-          </div>
+          <div class="meta"><span class="chip">다크 판타지</span><span class="chip">귀환자</span><span class="chip">복수</span><span class="chip">각성자</span></div>
           <p class="summary">2100년대, 각성자들은 자신의 권능과 연결된 세계로 보내진다. 소환의 권능을 얻은 강도윤은 마왕을 처치하고 지구로 돌아오지만, 그가 지킨 세계는 이미 그를 버린 뒤였다.</p>
-          <div class="stats"><span>★ 0</span><span>조회 0</span><span>관심 0</span><span>총 5화 공개</span></div>
+          <div class="stats"><span>★ 0</span><span>조회 0</span><span>관심 0</span><span>총 6화 공개</span></div>
           <button class="main-btn" onclick="openReader(1)">첫 화 보기</button>
         </div>
       </div>
     </section>
 
     <section class="section" id="episodes">
-      <div class="section-head"><h2>회차 목록</h2><span>총 5화 공개</span></div>
+      <div class="section-head"><h2>회차 목록</h2><span>총 6화 공개</span></div>
       <div class="episode-list">
         <div class="episode" data-episode="1" onclick="openReader(1)">
           <div class="thumb" data-ep="1화"></div><div><div class="ep-title">1화 - 귀환</div><div class="ep-desc">세계를 구한 용사, 자신의 세계에서 버려지다.</div></div><div class="ep-date">2026.04.30</div>
@@ -315,6 +254,9 @@
         </div>
         <div class="episode" data-episode="5" onclick="openReader(5)">
           <div class="thumb" data-ep="5화"></div><div><div class="ep-title">5화 - 충전된 하늘</div><div class="ep-desc">회복된 소환 포인트와 다시 다가오는 지휘관급 각성자.</div></div><div class="ep-date">2026.04.30</div>
+        </div>
+        <div class="episode" data-episode="6" onclick="openReader(6)">
+          <div class="thumb" data-ep="6화"></div><div><div class="ep-title">6화 - 남겨진 것의 형태</div><div class="ep-desc">미리보기 · 이용권 3장 필요</div></div><div class="work-row-badge preview">이용권 3장</div>
         </div>
       </div>
     </section>
@@ -371,58 +313,66 @@
     </div>
   </section>
 
+  <section class="login-modal" id="ticketModal">
+    <div class="login-panel">
+      <h2>내 이용권</h2>
+      <div class="ticket-box">
+        <strong>이용권</strong>
+        <p id="ticketStatusText">현재 이용권 수는 0개입니다.</p>
+        <p id="coinStatusText">현재 코인 수는 0개입니다.</p>
+      </div>
+      <div class="ticket-box">
+        <strong>코인 얻기</strong>
+        <p id="coinBankText">쌓인 코인: 0개 / 최대 5개</p>
+        <p id="coinTimerText">코인 생성 대기 중</p>
+        <button class="start-coin-btn" onclick="startCoinGenerator()">코인 얻기 시작</button>
+        <button class="collect-btn" onclick="collectCoins()">쌓인 코인 회수</button>
+      </div>
+      <div class="ticket-box">
+        <strong>코인상점</strong>
+        <p>코인 1개 = 이용권 1장</p>
+        <div class="ticket-shop">
+          <button onclick="buyTickets(1)">이용권 1장 구매</button>
+          <button onclick="buyTickets(2)">이용권 2장 구매</button>
+          <button onclick="buyTickets(3)">이용권 3장 구매</button>
+        </div>
+      </div>
+      <div class="login-actions">
+        <button class="cancel-login" onclick="closeTicketModal()">닫기</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="login-modal" id="needTicketModal">
+    <div class="login-panel">
+      <h2>보유 이용권 수가 부족합니다.</h2>
+      <p>6화 미리보기는 이용권 3장이 필요합니다.</p>
+      <button class="go-ticket-btn" onclick="goTicketFromNeed()">내 이용권 수 보기 -&gt;</button>
+      <div class="login-actions">
+        <button class="cancel-login" onclick="closeNeedTicketModal()">닫기</button>
+      </div>
+    </div>
+  </section>
+
   <div class="toast" id="toast">알림</div>
 
   <script>
-    const pages = ["homePage", "searchPage", "profilePage", "workDetailPage"];
-    const reader = document.getElementById("reader");
-    const readerScroll = document.getElementById("readerScroll");
-    const toast = document.getElementById("toast");
-    const loginModal = document.getElementById("loginModal");
-    const passwordModal = document.getElementById("passwordModal");
-    const accountBtn = document.getElementById("accountBtn");
-    const searchInput = document.getElementById("searchInput");
-    const readerMiniTitle = document.getElementById("readerMiniTitle");
-    const readerTitle = document.getElementById("readerTitle");
-    const readerSub = document.getElementById("readerSub");
-    const novelBody = document.getElementById("novelBody");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
+    const pages=["homePage","searchPage","profilePage","workDetailPage"];
+    const reader=document.getElementById("reader"),readerScroll=document.getElementById("readerScroll"),toast=document.getElementById("toast");
+    const loginModal=document.getElementById("loginModal"),passwordModal=document.getElementById("passwordModal"),ticketModal=document.getElementById("ticketModal"),needTicketModal=document.getElementById("needTicketModal");
+    const accountBtn=document.getElementById("accountBtn"),searchInput=document.getElementById("searchInput");
+    const readerMiniTitle=document.getElementById("readerMiniTitle"),readerTitle=document.getElementById("readerTitle"),readerSub=document.getElementById("readerSub"),novelBody=document.getElementById("novelBody");
+    const prevBtn=document.getElementById("prevBtn"),nextBtn=document.getElementById("nextBtn");
+    let currentEpisode=1,currentUser=null,coinTimer=null;
+    const WORK_ID="world_saved_abandoned",AUTHOR_NAME="고쓰비",AUTHOR_PASSWORD="2012424!",COIN_INTERVAL=3600000;
 
-    let currentEpisode = 1;
-    let currentUser = null;
+    const workData={id:WORK_ID,title:"세계를 구하고, 버려졌다",author:"고쓰비",aliases:["세계를","세계를구하고","세계를구하고버려졌다","세계를구했더니","세계를구했더니버려졌다","버려졌다","강도윤","귀환","고쓰비","포위","분류되지않은힘","충전된하늘","남겨진것의형태","아스","천공의요새","이도현","HG"]};
 
-    const WORK_ID = "world_saved_abandoned";
-    const AUTHOR_NAME = "고쓰비";
-    const AUTHOR_PASSWORD = "2012424!";
+    function escapeHtml(str){return String(str).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")}
+    function rawToHtml(raw){return String(raw||"").trim().split(/\n\s*\n/g).map(block=>block.trim()).filter(Boolean).map(block=>{let text=escapeHtml(block).replace(/\n/g,"<br>");text=text.replace(/「([^」]+)」/g,'<span class="skill">「$1」</span>');if(/^\[[\s\S]*\]$/.test(block.trim()))return`<div class="system">${text}</div>`;if(block.trim()==="—")return`<div class="scene">—</div>`;if(["마왕.","세계를 구했더니 버려졌다.","빛의 검 액스칼리버","“내가 버린다.”","소환 포인트."].includes(block.trim()))return`<p class="quote-strong">${text}</p>`;return`<p>${text}</p>`}).join("\n")}
 
-    const workData = {
-      id: WORK_ID,
-      title: "세계를 구하고, 버려졌다",
-      author: "고쓰비",
-      aliases: ["세계를","세계를구하고","세계를구하고버려졌다","세계를구했더니","세계를구했더니버려졌다","버려졌다","강도윤","귀환","고쓰비","포위","분류되지않은힘","충전된하늘","아스","천공의요새","이도현"]
-    };
-
-    function escapeHtml(str){
-      return String(str).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;");
-    }
-
-    function rawToHtml(raw){
-      return String(raw||"").trim().split(/\n\s*\n/g).map(block=>block.trim()).filter(Boolean).map(block=>{
-        let text=escapeHtml(block).replace(/\n/g,"<br>");
-        text=text.replace(/「([^」]+)」/g,'<span class="skill">「$1」</span>');
-        if(/^\[[\s\S]*\]$/.test(block.trim())) return `<div class="system">${text}</div>`;
-        if(block.trim()==="—") return `<div class="scene">—</div>`;
-        if(["마왕.","세계를 구했더니 버려졌다.","빛의 검 액스칼리버","“내가 버린다.”","소환 포인트."].includes(block.trim())) return `<p class="quote-strong">${text}</p>`;
-        return `<p>${text}</p>`;
-      }).join("\n");
-    }
-
-    const episodes = {
-      1: {
-        title: "1화 - 귀환",
-        sub: "강도윤 · 소환의 권능 · 귀환",
-        raw: `
+    const episodes={
+      1:{title:"1화 - 귀환",sub:"강도윤 · 소환의 권능 · 귀환",raw:`
 “……이걸로, 끝이군.”
 
 검게 갈라진 대지 위에 서 있던 소년이, 아주 천천히 숨을 내쉬었다.
@@ -954,13 +904,8 @@
 아주 조용하게 웃었다.
 
 “내가 버린다.”
-        `
-      },
-
-      2: {
-        title: "2화 - 공모",
-        sub: "백진우 · 유하린 · 제주도",
-        raw: `
+`},
+      2:{title:"2화 - 공모",sub:"백진우 · 유하린 · 제주도",raw:`
 쾅—
 
 빛이, 가로로 베어졌다.
@@ -1448,12 +1393,8 @@
 전쟁이—
 
 시작되려 하고 있었다.
-        `
-      },
-      3: {
-        title: "3화 - 포위",
-        sub: "아스 길드 · 포위 · 천공의 요새",
-        raw: `
+`},
+      3:{title:"3화 - 포위",sub:"아스 길드 · 포위 · 천공의 요새",raw:`
 “……정리 좀 해보자.”
 
 작은 집 안, 기묘하게 조용한 공간이었다.
@@ -1872,13 +1813,8 @@ B3탄이, 폭우처럼 쏟아졌다.
 요새가 완전히 모습을 드러냈다.
 
 세상이, 그 아래에 눌렸다.
-        `
-      },
-
-      4: {
-        title: "4화 - 분류되지 않은 힘",
-        sub: "소환 포인트 · 각성자 등급 · 이도현",
-        raw: `
+`},
+      4:{title:"4화 - 분류되지 않은 힘",sub:"소환 포인트 · 각성자 등급 · 이도현",raw:`
 천공의 요새는 하늘 위에 떠 있었다.
 
 구름 아래로 펼쳐진 세상은 너무 멀어 보였고, 이 공간만이 유독 현실과 분리된 듯 고요했다. 방금 전까지 벌어졌던 전투의 흔적조차 이 안에서는 희미하게 가라앉아 있었다.
@@ -2119,13 +2055,8 @@ B3탄이, 폭우처럼 쏟아졌다.
 그리고 마지막으로, 진우가 낮게 말했다.
 
 “…우리는—”
-        `
-      },
-
-      5: {
-        title: "5화 - 충전된 하늘",
-        sub: "소환 포인트 · 이도현 · 절단의 권능",
-        raw: `
+`},
+      5:{title:"5화 - 충전된 하늘",sub:"소환 포인트 · 이도현 · 절단의 권능",raw:`
 천공의 요새는 여전히 하늘 위에 떠 있었다.
 
 전투 이후의 공기는 조금씩 가라앉고 있었고, 내부는 이상할 정도로 안정되어 있었다. 도윤은 요새 중심부에 앉아 있었다. 그의 손끝에는 보이지 않는 흐름이 느리게 돌아가고 있었다.
@@ -2389,470 +2320,602 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
 그리고 요새만이—
 
 하늘 위에 남아 있었다
-        `
-      }
+`},
+      6:{title:"6화 - 남겨진 것의 형태",sub:"특수 캡슐 · 이도현 · HG",preview:true,cost:3,raw:`
+천공의 요새 내부는 이전보다 더 안정적으로 정리되어 있었다.
+
+전투 이후 흩어졌던 구조들이 자동적으로 복구되고 있었고, 도윤은 요새 내부 깊숙한 곳으로 내려가고 있었다.
+
+비밀실험실.
+
+요새 중심부보다도 더 깊은 곳에 숨겨진 공간이었다.
+
+금속과 빛이 교차하는 방.
+
+그리고 중앙에는 아직 비어 있는 거대한 원형 장치가 있었다.
+
+도윤은 잠시 그 장치를 바라봤다.
+
+그리고 손을 들었다.
+
+「소환의 권능」 「특수 캡슐」
+
+공간이 갈라지며 물체가 형성되기 시작했다.
+
+금속도, 유리도 아닌 애매한 물질.
+
+마치 “개념”이 물질화된 것처럼 보이는 캡슐이었다.
+
+완전히 닫힌 구조.
+
+그러나 내부에는 미세한 생명 유지 장치가 흐르고 있었다.
+
+도윤은 그것을 바라보며 낮게 중얼거렸다.
+
+“…이게 가능하다고?”
+
+설명은 단순했다.
+
+특수 캡슐.
+
+부패만 진행되지 않는다면, 죽은 육체조차 동일 구조로 복제되어 재구성된다.
+
+사실상 ‘죽음 이후의 재가동 장치’.
+
+그리고 핵심은 따로 있었다.
+
+자아.
+
+존재하지만, 외부 명령에 의해 아군에게 반발하지 않도록 조정할 수 있는 구조.
+
+도윤은 잠시 침묵했다.
+
+그리고 손을 더 깊이 내렸다.
+
+남아 있던 모든 소환 포인트가 빠져나갔다.
+
+공기가 순간적으로 무거워졌다.
+
+“……끝이다.”
+
+캡슐은 완성됐다.
+
+그 순간.
+
+도윤은 시선을 옮겼다.
+
+그리고 한 사람을 바라봤다.
+
+지휘관급 각성자, 이도현.
+
+아직 완전히 소멸되지 않은 존재.
+
+도윤은 아무 말 없이 캡슐을 열었다.
+
+그리고 그를 안으로 넣었다.
+
+닫히는 순간—
+
+캡슐 내부의 빛이 잠시 흔들렸다.
+
+그러나 곧 안정됐다.
+
+“새 식구네.”
+
+도윤은 그렇게 말하고 캡슐을 닫아둔 채 실험실에 그대로 남겨놨다.
+
+잠시 후.
+
+요새 내부 거실.
+
+도윤이 올라왔다.
+
+그의 옆에는 이도현이 있었다.
+
+정확히는 “완전히 재구성된 이도현”.
+
+캡슐 안의 본체는 비밀실험실에 그대로 남아 있었고, 이쪽은 외부로 출력된 전투 가능한 개체였다.
+
+진우가 먼저 반응했다.
+
+“야, 또 뭐 데리고 왔냐?”
+
+유하린도 눈을 가늘게 떴다.
+
+“이번 건 느낌이 좀 다른데.”
+
+도윤은 이도현을 한 번 힐끔 보고 말했다.
+
+“이거.”
+
+“아까 걔.”
+
+진우가 고개를 갸웃했다.
+
+“걔?“
+
+도윤은 짧게 말했다.
+
+“절단의 권능.”
+
+“움직이게 만든 거.”
+
+진우가 멈칫했다.
+
+“…그럼 진짜 사람 아냐?”
+
+도윤은 어깨를 으쓱했다.
+
+“비슷하지.”
+
+이도현이 먼저 입을 열었다.
+
+“야.”
+
+“이거 뭐냐.”
+
+진우가 눈을 크게 떴다.
+
+“오, 말한다.”
+
+이도현은 주변을 훑어보며 말했다.
+
+“나 살아있는 건 맞냐?”
+
+도윤이 바로 말했다.
+
+“맞긴 한데.”
+
+“본체는 따로 있어.”
+
+이도현이 잠깐 멈췄다.
+
+“…그게 무슨.”
+
+유하린이 팔짱을 꼈다.
+
+“너 지금 우리 편 맞는 거야?”
+
+이도현은 잠깐 생각했다.
+
+그리고 짧게 말했다.
+
+“일단은.”
+
+도윤이 이도현 쪽을 가볍게 가리켰다.
+
+“움직이기만 해.”
+
+“안 그러면 다시 죽인다.”
+
+이도현은 짧게 웃었다.
+
+“…알겠어.”
+
+지하.
+
+국방부 회의실.
+
+긴 테이블 위로 자료가 쌓여 있었다.
+
+긴장감이 이전보다 훨씬 무거웠다.
+
+국방부 장관이 입을 열었다.
+
+“절단의 권능 이도현도 당했다.”
+
+“아무래도 세력이 강한 모양이다.”
+
+회의실이 술렁였다.
+
+“지휘관급이 당한다고요?”
+
+“그게 정말 가능한—”
+
+장관이 손을 들어 말을 끊었다.
+
+“그럼 어떻게 해야 할까요? 장관님.”
+
+누군가 물었다.
+
+잠깐의 침묵.
+
+그리고 장관이 말했다.
+
+“아무래도 다른 길드에게 도움을 청해야 할 것 같다.”
+
+“서열 10위 [HG]에게 부탁할까요?”
+
+“좋다.”
+
+장관은 서류를 내려다봤다.
+
+“그곳의 길드장에게 전화해라.”
+
+잠깐 멈췄다가.
+
+“아무래도 도움이 필요할 것 같다.”
+`}
     };
 
-    function normalizeText(text){
-      return String(text || "").replace(/\s+/g, "").toLowerCase();
+    function normalizeText(text){return String(text||"").replace(/\s+/g,"").toLowerCase()}
+    function getAccounts(){const raw=localStorage.getItem("chatweb_accounts");return raw?JSON.parse(raw):{}}
+    function saveAccounts(accounts){localStorage.setItem("chatweb_accounts",JSON.stringify(accounts))}
+    function getUserData(){if(!currentUser)return null;const accounts=getAccounts();return accounts[currentUser.nickname]}
+    function ensureAccountShape(user){
+      if(!Array.isArray(user.recentWorks))user.recentWorks=[];
+      if(!Array.isArray(user.watchingWorks))user.watchingWorks=[];
+      if(!Array.isArray(user.readEpisodes))user.readEpisodes=[];
+      if(!Array.isArray(user.unlockedEpisodes))user.unlockedEpisodes=[];
+      if(typeof user.tickets!=="number")user.tickets=0;
+      if(typeof user.coins!=="number")user.coins=0;
+      if(typeof user.coinBank!=="number")user.coinBank=0;
+      if(typeof user.coinStartedAt!=="number")user.coinStartedAt=0;
+    }
+    function saveUserData(user){const accounts=getAccounts();accounts[currentUser.nickname]=user;saveAccounts(accounts)}
+
+    function updateCoinBank(){
+      const user=getUserData();if(!user)return;
+      ensureAccountShape(user);
+      if(user.coinStartedAt && user.coinBank<5){
+        const now=Date.now();
+        const elapsed=now-user.coinStartedAt;
+        const gained=Math.floor(elapsed/COIN_INTERVAL);
+        if(gained>0){
+          const add=Math.min(gained,5-user.coinBank);
+          user.coinBank+=add;
+          if(user.coinBank>=5){
+            user.coinStartedAt=0;
+          }else{
+            user.coinStartedAt+=gained*COIN_INTERVAL;
+          }
+          saveUserData(user);
+        }
+      }
     }
 
-    function getAccounts(){
-      const raw = localStorage.getItem("chatweb_accounts");
-      return raw ? JSON.parse(raw) : {};
-    }
-
-    function saveAccounts(accounts){
-      localStorage.setItem("chatweb_accounts", JSON.stringify(accounts));
+    function updateProfileCounts(){
+      if(!currentUser)return;
+      updateCoinBank();
+      const user=getUserData();if(!user)return;
+      ensureAccountShape(user);
+      const ticketEl=document.getElementById("profileTicketCount");
+      const coinEl=document.getElementById("profileCoinCount");
+      if(ticketEl)ticketEl.textContent=`보유 이용권 ${user.tickets}장`;
+      if(coinEl)coinEl.textContent=`보유 코인 ${user.coins}개`;
     }
 
     function showPage(pageId){
-      if(!currentUser) return;
-
-      pages.forEach(id=>{
-        const page = document.getElementById(id);
-        if(page) page.classList.toggle("active", id === pageId);
-      });
-
-      if(pageId === "workDetailPage"){
-        updateReadEpisodeStyles();
-      }
-
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      if(!currentUser)return;
+      pages.forEach(id=>{const page=document.getElementById(id);if(page)page.classList.toggle("active",id===pageId)});
+      if(pageId==="workDetailPage")updateReadEpisodeStyles();
+      updateProfileCounts();
+      window.scrollTo({top:0,behavior:"smooth"});
     }
 
     function updateAccountButton(){
       if(!currentUser){
         document.body.classList.remove("logged-in");
-        accountBtn.textContent = "로그인";
-        accountBtn.classList.remove("logged", "author");
+        accountBtn.textContent="로그인";
+        accountBtn.classList.remove("logged","author");
         return;
       }
-
       document.body.classList.add("logged-in");
-      accountBtn.textContent = currentUser.nickname;
+      accountBtn.textContent=currentUser.nickname;
       accountBtn.classList.add("logged");
-
-      if(currentUser.isAuthor){
-        accountBtn.classList.add("author");
-      }else{
-        accountBtn.classList.remove("author");
-      }
+      if(currentUser.isAuthor)accountBtn.classList.add("author");else accountBtn.classList.remove("author");
     }
 
-    function openLogin(){
-      loginModal.classList.add("open");
-      setTimeout(()=>{
-        const input = document.getElementById("nicknameInput");
-        if(input) input.focus();
-      }, 50);
-    }
-
-    function closeLogin(){
-      loginModal.classList.remove("open");
-    }
-
+    function openLogin(){loginModal.classList.add("open");setTimeout(()=>{const input=document.getElementById("nicknameInput");if(input)input.focus()},50)}
+    function closeLogin(){loginModal.classList.remove("open")}
     function openPasswordModal(){
-      if(!currentUser){
-        openLogin();
-        return;
-      }
-
-      if(currentUser.nickname === AUTHOR_NAME){
-        showToast("고쓰비 작가 계정은 비밀번호를 변경할 수 없습니다.");
-        return;
-      }
-
+      if(!currentUser){openLogin();return}
+      if(currentUser.nickname===AUTHOR_NAME){showToast("고쓰비 작가 계정은 비밀번호를 변경할 수 없습니다.");return}
       passwordModal.classList.add("open");
-      setTimeout(()=>{
-        const input = document.getElementById("oldPasswordInput");
-        if(input) input.focus();
-      }, 50);
+      setTimeout(()=>{const input=document.getElementById("oldPasswordInput");if(input)input.focus()},50);
     }
-
     function closePasswordModal(){
       passwordModal.classList.remove("open");
-      document.getElementById("oldPasswordInput").value = "";
-      document.getElementById("newPasswordInput").value = "";
+      document.getElementById("oldPasswordInput").value="";
+      document.getElementById("newPasswordInput").value="";
+    }
+
+    function openTicketModal(){
+      if(!currentUser){openLogin();return}
+      updateTicketModal();
+      ticketModal.classList.add("open");
+    }
+    function closeTicketModal(){ticketModal.classList.remove("open")}
+    function closeNeedTicketModal(){needTicketModal.classList.remove("open")}
+    function goTicketFromNeed(){closeNeedTicketModal();openTicketModal()}
+
+    function formatTime(ms){
+      const total=Math.max(0,Math.ceil(ms/1000));
+      const m=Math.floor(total/60);
+      const s=total%60;
+      return `${m}분 ${String(s).padStart(2,"0")}초`;
+    }
+
+    function updateTicketModal(){
+      if(!currentUser)return;
+      updateCoinBank();
+      const user=getUserData();if(!user)return;
+      ensureAccountShape(user);
+      document.getElementById("ticketStatusText").textContent=`현재 ${currentUser.nickname}님의 이용권 수는 ${user.tickets}개입니다.`;
+      document.getElementById("coinStatusText").textContent=`현재 ${currentUser.nickname}님의 코인수는 ${user.coins}개입니다.`;
+      document.getElementById("coinBankText").textContent=`쌓인 코인: ${user.coinBank}개 / 최대 5개`;
+
+      let timerText="코인 생성 대기 중";
+      if(user.coinBank>=5){
+        timerText="코인이 5개까지 쌓였습니다. 회수해야 다시 쌓입니다.";
+      }else if(user.coinStartedAt){
+        const next=user.coinStartedAt+COIN_INTERVAL-Date.now();
+        timerText=`다음 코인까지 ${formatTime(next)}`;
+      }else{
+        timerText="코인 얻기를 누르면 1시간마다 코인이 쌓입니다.";
+      }
+      document.getElementById("coinTimerText").textContent=timerText;
+      updateProfileCounts();
+    }
+
+    function startCoinGenerator(){
+      if(!currentUser)return;
+      const user=getUserData();ensureAccountShape(user);
+      updateCoinBank();
+      if(user.coinBank>=5){showToast("코인이 이미 5개까지 쌓였습니다. 먼저 회수하세요.");updateTicketModal();return}
+      if(!user.coinStartedAt){user.coinStartedAt=Date.now();saveUserData(user);showToast("코인 생성이 시작되었습니다.")}
+      else showToast("이미 코인이 생성되고 있습니다.");
+      updateTicketModal();
+    }
+
+    function collectCoins(){
+      if(!currentUser)return;
+      updateCoinBank();
+      const user=getUserData();ensureAccountShape(user);
+      if(user.coinBank<=0){showToast("회수할 코인이 없습니다.");return}
+      user.coins+=user.coinBank;
+      const got=user.coinBank;
+      user.coinBank=0;
+      user.coinStartedAt=Date.now();
+      saveUserData(user);
+      showToast(`코인 ${got}개를 회수했습니다.`);
+      updateTicketModal();
+    }
+
+    function buyTickets(count){
+      if(!currentUser)return;
+      const user=getUserData();ensureAccountShape(user);
+      if(user.coins<count){showToast("보유 코인이 부족합니다.");return}
+      user.coins-=count;
+      user.tickets+=count;
+      saveUserData(user);
+      showToast(`이용권 ${count}장을 구매했습니다.`);
+      updateTicketModal();
     }
 
     function changePassword(){
-      if(!currentUser){
-        closePasswordModal();
-        openLogin();
-        return;
-      }
-
-      if(currentUser.nickname === AUTHOR_NAME){
-        showToast("고쓰비 작가 계정은 비밀번호를 변경할 수 없습니다.");
-        return;
-      }
-
-      const oldPw = document.getElementById("oldPasswordInput").value.trim();
-      const newPw = document.getElementById("newPasswordInput").value.trim();
-
-      if(!oldPw){
-        showToast("현재 비밀번호를 입력하세요.");
-        return;
-      }
-
-      if(!newPw){
-        showToast("새 비밀번호를 입력하세요.");
-        return;
-      }
-
-      const accounts = getAccounts();
-      const user = accounts[currentUser.nickname];
-
-      if(!user || user.password !== oldPw){
-        showToast("현재 비밀번호가 다릅니다.");
-        return;
-      }
-
-      user.password = newPw;
-      saveAccounts(accounts);
+      if(!currentUser){closePasswordModal();openLogin();return}
+      if(currentUser.nickname===AUTHOR_NAME){showToast("고쓰비 작가 계정은 비밀번호를 변경할 수 없습니다.");return}
+      const oldPw=document.getElementById("oldPasswordInput").value.trim();
+      const newPw=document.getElementById("newPasswordInput").value.trim();
+      if(!oldPw){showToast("현재 비밀번호를 입력하세요.");return}
+      if(!newPw){showToast("새 비밀번호를 입력하세요.");return}
+      const user=getUserData();
+      if(!user||user.password!==oldPw){showToast("현재 비밀번호가 다릅니다.");return}
+      user.password=newPw;
+      saveUserData(user);
       closePasswordModal();
       showToast("비밀번호가 변경되었습니다.");
     }
 
     function confirmLogin(){
-      const nicknameInput = document.getElementById("nicknameInput");
-      const passwordInput = document.getElementById("passwordInput");
+      const nicknameInput=document.getElementById("nicknameInput");
+      const passwordInput=document.getElementById("passwordInput");
+      const nickname=nicknameInput.value.trim();
+      const password=passwordInput.value.trim();
+      if(!nickname){showToast("닉네임을 입력하세요.");return}
+      if(!password){showToast("비밀번호를 입력하세요.");return}
 
-      const nickname = nicknameInput.value.trim();
-      const password = passwordInput.value.trim();
-
-      if(!nickname){
-        showToast("닉네임을 입력하세요.");
-        return;
-      }
-
-      if(!password){
-        showToast("비밀번호를 입력하세요.");
-        return;
-      }
-
-      const accounts = getAccounts();
-      const isAuthorName = nickname === AUTHOR_NAME;
-
-      if(isAuthorName && password !== AUTHOR_PASSWORD){
-        showToast("고쓰비 계정의 비밀번호가 다릅니다.");
-        return;
-      }
+      const accounts=getAccounts();
+      const isAuthorName=nickname===AUTHOR_NAME;
+      if(isAuthorName&&password!==AUTHOR_PASSWORD){showToast("고쓰비 계정의 비밀번호가 다릅니다.");return}
 
       if(accounts[nickname]){
         if(isAuthorName){
-          accounts[nickname].password = AUTHOR_PASSWORD;
-          accounts[nickname].isAuthor = true;
-        }else if(accounts[nickname].password !== password){
+          accounts[nickname].password=AUTHOR_PASSWORD;
+          accounts[nickname].isAuthor=true;
+        }else if(accounts[nickname].password!==password){
           showToast("비밀번호가 다릅니다.");
           return;
         }
       }else{
-        accounts[nickname] = {
-          password: isAuthorName ? AUTHOR_PASSWORD : password,
-          createdAt: new Date().toISOString(),
-          recentWorks: [],
-          watchingWorks: [],
-          readEpisodes: [],
-          isAuthor: isAuthorName
-        };
+        accounts[nickname]={password:isAuthorName?AUTHOR_PASSWORD:password,createdAt:new Date().toISOString(),recentWorks:[],watchingWorks:[],readEpisodes:[],unlockedEpisodes:[],tickets:0,coins:0,coinBank:0,coinStartedAt:0,isAuthor:isAuthorName};
       }
 
+      ensureAccountShape(accounts[nickname]);
       if(isAuthorName){
-        accounts[nickname].password = AUTHOR_PASSWORD;
-        accounts[nickname].isAuthor = true;
+        accounts[nickname].password=AUTHOR_PASSWORD;
+        accounts[nickname].isAuthor=true;
       }
-
-      if(!Array.isArray(accounts[nickname].recentWorks)) accounts[nickname].recentWorks = [];
-      if(!Array.isArray(accounts[nickname].watchingWorks)) accounts[nickname].watchingWorks = [];
-      if(!Array.isArray(accounts[nickname].readEpisodes)) accounts[nickname].readEpisodes = [];
-
       saveAccounts(accounts);
 
-      currentUser = {
-        nickname,
-        isAuthor: !!accounts[nickname].isAuthor
-      };
-
-      nicknameInput.value = "";
-      passwordInput.value = "";
-
+      currentUser={nickname,isAuthor:!!accounts[nickname].isAuthor};
+      nicknameInput.value="";
+      passwordInput.value="";
       closeLogin();
       updateAccountButton();
       renderHome();
       showPage("homePage");
-
-      showToast(currentUser.isAuthor ? "작가 계정으로 로그인되었습니다." : "로그인되었습니다.");
+      showToast(currentUser.isAuthor?"작가 계정으로 로그인되었습니다.":"로그인되었습니다.");
     }
 
     function logout(){
-      currentUser = null;
+      currentUser=null;
       reader.classList.remove("open");
-      document.body.style.overflow = "";
+      document.body.style.overflow="";
       updateAccountButton();
-
-      pages.forEach(id=>{
-        const page = document.getElementById(id);
-        if(page) page.classList.remove("active");
-      });
-
-      searchInput.value = "";
+      pages.forEach(id=>{const page=document.getElementById(id);if(page)page.classList.remove("active")});
+      searchInput.value="";
       showToast("로그아웃되었습니다. 다시 로그인하세요.");
     }
 
-    function handleAccountButton(){
-      if(!currentUser){
-        openLogin();
-      }else{
-        openProfile();
-      }
-    }
-
-    function goHome(){
-      if(!currentUser){
-        openLogin();
-        return;
-      }
-
-      searchInput.value = "";
-      renderHome();
-      showPage("homePage");
-    }
+    function handleAccountButton(){if(!currentUser)openLogin();else openProfile()}
+    function goHome(){if(!currentUser){openLogin();return}searchInput.value="";renderHome();showPage("homePage")}
 
     function renderHome(){
-      const accounts = getAccounts();
-      const user = accounts[currentUser.nickname];
-
-      document.getElementById("homeGreeting").textContent = currentUser.nickname + "님의 홈";
-
-      const recentWorksBox = document.getElementById("recentWorksBox");
-      const recentWorks = user.recentWorks || [];
-
-      document.getElementById("recentCountText").textContent = recentWorks.length + "개";
-
+      const user=getUserData();ensureAccountShape(user);
+      document.getElementById("homeGreeting").textContent=currentUser.nickname+"님의 홈";
+      const recentWorksBox=document.getElementById("recentWorksBox");
+      const recentWorks=user.recentWorks||[];
+      document.getElementById("recentCountText").textContent=recentWorks.length+"개";
       if(recentWorks.includes(WORK_ID)){
-        recentWorksBox.innerHTML = `
-          <div class="work-row" onclick="openWorkDetail()">
-            <div class="mini-cover"></div>
-            <div class="work-row-info">
-              <h3>세계를 구하고, 버려졌다</h3>
-              <p>작가 고쓰비 · 최근 본 작품 · 마지막으로 읽은 작품</p>
-            </div>
-            <div class="work-row-badge">이어보기</div>
-          </div>
-        `;
+        recentWorksBox.innerHTML=`<div class="work-row" onclick="openWorkDetail()"><div class="mini-cover"></div><div class="work-row-info"><h3>세계를 구하고, 버려졌다</h3><p>작가 고쓰비 · 최근 본 작품 · 마지막으로 읽은 작품</p></div><div class="work-row-badge">이어보기</div></div>`;
       }else{
-        recentWorksBox.innerHTML = `<div class="empty-box">아직 최근 본 작품이 없습니다.</div>`;
+        recentWorksBox.innerHTML=`<div class="empty-box">아직 최근 본 작품이 없습니다.</div>`;
       }
+      updateProfileCounts();
     }
 
     function openProfile(){
-      if(!currentUser){
-        openLogin();
-        return;
-      }
-
-      const accounts = getAccounts();
-      const user = accounts[currentUser.nickname];
-
-      document.getElementById("profileNickname").textContent = currentUser.nickname;
-
-      const profileRole = document.getElementById("profileRole");
-      profileRole.textContent = currentUser.isAuthor ? "작가 계정" : "일반 계정";
-      profileRole.classList.toggle("author", currentUser.isAuthor);
-
-      document.getElementById("authorWorksSection").style.display = currentUser.isAuthor ? "block" : "none";
-
-      const watchingWorksBox = document.getElementById("watchingWorksBox");
-      const watching = user.watchingWorks || [];
-
+      if(!currentUser){openLogin();return}
+      updateCoinBank();
+      const user=getUserData();ensureAccountShape(user);
+      document.getElementById("profileNickname").textContent=currentUser.nickname;
+      const profileRole=document.getElementById("profileRole");
+      profileRole.textContent=currentUser.isAuthor?"작가 계정":"일반 계정";
+      profileRole.classList.toggle("author",currentUser.isAuthor);
+      document.getElementById("authorWorksSection").style.display=currentUser.isAuthor?"block":"none";
+      const watchingWorksBox=document.getElementById("watchingWorksBox");
+      const watching=user.watchingWorks||[];
       if(watching.includes(WORK_ID)){
-        watchingWorksBox.innerHTML = `
-          <div class="work-row" onclick="openWorkDetail()">
-            <div class="mini-cover"></div>
-            <div class="work-row-info">
-              <h3>세계를 구하고, 버려졌다</h3>
-              <p>작가 고쓰비 · 보고있는 작품</p>
-            </div>
-            <div class="work-row-badge">보기</div>
-          </div>
-        `;
+        watchingWorksBox.innerHTML=`<div class="work-row" onclick="openWorkDetail()"><div class="mini-cover"></div><div class="work-row-info"><h3>세계를 구하고, 버려졌다</h3><p>작가 고쓰비 · 보고있는 작품</p></div><div class="work-row-badge">보기</div></div>`;
       }else{
-        watchingWorksBox.innerHTML = `<div class="empty-box">${currentUser.nickname}님은 아직 본 작품이 없습니다.</div>`;
+        watchingWorksBox.innerHTML=`<div class="empty-box">${currentUser.nickname}님은 아직 본 작품이 없습니다.</div>`;
       }
-
+      updateProfileCounts();
       showPage("profilePage");
     }
 
-    function openWorkDetail(){
-      if(!currentUser){
-        openLogin();
-        return;
-      }
+    function openWorkDetail(){if(!currentUser){openLogin();return}showPage("workDetailPage")}
 
-      showPage("workDetailPage");
+    function canOpenEpisode(num){
+      if(!episodes[num])return false;
+      if(currentUser&&currentUser.isAuthor)return true;
+      const ep=episodes[num];
+      if(!ep.preview)return true;
+      const user=getUserData();ensureAccountShape(user);
+      return user.unlockedEpisodes.includes(num);
+    }
+
+    function unlockEpisode(num){
+      const ep=episodes[num];
+      if(!ep||!ep.preview)return true;
+      if(currentUser.isAuthor)return true;
+      const user=getUserData();ensureAccountShape(user);
+      if(user.unlockedEpisodes.includes(num))return true;
+      if(user.tickets<(ep.cost||0)){
+        needTicketModal.classList.add("open");
+        return false;
+      }
+      user.tickets-=ep.cost||0;
+      user.unlockedEpisodes.push(num);
+      saveUserData(user);
+      updateProfileCounts();
+      showToast(`이용권 ${ep.cost}장을 사용했습니다.`);
+      return true;
     }
 
     function addViewedWork(episodeNumber){
-      if(!currentUser) return;
-
-      const accounts = getAccounts();
-      const user = accounts[currentUser.nickname];
-
-      if(!Array.isArray(user.recentWorks)) user.recentWorks = [];
-      if(!Array.isArray(user.watchingWorks)) user.watchingWorks = [];
-      if(!Array.isArray(user.readEpisodes)) user.readEpisodes = [];
-
-      user.recentWorks = user.recentWorks.filter(id => id !== WORK_ID);
+      const user=getUserData();ensureAccountShape(user);
+      user.recentWorks=user.recentWorks.filter(id=>id!==WORK_ID);
       user.recentWorks.unshift(WORK_ID);
-
-      if(!user.watchingWorks.includes(WORK_ID)){
-        user.watchingWorks.push(WORK_ID);
-      }
-
-      if(!user.readEpisodes.includes(episodeNumber)){
-        user.readEpisodes.push(episodeNumber);
-      }
-
-      saveAccounts(accounts);
+      if(!user.watchingWorks.includes(WORK_ID))user.watchingWorks.push(WORK_ID);
+      if(!user.readEpisodes.includes(episodeNumber))user.readEpisodes.push(episodeNumber);
+      saveUserData(user);
     }
 
     function updateReadEpisodeStyles(){
-      if(!currentUser) return;
-
-      const accounts = getAccounts();
-      const user = accounts[currentUser.nickname];
-      const readEpisodes = user && Array.isArray(user.readEpisodes) ? user.readEpisodes : [];
-
+      if(!currentUser)return;
+      const user=getUserData();ensureAccountShape(user);
+      const readEpisodes=user.readEpisodes||[];
       document.querySelectorAll(".episode[data-episode]").forEach(el=>{
-        const num = Number(el.dataset.episode);
-        el.classList.toggle("read", readEpisodes.includes(num));
+        const num=Number(el.dataset.episode);
+        el.classList.toggle("read",readEpisodes.includes(num));
       });
     }
 
     function searchWorks(){
-      if(!currentUser){
-        openLogin();
-        return;
-      }
-
-      const rawQuery = searchInput.value.trim();
-      const query = normalizeText(rawQuery);
-      const title = normalizeText(workData.title);
-      const author = normalizeText(workData.author);
-      const aliases = workData.aliases.map(normalizeText);
-
-      const found = query && (
-        title.includes(query) ||
-        author.includes(query) ||
-        aliases.some(alias => alias.includes(query) || query.includes(alias))
-      );
-
-      document.getElementById("searchTitle").textContent = rawQuery ? `"${rawQuery}" 검색 결과` : "검색 결과";
-      document.getElementById("searchFoundSection").style.display = found ? "block" : "none";
-      document.getElementById("searchEmptyPage").style.display = found ? "none" : "flex";
-
+      if(!currentUser){openLogin();return}
+      const rawQuery=searchInput.value.trim();
+      const query=normalizeText(rawQuery);
+      const title=normalizeText(workData.title);
+      const author=normalizeText(workData.author);
+      const aliases=workData.aliases.map(normalizeText);
+      const found=query&&(title.includes(query)||author.includes(query)||aliases.some(alias=>alias.includes(query)||query.includes(alias)));
+      document.getElementById("searchTitle").textContent=rawQuery?`"${rawQuery}" 검색 결과`:"검색 결과";
+      document.getElementById("searchFoundSection").style.display=found?"block":"none";
+      document.getElementById("searchEmptyPage").style.display=found?"none":"flex";
       showPage("searchPage");
     }
-
-    function handleSearchKey(event){
-      if(event.key === "Enter"){
-        searchWorks();
-      }
-    }
+    function handleSearchKey(event){if(event.key==="Enter")searchWorks()}
 
     function openReader(episodeNumber){
-      if(!currentUser){
-        openLogin();
-        return;
-      }
-
-      if(!episodes[episodeNumber]){
-        showToast("아직 공개되지 않은 회차입니다.");
-        return;
-      }
+      if(!currentUser){openLogin();return}
+      if(!episodes[episodeNumber]){showToast("아직 공개되지 않은 회차입니다.");return}
+      if(!unlockEpisode(episodeNumber))return;
 
       addViewedWork(episodeNumber);
-
-      currentEpisode = episodeNumber;
-      const ep = episodes[episodeNumber];
-
-      readerMiniTitle.textContent = ep.title;
-      readerTitle.textContent = ep.title;
-      readerSub.textContent = ep.sub;
-      novelBody.innerHTML = rawToHtml(ep.raw);
-
-      prevBtn.disabled = !episodes[currentEpisode - 1];
-      nextBtn.disabled = !episodes[currentEpisode + 1];
-
+      currentEpisode=episodeNumber;
+      const ep=episodes[episodeNumber];
+      readerMiniTitle.textContent=ep.title;
+      readerTitle.textContent=ep.title;
+      readerSub.textContent=ep.sub;
+      novelBody.innerHTML=rawToHtml(ep.raw);
+      prevBtn.disabled=!episodes[currentEpisode-1];
+      nextBtn.disabled=!episodes[currentEpisode+1];
       reader.classList.add("open");
-      document.body.style.overflow = "hidden";
-      readerScroll.scrollTo({ top: 0, behavior: "instant" });
-
+      document.body.style.overflow="hidden";
+      readerScroll.scrollTo({top:0,behavior:"instant"});
       updateReadEpisodeStyles();
     }
 
-    function closeReader(){
-      reader.classList.remove("open");
-      document.body.style.overflow = "";
-      openWorkDetail();
-    }
-
+    function closeReader(){reader.classList.remove("open");document.body.style.overflow="";openWorkDetail()}
     function moveEpisode(direction){
-      const target = currentEpisode + direction;
-
-      if(!episodes[target]){
-        showToast("아직 공개되지 않은 회차입니다.");
-        return;
-      }
-
+      const target=currentEpisode+direction;
+      if(!episodes[target]){showToast("아직 공개되지 않은 회차입니다.");return}
       openReader(target);
     }
-
-    function scrollToEpisodes(){
-      if(!currentUser) return;
-      document.getElementById("episodes").scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-
+    function scrollToEpisodes(){if(!currentUser)return;document.getElementById("episodes").scrollIntoView({behavior:"smooth",block:"start"})}
     function showToast(message){
-      toast.textContent = message;
-      toast.style.display = "block";
+      toast.textContent=message;
+      toast.style.display="block";
       clearTimeout(window.toastTimer);
-      window.toastTimer = setTimeout(()=>{
-        toast.style.display = "none";
-      }, 1600);
+      window.toastTimer=setTimeout(()=>{toast.style.display="none"},1600);
     }
 
     function initLoggedOut(){
-      currentUser = null;
+      currentUser=null;
       updateAccountButton();
-
-      pages.forEach(id=>{
-        const page = document.getElementById(id);
-        if(page) page.classList.remove("active");
-      });
-
+      pages.forEach(id=>{const page=document.getElementById(id);if(page)page.classList.remove("active")});
       document.body.classList.remove("logged-in");
-      searchInput.value = "";
+      searchInput.value="";
     }
 
-    document.addEventListener("keydown", e=>{
-      if(e.key === "Escape"){
-        if(reader.classList.contains("open")) closeReader();
-        if(loginModal.classList.contains("open")) closeLogin();
-        if(passwordModal.classList.contains("open")) closePasswordModal();
+    document.addEventListener("keydown",e=>{
+      if(e.key==="Escape"){
+        if(reader.classList.contains("open"))closeReader();
+        if(loginModal.classList.contains("open"))closeLogin();
+        if(passwordModal.classList.contains("open"))closePasswordModal();
+        if(ticketModal.classList.contains("open"))closeTicketModal();
+        if(needTicketModal.classList.contains("open"))closeNeedTicketModal();
       }
     });
+    loginModal.addEventListener("click",e=>{if(e.target===loginModal)closeLogin()});
+    passwordModal.addEventListener("click",e=>{if(e.target===passwordModal)closePasswordModal()});
+    ticketModal.addEventListener("click",e=>{if(e.target===ticketModal)closeTicketModal()});
+    needTicketModal.addEventListener("click",e=>{if(e.target===needTicketModal)closeNeedTicketModal()});
 
-    loginModal.addEventListener("click", e=>{
-      if(e.target === loginModal) closeLogin();
-    });
-
-    passwordModal.addEventListener("click", e=>{
-      if(e.target === passwordModal) closePasswordModal();
-    });
-
+    coinTimer=setInterval(()=>{if(currentUser){updateCoinBank();updateTicketModal();updateProfileCounts()}},1000);
     initLoggedOut();
   </script>
 </body>
