@@ -28,11 +28,13 @@
     .nav-inner{max-width:1100px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:0 10px}
     .nav-item{padding:13px 16px;font-weight:800;font-size:15px;white-space:nowrap;opacity:.9;cursor:pointer}
     .nav-item.active{background:var(--green-dark);opacity:1}
+
     .locked-home{min-height:calc(100vh - 104px);background:#000;color:#fff;display:flex;align-items:center;justify-content:center;padding:40px 18px;text-align:center}
     .locked-box{max-width:520px;width:100%;border:1px solid rgba(255,255,255,.12);background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border-radius:22px;padding:38px 24px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
     .locked-box h1{font-size:30px;margin-bottom:14px;letter-spacing:-1px}
     .locked-box p{color:rgba(255,255,255,.72);line-height:1.7;margin-bottom:24px}
     .locked-box button{border:none;background:var(--green);color:#fff;border-radius:12px;padding:13px 22px;font-size:16px;font-weight:900;cursor:pointer}
+
     .page{display:none;max-width:1100px;margin:0 auto;padding:18px 14px 80px}
     body.logged-in .locked-home{display:none}
     body.logged-in .page.active{display:block}
@@ -40,17 +42,24 @@
     .section{margin-top:24px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
     .section:first-child{margin-top:0}
     .section-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--line)}
-    .section-head h2{font-size:19px;letter-spacing:-.5px}.section-head span{color:var(--muted);font-size:13px;font-weight:700}
+    .section-head h2{font-size:19px;letter-spacing:-.5px}
+    .section-head span{color:var(--muted);font-size:13px;font-weight:700}
     .empty-box{padding:22px 18px;color:#777;font-weight:800;line-height:1.6}
+
     .work-row{display:flex;align-items:center;gap:14px;padding:14px 18px;border-top:1px solid var(--line);cursor:pointer;transition:background .15s}
-    .work-row:first-of-type{border-top:none}.work-row:hover{background:#f8fff9}
+    .work-row:first-of-type{border-top:none}
+    .work-row:hover{background:#f8fff9}
     .mini-cover{width:72px;height:92px;border-radius:10px;flex-shrink:0;background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.05)),radial-gradient(circle at 70% 20%,#7048ff,transparent 30%),radial-gradient(circle at 25% 70%,#101927,#080910 55%);position:relative;overflow:hidden}
     .mini-cover::after{content:"세계를";position:absolute;left:8px;bottom:8px;color:#fff;font-size:13px;font-weight:900;letter-spacing:-.5px}
-    .work-row-info{min-width:0;flex:1}.work-row-info h3{font-size:18px;margin-bottom:5px;letter-spacing:-.5px}.work-row-info p{font-size:13px;color:#777;line-height:1.5}
+    .work-row-info{min-width:0;flex:1}
+    .work-row-info h3{font-size:18px;margin-bottom:5px;letter-spacing:-.5px}
+    .work-row-info p{font-size:13px;color:#777;line-height:1.5}
     .work-row-badge{background:#f1f3f5;color:#555;padding:7px 9px;border-radius:999px;font-size:12px;font-weight:900;white-space:nowrap}
+
     .search-empty-page{min-height:calc(100vh - 150px);background:#fff;border-radius:18px;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 18px;margin-top:18px}
     .search-empty-page strong{color:#e00000;font-size:24px;font-weight:900}
     .search-result-title{color:#fff;font-size:24px;font-weight:900;margin-bottom:18px}
+
     .profile-card{background:#fff;border-radius:18px;overflow:hidden;border:1px solid var(--line);margin-top:18px}
     .profile-top{padding:30px 18px;text-align:center;border-bottom:1px solid var(--line);background:linear-gradient(135deg,#f8fff9,#fff)}
     .profile-img{width:92px;height:92px;margin:0 auto 12px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff,transparent 16%),linear-gradient(135deg,#00c73c,#151515);box-shadow:0 8px 24px rgba(0,0,0,.16);border:4px solid #fff}
@@ -60,11 +69,13 @@
     .profile-buttons{margin-top:14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
     .logout-btn,.password-btn{border:none;background:#111;color:#fff;border-radius:999px;padding:9px 16px;font-size:13px;font-weight:900;cursor:pointer}
     .password-btn{background:#3b1168}
-    .logout-btn:hover{background:#333}.password-btn:hover{background:#51208a}
+    .logout-btn:hover{background:#333}
+    .password-btn:hover{background:#51208a}
     .profile-sections{display:grid;grid-template-columns:1fr 1fr;gap:0}
     .profile-section{padding:18px;border-bottom:1px solid var(--line)}
     .profile-section:first-child{border-right:1px solid var(--line)}
     .profile-section h2{font-size:18px;margin-bottom:12px;letter-spacing:-.5px}
+
     .hero{background:linear-gradient(135deg,#111827,#191b2a 45%,#2b1246);border-radius:18px;min-height:260px;color:#fff;overflow:hidden;position:relative;box-shadow:0 12px 30px rgba(0,0,0,.18)}
     .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 78% 18%,rgba(138,92,255,.42),transparent 28%),radial-gradient(circle at 15% 85%,rgba(0,199,60,.18),transparent 35%),linear-gradient(90deg,rgba(0,0,0,.75),rgba(0,0,0,.2))}
     .hero::after{content:"天 空 要 塞";position:absolute;right:24px;bottom:22px;color:rgba(255,255,255,.08);font-size:74px;font-weight:900;letter-spacing:-8px;transform:rotate(-6deg)}
@@ -75,43 +86,89 @@
     .hero-actions{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
     .main-btn{border:none;background:var(--green);color:#fff;font-weight:900;border-radius:10px;padding:12px 18px;cursor:pointer;font-size:15px}
     .sub-btn{border:1px solid rgba(255,255,255,.34);background:rgba(255,255,255,.1);color:#fff;font-weight:800;border-radius:10px;padding:12px 18px;cursor:pointer;font-size:15px}
+
     .work-card{display:grid;grid-template-columns:160px 1fr;gap:18px;padding:18px}
     .cover{height:220px;border-radius:12px;background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.05)),radial-gradient(circle at 70% 20%,#7048ff,transparent 28%),radial-gradient(circle at 25% 70%,#101927,#080910 55%);position:relative;overflow:hidden;box-shadow:inset 0 0 45px rgba(255,255,255,.04);cursor:pointer}
     .cover::before{content:"";position:absolute;width:110px;height:110px;border:2px solid rgba(150,120,255,.7);border-radius:50%;right:-16px;top:22px;box-shadow:0 0 30px rgba(150,120,255,.75)}
     .cover::after{content:"세계를\A구하고,\A버려졌다";white-space:pre;position:absolute;left:14px;bottom:14px;color:#fff;font-size:24px;line-height:1.08;font-weight:900;letter-spacing:-1.2px}
-    .work-info h3{font-size:26px;margin-bottom:8px;letter-spacing:-1px}.meta{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
+    .work-info h3{font-size:26px;margin-bottom:8px;letter-spacing:-1px}
+    .meta{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
     .chip{background:#f1f3f5;color:#555;font-size:12px;font-weight:800;padding:6px 9px;border-radius:999px}
     .summary{color:#444;line-height:1.7;font-size:14px;max-width:700px;margin-bottom:18px}
     .stats{display:flex;gap:18px;color:#777;font-size:13px;font-weight:700;margin-bottom:18px;flex-wrap:wrap}
-    .episode-list{background:#fff}.episode{display:grid;grid-template-columns:86px 1fr auto;gap:14px;align-items:center;padding:14px 18px;border-top:1px solid var(--line);cursor:pointer;transition:background .15s,opacity .15s}
-    .episode:hover{background:#f8fff9}.episode.read{background:#f1f1f1;opacity:.78}.episode.read:hover{background:#e8e8e8}
+
+    .episode-list{background:#fff}
+    .episode{display:grid;grid-template-columns:86px 1fr auto;gap:14px;align-items:center;padding:14px 18px;border-top:1px solid var(--line);cursor:pointer;transition:background .15s,opacity .15s}
+    .episode:hover{background:#f8fff9}
+    .episode.read{background:#f1f1f1;opacity:.78}
+    .episode.read:hover{background:#e8e8e8}
     .episode.read .ep-title::after{content:"  읽음";color:#999;font-size:12px;font-weight:800}
     .thumb{width:86px;height:58px;border-radius:8px;background:linear-gradient(to top,rgba(0,0,0,.75),transparent),radial-gradient(circle at 72% 25%,#8c6dff,#131522 48%,#07080c);position:relative;overflow:hidden}
     .thumb::after{content:attr(data-ep);position:absolute;left:8px;bottom:6px;color:#fff;font-weight:900;font-size:13px}
-    .ep-title{font-weight:900;margin-bottom:4px;font-size:15px}.ep-desc{color:#777;font-size:13px}.ep-date{color:#999;font-size:12px;white-space:nowrap}
-    .reader{position:fixed;inset:0;background:#fff;z-index:200;display:none;flex-direction:column}.reader.open{display:flex}
+    .ep-title{font-weight:900;margin-bottom:4px;font-size:15px}
+    .ep-desc{color:#777;font-size:13px}
+    .ep-date{color:#999;font-size:12px;white-space:nowrap}
+
+    .reader{position:fixed;inset:0;background:#fff;z-index:200;display:none;flex-direction:column}
+    .reader.open{display:flex}
     .reader-top{height:54px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 14px;background:#fff;position:sticky;top:0;z-index:5}
-    .reader-title-mini{min-width:0}.reader-title-mini strong{display:block;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.reader-title-mini span{display:block;font-size:12px;color:#888;margin-top:2px}
+    .reader-title-mini{min-width:0}
+    .reader-title-mini strong{display:block;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .reader-title-mini span{display:block;font-size:12px;color:#888;margin-top:2px}
     .close-btn{border:none;background:#111;color:#fff;border-radius:999px;padding:8px 13px;font-weight:900;cursor:pointer}
-    .reader-scroll{overflow-y:auto;flex:1;background:var(--novel-bg)}.novel-wrap{max-width:760px;margin:0 auto;padding:34px 18px 120px}
-    .novel-header{border-bottom:2px solid #222;padding-bottom:18px;margin-bottom:28px}.novel-header .series-name{color:var(--green);font-weight:900;font-size:14px;margin-bottom:8px}
-    .novel-header h1{font-size:clamp(26px,5vw,40px);letter-spacing:-1.4px;margin-bottom:10px}.novel-header .novel-sub{color:#777;font-size:13px;font-weight:700}
+    .reader-scroll{overflow-y:auto;flex:1;background:var(--novel-bg)}
+    .novel-wrap{max-width:760px;margin:0 auto;padding:34px 18px 120px}
+    .novel-header{border-bottom:2px solid #222;padding-bottom:18px;margin-bottom:28px}
+    .novel-header .series-name{color:var(--green);font-weight:900;font-size:14px;margin-bottom:8px}
+    .novel-header h1{font-size:clamp(26px,5vw,40px);letter-spacing:-1.4px;margin-bottom:10px}
+    .novel-header .novel-sub{color:#777;font-size:13px;font-weight:700}
     .novel-body{font-family:"Nanum Myeongjo","Noto Serif KR","Batang",serif;font-size:19px;line-height:2.15;color:#151515;word-break:keep-all;white-space:normal}
-    .novel-body p{margin:0 0 22px}.scene{text-align:center;color:#888;letter-spacing:8px;margin:36px 0;font-family:inherit}
+    .novel-body p{margin:0 0 22px}
+    .scene{text-align:center;color:#888;letter-spacing:8px;margin:36px 0;font-family:inherit}
     .system{font-family:"Apple SD Gothic Neo","Noto Sans KR",sans-serif;background:var(--red-system-bg);color:var(--red-system-text);border-left:4px solid var(--red-system-line);padding:12px 14px;border-radius:8px;line-height:1.8;font-size:16px;margin:22px 0;font-weight:800}
-    .skill{color:var(--yellow-skill);font-weight:900;white-space:nowrap}.quote-strong{font-weight:900;color:#000}
+    .skill{color:var(--yellow-skill);font-weight:900;white-space:nowrap}
+    .quote-strong{font-weight:900;color:#000}
     .bottom-nav{max-width:760px;margin:30px auto 0;display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid #ddd;border-radius:12px;overflow:hidden;background:#fff;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",Arial,sans-serif}
-    .bottom-nav button{border:none;background:#fff;padding:16px 8px;font-size:15px;font-weight:900;cursor:pointer;border-right:1px solid #ddd}.bottom-nav button:last-child{border-right:none}.bottom-nav button:hover:not(:disabled){background:#f4fff6;color:var(--green)}.bottom-nav button:disabled{color:#bbb;background:#fafafa;cursor:not-allowed}
-    .login-modal{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:500;display:none;align-items:center;justify-content:center;padding:18px}.login-modal.open{display:flex}
-    .login-panel{width:min(420px,100%);background:#fff;border-radius:18px;padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.35)}.login-panel h2{font-size:24px;margin-bottom:8px;letter-spacing:-1px}.login-panel p{color:#777;line-height:1.6;font-size:14px;margin-bottom:18px}
-    .login-field{margin-bottom:13px}.login-field label{display:block;font-size:14px;font-weight:900;margin-bottom:7px}.login-field input{width:100%;height:44px;border:1px solid #ddd;border-radius:10px;padding:0 12px;outline:none;font-size:15px;font-weight:700}.login-field input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,199,60,.12)}
-    .login-actions{display:flex;gap:8px;margin-top:18px}.login-actions button{flex:1;border:none;border-radius:10px;padding:13px 10px;font-weight:900;cursor:pointer;font-size:15px}.confirm-login{background:var(--green);color:#fff}.cancel-login{background:#eee;color:#111}
+    .bottom-nav button{border:none;background:#fff;padding:16px 8px;font-size:15px;font-weight:900;cursor:pointer;border-right:1px solid #ddd}
+    .bottom-nav button:last-child{border-right:none}
+    .bottom-nav button:hover:not(:disabled){background:#f4fff6;color:var(--green)}
+    .bottom-nav button:disabled{color:#bbb;background:#fafafa;cursor:not-allowed}
+
+    .login-modal{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:500;display:none;align-items:center;justify-content:center;padding:18px}
+    .login-modal.open{display:flex}
+    .login-panel{width:min(420px,100%);background:#fff;border-radius:18px;padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+    .login-panel h2{font-size:24px;margin-bottom:8px;letter-spacing:-1px}
+    .login-panel p{color:#777;line-height:1.6;font-size:14px;margin-bottom:18px}
+    .login-field{margin-bottom:13px}
+    .login-field label{display:block;font-size:14px;font-weight:900;margin-bottom:7px}
+    .login-field input{width:100%;height:44px;border:1px solid #ddd;border-radius:10px;padding:0 12px;outline:none;font-size:15px;font-weight:700}
+    .login-field input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,199,60,.12)}
+    .login-actions{display:flex;gap:8px;margin-top:18px}
+    .login-actions button{flex:1;border:none;border-radius:10px;padding:13px 10px;font-weight:900;cursor:pointer;font-size:15px}
+    .confirm-login{background:var(--green);color:#fff}
+    .cancel-login{background:#eee;color:#111}
     .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:rgba(0,0,0,.82);color:#fff;padding:10px 14px;border-radius:999px;font-size:13px;display:none;z-index:600;font-weight:800}
+
     @media(max-width:720px){
-      .top-inner{height:auto;padding:10px 12px;flex-wrap:wrap}.logo{width:100%}.search-area{order:3;width:100%;max-width:none}.account-btn{position:absolute;right:12px;top:10px}
-      .dashboard-title{font-size:22px}.profile-sections{grid-template-columns:1fr}.profile-section:first-child{border-right:none}
-      .hero-content{padding:26px 20px}.work-card{grid-template-columns:112px 1fr;gap:13px;padding:14px}.cover{height:160px}.cover::after{font-size:18px}.work-info h3{font-size:21px}.summary{font-size:13px;line-height:1.55}.stats{gap:10px}
-      .episode{grid-template-columns:76px 1fr}.thumb{width:76px;height:52px}.ep-date{display:none}.novel-body{font-size:17px;line-height:2.05}.bottom-nav{border-radius:0;position:sticky;bottom:0;z-index:10}
+      .top-inner{height:auto;padding:10px 12px;flex-wrap:wrap}
+      .logo{width:100%}
+      .search-area{order:3;width:100%;max-width:none}
+      .account-btn{position:absolute;right:12px;top:10px}
+      .dashboard-title{font-size:22px}
+      .profile-sections{grid-template-columns:1fr}
+      .profile-section:first-child{border-right:none}
+      .hero-content{padding:26px 20px}
+      .work-card{grid-template-columns:112px 1fr;gap:13px;padding:14px}
+      .cover{height:160px}
+      .cover::after{font-size:18px}
+      .work-info h3{font-size:21px}
+      .summary{font-size:13px;line-height:1.55}
+      .stats{gap:10px}
+      .episode{grid-template-columns:76px 1fr}
+      .thumb{width:76px;height:52px}
+      .ep-date{display:none}
+      .novel-body{font-size:17px;line-height:2.05}
+      .bottom-nav{border-radius:0;position:sticky;bottom:0;z-index:10}
     }
   </style>
 </head>
@@ -2085,239 +2142,149 @@ B3탄이, 폭우처럼 쏟아졌다.
 
 옆에서 백진우는 벽을 따라 걷고 있었고, 유하린은 요새 구조를 둘러보며 감탄 반, 경계 반의 표정을 짓고 있었다.
 
-“이거 진짜 말이 안 되네.”
+“이거 진짜 말도 안 되는 공간인데.”
 
-진우가 고개를 들어 천장을 바라봤다.
+진우가 벽을 툭 쳤다.
 
-“요새라기보단 도시 하나를 하늘에 띄워놓은 수준인데.”
+“방어 구조가 그냥 개념 자체가 다르네.”
 
-하린이 말했다.
+그때였다.
 
-“좋긴 한데, 문제는 이제 더 큰 놈들이 올 거라는 거지.”
+밖에서—
 
-도윤은 대답하지 않았다.
+소란이 느껴졌다.
 
-대신 창밖을 바라봤다.
+단순한 이동 소리가 아니었다.
 
-지상은 아직 조용했다.
+무게감 있는 군세의 압박.
 
-하지만 그 조용함은 평화가 아니었다.
+유하린이 먼저 고개를 들었다.
 
-숨을 죽인 정적.
+“또 왔어.”
 
-폭풍이 오기 전의 공기였다.
+진우의 표정이 바뀌었다.
 
-—
+“이번 건 좀 크다.”
 
-지상.
+도윤이 천천히 창가로 다가갔다.
 
-국방부에서 출발한 병력은 이미 제주도 외곽으로 접근하고 있었다.
+그리고 아래를 내려다봤다.
 
-그 중심에 선 남자.
+“…많네.”
 
-검은 전투복.
-짧게 정리된 머리.
-차갑게 가라앉은 눈.
+한라산 사건 당시보다 최소 세 배 이상은 되어 보이는 병력.
 
-이도현.
+지면 전체를 덮을 정도의 군세였다.
 
-절단의 권능을 가진 지휘관급 각성자.
+그리고 그 중심.
 
-그는 하늘 위의 거대한 요새를 올려다봤다.
+한 사람.
 
-“저게 목표인가.”
+그는 다른 모든 것과 확연히 달랐다.
 
-옆에 있던 장교가 대답했다.
+공간 자체가 그를 중심으로 미세하게 흔들리고 있었다.
 
-“맞습니다. 현재 정체불명의 소환 구조물로 추정됩니다.”
-
-이도현은 눈을 가늘게 떴다.
-
-“소환?”
-
-“예. 보고상으로는 그렇습니다.”
-
-짧은 침묵.
-
-이도현은 검 손잡이를 가볍게 쥐었다.
-
-“그럼 베면 되겠네.”
-
-장교는 잠시 말을 잃었다.
-
-그건 단순한 자신감이 아니었다.
-
-이도현의 권능은 이름 그대로였다.
-
-절단.
-
-닿는 것만 베는 수준이 아니었다.
-
-그의 힘은 물질의 경계, 에너지의 흐름, 공간의 결을 가르는 것에 가까웠다.
-
-—
-
-천공의 요새.
-
-경보음이 울렸다.
-
-삐— 삐— 삐—
-
-하린이 고개를 돌렸다.
-
-“왔네.”
-
-진우가 웃었다.
-
-“이번엔 좀 제대로 된 애인가?”
-
-도윤은 자리에서 일어났다.
-
-창밖, 멀리 지상 쪽에서 하나의 기운이 느껴졌다.
-
-날카롭고,
-차갑고,
-일직선으로 뻗은 기운.
-
-“절단.”
-
-도윤이 중얼거렸다.
-
-진우가 고개를 돌렸다.
-
-“뭔지 알아?”
-
-“느낌이 그래.”
-
-도윤은 손을 쥐었다 폈다.
-
-조금 돌아온 소환 포인트가 손끝에 걸렸다.
-
-아직 충분하진 않았다.
-
-하지만 아무것도 못 하던 조금 전과는 달랐다.
-
-“내려간다.”
-
-“같이 가지.”
-
-진우가 먼저 앞으로 나섰다.
-
-하린도 불꽃을 피웠다.
-
-세 사람은 요새에서 내려갔다.
-
-—
-
-제주도 지상.
-
-이도현은 이미 기다리고 있었다.
-
-주변에는 국방부 병력과 각성자 대응 부대가 포진해 있었다.
-
-하지만 이도현은 그들보다 앞에 서 있었다.
-
-혼자였다.
-
-진우가 피식 웃었다.
-
-“배짱 좋네.”
-
-이도현의 시선이 세 사람을 훑었다.
-
-“너희가 그쪽인가.”
-
-하린이 어깨를 으쓱했다.
-
-“그쪽이 뭔데.”
-
-“한라산을 지운 놈들.”
-
-짧은 침묵.
-
-도윤은 대답하지 않았다.
-
-이도현은 검을 뽑았다.
-
-“항복할 생각은.”
-
-없겠지.
-
-말은 끝나기도 전에 검이 움직였다.
-
-「절단의 권능」 「절」
-
-공기가 찢어졌다.
-
-보이지 않는 선이 직선으로 날아왔다.
-
-진우가 먼저 반응했다.
-
-「무림의 권능」 「허공답보」
-
-그의 몸이 옆으로 사라지듯 움직였다.
-
-하지만 절단선은 공중에서 방향을 꺾었다.
-
-진우의 눈이 커졌다.
-
-“오?”
-
-그는 손을 휘둘렀다.
-
-「무림의 권능」 「파천장」
-
-장력이 터졌다.
-
-하지만—
-
-쯔각.
-
-장력이 갈라졌다.
-
-“…….”
-
-진우의 표정이 처음으로 굳었다.
-
-하린이 바로 손을 뻗었다.
-
-「염화의 권능」 「화염풍!」
-
-불꽃의 회오리가 이도현을 덮쳤다.
-
-그러나 이도현은 검을 가볍게 내리그었다.
-
-「절단의 권능」 「섬」
-
-불꽃이 중간에서 끊겼다.
-
-정확히 반으로.
-
-하린이 이를 악물었다.
-
-“이게 지휘관급인가.”
+“저게 지휘관급인가.”
 
 진우가 낮게 말했다.
 
-“귀찮네.”
+그 순간, 아래에서 목소리가 울렸다.
 
-다시 진우가 앞으로 튀어나갔다.
+“정체불명의 세력을 처단하라!”
 
-「무림의 권능」 「비룡참」
+“사격 준비!”
 
-검기가 날아갔다.
+순식간에 수천 개의 총구가 동시에 요새를 향했다.
 
-하린도 동시에 움직였다.
+“발사!”
 
-「염화의 권능」 「화력참!」
+타다다다다다다다—
 
-불꽃의 참격이 겹쳐졌다.
+B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
 
-하지만 이도현은 한 걸음도 물러나지 않았다.
+하지만—
 
-검이 수평으로 움직였다.
+요새는 미동도 하지 않았다.
 
-「절단의 권능」 「절」
+충격조차 흡수되지 않았다.
+
+유하린이 눈을 가늘게 떴다.
+
+“저거, 흠집도 안 나는데?”
+
+진우가 웃었다.
+
+“당연하지.”
+
+도윤은 창밖을 바라보며 무심하게 말했다.
+
+“…이게 소환 포인트 얼마짜린데.”
+
+잠깐의 정적.
+
+“고작 저딴 걸로?”
+
+그 말이 떨어지자, 유하린이 고개를 홱 돌렸다.
+
+“야, 우리가 가서 없애고 올게.”
+
+진우도 바로 이어 말했다.
+
+“이건 몸이 근질거리네.”
+
+도윤은 잠시 둘을 바라봤다.
+
+그리고 짧게 고개를 끄덕였다.
+
+두 사람은 동시에 요새 밖으로 뛰어내렸다.
+
+공중을 밟으며 내려가는 순간—
+
+진우의 발이 허공을 디뎠다.
+
+「무림의 권능」 「허공답보」
+
+공간이 계단처럼 펼쳐졌다.
+
+그는 그대로 적진 중심으로 돌진했다.
+
+「무림의 권능」 「극세척도」
+
+검이 스치자 공간이 찢어졌다.
+
+수십 명이 동시에 절단되며 쓰러졌다.
+
+유하린은 반대 방향으로 뛰었다.
+
+손끝에서 불꽃이 폭발했다.
+
+「염화의 권능」 「화력참」
+
+붉은 선이 지면을 갈라버렸다.
+
+「염화의 권능」 「화염풍」
+
+불꽃이 소용돌이처럼 퍼지며 병력을 삼켰다.
+
+「염화의 권능」 「화력난벽」
+
+불의 벽이 전장을 나누어버렸다.
+
+전장은 순식간에 혼란으로 바뀌었다.
+
+그 중심.
+
+남은 단 한 사람.
+
+지휘관급 각성자, 절단의 권능 사용자.
+
+그는 천천히 손을 들었다.
+
+「절단의 권능」 「섬」
+
+공기가 갈라졌다.
+
+보이지 않는 절단의 힘이 공간 자체를 찢었다.
 
 진우의 공격이 튕겨 나갔다.
 
@@ -2421,7 +2388,7 @@ B3탄이, 폭우처럼 쏟아졌다.
 
 그리고 요새만이—
 
-하늘 위에 남아 있었다.
+하늘 위에 남아 있었다
         `
       }
     };
