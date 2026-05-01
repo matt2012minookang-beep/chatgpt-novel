@@ -6,7 +6,12 @@
   <title>chat웹</title>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    :root{--green:#00c73c;--green-dark:#00a832;--bg:#050505;--text:#111;--muted:#777;--line:#e5e5e5;--novel-bg:#fff;--yellow-skill:#9a7600;--red-system-bg:#4c0b0b;--red-system-text:#ffe3e3;--red-system-line:#d92d2d;--blue-system-bg:#e7f1ff;--blue-system-text:#064a9b;--blue-system-line:#2b7cff}
+    :root{
+      --green:#00c73c;--green-dark:#00a832;--bg:#050505;--text:#111;--muted:#777;--line:#e5e5e5;
+      --novel-bg:#fff;--yellow-skill:#9a7600;
+      --red-system-bg:#4c0b0b;--red-system-text:#ffe3e3;--red-system-line:#d92d2d;
+      --blue-system-bg:#e7f1ff;--blue-system-text:#064a9b;--blue-system-line:#2b7cff
+    }
     body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",Arial,sans-serif;background:var(--bg);color:var(--text)}
     button,input{font-family:inherit}a{color:inherit;text-decoration:none}
 
@@ -75,17 +80,41 @@
 
     .profile-card{background:#fff;border-radius:18px;overflow:hidden;border:1px solid var(--line);margin-top:18px}
     .profile-top{padding:30px 18px;text-align:center;border-bottom:1px solid var(--line);background:linear-gradient(135deg,#f8fff9,#fff)}
-    .profile-img{width:92px;height:92px;margin:0 auto 12px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff,transparent 16%),linear-gradient(135deg,#00c73c,#151515);box-shadow:0 8px 24px rgba(0,0,0,.16);border:4px solid #fff}
+
+    .profile-img{
+      width:92px;height:92px;margin:0 auto 12px;border-radius:50%;
+      background:radial-gradient(circle at 32% 28%,#fff,transparent 16%),linear-gradient(135deg,#00c73c,#151515);
+      box-shadow:0 8px 24px rgba(0,0,0,.16);border:4px solid #fff;position:relative;overflow:hidden;
+      display:flex;align-items:center;justify-content:center
+    }
+    .profile-img::before{content:"";display:block;width:62%;height:62%;background:rgba(255,255,255,.86);border-radius:50%;box-shadow:0 7px 18px rgba(0,0,0,.12)}
+    .profile-img.avatar-square::before{border-radius:14px}
+    .profile-img.avatar-triangle::before{
+      width:0;height:0;background:transparent;border-left:30px solid transparent;border-right:30px solid transparent;border-bottom:56px solid rgba(255,255,255,.88);border-radius:0;box-shadow:none
+    }
+    .profile-img.avatar-star::before{
+      content:"★";background:transparent;width:auto;height:auto;color:rgba(255,255,255,.92);font-size:64px;line-height:1;box-shadow:none
+    }
+    .profile-img.avatar-photo::before{display:none}
+    .profile-img.avatar-photo{background-size:cover!important;background-position:center!important}
+    .avatar-red{background:linear-gradient(135deg,#ff4d4d,#8b0000)!important}
+    .avatar-orange{background:linear-gradient(135deg,#ff9f1c,#c85c00)!important}
+    .avatar-yellow{background:linear-gradient(135deg,#ffd93d,#d6a400)!important}
+    .avatar-green{background:linear-gradient(135deg,#00c73c,#006b2a)!important}
+    .avatar-blue{background:linear-gradient(135deg,#3d8bff,#003c9e)!important}
+    .avatar-pink{background:linear-gradient(135deg,#ff6fb2,#b80063)!important}
+    .avatar-white{background:linear-gradient(135deg,#fff,#d8d8d8)!important}
+    .avatar-purple{background:linear-gradient(135deg,#8e44ff,#3b1168)!important}
+
     .profile-name{font-size:24px;font-weight:900;letter-spacing:-1px;margin-bottom:6px}
     .profile-role{display:inline-block;padding:6px 10px;border-radius:999px;background:#f1f3f5;color:#555;font-size:12px;font-weight:900}
     .profile-role.author{background:#f2e8ff;color:#5a1a92}
     .profile-buttons{margin-top:14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-    .logout-btn,.edit-profile-btn,.ticket-btn{border:none;background:#111;color:#fff;border-radius:999px;padding:9px 16px;font-size:13px;font-weight:900;cursor:pointer}
+    .logout-btn,.edit-profile-btn,.ticket-btn,.avatar-edit-btn{border:none;background:#111;color:#fff;border-radius:999px;padding:9px 16px;font-size:13px;font-weight:900;cursor:pointer}
     .edit-profile-btn{background:#3b1168}
     .ticket-btn{background:#00a832}
-    .logout-btn:hover{background:#333}
-    .edit-profile-btn:hover{background:#51208a}
-    .ticket-btn:hover{background:#008f2b}
+    .avatar-edit-btn{background:#0f63ff}
+    .logout-btn:hover{background:#333}.edit-profile-btn:hover{background:#51208a}.ticket-btn:hover{background:#008f2b}.avatar-edit-btn:hover{background:#084bc5}
     .profile-ticket-info{margin-top:12px;color:#555;font-size:13px;font-weight:900;display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
     .profile-sections{display:grid;grid-template-columns:1fr 1fr;gap:0}
     .profile-section{padding:18px;border-bottom:1px solid var(--line)}
@@ -168,8 +197,19 @@
     .profile-edit-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
     .profile-edit-tabs button{border:1px solid #ddd;background:#fff;border-radius:10px;padding:11px;font-weight:900;cursor:pointer}
     .profile-edit-tabs button.active{background:#111;color:#fff;border-color:#111}
-    .edit-panel{display:none}
-    .edit-panel.active{display:block}
+    .edit-panel{display:none}.edit-panel.active{display:block}
+
+    .avatar-preview-box{display:flex;align-items:center;gap:14px;background:#fafafa;border:1px solid #eee;border-radius:14px;padding:14px;margin:12px 0}
+    .avatar-preview-box .profile-img{margin:0;width:76px;height:76px;border-width:3px;flex-shrink:0}
+    .avatar-preview-text{font-size:13px;color:#555;font-weight:800;line-height:1.6}
+    .avatar-option-title{font-weight:900;font-size:14px;margin:14px 0 8px}
+    .avatar-color-grid,.avatar-shape-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px}
+    .avatar-choice{border:1px solid #ddd;background:#fff;border-radius:12px;padding:10px 6px;font-size:13px;font-weight:900;cursor:pointer;text-align:center}
+    .avatar-choice.active{border-color:#111;box-shadow:0 0 0 2px #111 inset}
+    .avatar-color-dot{width:26px;height:26px;border-radius:50%;display:block;margin:0 auto 6px;border:1px solid rgba(0,0,0,.15)}
+    .file-btn{display:block;background:#0f63ff;color:#fff;text-align:center;border-radius:12px;padding:12px;font-weight:900;cursor:pointer;margin-top:8px}
+    .file-btn input{display:none}
+
     .ticket-box{border:1px solid #eee;background:#fafafa;border-radius:14px;padding:14px;margin:12px 0}
     .ticket-box strong{display:block;margin-bottom:6px}
     .ticket-box p{margin:4px 0;color:#555;font-weight:800}
@@ -182,7 +222,7 @@
     .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:rgba(0,0,0,.82);color:#fff;padding:10px 14px;border-radius:999px;font-size:13px;display:none;z-index:600;font-weight:800}
 
     @media(max-width:720px){
-      .top-inner{height:auto;padding:10px 12px;flex-wrap:wrap}.logo{width:100%}.search-area{order:3;width:100%;max-width:none}.account-btn{position:absolute;right:12px;top:10px}.dashboard-title{font-size:22px}.profile-sections{grid-template-columns:1fr}.profile-section:first-child{border-right:none}.hero-content{padding:26px 20px}.work-card{grid-template-columns:112px 1fr;gap:13px;padding:14px}.cover{height:160px}.cover::after{font-size:18px}.work-info h3{font-size:21px}.summary{font-size:13px;line-height:1.55}.stats{gap:10px}.episode{grid-template-columns:76px 1fr}.thumb{width:76px;height:52px}.ep-date{display:none}.novel-body{font-size:17px;line-height:2.05}.bottom-nav{border-radius:0;position:sticky;bottom:0;z-index:10}
+      .top-inner{height:auto;padding:10px 12px;flex-wrap:wrap}.logo{width:100%}.search-area{order:3;width:100%;max-width:none}.account-btn{position:absolute;right:12px;top:10px}.dashboard-title{font-size:22px}.profile-sections{grid-template-columns:1fr}.profile-section:first-child{border-right:none}.hero-content{padding:26px 20px}.work-card{grid-template-columns:112px 1fr;gap:13px;padding:14px}.cover{height:160px}.cover::after{font-size:18px}.work-info h3{font-size:21px}.summary{font-size:13px;line-height:1.55}.stats{gap:10px}.episode{grid-template-columns:76px 1fr}.thumb{width:76px;height:52px}.ep-date{display:none}.novel-body{font-size:17px;line-height:2.05}.bottom-nav{border-radius:0;position:sticky;bottom:0;z-index:10}.avatar-color-grid,.avatar-shape-grid{grid-template-columns:repeat(2,1fr)}
     }
   </style>
 </head>
@@ -348,12 +388,13 @@
   <main class="page" id="profilePage">
     <div class="profile-card">
       <div class="profile-top">
-        <div class="profile-img"></div>
+        <div class="profile-img" id="profileAvatar"></div>
         <div class="profile-name" id="profileNickname">닉네임</div>
         <div class="profile-role" id="profileRole">일반 계정</div>
         <div class="profile-buttons">
           <button class="logout-btn" onclick="logout()">로그아웃</button>
           <button class="edit-profile-btn" onclick="openProfileEditModal()">프로필 편집</button>
+          <button class="avatar-edit-btn" onclick="openAvatarModal()">표지 편집</button>
           <button class="ticket-btn" onclick="openTicketModal()">내 이용권</button>
         </div>
         <div class="profile-ticket-info">
@@ -508,6 +549,51 @@
     </div>
   </section>
 
+  <section class="login-modal" id="avatarModal">
+    <div class="login-panel">
+      <h2>표지 편집</h2>
+      <p id="avatarGuideText">프로필 표지를 꾸밀 수 있습니다. 일반 계정은 보라색을 제외한 색만 사용할 수 있습니다.</p>
+
+      <div class="avatar-preview-box">
+        <div class="profile-img" id="avatarPreview"></div>
+        <div class="avatar-preview-text">
+          현재 선택한 표지 미리보기입니다.<br>
+          사진을 고르면 선택 색/모양보다 사진이 우선 표시됩니다.
+        </div>
+      </div>
+
+      <div class="avatar-option-title">색 선택</div>
+      <div class="avatar-color-grid" id="avatarColorGrid">
+        <button class="avatar-choice" data-color="red" onclick="selectAvatarColor('red')"><span class="avatar-color-dot avatar-red"></span>빨강</button>
+        <button class="avatar-choice" data-color="orange" onclick="selectAvatarColor('orange')"><span class="avatar-color-dot avatar-orange"></span>주황</button>
+        <button class="avatar-choice" data-color="yellow" onclick="selectAvatarColor('yellow')"><span class="avatar-color-dot avatar-yellow"></span>노랑</button>
+        <button class="avatar-choice" data-color="green" onclick="selectAvatarColor('green')"><span class="avatar-color-dot avatar-green"></span>초록</button>
+        <button class="avatar-choice" data-color="blue" onclick="selectAvatarColor('blue')"><span class="avatar-color-dot avatar-blue"></span>파랑</button>
+        <button class="avatar-choice" data-color="pink" onclick="selectAvatarColor('pink')"><span class="avatar-color-dot avatar-pink"></span>핑크</button>
+        <button class="avatar-choice" data-color="white" onclick="selectAvatarColor('white')"><span class="avatar-color-dot avatar-white"></span>흰색</button>
+      </div>
+
+      <div class="avatar-option-title">모양 선택</div>
+      <div class="avatar-shape-grid">
+        <button class="avatar-choice" data-shape="circle" onclick="selectAvatarShape('circle')">공</button>
+        <button class="avatar-choice" data-shape="square" onclick="selectAvatarShape('square')">네모</button>
+        <button class="avatar-choice" data-shape="triangle" onclick="selectAvatarShape('triangle')">세모</button>
+        <button class="avatar-choice" data-shape="star" onclick="selectAvatarShape('star')">별</button>
+      </div>
+
+      <label class="file-btn">
+        갤러리에서 사진 고르기
+        <input type="file" accept="image/*" onchange="handleAvatarFile(event)">
+      </label>
+
+      <div class="login-actions">
+        <button class="cancel-login" onclick="closeAvatarModal()">취소</button>
+        <button class="danger-login" onclick="removeAvatarPhoto()">사진 제거</button>
+        <button class="confirm-login" onclick="saveAvatar()">저장</button>
+      </div>
+    </div>
+  </section>
+
   <section class="login-modal" id="ticketModal">
     <div class="login-panel">
       <h2>내 이용권</h2>
@@ -592,11 +678,12 @@
     const pages=["homePage","weekdayPage","fantasyPage","actionPage","newPage","rankingPage","completePage","searchPage","profilePage","workDetailPage"];
     const navItems=["navHome","navWeekday","navFantasy","navAction","navNew","navRanking","navComplete"];
     const reader=document.getElementById("reader"),readerScroll=document.getElementById("readerScroll"),toast=document.getElementById("toast");
-    const loginModal=document.getElementById("loginModal"),profileEditModal=document.getElementById("profileEditModal"),ticketModal=document.getElementById("ticketModal"),needTicketModal=document.getElementById("needTicketModal"),freeTicketModal=document.getElementById("freeTicketModal"),paidEpisodeModal=document.getElementById("paidEpisodeModal");
+    const loginModal=document.getElementById("loginModal"),profileEditModal=document.getElementById("profileEditModal"),avatarModal=document.getElementById("avatarModal"),ticketModal=document.getElementById("ticketModal"),needTicketModal=document.getElementById("needTicketModal"),freeTicketModal=document.getElementById("freeTicketModal"),paidEpisodeModal=document.getElementById("paidEpisodeModal");
     const accountBtn=document.getElementById("accountBtn"),searchInput=document.getElementById("searchInput");
     const readerMiniTitle=document.getElementById("readerMiniTitle"),readerTitle=document.getElementById("readerTitle"),readerSub=document.getElementById("readerSub"),novelBody=document.getElementById("novelBody");
     const prevBtn=document.getElementById("prevBtn"),nextBtn=document.getElementById("nextBtn");
     let currentEpisode=1,currentUser=null,coinTimer=null,pendingEpisodeNumber=null;
+    let avatarDraft={color:"green",shape:"circle",photo:""};
 
     const WORK_ID="world_saved_abandoned";
     const AUTHOR_NAME="고쓰비";
@@ -608,6 +695,9 @@
     const AUTHOR_ACCOUNT_KEY="chatweb_author_account";
     const CURRENT_LOGIN_KEY="chatweb_current_login";
     const FREE_TICKET_KEY="chatweb_free_ticket_claimed";
+
+    const AVATAR_COLORS=["red","orange","yellow","green","blue","pink","white"];
+    const AVATAR_SHAPES=["circle","square","triangle","star"];
 
     const workData={id:WORK_ID,title:"세계를 구하고, 버려졌다",author:"고쓰비",aliases:["세계를","세계를구하고","세계를구하고버려졌다","세계를구했더니","세계를구했더니버려졌다","버려졌다","강도윤","귀환","고쓰비","포위","분류되지않은힘","충전된하늘","남겨진것의형태","해가없는나라","끊어지지않는선","솔라리스","강세윤","아스","천공의요새","이도현","HG","검술의권능","신화급각성자","캡슐"]};
 
@@ -3380,6 +3470,16 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
       if(typeof user.coinStartedAt!=="number")user.coinStartedAt=0;
       if(!user.kind)user.kind="normal";
       if(typeof user.isAuthor!=="boolean")user.isAuthor=false;
+      if(!user.avatar)user.avatar={color:user.isAuthor?"purple":"green",shape:"circle",photo:""};
+      if(user.isAuthor){
+        user.avatar.color="purple";
+        user.avatar.shape="circle";
+        user.avatar.photo="";
+      }else{
+        if(!AVATAR_COLORS.includes(user.avatar.color))user.avatar.color="green";
+        if(!AVATAR_SHAPES.includes(user.avatar.shape))user.avatar.shape="circle";
+        if(typeof user.avatar.photo!=="string")user.avatar.photo="";
+      }
     }
 
     function getNormalAccount(){
@@ -3403,9 +3503,11 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
         user.password=AUTHOR_PASSWORD;
         user.kind="author";
         user.isAuthor=true;
+        user.avatar={color:"purple",shape:"circle",photo:""};
         localStorage.setItem(AUTHOR_ACCOUNT_KEY,JSON.stringify(user));
         return user;
       }
+
       const user={
         nickname:AUTHOR_NAME,
         password:AUTHOR_PASSWORD,
@@ -3419,8 +3521,10 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
         tickets:0,
         coins:0,
         coinBank:0,
-        coinStartedAt:0
+        coinStartedAt:0,
+        avatar:{color:"purple",shape:"circle",photo:""}
       };
+
       localStorage.setItem(AUTHOR_ACCOUNT_KEY,JSON.stringify(user));
       return user;
     }
@@ -3431,6 +3535,7 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
       user.password=AUTHOR_PASSWORD;
       user.kind="author";
       user.isAuthor=true;
+      user.avatar={color:"purple",shape:"circle",photo:""};
       localStorage.setItem(AUTHOR_ACCOUNT_KEY,JSON.stringify(user));
     }
 
@@ -3456,6 +3561,152 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
 
     function normalizeText(text){return String(text||"").replace(/\s+/g,"").toLowerCase()}
 
+    function applyAvatarToElement(el, avatar){
+      if(!el)return;
+
+      el.className="profile-img";
+      el.style.backgroundImage="";
+      el.style.backgroundSize="";
+      el.style.backgroundPosition="";
+
+      const safeAvatar=avatar||{color:"green",shape:"circle",photo:""};
+
+      if(safeAvatar.photo){
+        el.classList.add("avatar-photo");
+        el.style.backgroundImage=`url("${safeAvatar.photo}")`;
+        return;
+      }
+
+      el.classList.add("avatar-"+safeAvatar.color);
+
+      if(safeAvatar.shape==="square")el.classList.add("avatar-square");
+      else if(safeAvatar.shape==="triangle")el.classList.add("avatar-triangle");
+      else if(safeAvatar.shape==="star")el.classList.add("avatar-star");
+    }
+
+    function updateAvatarChoices(){
+      document.querySelectorAll("#avatarColorGrid .avatar-choice").forEach(btn=>{
+        btn.classList.toggle("active",btn.dataset.color===avatarDraft.color);
+      });
+      document.querySelectorAll(".avatar-shape-grid .avatar-choice").forEach(btn=>{
+        btn.classList.toggle("active",btn.dataset.shape===avatarDraft.shape);
+      });
+    }
+
+    function refreshAvatarPreview(){
+      applyAvatarToElement(document.getElementById("avatarPreview"),avatarDraft);
+      updateAvatarChoices();
+    }
+
+    function openAvatarModal(){
+      if(!currentUser){openLogin();return}
+
+      const user=getUserData();
+      ensureAccountShape(user);
+
+      if(currentUser.isAuthor){
+        avatarDraft={color:"purple",shape:"circle",photo:""};
+        document.getElementById("avatarGuideText").textContent="작가 계정은 보라색 표지로 고정됩니다.";
+        document.getElementById("avatarColorGrid").style.display="none";
+      }else{
+        avatarDraft={...user.avatar};
+        document.getElementById("avatarGuideText").textContent="프로필 표지를 꾸밀 수 있습니다. 일반 계정은 보라색을 제외한 색만 사용할 수 있습니다.";
+        document.getElementById("avatarColorGrid").style.display="grid";
+      }
+
+      refreshAvatarPreview();
+      avatarModal.classList.add("open");
+    }
+
+    function closeAvatarModal(){avatarModal.classList.remove("open")}
+
+    function selectAvatarColor(color){
+      if(currentUser&&currentUser.isAuthor){
+        showToast("작가 계정은 보라색으로 고정됩니다.");
+        return;
+      }
+
+      if(!AVATAR_COLORS.includes(color))return;
+      avatarDraft.color=color;
+      avatarDraft.photo="";
+      refreshAvatarPreview();
+    }
+
+    function selectAvatarShape(shape){
+      if(!AVATAR_SHAPES.includes(shape))return;
+      avatarDraft.shape=shape;
+      avatarDraft.photo="";
+      refreshAvatarPreview();
+    }
+
+    function handleAvatarFile(event){
+      if(currentUser&&currentUser.isAuthor){
+        showToast("작가 계정은 표지를 변경할 수 없습니다.");
+        event.target.value="";
+        return;
+      }
+
+      const file=event.target.files&&event.target.files[0];
+      if(!file)return;
+
+      if(!file.type.startsWith("image/")){
+        showToast("이미지 파일만 선택할 수 있습니다.");
+        event.target.value="";
+        return;
+      }
+
+      const readerFile=new FileReader();
+
+      readerFile.onload=()=>{
+        avatarDraft.photo=String(readerFile.result||"");
+        refreshAvatarPreview();
+      };
+
+      readerFile.readAsDataURL(file);
+    }
+
+    function removeAvatarPhoto(){
+      if(currentUser&&currentUser.isAuthor){
+        showToast("작가 계정은 보라색으로 고정됩니다.");
+        return;
+      }
+      avatarDraft.photo="";
+      refreshAvatarPreview();
+      showToast("사진을 제거했습니다.");
+    }
+
+    function saveAvatar(){
+      if(!currentUser)return;
+
+      const user=getUserData();
+      ensureAccountShape(user);
+
+      if(user.isAuthor){
+        user.avatar={color:"purple",shape:"circle",photo:""};
+        saveUserData(user);
+        closeAvatarModal();
+        updateProfileAvatar();
+        showToast("작가 계정은 보라색 표지로 고정됩니다.");
+        return;
+      }
+
+      if(!AVATAR_COLORS.includes(avatarDraft.color))avatarDraft.color="green";
+      if(!AVATAR_SHAPES.includes(avatarDraft.shape))avatarDraft.shape="circle";
+
+      user.avatar={...avatarDraft};
+      saveUserData(user);
+
+      closeAvatarModal();
+      updateProfileAvatar();
+      showToast("표지가 저장되었습니다.");
+    }
+
+    function updateProfileAvatar(){
+      const user=getUserData();
+      if(!user)return;
+      ensureAccountShape(user);
+      applyAvatarToElement(document.getElementById("profileAvatar"),user.avatar);
+    }
     function prefillLogin(){
       const normal=getNormalAccount();
       const nicknameInput=document.getElementById("nicknameInput");
@@ -3897,6 +4148,7 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
       if(saved){
         if(saved.nickname!==nickname){
           localStorage.removeItem(NORMAL_ACCOUNT_KEY);
+
           const newUser={
             nickname,
             password,
@@ -3910,11 +4162,14 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
             tickets:0,
             coins:0,
             coinBank:0,
-            coinStartedAt:0
+            coinStartedAt:0,
+            avatar:{color:"green",shape:"circle",photo:""}
           };
+
           saveNormalAccount(newUser);
           currentUser={nickname:newUser.nickname,kind:"normal",isAuthor:false};
           saveCurrentLogin(currentUser);
+
           closeLogin();
           updateAccountButton();
           renderHome();
@@ -3945,8 +4200,10 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
           tickets:0,
           coins:0,
           coinBank:0,
-          coinStartedAt:0
+          coinStartedAt:0,
+          avatar:{color:"green",shape:"circle",photo:""}
         };
+
         saveNormalAccount(newUser);
         currentUser={nickname:newUser.nickname,kind:"normal",isAuthor:false};
         saveCurrentLogin(currentUser);
@@ -3975,6 +4232,8 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
       }else{
         const user=getNormalAccount();
         if(!user)return false;
+        ensureAccountShape(user);
+        saveNormalAccount(user);
         currentUser={nickname:user.nickname,kind:"normal",isAuthor:false};
       }
 
@@ -4033,6 +4292,7 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
       }
 
       updateProfileCounts();
+      updateProfileAvatar();
     }
 
     function openProfile(){
@@ -4061,6 +4321,7 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
       }
 
       updateProfileCounts();
+      updateProfileAvatar();
       showPage("profilePage","");
     }
 
@@ -4303,6 +4564,7 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
         if(reader.classList.contains("open"))closeReader();
         if(loginModal.classList.contains("open"))closeLogin();
         if(profileEditModal.classList.contains("open"))closeProfileEditModal();
+        if(avatarModal.classList.contains("open"))closeAvatarModal();
         if(ticketModal.classList.contains("open"))closeTicketModal();
         if(needTicketModal.classList.contains("open"))closeNeedTicketModal();
         if(freeTicketModal.classList.contains("open"))closeFreeTicketModal();
@@ -4312,6 +4574,7 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
 
     loginModal.addEventListener("click",e=>{if(e.target===loginModal)closeLogin()});
     profileEditModal.addEventListener("click",e=>{if(e.target===profileEditModal)closeProfileEditModal()});
+    avatarModal.addEventListener("click",e=>{if(e.target===avatarModal)closeAvatarModal()});
     ticketModal.addEventListener("click",e=>{if(e.target===ticketModal)closeTicketModal()});
     needTicketModal.addEventListener("click",e=>{if(e.target===needTicketModal)closeNeedTicketModal()});
     freeTicketModal.addEventListener("click",e=>{if(e.target===freeTicketModal)closeFreeTicketModal()});
