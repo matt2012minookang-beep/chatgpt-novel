@@ -59,6 +59,7 @@
     .work-row-badge{background:#f1f3f5;color:#555;padding:7px 9px;border-radius:999px;font-size:12px;font-weight:900;white-space:nowrap}
     .work-row-badge.preview{background:#fff4d6;color:#9a6500;border:1px solid #ffd36b}
     .work-row-badge.owned{background:#e8fff0;color:#008f2b;border:1px solid #7be49a}
+    .work-row-badge.free{background:#eef4ff;color:#0f63ff;border:1px solid #8fb8ff}
 
     .weekday-tabs{display:flex;gap:8px;overflow-x:auto;padding:14px 18px;background:#fff;border-bottom:1px solid var(--line)}
     .weekday-tab-btn{border:1px solid #ddd;background:#fff;color:#333;border-radius:999px;padding:10px 17px;font-size:14px;font-weight:900;cursor:pointer;white-space:nowrap}
@@ -92,11 +93,9 @@
     .profile-img.avatar-triangle::before{
       width:0;height:0;background:transparent;border-left:30px solid transparent;border-right:30px solid transparent;border-bottom:56px solid rgba(255,255,255,.88);border-radius:0;box-shadow:none
     }
-    .profile-img.avatar-star::before{
-      content:"★";background:transparent;width:auto;height:auto;color:rgba(255,255,255,.92);font-size:64px;line-height:1;box-shadow:none
-    }
-    .profile-img.avatar-photo::before{display:none}
-    .profile-img.avatar-photo{background-size:cover!important;background-position:center!important}
+    .profile-img.avatar-star::before{content:"★";background:transparent;width:auto;height:auto;color:rgba(255,255,255,.92);font-size:64px;line-height:1;box-shadow:none}
+    .profile-img.avatar-photo::before{display:none!important}
+    .profile-img.avatar-photo{background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important}
     .avatar-red{background:linear-gradient(135deg,#ff4d4d,#8b0000)!important}
     .avatar-orange{background:linear-gradient(135deg,#ff9f1c,#c85c00)!important}
     .avatar-yellow{background:linear-gradient(135deg,#ffd93d,#d6a400)!important}
@@ -114,7 +113,6 @@
     .edit-profile-btn{background:#3b1168}
     .ticket-btn{background:#00a832}
     .avatar-edit-btn{background:#0f63ff}
-    .logout-btn:hover{background:#333}.edit-profile-btn:hover{background:#51208a}.ticket-btn:hover{background:#008f2b}.avatar-edit-btn:hover{background:#084bc5}
     .profile-ticket-info{margin-top:12px;color:#555;font-size:13px;font-weight:900;display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
     .profile-sections{display:grid;grid-template-columns:1fr 1fr;gap:0}
     .profile-section{padding:18px;border-bottom:1px solid var(--line)}
@@ -252,7 +250,7 @@
   <section class="locked-home" id="lockedHome">
     <div class="locked-box">
       <h1>로그인 하시면 보실수 있습니다.</h1>
-      <p>chat웹의 작품 목록과 회차는 로그인 후 이용할 수 있습니다.<br>이제 새로고침해도 마지막 계정으로 자동 로그인됩니다.</p>
+      <p>chat웹의 작품 목록과 회차는 로그인 후 이용할 수 있습니다.<br>새로고침해도 마지막 계정으로 자동 로그인됩니다.</p>
       <button onclick="openLogin()">로그인</button>
     </div>
   </section>
@@ -271,7 +269,7 @@
           <h3>세계를 구하고, 버려졌다</h3>
           <p>작가 고쓰비 · 세계를 구한 용사, 자신의 세계에서 버려지다.</p>
         </div>
-        <div class="work-row-badge">8화 공개</div>
+        <div class="work-row-badge">9화 공개</div>
       </div>
     </section>
   </main>
@@ -443,14 +441,14 @@
           <h3>세계를 구하고, 버려졌다</h3>
           <div class="meta"><span class="chip">다크 판타지</span><span class="chip">귀환자</span><span class="chip">복수</span><span class="chip">각성자</span></div>
           <p class="summary">2100년대, 각성자들은 자신의 권능과 연결된 세계로 보내진다. 소환의 권능을 얻은 강도윤은 마왕을 처치하고 지구로 돌아오지만, 그가 지킨 세계는 이미 그를 버린 뒤였다.</p>
-          <div class="stats"><span>★ 0</span><span>조회 0</span><span>관심 0</span><span>총 8화 공개</span></div>
+          <div class="stats"><span>★ 0</span><span>조회 0</span><span>관심 0</span><span>총 9화 공개</span></div>
           <button class="main-btn" onclick="openReader(1)">첫 화 보기</button>
         </div>
       </div>
     </section>
 
     <section class="section" id="episodes">
-      <div class="section-head"><h2>회차 목록</h2><span>총 8화 공개</span></div>
+      <div class="section-head"><h2>회차 목록</h2><span>총 9화 공개</span></div>
       <div class="episode-list">
         <div class="episode" data-episode="1" onclick="openReader(1)">
           <div class="thumb" data-ep="1화"></div><div><div class="ep-title">1화 - 귀환</div><div class="ep-desc">세계를 구한 용사, 자신의 세계에서 버려지다.</div></div><div class="ep-date">2026.04.30</div>
@@ -468,13 +466,16 @@
           <div class="thumb" data-ep="5화"></div><div><div class="ep-title">5화 - 충전된 하늘</div><div class="ep-desc">회복된 소환 포인트와 다시 다가오는 지휘관급 각성자.</div></div><div class="ep-date">2026.04.30</div>
         </div>
         <div class="episode" data-episode="6" onclick="openReader(6)">
-          <div class="thumb" data-ep="6화"></div><div><div class="ep-title">6화 - 남겨진 것의 형태</div><div class="ep-desc">미리보기 · 열람 3장 · 소장 5장 · 이전화 필요</div></div><div class="work-row-badge preview" id="episodeBadge6">이용권</div>
+          <div class="thumb" data-ep="6화"></div><div><div class="ep-title">6화 - 남겨진 것의 형태</div><div class="ep-desc">무료 공개 · 이용권 없이 볼 수 있습니다.</div></div><div class="work-row-badge free" id="episodeBadge6">무료</div>
         </div>
         <div class="episode" data-episode="7" onclick="openReader(7)">
           <div class="thumb" data-ep="7화"></div><div><div class="ep-title">7화 - 해가 없는 나라</div><div class="ep-desc">미리보기 · 열람 3장 · 소장 5장 · 이전화 필요</div></div><div class="work-row-badge preview" id="episodeBadge7">이용권</div>
         </div>
         <div class="episode" data-episode="8" onclick="openReader(8)">
           <div class="thumb" data-ep="8화"></div><div><div class="ep-title">8화 - 끊어지지 않는 선</div><div class="ep-desc">미리보기 · 열람 3장 · 소장 5장 · 이전화 필요</div></div><div class="work-row-badge preview" id="episodeBadge8">이용권</div>
+        </div>
+        <div class="episode" data-episode="9" onclick="openReader(9)">
+          <div class="thumb" data-ep="9화"></div><div><div class="ep-title">9화 - 모여드는 불씨</div><div class="ep-desc">미리보기 · 열람 3장 · 소장 5장 · 이전화 필요</div></div><div class="work-row-badge preview" id="episodeBadge9">이용권</div>
         </div>
       </div>
     </section>
@@ -558,7 +559,7 @@
         <div class="profile-img" id="avatarPreview"></div>
         <div class="avatar-preview-text">
           현재 선택한 표지 미리보기입니다.<br>
-          사진을 고르면 선택 색/모양보다 사진이 우선 표시됩니다.
+          사진을 고르면 자동으로 작게 압축해서 저장됩니다.
         </div>
       </div>
 
@@ -699,7 +700,7 @@
     const AVATAR_COLORS=["red","orange","yellow","green","blue","pink","white"];
     const AVATAR_SHAPES=["circle","square","triangle","star"];
 
-    const workData={id:WORK_ID,title:"세계를 구하고, 버려졌다",author:"고쓰비",aliases:["세계를","세계를구하고","세계를구하고버려졌다","세계를구했더니","세계를구했더니버려졌다","버려졌다","강도윤","귀환","고쓰비","포위","분류되지않은힘","충전된하늘","남겨진것의형태","해가없는나라","끊어지지않는선","솔라리스","강세윤","아스","천공의요새","이도현","HG","검술의권능","신화급각성자","캡슐"]};
+    const workData={id:WORK_ID,title:"세계를 구하고, 버려졌다",author:"고쓰비",aliases:["세계를","세계를구하고","세계를구하고버려졌다","세계를구했더니","세계를구했더니버려졌다","버려졌다","강도윤","귀환","고쓰비","포위","분류되지않은힘","충전된하늘","남겨진것의형태","해가없는나라","끊어지지않는선","모여드는불씨","솔라리스","강세윤","한태민","한지훈","번개의권능","망치의권능","아스","천공의요새","이도현","HG","검술의권능","신화급각성자","캡슐"]};
 
     function escapeHtml(str){return String(str).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")}
     function rawToHtml(raw){
@@ -2664,7 +2665,7 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
 
 하늘 위에 남아 있었다
 `},
-      6:{title:"6화 - 남겨진 것의 형태",sub:"특수 캡슐 · 이도현 · HG",preview:true,cost:3,ownCost:5,raw:`
+      6:{title:"6화 - 남겨진 것의 형태",sub:"특수 캡슐 · 이도현 · HG",raw:`
 천공의 요새 내부는 이전보다 더 안정적으로 정리되어 있었다.
 
 전투 이후 흩어졌던 구조들이 자동적으로 복구되고 있었고, 도윤은 요새 내부 깊숙한 곳으로 내려가고 있었다.
@@ -3455,6 +3456,194 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
 [한국의 2,3번째 신화급 각성자는 어디에 갔나?]
 
 도윤의 손가락이 멈췄다.
+`},
+      9:{title:"9화 - 모여드는 불씨",sub:"강세윤 · 한태민 · 한지훈",preview:true,cost:3,ownCost:5,raw:`
+서울.
+
+광화문 광장.
+
+사람들이 모여 있었다.
+
+평소보다 훨씬 많은 인파.
+
+하지만 분위기는 무겁게 가라앉아 있었다.
+
+중앙.
+
+임시로 설치된 단상 위에 한 남자가 서 있었다.
+
+검을 허리에 찬 채, 단단한 눈빛으로 앞을 바라보고 있었다.
+
+강세윤.
+
+‘검술의 권능’ 사용자이자, 서열 10위 길드 [HG]의 길드장.
+
+그가 입을 열었다.
+
+“저희 [HG] 길드는.”
+
+“제주도의 테러 세력을 제거하기 위해 인원을 모집하고 있습니다.”
+
+목소리는 크지 않았지만, 광장 전체에 또렷하게 퍼졌다.
+
+“각성자든, 민간인이든 상관 없습니다.”
+
+“힘을 보태 주십시오.”
+
+“저희는 반드시 그 세력을 제거할 것입니다.”
+
+짧은 정적.
+
+그리고—
+
+사람들 사이에서 웅성거림이 퍼졌다.
+
+“야… 미친 거 아니냐.”
+
+“[아스] 길드도 전멸했다며.”
+
+“절단의 권능까지 당했다는데 우리가 뭘 하냐고…”
+
+“저건 그냥 자살이잖아…”
+
+누군가는 고개를 저었고, 누군가는 아예 자리를 떠나려 했다.
+
+공포.
+
+이미 퍼져 있었다.
+
+그때였다.
+
+사람들 사이에서 한 명이 앞으로 나왔다.
+
+천천히.
+
+하지만 망설임 없이.
+
+“제가 지원하도록 하겠습니다.”
+
+순간 시선이 모였다.
+
+강세윤이 그를 바라봤다.
+
+“신원을 밝혀주십시오.”
+
+남자는 담담하게 말했다.
+
+“저는 길드는 없습니다.”
+
+잠깐 멈췄다가.
+
+“번개의 권능, 한태민입니다.”
+
+순간 공기가 바뀌었다.
+
+각성자.
+
+그것도 권능 보유자.
+
+강세윤의 눈빛이 조금 달라졌다.
+
+그때—
+
+그 옆에 서 있던 또 다른 남자가 한 발 나섰다.
+
+“저도 지원하겠습니다.”
+
+시선이 다시 이동했다.
+
+그는 태민을 힐끔 보며 말했다.
+
+“망치의 권능, 한지훈입니다.”
+
+“저 녀석 동생입니다.”
+
+짧은 침묵.
+
+그리고—
+
+강세윤이 고개를 끄덕였다.
+
+“좋습니다.”
+
+“두 분 모두, 즉시 편성에 포함됩니다.”
+
+광장의 공기가 다시 흔들렸다.
+
+누군가는 놀랐고, 누군가는 여전히 망설였다.
+
+하지만—
+
+분명히.
+
+처음으로 “움직이는 사람”이 생겼다.
+
+
+제주도.
+
+솔라리스.
+
+제1군단.
+
+염화 군단 주둔지.
+
+유하린이 병력 배치를 점검하고 있었다.
+
+그때—
+
+기지 내부에서 경고음이 울렸다.
+
+삐— 삐— 삐—
+
+유하린의 시선이 돌아갔다.
+
+“뭐야.”
+
+장비 화면.
+
+파형이 잡히고 있었다.
+
+외부 접근 신호.
+
+유하린이 눈을 가늘게 떴다.
+
+“…누가 접근하고 있네.”
+
+
+동시에.
+
+제3군단.
+
+절단 군단 주둔지.
+
+이도현이 건물 외벽에 기대 서 있었다.
+
+그의 눈이 순간 움직였다.
+
+그리고—
+
+기지 내부.
+
+같은 경고음.
+
+삐— 삐— 삐—
+
+이도현이 피식 웃었다.
+
+“하.”
+
+“타이밍 좋네.”
+
+그가 천천히 몸을 일으켰다.
+
+“누가 온다.”
+
+
+보이지 않는 선.
+
+서로 다른 방향에서—
+
+무언가가 움직이고 있었다.
 `}
     };
 
@@ -3568,12 +3757,16 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
       el.style.backgroundImage="";
       el.style.backgroundSize="";
       el.style.backgroundPosition="";
+      el.style.backgroundRepeat="";
 
       const safeAvatar=avatar||{color:"green",shape:"circle",photo:""};
 
       if(safeAvatar.photo){
         el.classList.add("avatar-photo");
-        el.style.backgroundImage=`url("${safeAvatar.photo}")`;
+        el.style.setProperty("background-image",`url("${safeAvatar.photo}")`,"important");
+        el.style.setProperty("background-size","cover","important");
+        el.style.setProperty("background-position","center","important");
+        el.style.setProperty("background-repeat","no-repeat","important");
         return;
       }
 
@@ -3655,14 +3848,40 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
         return;
       }
 
-      const readerFile=new FileReader();
+      const fileReader=new FileReader();
 
-      readerFile.onload=()=>{
-        avatarDraft.photo=String(readerFile.result||"");
-        refreshAvatarPreview();
+      fileReader.onload=()=>{
+        const img=new Image();
+
+        img.onload=()=>{
+          const canvas=document.createElement("canvas");
+          const size=240;
+          canvas.width=size;
+          canvas.height=size;
+
+          const ctx=canvas.getContext("2d");
+          const minSide=Math.min(img.width,img.height);
+          const sx=(img.width-minSide)/2;
+          const sy=(img.height-minSide)/2;
+
+          ctx.drawImage(img,sx,sy,minSide,minSide,0,0,size,size);
+
+          avatarDraft.photo=canvas.toDataURL("image/jpeg",0.82);
+          refreshAvatarPreview();
+          showToast("사진이 선택되었습니다. 저장을 눌러 적용하세요.");
+        };
+
+        img.onerror=()=>{
+          avatarDraft.photo=String(fileReader.result||"");
+          refreshAvatarPreview();
+          showToast("사진이 선택되었습니다. 저장을 눌러 적용하세요.");
+        };
+
+        img.src=String(fileReader.result||"");
       };
 
-      readerFile.readAsDataURL(file);
+      fileReader.readAsDataURL(file);
+      event.target.value="";
     }
 
     function removeAvatarPhoto(){
@@ -3707,6 +3926,7 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
       ensureAccountShape(user);
       applyAvatarToElement(document.getElementById("profileAvatar"),user.avatar);
     }
+
     function prefillLogin(){
       const normal=getNormalAccount();
       const nicknameInput=document.getElementById("nicknameInput");
@@ -3776,7 +3996,7 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
       const user=getUserData();if(!user)return;
       ensureAccountShape(user);
 
-      [6,7,8].forEach(num=>{
+      [7,8,9].forEach(num=>{
         const badge=document.getElementById("episodeBadge"+num);
         if(!badge)return;
 
@@ -3790,6 +4010,13 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
           badge.classList.remove("owned");
         }
       });
+
+      const freeBadge=document.getElementById("episodeBadge6");
+      if(freeBadge){
+        freeBadge.textContent="무료";
+        freeBadge.classList.remove("preview","owned");
+        freeBadge.classList.add("free");
+      }
     }
 
     function setActiveNav(navId){
@@ -4331,7 +4558,7 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
     }
 
     function hasReadPreviousPaidRequired(num){
-      if(num<6)return true;
+      if(num<7)return true;
       if(currentUser&&currentUser.isAuthor)return true;
 
       const user=getUserData();
