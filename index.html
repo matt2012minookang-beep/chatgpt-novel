@@ -4563,43 +4563,55 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
       showPage("homePage","navHome");
     }
 
-    function renderHome(){
-      const user=getUserData();
-      ensureAccountShape(user);
+    function cleanWorkIds(arr){
+  return (arr||[]).filter(id=>works[id]);
+}
 
-      document.getElementById("homeGreeting").textContent=currentUser.nickname+"님의 홈";
+function renderHome(){
+  const user=getUserData();
+  ensureAccountShape(user);
 
-      const recentWorksBox=document.getElementById("recentWorksBox");
-      const recentWorks=user.recentWorks||[];
+  user.recentWorks=cleanWorkIds(user.recentWorks);
+  user.watchingWorks=cleanWorkIds(user.watchingWorks);
+  saveUserData(user);
 
-      document.getElementById("recentCountText").textContent=recentWorks.length+"개";
+  document.getElementById("homeGreeting").textContent=currentUser.nickname+"님의 홈";
 
-      if(recentWorks.length){
-        recentWorksBox.innerHTML=recentWorks.map(id=>workRowHtml(id,"이어보기")).join("");
-      }else{
-        recentWorksBox.innerHTML=`<div class="empty-box">아직 최근 본 작품이 없습니다.</div>`;
-      }
+  const recentWorksBox=document.getElementById("recentWorksBox");
+  const recentWorks=user.recentWorks||[];
 
-      updateProfileCounts();
-      updateProfileAvatar();
-    }
+  document.getElementById("recentCountText").textContent=recentWorks.length+"개";
 
-    function workRowHtml(id,badgeText="바"){
-      const work=works[id];
-      const coverClass=id==="kill"?"mini-cover kill":"mini-cover";
+  if(recentWorks.length){
+    recentWorksBox.innerHTML=recentWorks.map(id=>workRowHtml(id,"이어보기")).join("");
+  }else{
+    recentWorksBox.innerHTML=`<div class="empty-box">아직 최근 본 작품이 없습니다.</div>`;
+  }
 
-      return `
-        <div class="work-row" onclick="openWorkDetail('${id}')">
-          <div class="${coverClass}"></div>
-          <div class="work-row-info">
-            <h3>${work.title}</h3>
-            <p>작가 ${work.author} · ${work.summary}</p>
-          </div>
-          <div class="work-row-badge">${badgeText}</div>
-        </div>
-      `;
-    }
+  updateProfileCounts();
+  updateProfileAvatar();
+}
 
+function workRowHtml(id,badgeText="바"){
+  const work=works[id];
+
+  if(!work){
+    return "";
+  }
+
+  const coverClass=id==="kill"?"mini-cover kill":"mini-cover";
+
+  return `
+    <div class="work-row" onclick="openWorkDetail('${id}')">
+      <div class="${coverClass}"></div>
+      <div class="work-row-info">
+        <h3>${work.title}</h3>
+        <p>작가 ${work.author} · ${work.summary}</p>
+      </div>
+      <div class="work-row-badge">${badgeText}</div>
+    </div>
+  `;
+}
     function openProfile(){
       if(!currentUser){openLogin();return}
 
@@ -4617,6 +4629,8 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
       document.getElementById("authorWorksSection").style.display=currentUser.isAuthor?"block":"none";
 
       const watchingWorksBox=document.getElementById("watchingWorksBox");
+      user.watchingWorks=cleanWorkIds(user.watchingWorks);
+      saveUserData(user);
       const watching=user.watchingWorks||[];
 
       if(watching.length){
