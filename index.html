@@ -570,8 +570,8 @@ body.logged-in .page.active{display:block}
       <p>소장은 이용권 5장이 필요하고, 이후 계속 볼 수 있습니다.</p>
     </div>
     <div class="ticket-shop">
-      <button class="view-once-btn" onclick="confirmPaidView()">이용권 3장 쓰고 보기</button>
-      <button class="own-btn" onclick="confirmOwnEpisode()">이용권 5장으로 소장하기</button>
+      <button class="view-once-btn" id="paidViewBtn" onclick="confirmPaidView()">이용권 3장 쓰고 보기</button>
+      <button class="own-btn" id="paidOwnBtn" onclick="confirmOwnEpisode()">이용권 5장으로 소장하기</button>
     </div>
     <div class="login-actions"><button class="cancel-login" onclick="closePaidEpisodeModal()">아니오</button></div>
   </div>
@@ -7056,9 +7056,20 @@ function hasReadPreviousPaidRequired(workId,num){
 function requestPaidEpisode(workId,num){
   pendingWorkId=workId;
   pendingEpisodeNumber=num;
+
   const ep=works[workId].episodes[num];
+  const viewCost=ep.cost||3;
+  const ownCost=ep.ownCost||5;
+
   document.getElementById("paidEpisodeTitle").textContent=ep.title;
-  document.getElementById("paidEpisodeMessage").textContent=`이용권 ${ep.cost}장이 소모됩니다. 보시겠습니까?`;
+  document.getElementById("paidEpisodeMessage").textContent=`이용권 ${viewCost}장이 소모됩니다. 보시겠습니까?`;
+
+  const paidViewBtn=document.getElementById("paidViewBtn");
+  const paidOwnBtn=document.getElementById("paidOwnBtn");
+
+  if(paidViewBtn)paidViewBtn.textContent=`이용권 ${viewCost}장 쓰고 보기`;
+  if(paidOwnBtn)paidOwnBtn.textContent=`이용권 ${ownCost}장으로 소장하기`;
+
   paidEpisodeModal.classList.add("open");
 }
 
