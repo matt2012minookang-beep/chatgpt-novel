@@ -44,6 +44,16 @@ body.logged-in .page.active{display:block}
 .mini-cover::after,.weekday-cover::after{content:"세계를";position:absolute;left:8px;bottom:8px;color:#fff;font-size:13px;font-weight:900}
 .mini-cover.kill,.weekday-cover.kill{background:linear-gradient(to top,rgba(0,0,0,.95),rgba(60,0,0,.15)),radial-gradient(circle at 75% 20%,#ff2222,transparent 28%),linear-gradient(135deg,#210303,#050505 60%,#160000)}
 .mini-cover.kill::after,.weekday-cover.kill::after{content:"킬 게이지"}
+.mini-cover.absolute,.weekday-cover.absolute{background:linear-gradient(to top,rgba(0,0,0,.94),rgba(18,10,50,.18)),radial-gradient(circle at 78% 18%,#f6d365,transparent 24%),radial-gradient(circle at 22% 70%,#8e44ff,transparent 30%),linear-gradient(135deg,#080713,#1a1038 58%,#050508)}
+.mini-cover.absolute::after,.weekday-cover.absolute::after{content:"절대신"}
+.hero.absolute-hero{background:linear-gradient(135deg,#060613,#171033 45%,#3b1a72)}
+.badge.absolute-badge{background:rgba(246,211,101,.16);border-color:rgba(246,211,101,.56);color:#ffe28a}
+.cover.absolute-cover{background:linear-gradient(to top,rgba(0,0,0,.96),rgba(24,10,58,.12)),radial-gradient(circle at 72% 18%,#ffe28a,transparent 24%),radial-gradient(circle at 25% 70%,#8e44ff,transparent 30%),linear-gradient(135deg,#050508,#191032 58%,#2b1246)}
+.cover.absolute-cover::after{content:"절대신\A강림기"}
+.thumb.absolute{background:linear-gradient(to top,rgba(0,0,0,.86),rgba(24,10,58,.18)),radial-gradient(circle at 72% 22%,#ffe28a,#21133f 44%,#050508)}
+.main-btn.absolute{background:#6d35d8}
+.series-name.absolute-name{color:#6d35d8}
+
 .work-row-info{flex:1;min-width:0}
 .work-row-info h3{font-size:18px;margin-bottom:5px;letter-spacing:-.5px}
 .work-row-info p{font-size:13px;color:#777;line-height:1.5}
@@ -140,6 +150,11 @@ body.logged-in .page.active{display:block}
 .scene{text-align:center;color:#888;letter-spacing:8px;margin:36px 0}
 .system{background:#4c0b0b;color:#ffe3e3;border-left:4px solid #d92d2d;padding:12px 14px;border-radius:8px;line-height:1.8;font-size:16px;margin:22px 0;font-weight:800}
 .blue-system{background:#e7f1ff;color:#064a9b;border-left:4px solid #2b7cff;padding:12px 14px;border-radius:8px;line-height:1.8;font-size:16px;margin:22px 0;font-weight:900}
+.absolute-system{background:#eaf7ff;color:#075982;border-left:4px solid #38aeea;padding:12px 14px;border-radius:8px;line-height:1.8;font-size:16px;margin:22px 0;font-weight:900;white-space:normal}
+.absolute-alert-system{background:#fff0ec;color:#b51d10;border-left:4px solid #e43124;padding:12px 14px;border-radius:8px;line-height:1.8;font-size:16px;margin:22px 0;font-weight:900;white-space:normal}
+.absolute-status-system{background:#fff6df;color:#6f4b00;border-left:4px solid #f6a900;padding:14px 16px;border-radius:8px;line-height:1.9;font-size:16px;margin:22px 0;font-weight:900;white-space:normal}
+.absolute-alert-word{color:#d20000;font-weight:900}
+
 .skill{color:var(--yellow);font-weight:900}
 .rank-skill{color:var(--rank-red);font-weight:900}
 .quote-strong{font-weight:900;color:#000}
@@ -241,6 +256,14 @@ body.logged-in .page.active{display:block}
       </div>
       <div class="work-row-badge">13화 공개</div>
     </div>
+    <div class="work-row" onclick="openWorkDetail('absolute')">
+      <div class="mini-cover absolute"></div>
+      <div class="work-row-info">
+        <h3>절대신 강림기</h3>
+        <p>작가 고쓰비 · 전장에 소환된 유도현, 절대신의 길이 열린다.</p>
+      </div>
+      <div class="work-row-badge">3화 공개</div>
+    </div>
   </section>
 </main>
 
@@ -262,7 +285,13 @@ body.logged-in .page.active{display:block}
     <div class="weekday-panel" id="weekdayPanelTue"><div class="weekday-empty-wrap">화요일 작품은 아직 없습니다.</div></div>
     <div class="weekday-panel" id="weekdayPanelWed"><div class="weekday-empty-wrap">수요일 작품은 아직 없습니다.</div></div>
     <div class="weekday-panel" id="weekdayPanelThu"><div class="weekday-empty-wrap">목요일 작품은 아직 없습니다.</div></div>
-    <div class="weekday-panel" id="weekdayPanelFri"><div class="weekday-empty-wrap">금요일 작품은 아직 없습니다.</div></div>
+    <div class="weekday-panel" id="weekdayPanelFri">
+      <div class="weekday-work-row" onclick="openWorkDetail('absolute')">
+        <div class="weekday-cover absolute"></div>
+        <div class="work-row-info"><h3>절대신 강림기</h3><p>작가 고쓰비 · 금요일 연재</p></div>
+        <div class="work-row-badge">금</div>
+      </div>
+    </div>
     <div class="weekday-panel" id="weekdayPanelSat"><div class="weekday-empty-wrap">토요일 작품은 아직 없습니다.</div></div>
     <div class="weekday-panel" id="weekdayPanelSun"><div class="weekday-empty-wrap">일요일 작품은 아직 없습니다.</div></div>
     <div class="weekday-panel" id="weekdayPanelDaily">
@@ -283,7 +312,7 @@ body.logged-in .page.active{display:block}
 <main class="page" id="fantasyPage">
   <h1 class="dashboard-title">판타지</h1>
   <section class="section">
-    <div class="section-head"><h2>판타지 작품</h2><span>2개</span></div>
+    <div class="section-head"><h2>판타지 작품</h2><span>3개</span></div>
     <div class="work-row" onclick="openWorkDetail('world')">
       <div class="mini-cover"></div>
       <div class="work-row-info"><h3>세계를 구하고, 버려졌다</h3><p>작가 고쓰비 · 다크 판타지</p></div>
@@ -294,13 +323,18 @@ body.logged-in .page.active{display:block}
       <div class="work-row-info"><h3>킬 게이지 시스템</h3><p>작가 고쓰비 · 시스템 판타지</p></div>
       <div class="work-row-badge">바</div>
     </div>
+    <div class="work-row" onclick="openWorkDetail('absolute')">
+      <div class="mini-cover absolute"></div>
+      <div class="work-row-info"><h3>절대신 강림기</h3><p>작가 고쓰비 · 절대신 판타지</p></div>
+      <div class="work-row-badge">신작</div>
+    </div>
   </section>
 </main>
 
 <main class="page" id="actionPage">
   <h1 class="dashboard-title">액션</h1>
   <section class="section">
-    <div class="section-head"><h2>액션 작품</h2><span>2개</span></div>
+    <div class="section-head"><h2>액션 작품</h2><span>3개</span></div>
     <div class="work-row" onclick="openWorkDetail('world')">
       <div class="mini-cover"></div>
       <div class="work-row-info"><h3>세계를 구하고, 버려졌다</h3><p>작가 고쓰비 · 권능 액션</p></div>
@@ -311,17 +345,27 @@ body.logged-in .page.active{display:block}
       <div class="work-row-info"><h3>킬 게이지 시스템</h3><p>작가 고쓰비 · 차수 배틀 액션</p></div>
       <div class="work-row-badge">바</div>
     </div>
+    <div class="work-row" onclick="openWorkDetail('absolute')">
+      <div class="mini-cover absolute"></div>
+      <div class="work-row-info"><h3>절대신 강림기</h3><p>작가 고쓰비 · 시스템 액션</p></div>
+      <div class="work-row-badge">신작</div>
+    </div>
   </section>
 </main>
 
 <main class="page" id="newPage">
   <h1 class="dashboard-title">신작</h1>
   <section class="section">
-    <div class="section-head"><h2>신작 작품</h2><span>1개</span></div>
+    <div class="section-head"><h2>신작 작품</h2><span>2개</span></div>
     <div class="work-row" onclick="openWorkDetail('kill')">
       <div class="mini-cover kill"></div>
       <div class="work-row-info"><h3>킬 게이지 시스템</h3><p>작가 고쓰비 · 신작 · 13화 공개</p></div>
       <div class="work-row-badge">바</div>
+    </div>
+    <div class="work-row" onclick="openWorkDetail('absolute')">
+      <div class="mini-cover absolute"></div>
+      <div class="work-row-info"><h3>절대신 강림기</h3><p>작가 고쓰비 · 신작 · 3화 공개</p></div>
+      <div class="work-row-badge">신작</div>
     </div>
   </section>
 </main>
@@ -342,7 +386,12 @@ body.logged-in .page.active{display:block}
       <div class="work-row-info"><h3>킬 게이지 시스템</h3><p>작가 고쓰비 · 신작 랭킹</p></div>
       <div class="work-row-badge">바</div>
     </div>
-    <div class="empty-box">3위 작품은 아직 없습니다.</div>
+        <div class="rank-row" onclick="openWorkDetail('absolute')">
+      <div class="rank-num">3</div>
+      <div class="mini-cover absolute"></div>
+      <div class="work-row-info"><h3>절대신 강림기</h3><p>작가 고쓰비 · 신작 랭킹</p></div>
+      <div class="work-row-badge">신작</div>
+    </div>
   </section>
 </main>
 
@@ -391,6 +440,11 @@ body.logged-in .page.active{display:block}
         <div class="work-row" onclick="openWorkDetail('kill')">
           <div class="mini-cover kill"></div>
           <div class="work-row-info"><h3>킬 게이지 시스템</h3><p>작가 고쓰비 · 제작중</p></div>
+          <div class="work-row-badge">신작</div>
+        </div>
+        <div class="work-row" onclick="openWorkDetail('absolute')">
+          <div class="mini-cover absolute"></div>
+          <div class="work-row-info"><h3>절대신 강림기</h3><p>작가 고쓰비 · 제작중</p></div>
           <div class="work-row-badge">신작</div>
         </div>
       </div>
@@ -11949,6 +12003,1301 @@ episodes:{
 
 13화 끝`}
 }
+},
+absolute:{
+id:"absolute",
+title:"절대신 강림기",
+author:"고쓰비",
+firstEpisode:1,
+type:"absolute",
+heroTitle:"절대신<br>강림기",
+heroDesc:"전장으로 소환된 평범한 대학생 유도현. 선택받지 못한 줄 알았던 그는 붉은 퀘스트와 함께 절대신이라는 직업을 얻는다.",
+badge:"고쓰비 · 절대신 판타지",
+meta:["시스템","절대신","전장","성장"],
+summary:"지구 인류가 전장으로 소환된 날. 유도현은 직업도 특성도 없는 실패자처럼 보였지만, 비정상 데이터가 감지되며 절대신이라는 직업을 부여받는다.",
+stats:["★ 0","조회 0","관심 0","총 3화 공개"],
+aliases:["절대신","절대신강림기","유도현","마포구","전장","마지막발악","절대신의손","절대신의방패","붉은규칙","고쓰비"],
+episodes:{
+1:{title:"1화 - 선택받지 못한 자",sub:"유도현 · 절대신 · 신의 자격",desc:"전장에 소환된 유도현은 아무 직업도 없는 줄 알았지만, 붉은 퀘스트와 함께 절대신의 길로 들어선다.",date:"2026.05.15",raw:`뜨겁다.
+
+아니, 단순한 더위가 아니다.
+
+피부가 말라붙는 느낌.
+
+숨을 들이쉴 때마다 폐 안쪽이 바스러지는 듯한 건조함.
+
+“…여긴… 어디지.”
+
+남자는 천천히 눈을 떴다.
+
+이름, 유도현.
+
+평범한 대학생.
+
+어제도, 아니 몇 분 전까지도 분명—
+
+“집이었는데.”
+
+눈앞에 펼쳐진 건, 현실과 동떨어진 풍경이었다.
+
+끝없이 이어지는 황색의 대지.
+
+모래와 돌뿐인 황무지.
+
+나무 한 그루 없다.
+
+그늘도 없다.
+
+물은 더더욱 없다.
+
+“…사막?”
+
+하지만 사막과도 달랐다.
+
+모래보다 돌이 많고, 생명감이 전혀 없다.
+
+완전히 죽은 땅.
+
+그때였다.
+
+[시스템이 활성화됩니다.]
+
+“…뭐야?”
+
+머릿속에서 직접 울리는 기계음.
+
+환청이 아니다.
+
+동시에, 시야 한가운데.
+
+투명한 창이 떠올랐다.
+
+[플레이어 등록 완료]
+대지역: KOR
+중지역: 서울
+소지역: 마포구
+
+“플레이어?”
+
+도현은 눈을 좁혔다.
+
+손을 뻗어 창을 만져봤다.
+
+툭.
+
+미세하게 흔들린다.
+
+“진짜… 건드려지네.”
+
+현실이다.
+
+그때, 주변에서 소란이 터졌다.
+
+“야! 너도 보여?”
+“이거 뭐야?”
+“핸드폰 안 돼!”
+
+도현이 고개를 돌렸다.
+
+사람들.
+
+수천 명.
+
+“…이거…”
+
+눈으로 훑어봤다.
+
+익숙한 얼굴도 있다.
+
+동네 주민, 학생, 직장인.
+
+“마포구 사람들…?”
+
+그때.
+
+하늘이 번쩍였다.
+
+[전체 공지]
+
+[지구 인류는 ‘전장’으로 소환되었습니다.]
+[전장은 세계 규모로 구성되며, 각 지역은 분리되어 있습니다.]
+[현재 소지역 간 이동은 제한됩니다.]
+[모든 플레이어는 직업과 특성을 부여받습니다.]
+[시스템을 통해 성장하십시오.]
+
+“미쳤네…”
+
+누군가 중얼거렸다.
+
+웃는 사람은 없었다.
+
+너무 현실적이다.
+
+너무 진짜다.
+
+그때.
+
+[스테이터스를 확인할 수 있습니다.]
+
+“…이거지.”
+
+도현은 의식적으로 생각했다.
+
+‘스테이터스.’
+
+띠링.
+
+창이 바뀌었다.
+
+[스테이터스]
+
+이름: 유도현
+레벨: 1
+직업: —
+
+능력치
+체력: 7
+마력: 6
+힘: 6
+재생력: 5
+
+특성: 없음
+스킬: 없음
+퀘스트: 없음
+
+“…잠깐만.”
+
+눈이 좁아졌다.
+
+“없어?”
+
+주변을 봤다.
+
+“와 나 검사 떴다!”
+“난 궁수!”
+“스킬 세 개 있다!”
+
+“…뭐?”
+
+도현은 다시 자신의 창을 봤다.
+
+없다.
+
+아무것도.
+
+“버그냐?”
+
+그때였다.
+
+[비정상 데이터 감지]
+
+“…뭐야 또.”
+
+심장이 불안하게 뛰기 시작했다.
+
+[직업 재설정 진행]
+
+주변 소리가 멀어졌다.
+
+시야가 살짝 어두워졌다.
+
+[직업: 절대신]
+
+“…하?”
+
+입이 벌어졌다.
+
+“절대…신?”
+
+이름부터 이상하다.
+
+아니, 이상한 수준이 아니다.
+
+“이거 너무 티 나게 사기잖아?”
+
+그 순간—
+
+[패널티 적용]
+
+[기본 스킬 미지급]
+[기본 특성 미지급]
+
+“…아.”
+
+그제야 이해가 갔다.
+
+“밸런스 맞춘 거네.”
+
+헛웃음이 나왔다.
+
+“사기 직업인데, 시작은 쓰레기다?”
+
+그때.
+
+다른 사람들의 창이 하나둘 바뀌기 시작했다.
+
+“야! 퀘스트 떴다!”
+“나 돌 모으래!”
+“나는 저기 표시된 거 잡으래!”
+
+도현도 자연스럽게 자신의 창을 봤다.
+
+[퀘스트 생성]
+
+그런데.
+
+색이 달랐다.
+
+다른 사람들은 파란색.
+
+도현의 것은—
+
+붉은색.
+
+[퀘스트: 신의 자격]
+
+지급된 무기를 사용하여 ‘플레이어 1명’을 제거하라
+
+제한 시간: 1시간
+
+보상: 절대신 각성
+실패: 사망
+
+“…야.”
+
+입에서 욕이 튀어나왔다.
+
+“이거 뭐야.”
+
+다시 읽었다.
+
+그리고 또 읽었다.
+
+“플레이어…?”
+
+즉—
+
+사람.
+
+“나만… 이거야?”
+
+주변을 확인했다.
+
+“야 너 뭐 떴냐?”
+“나 몬스터 잡으래.”
+“나는 돌 수집하는 거!”
+
+“…역시.”
+
+혼자다.
+
+이 퀘스트는.
+
+그 순간.
+
+툭.
+
+손 위에 무언가가 떨어졌다.
+
+검은 권총.
+
+금속의 차가움.
+
+무게.
+
+현실이다.
+
+그리고—
+
+탄환 1발.
+
+“…”
+
+숨이 멎었다.
+
+“이걸로…”
+
+사람을 죽이라고?
+
+도현의 손이 떨리기 시작했다.
+
+그때.
+
+[남은 시간: 00:59:12]
+
+“…”
+
+시간이 흐른다.
+
+도망칠 수 없다.
+
+거부할 수 없다.
+
+“안 하면…”
+
+죽는다.
+
+그는 천천히 고개를 들었다.
+
+사람들이 보였다.
+
+각자 퀘스트를 수행하고 있었다.
+
+멀리선 작은 괴물과 싸우는 사람도 있었다.
+
+“저 사람들은…”
+
+정상적인 게임.
+
+성장.
+
+생존.
+
+그런데—
+
+“나는…”
+
+입술이 떨렸다.
+
+“…시작부터 살인자네.”
+
+시간이 흐른다.
+
+[00:41:03]
+
+도현은 계속 서 있었다.
+
+움직이지 못했다.
+
+“못 한다…”
+
+손이 떨렸다.
+
+“이건 아니지…”
+
+그때.
+
+“야, 너 안 움직이냐?”
+
+옆에서 목소리가 들렸다.
+
+고개를 돌리자, 한 남자가 있었다.
+
+비슷한 나이.
+
+평범한 얼굴.
+
+“나 돌 모으는 건데 같이 할래?”
+
+“…돌?”
+
+“저기 표시된 거.”
+
+남자가 웃었다.
+
+“혼자 하기 좀 그렇잖아.”
+
+도현은 잠시 그를 봤다.
+
+그리고—
+
+“…그래.”
+
+입이 먼저 움직였다.
+
+둘은 함께 걸었다.
+
+아무 말 없이.
+
+시간만 흐른다.
+
+[00:12:17]
+
+심장이 미친 듯이 뛰었다.
+
+“야 근데—”
+
+남자가 말을 꺼냈다.
+
+“이거 끝나면 뭐 될까?”
+
+“…”
+
+“게임처럼 레벨 오르고 그런 건가?”
+
+“…글쎄.”
+
+도현의 손이, 천천히.
+
+총을 움켜쥐었다.
+
+“야, 너 왜 이렇게—”
+
+“…미안하다.”
+
+“뭐?”
+
+그 순간.
+
+시간이 멈춘 것처럼 느껴졌다.
+
+남자의 얼굴.
+
+눈.
+
+표정.
+
+전부 선명했다.
+
+그리고—
+
+탕.
+
+짧은 총성.
+
+남자의 몸이 멈췄다.
+
+“…왜…”
+
+그 말이 끝이었다.
+
+털썩.
+
+모래 위에 쓰러졌다.
+
+“…”
+
+도현은 아무 말도 하지 못했다.
+
+손에서 총이 떨어졌다.
+
+“하…”
+
+숨이 무너졌다.
+
+“하…”
+
+눈이 흔들렸다.
+
+“내가…”
+
+죽였다.
+
+[퀘스트 완료]
+
+그 순간.
+
+몸 안에서 무언가가 폭발했다.
+
+콰아아—
+
+보이지 않는 힘이 전신을 휘감았다.
+
+“크윽…!”
+
+무릎이 꺾였다.
+
+심장이 폭주했다.
+
+그리고—
+
+[절대신 각성]
+
+새로운 창이 떠올랐다.
+
+도현은 숨을 고르며 손을 들어 올렸다.
+
+“스킬…”
+
+그는 하나씩 눌렀다.
+
+[마지막 발악 – max]
+죽을 시 발동.
+모든 능력치 3배 상승.
+막타를 가한 대상의 스킬 위력 2배 흡수.
+해당 적을 사살 시 종료.
+사용 중 사망 시 진짜 사망.
+쿨타임 없음
+
+“…이걸… 공개하듯 보여주는 거네.”
+
+혼잣말이 흘러나왔다.
+
+다음.
+
+[절대신의 손 – max]
+‘마지막 발악’ 상태에서만 사용 가능.
+절대적인 손을 소환하여 자유롭게 조종 가능
+발악당 1회 사용 가능
+
+“…손을 만든다고?”
+
+마지막.
+
+[절대신의 방패 – max]
+‘마지막 발악’ 상태에서만 사용 가능.
+절대적인 방패를 소환하여 자유롭게 조종 가능
+발악당 1회 사용 가능
+
+“하…”
+
+짧게 웃음이 새어나왔다.
+
+“조건은 빡세고…”
+
+“성능은 미쳤네.”
+
+그는 천천히 고개를 들었다.
+
+멀리서 사람들은 여전히 살아가고 있었다.
+
+싸우고, 모으고, 성장하고.
+
+그리고—
+
+[마포구 생존자: 368,214명]
+
+“…하.”
+
+도현은 웃었다.
+
+“거의 그대로네.”
+
+당연하다.
+
+대부분은 죽지 않았다.
+
+아직은.
+
+“나만 다르다.”
+
+그는 피 묻은 손을 내려다봤다.
+
+“…그래.”
+
+눈이 식었다.
+
+“이미 시작했으니까.”
+
+천천히 발걸음을 옮겼다.
+
+황무지 위를.
+
+그리고—
+
+작게 중얼거렸다.
+
+“절대신.”
+
+그게 자신이라면.
+
+“이 세계… 전부 뒤집는다.”`},
+2:{title:"2화 - 첫 번째 휴식",sub:"상점 · 여관 · 생존 준비",desc:"초기 퀘스트가 끝나고 살상이 금지된 하루 동안, 도현은 포인트와 마을의 구조를 파악한다.",date:"2026.05.15",preview:true,cost:3,ownCost:5,raw:`탕 소리가 멎었다.
+
+비명도, 도망치는 발소리도.
+
+어느 순간을 기점으로—
+
+완전히.
+
+사라졌다.
+
+“…?”
+
+유도현은 걸음을 멈췄다.
+
+방금 전까지 들리던 소음이 거짓말처럼 끊겼다.
+
+황무지 위.
+
+바람조차 없는 고요.
+
+그때였다.
+
+[전체 공지]
+
+[모든 초기 퀘스트가 종료되었습니다.]
+[1일간 모든 지역에서 플레이어 간 살상이 금지됩니다.]
+
+“…뭐?”
+
+도현의 눈이 살짝 커졌다.
+
+곧이어, 모든 사람의 시야에 동일한 창이 떠올랐다.
+
+이번엔—
+
+파란색.
+
+[퀘스트: 생존 준비]
+
+퀘스트를 무사히 완료한 당신!
+이제 1일 동안 모든 지역의 살상이 전면 금지됩니다.
+
+이 시간 동안 살아남기 위한 준비를 마치십시오.
+
+지역 곳곳에 위치한 여관에서 휴식을 취할 수 있습니다.
+길드에서 퀘스트를 받을 수 있습니다.
+상점에서 물건을 구매할 수 있습니다.
+
+이곳에서는 ‘포인트’로 모든 것이 가능합니다.
+
+그럼, 행운을 빕니다.
+
+[포인트 이용 안내]
+
+“…같은 거네.”
+
+도현은 중얼거렸다.
+
+이제야.
+
+“나도… 똑같은 퀘스트 받았네.”
+
+조금 전까지 붉었던 창이 떠올랐다.
+
+그와 동시에—
+
+손에 묻어 있던 피의 감촉이 다시 살아났다.
+
+“…”
+
+그는 고개를 살짝 저었다.
+
+지금은—
+
+그걸 생각할 때가 아니다.
+
+“…포인트 이용 안내.”
+
+도현은 손을 뻗어 해당 문구를 눌렀다.
+
+[포인트 이용 안내]
+
+포인트는 전장에서 사용되는 기본 재화입니다.
+
+포인트를 사용하여 능력치를 상승시킬 수 있습니다.
+스킬을 강화할 수 있습니다.
+장비 및 물품을 구매할 수 있습니다.
+
+모든 것은 포인트로 가능합니다.
+
+“…결국 돈이네.”
+
+현실이랑 다를 게 없다.
+
+다만—
+
+“여긴 목숨이 걸린 돈이지만.”
+
+그는 자연스럽게 스테이터스를 열었다.
+
+[스테이터스]
+
+이름: 유도현
+레벨: 1
+경험치: 10xp
+
+직업: 절대신
+
+능력치
+체력: 7
+마력: 6
+힘: 6
+재생력: 5
+
+특성: 없음
+
+스킬
+
+마지막 발악 (max)
+절대신의 손 (max)
+절대신의 방패 (max)
+포인트: 100
+
+“…100포인트.”
+
+생각보다 많다.
+
+“이걸로 뭘 해야 하지.”
+
+그때.
+
+멀리서 사람들의 움직임이 보이기 시작했다.
+
+아까까지만 해도 아무것도 없던 황무지.
+
+그런데—
+
+지평선 근처.
+
+희미하게.
+
+“건물?”
+
+도현은 눈을 가늘게 떴다.
+
+분명 없다.
+
+아까까지는.
+
+그런데 지금은—
+
+돌로 쌓아 올린 듯한 구조물들이 보였다.
+
+“시스템이 만든 거네.”
+
+그는 천천히 걸음을 옮겼다.
+
+발밑에서 모래가 바스락거렸다.
+
+걸음 하나하나가 유난히 크게 들렸다.
+
+조용해서다.
+
+너무.
+
+조용해서.
+
+사람들도 비슷한 방향으로 움직이고 있었다.
+
+서로를 경계하면서도—
+
+이제는 공격하지 않는다.
+
+“살상 금지라…”
+
+이상한 안도감이 퍼졌다.
+
+하지만 동시에—
+
+“이게 끝나면 다시 시작이겠지.”
+
+그는 시선을 거두고 걸었다.
+
+점점 가까워지는 구조물.
+
+그 정체는—
+
+마을이었다.
+
+마을 입구.
+
+아무런 문도, 경비도 없다.
+
+그냥—
+
+열려 있다.
+
+“들어가도 되나…”
+
+도현은 잠시 멈췄다가, 이내 안으로 들어갔다.
+
+안쪽은 생각보다 넓었다.
+
+황무지 한가운데 만들어진 거점.
+
+돌로 된 건물들.
+
+사람들이 하나둘 모여들고 있었다.
+
+그리고—
+
+각 건물 위에는.
+
+빛나는 글자가 떠 있었다.
+
+[상점]
+[여관]
+[길드]
+
+“…진짜 게임이네.”
+
+도현은 가장 가까운 곳으로 향했다.
+
+상점.
+
+안으로 들어가자—
+
+사람은 없다.
+
+대신.
+
+[구매 목록]
+
+창이 떠올랐다.
+
+도현은 천천히 목록을 훑었다.
+
+단검, 방어구, 식량, 도구.
+
+그리고—
+
+“능력치 상승?”
+
+그는 해당 항목을 눌렀다.
+
+체력 +1 : 10포인트
+마력 +1 : 10포인트
+힘 +1 : 10포인트
+재생력 +1 : 10포인트
+
+“…균등하네.”
+
+고민이 길지 않았다.
+
+“지금은 밸런스.”
+
+그는 차례대로 눌렀다.
+
+체력 +3
+힘 +3
+재생력 +2
+마력 +2
+
+[구매 완료]
+
+포인트: 0
+
+“다 썼네.”
+
+다시 스테이터스를 확인했다.
+
+체력: 10
+마력: 8
+힘: 9
+재생력: 7
+
+“…괜찮네.”
+
+확실히 전보다 안정감이 느껴졌다.
+
+몸이 조금 더 단단해진 느낌.
+
+“장비는…”
+
+잠시 고민하다가 고개를 저었다.
+
+“나중에.”
+
+지금은—
+
+정보가 더 중요하다.
+
+길드 건물은 생각보다 컸다.
+
+안으로 들어가자—
+
+이번엔.
+
+사람들이 있었다.
+
+“야, 이거 같이 하자니까!”
+“보상 나누자고!”
+“파티 구함!”
+
+소란스러웠다.
+
+도현은 조용히 한쪽에 서서 상황을 지켜봤다.
+
+벽 한쪽에는—
+
+퀘스트 목록이 떠 있었다.
+
+[지역 몬스터 처치]
+[광물 채집]
+[탐색 임무]
+
+“…”
+
+도현은 잠시 그것들을 바라보다가, 등을 돌렸다.
+
+“지금은 아니다.”
+
+굳이 위험을 감수할 필요는 없다.
+
+오늘은—
+
+준비하는 날이다.
+
+여관은 마을 가장 안쪽에 있었다.
+
+다른 건물보다 조금 더 안정적인 느낌.
+
+도현은 문을 밀고 들어갔다.
+
+안은 조용했다.
+
+외부의 소란이 거짓말처럼 사라졌다.
+
+“…좋네.”
+
+그는 천천히 숨을 내쉬었다.
+
+[1박: 5포인트]
+
+“…아.”
+
+쓴웃음이 나왔다.
+
+“돈 다 썼지.”
+
+잠시 고민.
+
+그리고—
+
+“무료는 없냐…”
+
+그 순간.
+
+[초기 1회 무료 이용 가능]
+
+“…오.”
+
+짧게 웃음이 나왔다.
+
+“이건 좀 혜자네.”
+
+그는 방을 선택했다.
+
+문을 열고 들어갔다.
+
+방 안은 단순했다.
+
+침대 하나.
+
+의자 하나.
+
+창문은 없다.
+
+하지만—
+
+“충분하다.”
+
+도현은 천천히 침대에 앉았다.
+
+몸이 무겁게 가라앉았다.
+
+그제야.
+
+느껴졌다.
+
+오늘 하루.
+
+“…”
+
+손을 들었다.
+
+피는—
+
+이미 사라져 있었다.
+
+시스템 때문인지.
+
+아니면—
+
+“지워진 건가.”
+
+그는 말하지 않았다.
+
+대신.
+
+조용히 누웠다.
+
+천장을 바라보며.
+
+“…내일.”
+
+눈을 감았다.
+
+“다시 시작이겠지.”
+
+살상이.
+
+전장이.
+
+그리고—
+
+절대신으로서의 삶이.
+
+그는 아무 말도 하지 않았다.
+
+그저—
+
+조용히.
+
+잠에 빠져들었다.`},
+3:{title:"3화 - 붉은 규칙의 시작",sub:"살상 활성화 · 마지막 발악 · 철혈 돌진",desc:"살상이 다시 허용된 순간, 도현은 첫 위기를 맞고 절대신의 스킬이 어떤 방식으로 작동하는지 깨닫는다.",date:"2026.05.15",preview:true,cost:3,ownCost:5,raw:`“…깨졌네.”
+
+유도현은 눈을 떴다.
+
+공기가 달랐다.
+
+여관 안인데도 비명이 그대로 새어 들어온다.
+
+벽 너머에서 금속이 긁히는 소리.
+
+“살려줘!!”
+“왜 갑자기 공격인데!!”
+
+“…시작이네.”
+
+그는 천천히 몸을 일으켰다.
+
+[알림]
+
+현재 상태: 살상 활성화
+
+그리고 동시에 확인된 것.
+
+여관: 안전구역 (8시간 제한)
+상점: 안전구역
+길드: 안전구역
+
+※ 안전구역 외부 진입 시 24시간 재입장 불가
+
+“…나가야지.”
+
+도현은 바로 움직였다.
+
+망설임은 없었다.
+
+문을 열었다.
+
+밖은 이미 지옥이었다.
+
+검, 창, 마법.
+
+그리고 피.
+
+사람들이 서로를 죽이고 있었다.
+
+“…게임 아니었어도 이건 미쳤다.”
+
+그는 뒤로 물러나려 했다.
+
+그 순간.
+
+“…도망치냐?”
+
+낮은 목소리.
+
+도현이 고개를 돌렸다.
+
+갑옷.
+
+풀장비.
+
+검.
+
+“찾았다.”
+
+남자가 웃었다.
+
+“아까 본 놈.”
+
+“…나?”
+
+“그래.”
+
+검을 들었다.
+
+“스킬 쓴다.”
+
+“…?”
+
+“철혈 돌진.”
+
+쾅!!
+
+공기가 찢어진다.
+
+속도.
+
+말도 안 된다.
+
+“이미 와 있네.”
+
+도현은 그렇게 생각했다.
+
+심장이 뚫리기 직전—
+
+푹.
+
+“…아.”
+
+가슴이 뚫렸다.
+
+그리고—
+
+[조건 충족]
+[마지막 발악 발동]
+
+콰아아—
+
+검은 기운이 터진다.
+
+“크윽…!”
+
+[능력치 3배 상승]
+
+숨이 돌아온다.
+
+아니, 살아있다.
+
+그리고.
+
+[스킬 획득]
+철혈 돌진 (하급) – 복사 완료 (위력 2배 적용)
+
+“…이거구나.”
+
+도현은 이해했다.
+
+“직접 맞아봐야 아는 타입.”
+
+남자가 다시 달려온다.
+
+“안 죽었냐!!”
+
+도현은 고개를 들었다.
+
+“…좋아.”
+
+도현은 그대로 움직였다.
+
+“철혈 돌진.”
+
+순간.
+
+몸이 튀어나간다.
+
+이번엔 다르다.
+
+단순한 속도가 아니다.
+
+“이건… 궤도다.”
+
+직선이 아니라,
+
+“파고드는 이동.”
+
+쾅!!
+
+남자의 옆을 스치며 지나간다.
+
+“…?!”
+
+“늦었어.”
+
+도현이 뒤에 있었다.
+
+그리고—
+
+푹.
+
+남자가 무릎을 꿇었다.
+
+“…이게…”
+
+“끝.”
+
+[퀘스트 완료]
+
+[마지막 발악 종료]
+[복사 스킬 회수 완료]
+[능력치 원상 복구]
+
+“…역시.”
+
+몸이 다시 가벼워졌다.
+
+도현은 숨을 내쉬었다.
+
+그리고 스테이터스를 열었다.
+
+[스테이터스]
+
+이름: 유도현
+레벨: 2
+경험치: 50 / 100 XP
+
+포인트: 500
+
+능력치
+체력: 10
+마력: 8
+힘: 9
+재생력: 7
+
+스킬
+
+마지막 발악 (max)
+절대신의 손 (max)
+절대신의 방패 (max)
+특성: 없음
+
+“…이제 제대로네.”
+
+그는 상점을 열었다.
+
+[상점]
+
+능력치 강화 (1당 15포인트)
+
+체력 +1
+마력 +1
+힘 +1
+재생력 +1
+
+“…150이네.”
+
+도현은 계산했다.
+
+10포인트 × 15 = 150
+
+“딱 10개 올리면 되겠네.”
+
+그는 선택했다.
+
+체력 +3
+힘 +3
+재생력 +2
+마력 +2
+
+[소모: 150 포인트]
+[잔여 포인트: 350]
+
+“…남는 건 있네.”
+
+몸이 다시 바뀐다.
+
+확실히 단단해졌다.
+
+도현은 주변을 봤다.
+
+아직도 싸우는 사람들.
+
+아직도 죽어가는 사람들.
+
+하지만 그는 이제 확실히 알았다.
+
+“여긴 시작 구간이다.”
+
+그리고 천천히 걸었다.
+
+“다음은 더 큰 거겠지.”
+
+작게 중얼거렸다.
+
+“…절대신.”
+
+그 이름이 익숙해지고 있었다.
+
+“나쁘지 않네.”
+
+그리고 다시 걸었다.`}
+}
 }
 };
 
@@ -11957,14 +13306,72 @@ function escapeHtml(str){
 }
 
 function rawToHtml(raw){
-  return String(raw||"").trim().split(/\n\s*\n/g).map(block=>block.trim()).filter(Boolean).map(block=>{
-    let text=escapeHtml(block).replace(/\n/g,"<br>");
+  const sourceBlocks=String(raw||"").trim().split(/\n\s*\n/g).map(block=>block.trim()).filter(Boolean);
+  const blocks=[];
+
+  for(let i=0;i<sourceBlocks.length;i++){
+    let block=sourceBlocks[i];
+
+    if(currentWorkId==="absolute"){
+      const header=block.trim();
+
+      if(/^\[스테이터스\]/.test(header)){
+        while(i+1<sourceBlocks.length){
+          const next=sourceBlocks[i+1].trim();
+          if(/^\[/.test(next)) break;
+          if(next==="—") break;
+          if(/^(이름:|레벨:|경험치:|직업:|능력치|체력:|마력:|힘:|재생력:|특성:|스킬|퀘스트:|퀘스트|포인트:|마지막 발악|절대신의 손|절대신의 방패|죽을 시 발동\.|모든 능력치|막타를|해당 적을|사용 중|쿨타임|‘마지막 발악’|절대적인 손|절대적인 방패|발악당)/.test(next)){
+            block+="\n"+sourceBlocks[++i];
+            continue;
+          }
+          break;
+        }
+      }
+
+      else if(/^\[(상점|구매 목록|구매 완료|소모:|포인트 이용 안내|알림|퀘스트:)/.test(header)){
+        while(i+1<sourceBlocks.length){
+          const next=sourceBlocks[i+1].trim();
+          if(/^\[/.test(next)) break;
+          if(next==="—") break;
+          if(/^(능력치 강화|체력 \+|마력 \+|힘 \+|재생력 \+|포인트는|포인트를|스킬을|장비 및|모든 것은|퀘스트를|이제 1일|이 시간|지역 곳곳|길드에서|상점에서|이곳에서는|그럼|제한 시간:|보상:|실패:|지급된 무기|현재 상태:|여관:|상점:|길드:|※|[0-9]+포인트)/.test(next)){
+            block+="\n"+sourceBlocks[++i];
+            continue;
+          }
+          break;
+        }
+      }
+    }
+
+    blocks.push(block);
+  }
+
+  return blocks.map(block=>{
+    const trimmed=block.trim();
+    let text=escapeHtml(trimmed).replace(/\n/g,"<br>");
     text=text.replace(/「([^」]+)」/g,'<span class="skill">「$1」</span>');
     text=text.replace(/(\(?[0-9]+차\s*(?:개방\s*)?[-–—]\s*[^)<br\]]+\)?)/g,'<span class="rank-skill">$1</span>');
-    if(block.trim().includes("[한국의 2,3번째 신화급 각성자는 어디에 갔나?]"))return`<div class="blue-system">${text}</div>`;
-    if(/^\[[\s\S]*\]$/.test(block.trim()))return`<div class="system">${text}</div>`;
-    if(block.trim()==="—")return`<div class="scene">—</div>`;
-    if(["마왕.","세계를 구했더니 버려졌다.","소환 포인트."].includes(block.trim()))return`<p class="quote-strong">${text}</p>`;
+
+    if(currentWorkId==="absolute"){
+      const isBracketBlock=/^\[[\s\S]*\]/.test(trimmed);
+
+      if(/^\[스테이터스\]/.test(trimmed)){
+        return`<div class="absolute-status-system">${text}</div>`;
+      }
+
+      if(isBracketBlock){
+        const isForcedGodQuest=/\[퀘스트: 신의 자격\]|직업: 절대신|\[절대신 각성\]|\[비정상 데이터 감지\]|\[직업 재설정 진행\]|\[패널티 적용\]|\[퀘스트 생성\]/.test(trimmed);
+        if(isForcedGodQuest){
+          text=text.replace(/(퀘스트: 신의 자격|직업: 절대신|절대신 각성|비정상 데이터 감지|직업 재설정 진행|패널티 적용|퀘스트 생성|플레이어 1명|실패: 사망)/g,'<span class="absolute-alert-word">$1</span>');
+          return`<div class="absolute-alert-system">${text}</div>`;
+        }
+        return`<div class="absolute-system">${text}</div>`;
+      }
+    }
+
+    if(trimmed.includes("[한국의 2,3번째 신화급 각성자는 어디에 갔나?]"))return`<div class="blue-system">${text}</div>`;
+    if(/^\[[\s\S]*\]$/.test(trimmed))return`<div class="system">${text}</div>`;
+    if(trimmed==="—")return`<div class="scene">—</div>`;
+    if(["마왕.","세계를 구했더니 버려졌다.","소환 포인트."].includes(trimmed))return`<p class="quote-strong">${text}</p>`;
     return`<p>${text}</p>`;
   }).join("\n");
 }
@@ -12783,7 +14190,7 @@ function renderHome(){
 function workRowHtml(id,badgeText="바"){
   const work=works[id];
   if(!work)return "";
-  const coverClass=id==="kill"?"mini-cover kill":"mini-cover";
+  const coverClass=id==="kill"?"mini-cover kill":id==="absolute"?"mini-cover absolute":"mini-cover";
 
   return `
     <div class="work-row" onclick="openWorkDetail('${id}')">
@@ -12849,6 +14256,13 @@ function openWorkDetail(id="world"){
     readBtn.classList.add("red");
     firstBtn.classList.add("red");
   }
+  if(id==="absolute"){
+    hero.classList.add("absolute-hero");
+    badge.classList.add("absolute-badge");
+    cover.classList.add("absolute-cover");
+    readBtn.classList.add("absolute");
+    firstBtn.classList.add("absolute");
+  }
 
   badge.textContent=work.badge;
   document.getElementById("workHeroTitle").innerHTML=work.heroTitle;
@@ -12869,7 +14283,7 @@ function renderEpisodeList(id){
   const list=document.getElementById("episodeList");
 
   list.innerHTML=Object.entries(work.episodes).map(([num,ep])=>{
-    const thumbClass=id==="kill"?"thumb kill":"thumb";
+    const thumbClass=id==="kill"?"thumb kill":id==="absolute"?"thumb absolute":"thumb";
     const badge=ep.preview
       ? `<div class="work-row-badge preview" id="episodeBadge-${id}-${num}">이용권</div>`
       : `<div class="ep-date">${ep.date}</div>`;
@@ -13088,6 +14502,7 @@ function actuallyOpenReader(episodeNumber,workId=currentWorkId){
   readerSeriesMini.textContent=work.title;
   readerSeriesName.textContent=work.title;
   readerSeriesName.classList.toggle("kill-name",workId==="kill");
+  readerSeriesName.classList.toggle("absolute-name",workId==="absolute");
   readerTitle.textContent=ep.title;
   readerSub.textContent=ep.sub;
   novelBody.innerHTML=rawToHtml(ep.raw);
