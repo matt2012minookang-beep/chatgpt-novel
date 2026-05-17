@@ -158,6 +158,12 @@ body.logged-in .page.active{display:block}
 .skill{color:var(--yellow);font-weight:900}
 .rank-skill{color:var(--rank-red);font-weight:900}
 .quote-strong{font-weight:900;color:#000}
+.afterword-box{background:linear-gradient(135deg,#111,#1b1710);color:#f7f1df;border:1px solid rgba(218,177,82,.55);border-radius:16px;padding:24px 22px;margin:22px 0 28px;box-shadow:0 10px 28px rgba(0,0,0,.22);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",Arial,sans-serif;line-height:1.9;font-size:18px;word-break:keep-all}
+.afterword-box p{margin:0 0 20px!important}
+.afterword-box p:last-child{margin-bottom:0!important}
+.afterword-sign{text-align:right;color:#f3d27a;font-weight:900;margin-top:22px}
+@media(max-width:720px){.afterword-box{font-size:17px;padding:20px 17px}}
+
 .bottom-nav{max-width:760px;margin:30px auto 0;display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid #ddd;border-radius:12px;overflow:hidden}
 .bottom-nav button{border:none;background:#fff;padding:16px 8px;font-size:15px;font-weight:900;cursor:pointer;border-right:1px solid #ddd}
 .bottom-nav button:last-child{border-right:none}
@@ -674,7 +680,7 @@ heroDesc:"마왕을 쓰러뜨리고 돌아온 소년. 하지만 그를 기다리
 badge:"고쓰비 · 다크 판타지 · 휴재",
 meta:["다크 판타지","귀환자","복수","각성자","휴재"],
 summary:"2100년대, 각성자들은 자신의 권능과 연결된 세계로 보내진다. 소환의 권능을 얻은 강도윤은 마왕을 처치하고 지구로 돌아오지만, 그가 지킨 세계는 이미 그를 버린 뒤였다.",
-stats:["★ 0","조회 0","관심 0","총 23화 공개","휴재"],
+stats:["★ 0","조회 0","관심 0","총 24화 공개","휴재"],
 aliases:["세계를","세계를구하고","세계를구하고버려졌다","세계를구했더니","세계를구했더니버려졌다","버려졌다","강도윤","고쓰비","솔라리스","솔라리스국","이름을남기는방식","강세윤","한태민","한지훈","천마절단신공","검술의권능","무림의권능","절단의권능","신화급각성자","협정의이름","솔라리스1차대규모토벌전","낙동강방어선","전파의시작","정찰드론","자동방어포탑","군단기지","제4군단","첫충돌","강세윤","쾌","환","전설급"],
 episodes:{
 1:{title:"1화 - 귀환",sub:"강도윤 · 소환의 권능 · 귀환",desc:"세계를 구한 용사, 자신의 세계에서 버려지다.",date:"2026.04.30",raw:`“……이걸로, 끝이군.”
@@ -6511,7 +6517,7 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
 공기가 정리됐다.
 
 전쟁이 아니라, 새로운 국면으로 넘어가는 순간이었다.`},
-20:{title:"20화 - 낙동강 공동전선",sub:"솔라리스 · 낙동강 · 공동전선",desc:"솔라리스 1군단과 연합군이 낙동강에서 괴물들을 상대로 공동전선을 펼친다.",date:"2026.05.13",raw:`솔라리스 수도.
+20:{title:"20화 - 낙동강 공동전선",sub:"솔라리스 · 낙동강 · 공동전선",desc:"솔라리스 1군단과 연합군이 낙동강에서 괴물들을 상대로 공동전선을 펼친다.",date:"2026.05.13",preview:true,cost:3,ownCost:5,raw:`솔라리스 수도.
 
 도윤이 통신을 열었다.
 
@@ -7952,7 +7958,21 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
 
 그러나 모두 알고 있었다.
 
-지금부터 시작이라는 것을.`}
+지금부터 시작이라는 것을.`},
+24:{title:"시즌 1 후기",sub:"작가 고쓰비 · 시즌 1 마무리",desc:"세계를 구하고, 버려졌다 시즌 1을 마무리하며 전하는 작가 후기.",date:"2026.05.17",raw:`__RAWHTML__
+<div class="afterword-box">
+  <p>안녕하세요 독자 여러분.<br>작가 고쓰비입니다.</p>
+
+  <p>제가 이 소설을 만들게 된 계기는<br>그냥 취미로 시작하다가 재미있어서 계속 만들게 됐습니다.</p>
+
+  <p>갈수록 분량/퀄리티가 떨어져서 아쉬우셨죠?<br>처음에 챗지피티 무료로 만들어서 무료 버전 특성상<br>갈수록 분량/퀄리티가 떨어졌습니다.</p>
+
+  <p>이제 시즌 2부터는 유료 버전으로 만들 예정이라<br>다시 1화같은 퀄리티가 유지 될 수 있을 것 같습니다!</p>
+
+  <p>지금까지 계속 봐주신 독자분들께 감사드리며<br>조만간 시즌 2로 찾아뵙겠습니다.</p>
+
+  <div class="afterword-sign">- 작가 고쓰비 -</div>
+</div>`}
 }
 },
 
@@ -14094,6 +14114,7 @@ function escapeHtml(str){
 }
 
 function rawToHtml(raw){
+  if(String(raw||"").trim().startsWith("__RAWHTML__"))return String(raw||"").trim().replace("__RAWHTML__","").trim();
   const sourceBlocks=String(raw||"").trim().split(/\n\s*\n/g).map(block=>block.trim()).filter(Boolean);
   const blocks=[];
 
