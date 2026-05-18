@@ -260,7 +260,7 @@ body.logged-in .page.active{display:block}
         <h3>킬 게이지 시스템</h3>
         <p>작가 고쓰비 · 죽음의 시대, 살아남은 자만 강해지는 시스템.</p>
       </div>
-      <div class="work-row-badge">14화 공개</div>
+      <div class="work-row-badge">휴재</div>
     </div>
     <div class="work-row" onclick="openWorkDetail('absolute')">
       <div class="mini-cover absolute"></div>
@@ -268,7 +268,7 @@ body.logged-in .page.active{display:block}
         <h3>절대신 강림기</h3>
         <p>작가 고쓰비 · 전장에 소환된 유도현, 절대신의 길이 열린다.</p>
       </div>
-      <div class="work-row-badge">5화 공개</div>
+      <div class="work-row-badge">6화 공개</div>
     </div>
   </section>
 </main>
@@ -287,14 +287,26 @@ body.logged-in .page.active{display:block}
       <button class="weekday-tab-btn" id="weekdayBtnSun" onclick="showWeekday('sun')">일</button>
       <button class="weekday-tab-btn" id="weekdayBtnDaily" onclick="showWeekday('daily')">매일+</button>
     </div>
-    <div class="weekday-panel active" id="weekdayPanelMon"><div class="weekday-empty-wrap">월요일 작품은 아직 없습니다.</div></div>
+    <div class="weekday-panel active" id="weekdayPanelMon">
+      <div class="weekday-work-row" onclick="openWorkDetail('absolute')">
+        <div class="weekday-cover absolute"></div>
+        <div class="work-row-info"><h3>절대신 강림기</h3><p>작가 고쓰비 · 월·수·금 연재</p></div>
+        <div class="work-row-badge">월</div>
+      </div>
+    </div>
     <div class="weekday-panel" id="weekdayPanelTue"><div class="weekday-empty-wrap">화요일 작품은 아직 없습니다.</div></div>
-    <div class="weekday-panel" id="weekdayPanelWed"><div class="weekday-empty-wrap">수요일 작품은 아직 없습니다.</div></div>
+    <div class="weekday-panel" id="weekdayPanelWed">
+      <div class="weekday-work-row" onclick="openWorkDetail('absolute')">
+        <div class="weekday-cover absolute"></div>
+        <div class="work-row-info"><h3>절대신 강림기</h3><p>작가 고쓰비 · 월·수·금 연재</p></div>
+        <div class="work-row-badge">수</div>
+      </div>
+    </div>
     <div class="weekday-panel" id="weekdayPanelThu"><div class="weekday-empty-wrap">목요일 작품은 아직 없습니다.</div></div>
     <div class="weekday-panel" id="weekdayPanelFri">
       <div class="weekday-work-row" onclick="openWorkDetail('absolute')">
         <div class="weekday-cover absolute"></div>
-        <div class="work-row-info"><h3>절대신 강림기</h3><p>작가 고쓰비 · 금요일 연재</p></div>
+        <div class="work-row-info"><h3>절대신 강림기</h3><p>작가 고쓰비 · 월·수·금 연재</p></div>
         <div class="work-row-badge">금</div>
       </div>
     </div>
@@ -309,7 +321,7 @@ body.logged-in .page.active{display:block}
       <div class="weekday-work-row" onclick="openWorkDetail('kill')">
         <div class="weekday-cover kill"></div>
         <div class="work-row-info"><h3>킬 게이지 시스템</h3><p>작가 고쓰비 · 매일+ 연재</p></div>
-        <div class="work-row-badge">바</div>
+        <div class="work-row-badge">휴재</div>
       </div>
     </div>
   </section>
@@ -327,7 +339,7 @@ body.logged-in .page.active{display:block}
     <div class="work-row" onclick="openWorkDetail('kill')">
       <div class="mini-cover kill"></div>
       <div class="work-row-info"><h3>킬 게이지 시스템</h3><p>작가 고쓰비 · 시스템 판타지</p></div>
-      <div class="work-row-badge">바</div>
+      <div class="work-row-badge">휴재</div>
     </div>
     <div class="work-row" onclick="openWorkDetail('absolute')">
       <div class="mini-cover absolute"></div>
@@ -349,7 +361,7 @@ body.logged-in .page.active{display:block}
     <div class="work-row" onclick="openWorkDetail('kill')">
       <div class="mini-cover kill"></div>
       <div class="work-row-info"><h3>킬 게이지 시스템</h3><p>작가 고쓰비 · 차수 배틀 액션</p></div>
-      <div class="work-row-badge">바</div>
+      <div class="work-row-badge">휴재</div>
     </div>
     <div class="work-row" onclick="openWorkDetail('absolute')">
       <div class="mini-cover absolute"></div>
@@ -366,11 +378,11 @@ body.logged-in .page.active{display:block}
     <div class="work-row" onclick="openWorkDetail('kill')">
       <div class="mini-cover kill"></div>
       <div class="work-row-info"><h3>킬 게이지 시스템</h3><p>작가 고쓰비 · 신작 · 14화 공개</p></div>
-      <div class="work-row-badge">바</div>
+      <div class="work-row-badge">휴재</div>
     </div>
     <div class="work-row" onclick="openWorkDetail('absolute')">
       <div class="mini-cover absolute"></div>
-      <div class="work-row-info"><h3>절대신 강림기</h3><p>작가 고쓰비 · 신작 · 5화 공개</p></div>
+      <div class="work-row-info"><h3>절대신 강림기</h3><p>작가 고쓰비 · 신작 · 6화 공개</p></div>
       <div class="work-row-badge">신작</div>
     </div>
   </section>
@@ -390,7 +402,7 @@ body.logged-in .page.active{display:block}
       <div class="rank-num">2</div>
       <div class="mini-cover kill"></div>
       <div class="work-row-info"><h3>킬 게이지 시스템</h3><p>작가 고쓰비 · 신작 랭킹</p></div>
-      <div class="work-row-badge">바</div>
+      <div class="work-row-badge">휴재</div>
     </div>
         <div class="rank-row" onclick="openWorkDetail('absolute')">
       <div class="rank-num">3</div>
@@ -446,7 +458,7 @@ body.logged-in .page.active{display:block}
         <div class="work-row" onclick="openWorkDetail('kill')">
           <div class="mini-cover kill"></div>
           <div class="work-row-info"><h3>킬 게이지 시스템</h3><p>작가 고쓰비 · 제작중</p></div>
-          <div class="work-row-badge">신작</div>
+          <div class="work-row-badge">휴재</div>
         </div>
         <div class="work-row" onclick="openWorkDetail('absolute')">
           <div class="mini-cover absolute"></div>
@@ -6517,7 +6529,7 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
 공기가 정리됐다.
 
 전쟁이 아니라, 새로운 국면으로 넘어가는 순간이었다.`},
-20:{title:"20화 - 낙동강 공동전선",sub:"솔라리스 · 낙동강 · 공동전선",desc:"솔라리스 1군단과 연합군이 낙동강에서 괴물들을 상대로 공동전선을 펼친다.",date:"2026.05.13",preview:true,cost:3,ownCost:5,raw:`솔라리스 수도.
+20:{title:"20화 - 낙동강 공동전선",sub:"솔라리스 · 낙동강 · 공동전선",desc:"솔라리스 1군단과 연합군이 낙동강에서 괴물들을 상대로 공동전선을 펼친다.",date:"2026.05.13",raw:`솔라리스 수도.
 
 도윤이 통신을 열었다.
 
@@ -7018,7 +7030,7 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
 “가만두지 않겠어.”
 
 공기가 무겁게 가라앉았다.`},
-21:{title:"21화 - 균열의 시작",sub:"아마미야 카에데 · 솔라리스 투항 · 균열",desc:"카에데가 연합을 떠나 솔라리스에 투항하고, 전쟁의 균열은 더 깊어진다.",date:"2026.05.14",preview:true,cost:3,ownCost:5,raw:`솔라리스, 요새 내부.
+21:{title:"21화 - 균열의 시작",sub:"아마미야 카에데 · 솔라리스 투항 · 균열",desc:"카에데가 연합을 떠나 솔라리스에 투항하고, 전쟁의 균열은 더 깊어진다.",date:"2026.05.14",raw:`솔라리스, 요새 내부.
 
 유하린이 천천히 걸어 나왔다.
 
@@ -7984,10 +7996,10 @@ firstEpisode:0,
 type:"kill",
 heroTitle:"킬 게이지<br>시스템",
 heroDesc:"모든 인간의 시야에 시스템이 나타난 날. 사람들은 죽음이 곧 힘으로 이어지는 세계에서 살아남기 위해 움직이기 시작한다.",
-badge:"고쓰비 · 시스템 판타지",
-meta:["시스템","성장","차수 배틀","액션"],
+badge:"고쓰비 · 시스템 판타지 · 휴재",
+meta:["시스템","성장","차수 배틀","액션","휴재"],
 summary:"킬 게이지가 활성화된 세계. 죽음 이후 남겨진 자들은 조금씩 강해지고, 살아남은 자들은 자신만의 차수와 힘을 각성한다.",
-stats:["★ 0","조회 0","관심 0","총 15화 공개"],
+stats:["★ 0","조회 0","관심 0","총 15화 공개","휴재"],
 aliases:["킬게이지","킬게이지시스템","킬 게이지 시스템","김서현","서현","차수","초강권","초강갑주","혈각","철쇄보","태윤","유나","밤과조직","고쓰비","프롤로그","각성의시작","2차의벽","궤적표식","궤적강제","중력붕괴","넘지못하는선","중력영역","반조직연합","간부","격차와균열","압절권","붕괴지배","연합지원"],
 episodes:{
 0:{title:"0화 - 프롤로그",sub:"세계의 변화 · 킬 게이지 시스템",desc:"모든 인간의 시야에 킬 게이지 시스템이 나타난 날, 세계는 조용히 무너지기 시작한다.",date:"2026.05.02",raw:`그날은 특별한 날처럼 보이지 않았다.
@@ -12823,7 +12835,7 @@ heroDesc:"전장으로 소환된 평범한 대학생 유도현. 선택받지 못
 badge:"고쓰비 · 절대신 판타지",
 meta:["시스템","절대신","전장","성장"],
 summary:"지구 인류가 전장으로 소환된 날. 유도현은 직업도 특성도 없는 실패자처럼 보였지만, 비정상 데이터가 감지되며 절대신이라는 직업을 부여받는다.",
-stats:["★ 0","조회 0","관심 0","총 5화 공개"],
+stats:["★ 0","조회 0","관심 0","총 6화 공개"],
 aliases:["절대신","절대신강림기","유도현","마포구","전장","마지막발악","절대신의손","절대신의방패","붉은규칙","고쓰비"],
 episodes:{
 1:{title:"1화 - 선택받지 못한 자",sub:"유도현 · 절대신 · 신의 자격",desc:"전장에 소환된 유도현은 아무 직업도 없는 줄 알았지만, 붉은 퀘스트와 함께 절대신의 길로 들어선다.",date:"2026.05.15",raw:`뜨겁다.
@@ -13400,7 +13412,7 @@ episodes:{
 그게 자신이라면.
 
 “이 세계… 전부 뒤집는다.”`},
-2:{title:"2화 - 첫 번째 휴식",sub:"상점 · 여관 · 생존 준비",desc:"초기 퀘스트가 끝나고 살상이 금지된 하루 동안, 도현은 포인트와 마을의 구조를 파악한다.",date:"2026.05.15",preview:true,cost:3,ownCost:5,raw:`탕 소리가 멎었다.
+2:{title:"2화 - 첫 번째 휴식",sub:"상점 · 여관 · 생존 준비",desc:"초기 퀘스트가 끝나고 살상이 금지된 하루 동안, 도현은 포인트와 마을의 구조를 파악한다.",date:"2026.05.15",raw:`탕 소리가 멎었다.
 
 비명도, 도망치는 발소리도.
 
@@ -14618,7 +14630,483 @@ episodes:{
 
 드레이크의 몸이 무너진다.
 
-거대한 그림자가 서서히 사라진다.`}
+거대한 그림자가 서서히 사라진다.`},
+6:{title:"6화 - 수치의 균열",sub:"랜덤 박스 · 낡은 시계 · 조직",desc:"드레이크를 처치한 도현은 능력치를 수치화하는 희귀 아이템을 얻고, 마포구에서 움직이기 시작한 조직의 존재를 알게 된다.",date:"2026.05.18",preview:true,cost:3,ownCost:5,raw:`드레이크의 몸이 완전히 사라졌다.
+
+거대한 그림자가 무너진 자리에는 검은 재 같은 흔적만 남았다.
+
+동굴 안은 다시 조용해졌다.
+
+방금 전까지 브레스가 벽을 태우고, 꼬리가 바닥을 깨부수던 곳이라고는 믿기지 않을 정도였다.
+
+유도현은 잠시 그 자리에 서 있었다.
+
+손끝이 아직 떨리고 있었다.
+
+방금 전의 전투는 이겼다.
+
+하지만 이겼다는 느낌보다 먼저 든 것은—
+
+“…아슬아슬했네.”
+
+죽음이 가까웠다는 감각이었다.
+
+마지막 발악이 없었다면 끝이었다.
+
+창조신의 방패가 없었다면 끝이었다.
+
+창조신의 손이 버티지 못했다면 끝이었다.
+
+도현은 숨을 고르며 시스템 창을 열었다.
+
+[퀘스트 완료]
+
+[경험치 +100 XP]
+
+“…올랐네.”
+
+곧바로 새로운 알림이 이어졌다.
+
+[레벨 업]
+Lv.2 → Lv.3
+
+[누적 경험치: 170 / 500 XP]
+(다음 레벨까지 330 XP 필요)
+
+도현은 숫자를 한 번 더 확인했다.
+
+경험치 170.
+
+다음 레벨까지 330.
+
+아직 멀다.
+
+하지만 적어도 전투가 의미 없는 반복은 아니라는 뜻이었다.
+
+“…이제 좀 올라가네.”
+
+그 말에는 안도보다 계산이 섞여 있었다.
+
+레벨이 오르면 강해진다.
+
+강해지면 더 큰 퀘스트를 받을 수 있다.
+
+그리고 더 큰 퀘스트는 더 많은 보상을 준다.
+
+이 세계는 결국 그런 구조였다.
+
+곧이어 또 하나의 알림이 떴다.
+
+[포인트 +700]
+
+[랜덤 박스 (하급) 획득]
+
+[레벨 보상: 포인트 +5]
+
+“…나쁘지 않네.”
+
+도현은 손가락으로 허공의 창을 넘겼다.
+
+이제 포인트가 생겼다.
+
+드레이크를 잡기 전까지는 0.
+
+지금은 705.
+
+다시 무언가를 살 수 있는 숫자였다.
+
+그는 바로 상점을 열었다.
+
+하지만 가격창이 바뀌어 있었다.
+
+[상점 가격 상승]
+
+체력 +1 → 20 포인트
+힘 +1 → 20 포인트
+마력 +1 → 20 포인트
+재생력 +1 → 20 포인트
+
+“…올랐네.”
+
+이전에는 10포인트였다.
+
+한 번 강화를 진행한 뒤 가격이 오른 것이다.
+
+시스템은 친절하지 않았다.
+
+강해질수록 비용이 올라간다.
+
+쉽게 올라갈 수 없게 만든다.
+
+하지만 도현은 인상을 찌푸리지 않았다.
+
+“이 정도면 감당 가능.”
+
+상급 퀘스트 하나에 700포인트.
+
+가격이 두 배가 됐다고 해도, 아직은 계산이 맞았다.
+
+문제는 앞으로다.
+
+언젠가는 20이 아니라 200, 2000이 될 수도 있다.
+
+도현은 고개를 끄덕였다.
+
+“…초반에 방향 잘 잡아야겠네.”
+
+그리고 랜덤 박스를 꺼냈다.
+
+상자라고 하기엔 실체가 이상했다.
+
+검은 입방체.
+
+겉면에는 얇은 빛의 선이 흐르고 있었다.
+
+도현이 손을 올리자 시스템이 반응했다.
+
+[랜덤 박스 개봉]
+
+빛이 터졌다.
+
+동굴 안의 그림자가 순간적으로 밀려났다.
+
+그리고 결과.
+
+[등급: 희귀]
+
+“…운 좋네.”
+
+일반이 나와도 이상하지 않았다.
+
+하급 박스였으니까.
+
+그런데 희귀.
+
+상자가 열렸다.
+
+안에는—
+
+낡은 시계.
+
+겉은 금이 가 있고, 바늘은 멈춰 있다.
+
+금속 표면은 오래된 피처럼 어둡게 변색되어 있었다.
+
+“…이게 희귀?”
+
+검도 아니고, 갑옷도 아니다.
+
+도현은 천천히 시계를 집어 들었다.
+
+가볍다.
+
+하지만 손에 닿는 순간, 이상하게 차가웠다.
+
+그리고 동시에—
+
+[아이템 분석]
+
+이름: 낡은 시계
+능력: 상대의 능력치를 수치화
+
+(직업 / 스킬 제외)
+순수 능력치 총합 표시
+
+“…오.”
+
+도현의 눈이 좁아졌다.
+
+“이건 꽤 쓸만한데.”
+
+전투에서 가장 위험한 건 모르는 상대다.
+
+강한지 약한지.
+
+싸울 수 있는지 피해야 하는지.
+
+판단을 잘못하면 죽는다.
+
+하지만 이 시계가 있다면 최소한 ‘수치’는 알 수 있다.
+
+도현은 바로 사용했다.
+
+시계를 자신에게 향했다.
+
+멈춰 있던 바늘이 삐걱거리며 움직이기 시작했다.
+
+잠깐의 정적.
+
+그리고 숫자가 떠올랐다.
+
+[유도현]
+
+총 능력치: 150
+
+“…이 정도인가.”
+
+확실히 이해가 됐다.
+
+자신이 지금 어느 위치인지.
+
+드레이크를 잡았고, 레벨도 올랐고, 장비도 생겼다.
+
+그런데도 총합 150.
+
+“내 성장 상태가 숫자로 보이네.”
+
+도현은 시계를 주머니에 넣었다.
+
+그리고 낮게 말했다.
+
+“…이건 위험한 아이템이네.”
+
+남을 측정할 수 있다.
+
+자신도 측정할 수 있다.
+
+그 말은 반대로 누군가도 이런 아이템으로 자신을 파악할 수 있다는 뜻이었다.
+
+이 세계에는 이런 도구가 더 있을 수 있다.
+
+도현은 그 사실을 기억해뒀다.
+
+그리고 동굴 밖으로 나왔다.
+
+바깥 공기는 여전히 메말라 있었다.
+
+하지만 동굴 안보다 훨씬 가벼웠다.
+
+그 순간.
+
+탐지 구슬이 반응했다.
+
+[경고]
+
+반응 감지: ERROR
+
+“…?”
+
+도현은 걸음을 멈췄다.
+
+처음 보는 표시였다.
+
+탐지 구슬은 단순했다.
+
+반응이 있으면 있다.
+
+없으면 없다.
+
+그런데 오류.
+
+다시 확인했다.
+
+[대상 탐지 실패]
+
+“버티지 못하는 존재?”
+
+도현은 눈을 좁혔다.
+
+탐지 구슬의 한계가 온 것이다.
+
+그게 의미하는 건 하나였다.
+
+측정 범위를 벗어난 무언가.
+
+그리고 순간.
+
+파삭.
+
+구슬이 깨졌다.
+
+손안에서 산산이 부서졌다.
+
+“…뭐야.”
+
+처음이다.
+
+탐지가 무너진다.
+
+그것도 단순한 고장이 아니다.
+
+무언가를 감지하려다 버티지 못하고 부서졌다.
+
+도현은 본능적으로 시계를 들었다.
+
+방향을 맞췄다.
+
+시계의 바늘이 천천히 돌았다.
+
+한 바퀴.
+
+두 바퀴.
+
+그리고 갑자기 멈췄다.
+
+[측정 시작]
+
+잠시 후.
+
+총 능력치: 13,500
+
+“…미쳤네.”
+
+이번에는 웃지 않았다.
+
+150.
+
+그리고 13,500.
+
+단순히 강하다는 수준이 아니었다.
+
+수치만으로도 격이 달랐다.
+
+“이건 급이 다르다.”
+
+도현은 바로 판단했다.
+
+“지금 싸우는 건 아니다.”
+
+궁금증은 있었다.
+
+정체가 뭔지.
+
+왜 근처에 있는지.
+
+하지만 호기심으로 다가갈 숫자가 아니었다.
+
+도현은 즉시 방향을 바꿨다.
+
+살아남으려면 싸울 때와 피할 때를 알아야 한다.
+
+그건 어제 배웠다.
+
+그리고 방금 드레이크에게도 배웠다.
+
+도현은 빠르게 마을로 돌아갔다.
+
+하지만—
+
+분위기가 이상했다.
+
+“…조용하네.”
+
+처음 마을에 들어왔을 때와 다르다.
+
+사람이 없다.
+
+소리가 없다.
+
+길도 비어 있다.
+
+어제만 해도 거래하고, 떠들고, 퀘스트를 찾던 사람들로 가득했던 곳이었다.
+
+그런데 지금은 간판만 흔들리고 있었다.
+
+길드 건물.
+
+문은 열려 있지만 안은 침묵.
+
+“…뭐지.”
+
+도현은 경계하며 이동했다.
+
+손은 자연스럽게 검으로 향했다.
+
+누군가 숨어 있다면 바로 반응해야 했다.
+
+여관 안.
+
+조용하다.
+
+하지만 불빛은 켜져 있다.
+
+안쪽.
+
+한 명의 플레이어가 앉아 있었다.
+
+몸은 마른 편이고, 얼굴은 지쳐 있었다.
+
+하지만 눈빛만큼은 아직 죽지 않았다.
+
+도현은 천천히 다가갔다.
+
+“…여기 사람 왜 이렇게 없냐.”
+
+남자가 고개를 들었다.
+
+그는 도현을 보더니 잠깐 눈을 크게 떴다.
+
+“…너 살아있었네.”
+
+“…?”
+
+도현의 눈이 가늘어졌다.
+
+남자가 낮게 말했다.
+
+“여기 마포구, 이미 시작됐다.”
+
+“…뭐가.”
+
+남자는 잠시 침묵했다.
+
+주변을 확인하듯 문 쪽을 한 번 보고, 목소리를 더 낮췄다.
+
+“조직.”
+
+“이 지역을 점령하려는 놈들.”
+
+도현의 눈이 좁아졌다.
+
+“…점령?”
+
+남자가 고개를 끄덕였다.
+
+“길드가 아니라, 군대다.”
+
+“플레이어를 통제하려는 놈들.”
+
+그는 마른 입술을 축였다.
+
+“살아남은 사람들을 모으고 있어.”
+
+“자기 밑으로 들어오면 살려주고, 거절하면…”
+
+말은 끝까지 이어지지 않았다.
+
+하지만 도현은 충분히 이해했다.
+
+죽인다.
+
+혹은 그보다 더 귀찮은 일을 만든다.
+
+“…재밌네.”
+
+도현은 조용히 말했다.
+
+그리고 시계를 내려다봤다.
+
+13,500.
+
+그 숫자가 머릿속에서 사라지지 않았다.
+
+그게 이 조직의 중심인지, 아니면 전혀 다른 존재인지는 아직 모른다.
+
+하지만 확실한 건 하나.
+
+이제 상대는 몬스터만이 아니다.
+
+사람도 적이다.
+
+규칙도 적이다.
+
+그리고 강한 놈은 이미 움직이고 있다.
+
+“…확실히.”
+
+도현은 고개를 들었다.
+
+“여긴 이제 게임이 아니네.”`}
 }
 }
 };
@@ -14651,12 +15139,12 @@ function rawToHtml(raw){
         }
       }
 
-      else if(/^\[(상점|구매 목록|구매 완료|소모:|포인트 이용 안내|알림|퀘스트:)/.test(header)){
+      else if(/^\[(상점|상점 가격 상승|구매 목록|구매 완료|소모:|포인트 이용 안내|알림|퀘스트:|아이템 등급|일반 등급|일반 무기|일반 방어구|일반 보조|퀘스트 목록|퀘스트 수락|단독 퀘스트 적용|지도 제공|탐지 범위|미세 반응 감지|처치 완료|전투 시작|조건 충족|마지막 발악 발동|능력치 3배 상승|퀘스트 완료|경험치|레벨 업|누적 경험치|포인트|랜덤 박스|랜덤 박스 개봉|등급:|아이템 분석|유도현|경고|대상 탐지 실패|측정 시작)\]/.test(header)){
         while(i+1<sourceBlocks.length){
           const next=sourceBlocks[i+1].trim();
           if(/^\[/.test(next)) break;
           if(next==="—") break;
-          if(/^(능력치 강화|체력 \+|마력 \+|힘 \+|재생력 \+|포인트는|포인트를|스킬을|장비 및|모든 것은|퀘스트를|이제 1일|이 시간|지역 곳곳|길드에서|상점에서|이곳에서는|그럼|제한 시간:|보상:|실패:|지급된 무기|현재 상태:|여관:|상점:|길드:|※|[0-9]+포인트)/.test(next)){
+          if(/^(능력치 강화|체력 \+|마력 \+|힘 \+|재생력 \+|포인트는|포인트를|스킬을|장비 및|모든 것은|퀘스트를|이제 1일|이 시간|지역 곳곳|길드에서|상점에서|이곳에서는|그럼|제한 시간:|보상:|실패:|지급된 무기|현재 상태:|여관:|상점:|길드:|※|[0-9]+포인트|일반|희귀|유니크|전설|신화|성유물|철검 획득|가죽 갑옷 획득|탐지 구슬 획득|이름:|능력:|\(직업|순수 능력치|총 능력치:|반응:|Lv\.|[0-9]+ XP|\(다음 레벨까지)/.test(next)){
             block+="\n"+sourceBlocks[++i];
             continue;
           }
