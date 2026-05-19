@@ -203,6 +203,27 @@ body.logged-in .page.active{display:block}
 .go-ticket-btn{background:#3b1168;margin-top:10px;width:100%}
 .own-btn{background:#3b1168}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:rgba(0,0,0,.82);color:#fff;padding:10px 14px;border-radius:999px;font-size:13px;display:none;z-index:600;font-weight:800}
+
+.tutorial-overlay{position:fixed;inset:0;background:rgba(0,0,0,.58);z-index:900;display:none;align-items:center;justify-content:center;padding:18px}
+.tutorial-overlay.open{display:flex}
+.tutorial-box{width:min(500px,100%);background:#fff;border-radius:20px;padding:22px 20px;box-shadow:0 20px 60px rgba(0,0,0,.35);border:1px solid rgba(0,0,0,.08);cursor:pointer;animation:tutorialPop .18s ease-out}
+@keyframes tutorialPop{from{transform:translateY(10px);opacity:.4}to{transform:translateY(0);opacity:1}}
+.tutorial-step{display:inline-flex;background:#00c73c;color:#fff;border-radius:999px;padding:6px 11px;font-size:12px;font-weight:900;margin-bottom:12px}
+.tutorial-title{font-size:23px;font-weight:900;letter-spacing:-.7px;margin-bottom:10px}
+.tutorial-text{color:#333;line-height:1.7;font-size:15px;font-weight:700;white-space:pre-line}
+.tutorial-hint{margin-top:16px;color:#777;font-size:12px;font-weight:900;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.tutorial-skip{border:none;background:#111;color:#fff;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:900;cursor:pointer}
+.tutorial-progress{color:#00a832;font-weight:900}
+.tutorial-login-area{display:none;margin-top:16px;background:#fff;border:2px solid #00c73c;border-radius:16px;padding:14px;box-shadow:0 8px 20px rgba(0,199,60,.12);cursor:auto}
+.tutorial-login-area.active{display:block}
+.tutorial-login-area label{display:block;font-size:13px;font-weight:900;margin:8px 0 6px;color:#111}
+.tutorial-login-area input{width:100%;height:42px;border:1px solid #ddd;border-radius:10px;padding:0 12px;font-size:14px;font-weight:800;outline:none;background:#fff}
+.tutorial-login-area input:focus{border-color:#00c73c;box-shadow:0 0 0 3px rgba(0,199,60,.12)}
+.tutorial-login-btn{width:100%;border:none;background:#00c73c;color:#fff;border-radius:12px;padding:12px;margin-top:12px;font-size:15px;font-weight:900;cursor:pointer}
+.tutorial-mini-note{font-size:12px;color:#777;line-height:1.5;margin-top:8px;font-weight:800}
+.tutorial-demo-box{display:none;margin-top:14px;border:1px solid #e5e5e5;border-radius:14px;background:#fafafa;padding:13px;color:#333;font-size:13px;line-height:1.6;font-weight:800}
+.tutorial-demo-box.active{display:block}
+
 @media(max-width:720px){.top-inner{height:auto;padding:10px 12px;flex-wrap:wrap}.logo{width:100%}.search-area{order:3;width:100%;max-width:none}.account-btn{position:absolute;right:12px;top:10px}.profile-sections{grid-template-columns:1fr}.work-card{grid-template-columns:112px 1fr}.cover{height:160px}.episode{grid-template-columns:76px 1fr}.thumb{width:76px;height:52px}.ep-date{display:none}.novel-body{font-size:17px}.avatar-color-grid,.avatar-shape-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
@@ -668,6 +689,30 @@ body.logged-in .page.active{display:block}
   </div>
 </section>
 
+
+<section class="tutorial-overlay" id="tutorialOverlay" onclick="nextTutorialStep()">
+  <div class="tutorial-box" onclick="event.stopPropagation();nextTutorialStep()">
+    <div class="tutorial-step" id="tutorialStepLabel">1 / 6</div>
+    <div class="tutorial-title" id="tutorialTitle">처음 오셨나요?</div>
+    <div class="tutorial-text" id="tutorialText">chat웹 이용 방법을 알려드릴게요.</div>
+
+    <div class="tutorial-login-area" id="tutorialLoginArea" onclick="event.stopPropagation()">
+      <label for="tutorialNicknameInput">닉네임</label>
+      <input id="tutorialNicknameInput" type="text" placeholder="닉네임을 입력하세요">
+      <label for="tutorialPasswordInput">비밀번호</label>
+      <input id="tutorialPasswordInput" type="password" placeholder="비밀번호를 입력하세요">
+      <button class="tutorial-login-btn" onclick="tutorialLogin()">튜토리얼에서 로그인하기</button>
+      <div class="tutorial-mini-note">작가 계정으로 로그인하면 튜토리얼이 바로 종료됩니다. 일반 계정은 로그인 후 기능 설명이 계속 진행됩니다.</div>
+    </div>
+
+    <div class="tutorial-demo-box" id="tutorialDemoBox"></div>
+
+    <div class="tutorial-hint">
+      <span id="tutorialProgress">화면을 누르면 다음 설명으로 넘어갑니다.</span>
+      <button class="tutorial-skip" onclick="event.stopPropagation();finishTutorial()">건너뛰기</button>
+    </div>
+  </div>
+</section>
 <div class="toast" id="toast">알림</div>
 
 <script>
@@ -676,7 +721,7 @@ const navItems=["navHome","navWeekday","navFantasy","navAction","navNew","navRan
 const reader=document.getElementById("reader"),readerScroll=document.getElementById("readerScroll"),toast=document.getElementById("toast"),loginModal=document.getElementById("loginModal"),profileEditModal=document.getElementById("profileEditModal"),avatarModal=document.getElementById("avatarModal"),ticketModal=document.getElementById("ticketModal"),needTicketModal=document.getElementById("needTicketModal"),freeTicketModal=document.getElementById("freeTicketModal"),paidEpisodeModal=document.getElementById("paidEpisodeModal"),accountBtn=document.getElementById("accountBtn"),searchInput=document.getElementById("searchInput");
 const readerMiniTitle=document.getElementById("readerMiniTitle"),readerSeriesMini=document.getElementById("readerSeriesMini"),readerSeriesName=document.getElementById("readerSeriesName"),readerTitle=document.getElementById("readerTitle"),readerSub=document.getElementById("readerSub"),novelBody=document.getElementById("novelBody"),prevBtn=document.getElementById("prevBtn"),nextBtn=document.getElementById("nextBtn");
 let currentUser=null,currentWorkId="world",currentEpisode=1,pendingEpisodeNumber=null,pendingWorkId=null,avatarDraft={color:"green",shape:"circle",photo:""};
-const AUTHOR_NAME="고쓰비",AUTHOR_PASSWORD="2012424!",COIN_INTERVAL=2700000,COIN_BANK_MAX=10;
+const AUTHOR_NAME="고쓰비",AUTHOR_PASSWORD="2012424!",COIN_INTERVAL=2700000,COIN_BANK_MAX=10,TUTORIAL_NEXT_KEY="chatweb_tutorial_next_at_v1";
 const NORMAL_ACCOUNT_KEY="chatweb_single_normal_account",AUTHOR_ACCOUNT_KEY="chatweb_author_account",CURRENT_LOGIN_KEY="chatweb_current_login",FREE_TICKET_KEY="chatweb_free_ticket_claimed";
 const AVATAR_COLORS=["red","orange","yellow","green","blue","pink","white"],AVATAR_SHAPES=["circle","square","triangle","star"];
 
@@ -7459,7 +7504,7 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
 오히려—
 
 더 깊어지고 있었다.`},
-22:{title:"22화 - 전라남도의 장악",sub:"4군단 · 전라남도 · 국방부 장관",desc:"4군단은 전라남도를 장악하고, 국방부 장관은 혼자서 마지막 충돌을 시도한다.",date:"2026.05.15",preview:true,cost:2,ownCost:4,raw:`제주도와 가장 가까운 전라남도 해안 지역.
+22:{title:"22화 - 전라남도의 장악",sub:"4군단 · 전라남도 · 국방부 장관",desc:"4군단은 전라남도를 장악하고, 국방부 장관은 혼자서 마지막 충돌을 시도한다.",date:"2026.05.15",raw:`제주도와 가장 가까운 전라남도 해안 지역.
 
 바다를 등지고 펼쳐진 항만 도시와 방어선이 동시에 구축된 전략 요충지였다.
 
@@ -15267,7 +15312,7 @@ function saveUserData(user){
 
 function saveCurrentLogin(user){
   if(!user){localStorage.removeItem(CURRENT_LOGIN_KEY);return}
-  localStorage.setItem(CURRENT_LOGIN_KEY,JSON.stringify({kind:user.kind,nickname:user.nickname}));
+  localStorage.setItem(CURRENT_LOGIN_KEY,JSON.stringify({kind:user.kind,nickname:user.nickname,loggedAt:Date.now()}));
 }
 function applyAvatarToElement(el,avatar){
   if(!el)return;
@@ -15848,6 +15893,7 @@ function confirmLogin(){
     renderHome();
     showPage("homePage","navHome");
     showToast("작가 계정으로 로그인되었습니다.");
+    maybeStartTutorial();
     return;
   }
 
@@ -15881,6 +15927,7 @@ function confirmLogin(){
       showPage("homePage","navHome");
       maybeShowFreeTicketModal();
       showToast("기존 일반 계정을 지우고 새 계정으로 시작했습니다.");
+      maybeStartTutorial();
       return;
     }
 
@@ -15921,12 +15968,21 @@ function confirmLogin(){
   showPage("homePage","navHome");
   maybeShowFreeTicketModal();
   showToast("로그인되었습니다.");
+  maybeStartTutorial();
 }
 
 function restoreLogin(){
   const raw=localStorage.getItem(CURRENT_LOGIN_KEY);
   if(!raw)return false;
   const login=JSON.parse(raw);
+  const oneWeek=7*24*60*60*1000;
+
+  // 계정은 삭제하지 않고, 1주일마다 로그인 상태만 초기화
+  if(!login.loggedAt||Date.now()-login.loggedAt>=oneWeek){
+    localStorage.removeItem(CURRENT_LOGIN_KEY);
+    localStorage.removeItem(TUTORIAL_NEXT_KEY);
+    return false;
+  }
 
   if(login.kind==="author"){
     const user=getAuthorAccount();
@@ -15942,6 +15998,7 @@ function restoreLogin(){
   updateAccountButton();
   renderHome();
   showPage("homePage","navHome");
+  maybeStartTutorial();
   return true;
 }
 
@@ -16355,6 +16412,153 @@ function scrollToEpisodes(){
   document.getElementById("episodes").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
+
+let tutorialIndex=0;
+const tutorialSteps=[
+  {title:"로그인 체험",text:"먼저 로그인해야 작품을 볼 수 있습니다.\n아래 흰색 입력칸에 닉네임과 비밀번호를 직접 입력해보세요.",demo:"login"},
+  {title:"홈 화면 체험",text:"로그인하면 홈에서 추천 작품과 최근 본 작품을 확인합니다.\n작품 카드를 누르면 상세 페이지로 이동합니다.",demo:"추천 작품 → 작품 상세 이동"},
+  {title:"프로필 체험",text:"오른쪽 위 닉네임 버튼을 누르면 프로필로 이동합니다.\n최근 본 작품, 보고있는 작품, 이용권과 코인을 확인할 수 있습니다.",demo:"닉네임 버튼 → 프로필 → 내 이용권"},
+  {title:"이용권/코인 체험",text:"유료 회차는 이용권을 사용해 열람합니다.\n코인은 시간이 지나면 모이고, 코인상점에서 이용권으로 바꿀 수 있습니다.",demo:"코인 3개 = 이용권 1장"},
+  {title:"소설 읽기 체험",text:"작품 상세에서 회차를 누르면 본문을 읽습니다.\n무료분은 바로 열리고, 유료분은 이전화를 먼저 읽어야 열람할 수 있습니다.",demo:"무료분 바로 보기 / 유료분은 순서대로 보기"},
+  {title:"검색/요일별 체험",text:"상단 검색창으로 작품명이나 작가명을 검색할 수 있습니다.\n요일별 탭에서는 연재 요일에 맞춰 작품을 확인할 수 있습니다.",demo:"절대신 강림기 → 월·수·금"}
+];
+
+function shouldShowTutorial(){
+  const nextAt=Number(localStorage.getItem(TUTORIAL_NEXT_KEY)||0);
+  return !nextAt||Date.now()>=nextAt;
+}
+
+function maybeStartTutorial(){
+  if(!shouldShowTutorial())return;
+  setTimeout(()=>startTutorial(),450);
+}
+
+function startTutorial(){
+  if(!shouldShowTutorial())return;
+  tutorialIndex=currentUser?1:0;
+  const overlay=document.getElementById("tutorialOverlay");
+  if(!overlay)return;
+  overlay.classList.add("open");
+  renderTutorialStep();
+}
+
+function renderTutorialStep(){
+  const step=tutorialSteps[tutorialIndex];
+  const stepLabel=document.getElementById("tutorialStepLabel");
+  const title=document.getElementById("tutorialTitle");
+  const text=document.getElementById("tutorialText");
+  const progress=document.getElementById("tutorialProgress");
+  const loginArea=document.getElementById("tutorialLoginArea");
+  const demoBox=document.getElementById("tutorialDemoBox");
+
+  if(stepLabel)stepLabel.textContent=`${tutorialIndex+1} / ${tutorialSteps.length}`;
+  if(title)title.textContent=step.title;
+  if(text)text.textContent=step.text;
+
+  if(loginArea)loginArea.classList.toggle("active",step.demo==="login");
+  if(demoBox){
+    if(step.demo&&step.demo!=="login"){
+      demoBox.textContent=step.demo;
+      demoBox.classList.add("active");
+    }else{
+      demoBox.textContent="";
+      demoBox.classList.remove("active");
+    }
+  }
+
+  if(progress){
+    if(step.demo==="login")progress.textContent="직접 로그인하면 다음 설명으로 넘어갑니다.";
+    else progress.textContent=tutorialIndex===tutorialSteps.length-1?"화면을 누르면 튜토리얼이 끝납니다.":"화면을 누르면 다음 설명으로 넘어갑니다.";
+  }
+}
+
+function tutorialLogin(){
+  const nickname=document.getElementById("tutorialNicknameInput").value.trim();
+  const password=document.getElementById("tutorialPasswordInput").value.trim();
+
+  if(!nickname){showToast("닉네임을 입력하세요.");return}
+  if(!password){showToast("비밀번호를 입력하세요.");return}
+
+  if(nickname===AUTHOR_NAME){
+    if(password!==AUTHOR_PASSWORD){showToast("고쓰비 계정의 비밀번호가 다릅니다.");return}
+    const user=getAuthorAccount();
+    currentUser={nickname:user.nickname,kind:"author",isAuthor:true};
+    saveCurrentLogin(currentUser);
+    updateAccountButton();
+    renderHome();
+    showPage("homePage","navHome");
+    showToast("작가 계정으로 로그인되었습니다.");
+    finishTutorial();
+    return;
+  }
+
+  const saved=getNormalAccount();
+
+  if(saved){
+    if(saved.nickname!==nickname){
+      localStorage.removeItem(NORMAL_ACCOUNT_KEY);
+      const newUser={
+        nickname,password,kind:"normal",isAuthor:false,createdAt:new Date().toISOString(),
+        recentWorks:[],watchingWorks:[],readEpisodes:[],ownedEpisodes:[],
+        tickets:0,coins:0,coinBank:0,coinStartedAt:0,
+        avatar:{color:"green",shape:"circle",photo:""}
+      };
+      saveNormalAccount(newUser);
+      currentUser={nickname:newUser.nickname,kind:"normal",isAuthor:false};
+      saveCurrentLogin(currentUser);
+      updateAccountButton();
+      renderHome();
+      showPage("homePage","navHome");
+      maybeShowFreeTicketModal();
+    }else{
+      if(saved.password!==password){showToast("비밀번호가 다릅니다.");return}
+      currentUser={nickname:saved.nickname,kind:"normal",isAuthor:false};
+      saveCurrentLogin(currentUser);
+      updateAccountButton();
+      renderHome();
+      showPage("homePage","navHome");
+      maybeShowFreeTicketModal();
+    }
+  }else{
+    const newUser={
+      nickname,password,kind:"normal",isAuthor:false,createdAt:new Date().toISOString(),
+      recentWorks:[],watchingWorks:[],readEpisodes:[],ownedEpisodes:[],
+      tickets:0,coins:0,coinBank:0,coinStartedAt:0,
+      avatar:{color:"green",shape:"circle",photo:""}
+    };
+    saveNormalAccount(newUser);
+    currentUser={nickname:newUser.nickname,kind:"normal",isAuthor:false};
+    saveCurrentLogin(currentUser);
+    updateAccountButton();
+    renderHome();
+    showPage("homePage","navHome");
+    maybeShowFreeTicketModal();
+  }
+
+  showToast("로그인되었습니다.");
+  tutorialIndex=1;
+  renderTutorialStep();
+}
+
+function nextTutorialStep(){
+  const step=tutorialSteps[tutorialIndex];
+  if(step&&step.demo==="login"&&!currentUser)return;
+
+  tutorialIndex++;
+  if(tutorialIndex>=tutorialSteps.length){
+    finishTutorial();
+    return;
+  }
+  renderTutorialStep();
+}
+
+function finishTutorial(){
+  const oneWeek=7*24*60*60*1000;
+  localStorage.setItem(TUTORIAL_NEXT_KEY,String(Date.now()+oneWeek));
+  const overlay=document.getElementById("tutorialOverlay");
+  if(overlay)overlay.classList.remove("open");
+}
+
 function showToast(message){
   toast.textContent=message;
   toast.style.display="block";
@@ -16405,6 +16609,7 @@ setInterval(()=>{
 
 if(!restoreLogin()){
   initLoggedOut();
+  maybeStartTutorial();
 }
 </script>
 </body>
