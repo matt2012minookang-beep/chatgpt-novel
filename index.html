@@ -204,27 +204,30 @@ body.logged-in .page.active{display:block}
 .own-btn{background:#3b1168}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:rgba(0,0,0,.82);color:#fff;padding:10px 14px;border-radius:999px;font-size:13px;display:none;z-index:600;font-weight:800}
 
-.tutorial-overlay{position:fixed;inset:0;background:rgba(0,0,0,.58);z-index:900;display:none;align-items:center;justify-content:center;padding:18px}
+
+.tutorial-overlay{position:fixed;inset:0;background:rgba(0,0,0,.56);z-index:900;display:none;align-items:flex-end;justify-content:center;padding:18px;pointer-events:auto}
 .tutorial-overlay.open{display:flex}
-.tutorial-box{width:min(500px,100%);background:#fff;border-radius:20px;padding:22px 20px;box-shadow:0 20px 60px rgba(0,0,0,.35);border:1px solid rgba(0,0,0,.08);cursor:pointer;animation:tutorialPop .18s ease-out}
-@keyframes tutorialPop{from{transform:translateY(10px);opacity:.4}to{transform:translateY(0);opacity:1}}
+.tutorial-overlay.login-mode{background:rgba(0,0,0,.50);align-items:center}
+.tutorial-card{width:min(460px,100%);background:#fff;border-radius:20px;padding:20px;box-shadow:0 22px 70px rgba(0,0,0,.38);border:1px solid rgba(0,0,0,.08);animation:tutorialPop .18s ease-out}
+@keyframes tutorialPop{from{transform:translateY(10px);opacity:.45}to{transform:translateY(0);opacity:1}}
 .tutorial-step{display:inline-flex;background:#00c73c;color:#fff;border-radius:999px;padding:6px 11px;font-size:12px;font-weight:900;margin-bottom:12px}
 .tutorial-title{font-size:23px;font-weight:900;letter-spacing:-.7px;margin-bottom:10px}
-.tutorial-text{color:#333;line-height:1.7;font-size:15px;font-weight:700;white-space:pre-line}
-.tutorial-hint{margin-top:16px;color:#777;font-size:12px;font-weight:900;display:flex;justify-content:space-between;align-items:center;gap:10px}
-.tutorial-skip{border:none;background:#111;color:#fff;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:900;cursor:pointer}
-.tutorial-progress{color:#00a832;font-weight:900}
-.tutorial-login-area{display:none;margin-top:16px;background:#fff;border:2px solid #00c73c;border-radius:16px;padding:14px;box-shadow:0 8px 20px rgba(0,199,60,.12);cursor:auto}
+.tutorial-text{color:#333;line-height:1.7;font-size:15px;font-weight:750;white-space:pre-line}
+.tutorial-controls{display:flex;gap:8px;margin-top:16px}
+.tutorial-next,.tutorial-skip{border:none;border-radius:12px;padding:12px 14px;font-size:14px;font-weight:900;cursor:pointer}
+.tutorial-next{flex:1;background:#00c73c;color:#fff}
+.tutorial-skip{background:#111;color:#fff}
+.tutorial-login-area{display:none;margin-top:14px;background:#fff;border:2px solid #00c73c;border-radius:16px;padding:14px;box-shadow:0 8px 20px rgba(0,199,60,.12)}
 .tutorial-login-area.active{display:block}
 .tutorial-login-area label{display:block;font-size:13px;font-weight:900;margin:8px 0 6px;color:#111}
 .tutorial-login-area input{width:100%;height:42px;border:1px solid #ddd;border-radius:10px;padding:0 12px;font-size:14px;font-weight:800;outline:none;background:#fff}
 .tutorial-login-area input:focus{border-color:#00c73c;box-shadow:0 0 0 3px rgba(0,199,60,.12)}
 .tutorial-login-btn{width:100%;border:none;background:#00c73c;color:#fff;border-radius:12px;padding:12px;margin-top:12px;font-size:15px;font-weight:900;cursor:pointer}
+.tutorial-highlight{position:fixed;z-index:899;border:3px solid #00c73c;border-radius:16px;box-shadow:0 0 0 9999px rgba(0,0,0,.56),0 0 24px rgba(0,199,60,.55);pointer-events:none;display:none}
+.tutorial-highlight.open{display:block}
 .tutorial-mini-note{font-size:12px;color:#777;line-height:1.5;margin-top:8px;font-weight:800}
-.tutorial-demo-box{display:none;margin-top:14px;border:1px solid #e5e5e5;border-radius:14px;background:#fafafa;padding:13px;color:#333;font-size:13px;line-height:1.6;font-weight:800}
-.tutorial-demo-box.active{display:block}
-
-@media(max-width:720px){.top-inner{height:auto;padding:10px 12px;flex-wrap:wrap}.logo{width:100%}.search-area{order:3;width:100%;max-width:none}.account-btn{position:absolute;right:12px;top:10px}.profile-sections{grid-template-columns:1fr}.work-card{grid-template-columns:112px 1fr}.cover{height:160px}.episode{grid-template-columns:76px 1fr}.thumb{width:76px;height:52px}.ep-date{display:none}.novel-body{font-size:17px}.avatar-color-grid,.avatar-shape-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.tutorial-overlay{align-items:flex-end}.tutorial-card{border-radius:18px}.tutorial-controls{flex-direction:column}.tutorial-skip{width:100%}}
+{.top-inner{height:auto;padding:10px 12px;flex-wrap:wrap}.logo{width:100%}.search-area{order:3;width:100%;max-width:none}.account-btn{position:absolute;right:12px;top:10px}.profile-sections{grid-template-columns:1fr}.work-card{grid-template-columns:112px 1fr}.cover{height:160px}.episode{grid-template-columns:76px 1fr}.thumb{width:76px;height:52px}.ep-date{display:none}.novel-body{font-size:17px}.avatar-color-grid,.avatar-shape-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 
@@ -289,7 +292,7 @@ body.logged-in .page.active{display:block}
         <h3>절대신 강림기</h3>
         <p>작가 고쓰비 · 전장에 소환된 유도현, 절대신의 길이 열린다.</p>
       </div>
-      <div class="work-row-badge">6화 공개</div>
+      <div class="work-row-badge">7화 공개</div>
     </div>
   </section>
 </main>
@@ -403,7 +406,7 @@ body.logged-in .page.active{display:block}
     </div>
     <div class="work-row" onclick="openWorkDetail('absolute')">
       <div class="mini-cover absolute"></div>
-      <div class="work-row-info"><h3>절대신 강림기</h3><p>작가 고쓰비 · 신작 · 6화 공개</p></div>
+      <div class="work-row-info"><h3>절대신 강림기</h3><p>작가 고쓰비 · 신작 · 7화 공개</p></div>
       <div class="work-row-badge">신작</div>
     </div>
   </section>
@@ -690,26 +693,23 @@ body.logged-in .page.active{display:block}
 </section>
 
 
-<section class="tutorial-overlay" id="tutorialOverlay" onclick="nextTutorialStep()">
-  <div class="tutorial-box" onclick="event.stopPropagation();nextTutorialStep()">
-    <div class="tutorial-step" id="tutorialStepLabel">1 / 6</div>
-    <div class="tutorial-title" id="tutorialTitle">처음 오셨나요?</div>
-    <div class="tutorial-text" id="tutorialText">chat웹 이용 방법을 알려드릴게요.</div>
-
-    <div class="tutorial-login-area" id="tutorialLoginArea" onclick="event.stopPropagation()">
+<div class="tutorial-highlight" id="tutorialHighlight"></div>
+<section class="tutorial-overlay" id="tutorialOverlay">
+  <div class="tutorial-card" id="tutorialCard">
+    <div class="tutorial-step" id="tutorialStepLabel">1 / 7</div>
+    <div class="tutorial-title" id="tutorialTitle">튜토리얼</div>
+    <div class="tutorial-text" id="tutorialText">설명</div>
+    <div class="tutorial-login-area" id="tutorialLoginArea">
       <label for="tutorialNicknameInput">닉네임</label>
       <input id="tutorialNicknameInput" type="text" placeholder="닉네임을 입력하세요">
       <label for="tutorialPasswordInput">비밀번호</label>
       <input id="tutorialPasswordInput" type="password" placeholder="비밀번호를 입력하세요">
-      <button class="tutorial-login-btn" onclick="tutorialLogin()">튜토리얼에서 로그인하기</button>
-      <div class="tutorial-mini-note">작가 계정으로 로그인하면 튜토리얼이 바로 종료됩니다. 일반 계정은 로그인 후 기능 설명이 계속 진행됩니다.</div>
+      <button class="tutorial-login-btn" onclick="tutorialLogin()">로그인하고 계속</button>
+      <div class="tutorial-mini-note">작가 계정으로 로그인하면 튜토리얼이 바로 종료됩니다. 일반 계정은 로그인 후 실제 화면을 보면서 계속 진행됩니다.</div>
     </div>
-
-    <div class="tutorial-demo-box" id="tutorialDemoBox"></div>
-
-    <div class="tutorial-hint">
-      <span id="tutorialProgress">화면을 누르면 다음 설명으로 넘어갑니다.</span>
-      <button class="tutorial-skip" onclick="event.stopPropagation();finishTutorial()">건너뛰기</button>
+    <div class="tutorial-controls">
+      <button class="tutorial-next" id="tutorialNextBtn" onclick="nextTutorialStep()">다음</button>
+      <button class="tutorial-skip" onclick="finishTutorial()">건너뛰기</button>
     </div>
   </div>
 </section>
@@ -7787,7 +7787,7 @@ B계열 탄환이 아닌, 더 상위 단계의 탄이 쏟아졌다.
 전쟁은 끝났지만,
 
 더 큰 전쟁이 시작되기 직전이었다.`},
-23:{title:"23화 - 새로운 군단",sub:"제5군단 · 세성 길드 · 전쟁 준비",desc:"국방부 장관의 시체로 제5군단이 탄생하고, 세성 길드는 솔라리스 침략 계획을 준비한다.",date:"2026.05.16",preview:true,cost:2,ownCost:4,raw:`수도, 솔라리스 중심부.
+23:{title:"23화 - 새로운 군단",sub:"제5군단 · 세성 길드 · 전쟁 준비",desc:"국방부 장관의 시체로 제5군단이 탄생하고, 세성 길드는 솔라리스 침략 계획을 준비한다.",date:"2026.05.16",raw:`수도, 솔라리스 중심부.
 
 전장이 정리된 직후 강세윤이 도윤 앞에 섰다.
 
@@ -12880,7 +12880,7 @@ heroDesc:"전장으로 소환된 평범한 대학생 유도현. 선택받지 못
 badge:"고쓰비 · 절대신 판타지",
 meta:["시스템","절대신","전장","성장"],
 summary:"지구 인류가 전장으로 소환된 날. 유도현은 직업도 특성도 없는 실패자처럼 보였지만, 비정상 데이터가 감지되며 절대신이라는 직업을 부여받는다.",
-stats:["★ 0","조회 0","관심 0","총 6화 공개"],
+stats:["★ 0","조회 0","관심 0","총 7화 공개"],
 aliases:["절대신","절대신강림기","유도현","마포구","전장","마지막발악","절대신의손","절대신의방패","붉은규칙","고쓰비"],
 episodes:{
 1:{title:"1화 - 선택받지 못한 자",sub:"유도현 · 절대신 · 신의 자격",desc:"전장에 소환된 유도현은 아무 직업도 없는 줄 알았지만, 붉은 퀘스트와 함께 절대신의 길로 들어선다.",date:"2026.05.15",raw:`뜨겁다.
@@ -13892,7 +13892,7 @@ episodes:{
 조용히.
 
 잠에 빠져들었다.`},
-3:{title:"3화 - 붉은 규칙의 시작",sub:"살상 활성화 · 마지막 발악 · 철혈 돌진",desc:"살상이 다시 허용된 순간, 도현은 첫 위기를 맞고 절대신의 스킬이 어떤 방식으로 작동하는지 깨닫는다.",date:"2026.05.15",preview:true,cost:3,ownCost:5,raw:`“…깨졌네.”
+3:{title:"3화 - 붉은 규칙의 시작",sub:"살상 활성화 · 마지막 발악 · 철혈 돌진",desc:"살상이 다시 허용된 순간, 도현은 첫 위기를 맞고 절대신의 스킬이 어떤 방식으로 작동하는지 깨닫는다.",date:"2026.05.15",raw:`“…깨졌네.”
 
 유도현은 눈을 떴다.
 
@@ -15151,7 +15151,320 @@ Lv.2 → Lv.3
 
 도현은 고개를 들었다.
 
-“여긴 이제 게임이 아니네.”`}
+“여긴 이제 게임이 아니네.”`},
+7:{title:"7화 - 점령된 도시",sub:"철갑옷 · 조직 본부 · 강제 퀘스트",desc:"도현은 희귀 철갑옷을 구매한 뒤, 마포구를 점령하려는 조직의 본부로 향한다.",date:"2026.05.19",preview:true,cost:3,ownCost:5,raw:`상점.
+
+유도현은 조용히 목록을 훑었다.
+
+전투가 끝났다고 해서 여유가 생긴 것은 아니었다.
+
+오히려 반대였다.
+
+드레이크를 쓰러뜨린 뒤, 그는 더 확실히 알게 됐다.
+
+이곳에서 살아남으려면 운만으로는 부족하다.
+
+스킬도 중요하지만, 장비와 수치도 결국 생존을 결정한다.
+
+이미 싸움은 다음 단계로 넘어가고 있었다.
+
+“…방어부터 올려야겠네.”
+
+그의 시선이 한 항목에서 멈췄다.
+
+[희귀 등급 - 철갑옷]
+방어력 강화 / 충격 완화 / 무게 최소화
+
+가격: 680 포인트
+
+도현은 가격을 보고도 오래 고민하지 않았다.
+
+지금 가진 포인트는 700이 조금 넘는다.
+
+사면 거의 전부 사라진다.
+
+하지만 살 수 있을 때 사야 한다.
+
+드레이크의 꼬리 한 번에 벽까지 날아가던 감각이 아직 몸에 남아 있었다.
+
+“…이건 필수지.”
+
+그는 바로 구매했다.
+
+[구매 완료]
+
+포인트: 20
+
+빛이 몸을 감쌌다.
+
+기존의 가죽 갑옷 위로 금속성이 얇게 번지더니, 곧 도현의 체형에 맞춰 재구성됐다.
+
+철갑옷이라고 해서 둔탁한 판금 갑옷을 떠올렸지만, 실제로는 훨씬 날렵했다.
+
+관절부는 부드럽게 움직였고, 가슴과 어깨 쪽만 단단한 보호층이 생겼다.
+
+도현은 팔을 한 번 돌려봤다.
+
+“…무겁진 않네.”
+
+확실히 이전 장비보다 한 단계 위다.
+
+가죽 갑옷이 ‘입고 있다’는 느낌이었다면, 이건 몸에 맞춰 붙은 방어막에 가까웠다.
+
+“이제 준비는 됐고.”
+
+그는 고개를 들었다.
+
+“본격적으로 가볼까.”
+
+6화에서 만났던 남자의 말이 머릿속에 남아 있었다.
+
+“마포구를 점령하려는 조직.”
+
+그리고 구조.
+
+5급부터 1급까지.
+
+숫자로 나뉜 체계.
+
+단순한 모임이 아니다.
+
+강한 사람이 약한 사람을 모아놓은 것도 아니다.
+
+규칙이 있고, 계급이 있고, 명령이 있다.
+
+“…군대 구조네.”
+
+도현은 천천히 걸었다.
+
+목적지는 이미 정해져 있었다.
+
+조직이 움직이는 곳.
+
+사람들이 사라진 이유.
+
+그리고 탐지 구슬을 깨뜨릴 정도의 수치가 가리킨 방향.
+
+확인해야 할 것들이 너무 많았다.
+
+도시 외곽.
+
+붕괴된 고층 건물 하나.
+
+겉으로 보기에는 이미 무너진 폐건물이었다.
+
+하지만 가까이 갈수록 달랐다.
+
+입구가 정리되어 있었고, 부서진 잔해들이 의도적으로 치워져 있었다.
+
+주변에는 감시하기 좋은 위치에 사람들이 배치되어 있었다.
+
+그 앞.
+
+사람들이 서 있었다.
+
+갑옷.
+
+무기.
+
+그리고—
+
+규율.
+
+“…여긴 맞네.”
+
+도현은 멈췄다.
+
+입구를 지키는 문지기 2명.
+
+둘 다 움직임이 비슷했다.
+
+호흡도, 자세도, 시선 처리도.
+
+어설픈 생존자들이 아니다.
+
+적어도 훈련받은 척은 하고 있다.
+
+그들의 어깨에는 작은 표식이 있었다.
+
+5급.
+
+“누구냐.”
+
+한 명이 말했다.
+
+도현은 대답하지 않았다.
+
+그냥 걸었다.
+
+문지기의 눈매가 날카로워졌다.
+
+“…침입자다.”
+
+둘이 동시에 움직였다.
+
+한 명은 정면.
+
+다른 한 명은 옆으로 벌어진다.
+
+기본적인 포위.
+
+나쁘지 않은 움직임이었다.
+
+하지만—
+
+푹.
+
+푹.
+
+짧다.
+
+너무 짧다.
+
+도현의 철검이 한 번씩 움직였을 뿐이었다.
+
+두 명은 그대로 쓰러졌다.
+
+[처치 완료]
+
+그 순간.
+
+공기가 멈췄다.
+
+정말로 멈춘 것처럼 느껴졌다.
+
+피가 바닥에 번지는 소리조차 멀어졌다.
+
+그리고—
+
+[강제 퀘스트 발동]
+
+붉은 창.
+
+처음 보는 색.
+
+이전의 시스템 창과 달랐다.
+
+푸른 안내가 아니었다.
+
+경고에 가까웠고, 명령에 가까웠다.
+
+도현은 그 붉은 빛을 가만히 바라봤다.
+
+[퀘스트]
+
+마포구를 점령한 조직을 무너뜨리십시오.
+
+성공: 1500 포인트 + 중급 랜덤 상자
+(일반 30% / 희귀 50% / 유니크 19% / 전설 1%)
+
+실패: 사망
+
+제한 시간: 3일
+
+“…이제 확정이네.”
+
+도현은 창을 바라봤다.
+
+조직.
+
+점령.
+
+제한 시간.
+
+실패 시 사망.
+
+시스템이 직접 개입했다는 건, 이 일이 단순한 개인 싸움이 아니라는 뜻이었다.
+
+“여긴 그냥 싸움판이 아니라.”
+
+그는 천천히 숨을 내쉬었다.
+
+“전쟁이네.”
+
+붉은 창은 사라지지 않았다.
+
+마치 들어가라고 등을 떠미는 것처럼, 그의 시야 한쪽에 계속 떠 있었다.
+
+도현은 고개를 들었다.
+
+그리고 건물을 봤다.
+
+무너진 고층 건물.
+
+그 안쪽에는 분명히 더 많은 사람들이 있다.
+
+5급만 있을 리 없다.
+
+4급, 3급, 그리고 그 위.
+
+아마 이곳을 움직이는 중심까지.
+
+“…들어간다.”
+
+문이 열리자.
+
+공기가 달라졌다.
+
+밖과 다르다.
+
+폐건물처럼 보이는 외부와 달리 내부는 꽤 정리되어 있었다.
+
+복도에는 불빛이 켜져 있었고, 계단 옆에는 감시용 거울 같은 장치까지 설치되어 있었다.
+
+부서진 벽은 천으로 가려져 있었고, 바닥에는 이동 동선이 표시되어 있었다.
+
+“…생각보다 체계적이네.”
+
+도현은 천천히 걸었다.
+
+철갑옷이 미세하게 소리를 냈다.
+
+그 소리가 복도 안쪽으로 퍼져나갔다.
+
+어딘가에서 사람들이 움직이는 기척이 들렸다.
+
+문이 닫히는 소리.
+
+발걸음을 맞추는 소리.
+
+무기를 잡는 소리.
+
+“딱 군대 구조다.”
+
+도현은 손을 검에 올렸다.
+
+몸은 이미 긴장하고 있었다.
+
+하지만 머리는 차갑게 식어 있었다.
+
+이곳은 동굴이 아니다.
+
+상대는 몬스터가 아니다.
+
+도망칠 수도 있고, 협공할 수도 있고, 함정을 만들 수도 있다.
+
+그리고 무엇보다—
+
+사람은 생각한다.
+
+그래서 더 귀찮다.
+
+도현은 낮게 중얼거렸다.
+
+“…좋아.”
+
+검 끝이 천천히 들렸다.
+
+“하나씩 부수면 되겠네.”
+
+그는 안쪽으로 들어갔다.
+
+붉은 창이 시야 한구석에서 조용히 빛나고 있었다.
+
+제한 시간은 3일.
+
+하지만 도현은 그만큼 기다릴 생각이 없었다.`}
 }
 }
 };
@@ -15162,37 +15475,67 @@ function escapeHtml(str){
 
 function rawToHtml(raw){
   if(String(raw||"").trim().startsWith("__RAWHTML__"))return String(raw||"").trim().replace("__RAWHTML__","").trim();
+
   const sourceBlocks=String(raw||"").trim().split(/\n\s*\n/g).map(block=>block.trim()).filter(Boolean);
   const blocks=[];
+
+  function isAbsoluteSystemStart(block){
+    return /^\[[^\]]+\]/.test(block.trim());
+  }
+
+  function isAbsoluteSystemContinuation(block){
+    const lines=String(block||"").trim().split(/\n+/).map(line=>line.trim()).filter(Boolean);
+    if(!lines.length)return false;
+
+    return lines.every(line=>{
+      return (
+        /^\[[^\]]+\]$/.test(line)||
+        /^(이름|레벨|경험치|직업|체력|마력|힘|재생력|특성|스킬|퀘스트|포인트|능력|설명|특성|가격|목표|거리|내용|위험도|보상|성공|실패|제한 시간|반응|총 능력치|누적 경험치|현재 생존자 수)\s*:/.test(line)||
+        /^(일반|희귀|유니크|전설|신화|성유물)$/.test(line)||
+        /^(일반|희귀|유니크|전설|신화|성유물)\s*\d+%/.test(line)||
+        /^\(.*\)$/.test(line)||
+        /^※/.test(line)||
+        /^Lv\.\d+/.test(line)||
+        /^\d+\s*XP/.test(line)||
+        /^[0-9,]+\s*포인트/.test(line)||
+        /^(체력|마력|힘|재생력)\s*\+\d+/.test(line)||
+        /^(철검|가죽 갑옷|탐지 구슬|랜덤 박스|포인트)\s*(획득|이용 안내|완료|상승|제공|시작)/.test(line)||
+        /^(능력치 강화|구매 완료|소모|상점|길드|여관|현재 상태|지급된 무기)/.test(line)||
+        /^(포인트는|포인트를|스킬을|장비 및|모든 것은|퀘스트를|이제 1일|이 시간|지역 곳곳|길드에서|상점에서|이곳에서는)/.test(line)||
+        /^(마지막 발악|절대신의 손|절대신의 방패|절대적인 손|절대적인 방패|죽을 시 발동|모든 능력치|막타를|해당 적을|사용 중|쿨타임|발악당)/.test(line)||
+        /^(마포구를 점령한 조직|방어력 강화|충격 완화|무게 최소화)/.test(line)
+      );
+    });
+  }
 
   for(let i=0;i<sourceBlocks.length;i++){
     let block=sourceBlocks[i];
 
     if(currentWorkId==="absolute"){
-      const header=block.trim();
-
-      if(/^\[스테이터스\]/.test(header)){
+      if(isAbsoluteSystemStart(block)){
         while(i+1<sourceBlocks.length){
           const next=sourceBlocks[i+1].trim();
-          if(/^\[/.test(next)) break;
-          if(next==="—") break;
-          if(/^(이름:|레벨:|경험치:|직업:|능력치|체력:|마력:|힘:|재생력:|특성:|스킬|퀘스트:|퀘스트|포인트:|마지막 발악|절대신의 손|절대신의 방패|죽을 시 발동\.|모든 능력치|막타를|해당 적을|사용 중|쿨타임|‘마지막 발악’|절대적인 손|절대적인 방패|발악당)/.test(next)){
+
+          if(next==="—")break;
+
+          if(isAbsoluteSystemStart(next)||isAbsoluteSystemContinuation(next)){
             block+="\n"+sourceBlocks[++i];
             continue;
           }
+
           break;
         }
-      }
-
-      else if(/^\[(상점|상점 가격 상승|구매 목록|구매 완료|소모:|포인트 이용 안내|알림|퀘스트:|아이템 등급|일반 등급|일반 무기|일반 방어구|일반 보조|퀘스트 목록|퀘스트 수락|단독 퀘스트 적용|지도 제공|탐지 범위|미세 반응 감지|처치 완료|전투 시작|조건 충족|마지막 발악 발동|능력치 3배 상승|퀘스트 완료|경험치|레벨 업|누적 경험치|포인트|랜덤 박스|랜덤 박스 개봉|등급:|아이템 분석|유도현|경고|대상 탐지 실패|측정 시작)\]/.test(header)){
+      }else if(isAbsoluteSystemContinuation(block)){
         while(i+1<sourceBlocks.length){
           const next=sourceBlocks[i+1].trim();
-          if(/^\[/.test(next)) break;
-          if(next==="—") break;
-          if(/^(능력치 강화|체력 \+|마력 \+|힘 \+|재생력 \+|포인트는|포인트를|스킬을|장비 및|모든 것은|퀘스트를|이제 1일|이 시간|지역 곳곳|길드에서|상점에서|이곳에서는|그럼|제한 시간:|보상:|실패:|지급된 무기|현재 상태:|여관:|상점:|길드:|※|[0-9]+포인트|일반|희귀|유니크|전설|신화|성유물|철검 획득|가죽 갑옷 획득|탐지 구슬 획득|이름:|능력:|\(직업|순수 능력치|총 능력치:|반응:|Lv\.|[0-9]+ XP|\(다음 레벨까지)/.test(next)){
+
+          if(next==="—")break;
+
+          if(isAbsoluteSystemStart(next)||isAbsoluteSystemContinuation(next)){
             block+="\n"+sourceBlocks[++i];
             continue;
           }
+
           break;
         }
       }
@@ -15208,18 +15551,20 @@ function rawToHtml(raw){
     text=text.replace(/(\(?[0-9]+차\s*(?:개방\s*)?[-–—]\s*[^)<br\]]+\)?)/g,'<span class="rank-skill">$1</span>');
 
     if(currentWorkId==="absolute"){
-      const isBracketBlock=/^\[[\s\S]*\]/.test(trimmed);
+      const isAbsSystem=isAbsoluteSystemStart(trimmed)||isAbsoluteSystemContinuation(trimmed);
 
       if(/^\[스테이터스\]/.test(trimmed)){
         return`<div class="absolute-status-system">${text}</div>`;
       }
 
-      if(isBracketBlock){
-        const isForcedGodQuest=/\[퀘스트: 신의 자격\]|직업: 절대신|\[절대신 각성\]|\[비정상 데이터 감지\]|\[직업 재설정 진행\]|\[패널티 적용\]|\[퀘스트 생성\]/.test(trimmed);
+      if(isAbsSystem){
+        const isForcedGodQuest=/\[퀘스트: 신의 자격\]|직업: 절대신|\[절대신 각성\]|\[비정상 데이터 감지\]|\[직업 재설정 진행\]|\[패널티 적용\]|\[퀘스트 생성\]|\[강제 퀘스트 발동\]|마포구를 점령한 조직|성공:|실패: 사망|제한 시간:/.test(trimmed);
+
         if(isForcedGodQuest){
-          text=text.replace(/(퀘스트: 신의 자격|직업: 절대신|절대신 각성|비정상 데이터 감지|직업 재설정 진행|패널티 적용|퀘스트 생성|플레이어 1명|실패: 사망)/g,'<span class="absolute-alert-word">$1</span>');
+          text=text.replace(/(퀘스트: 신의 자격|직업: 절대신|절대신 각성|비정상 데이터 감지|직업 재설정 진행|패널티 적용|퀘스트 생성|강제 퀘스트 발동|마포구를 점령한 조직을 무너뜨리십시오|성공: 1500 포인트 \+ 중급 랜덤 상자|일반 30%|희귀 50%|유니크 19%|전설 1%|플레이어 1명|실패: 사망|제한 시간: 3일)/g,'<span class="absolute-alert-word">$1</span>');
           return`<div class="absolute-alert-system">${text}</div>`;
         }
+
         return`<div class="absolute-system">${text}</div>`;
       }
     }
@@ -16415,24 +16760,23 @@ function scrollToEpisodes(){
 
 let tutorialIndex=0;
 const tutorialSteps=[
-  {title:"로그인 체험",text:"먼저 로그인해야 작품을 볼 수 있습니다.\n아래 흰색 입력칸에 닉네임과 비밀번호를 직접 입력해보세요.",demo:"login"},
-  {title:"홈 화면 체험",text:"로그인하면 홈에서 추천 작품과 최근 본 작품을 확인합니다.\n작품 카드를 누르면 상세 페이지로 이동합니다.",demo:"추천 작품 → 작품 상세 이동"},
-  {title:"프로필 체험",text:"오른쪽 위 닉네임 버튼을 누르면 프로필로 이동합니다.\n최근 본 작품, 보고있는 작품, 이용권과 코인을 확인할 수 있습니다.",demo:"닉네임 버튼 → 프로필 → 내 이용권"},
-  {title:"이용권/코인 체험",text:"유료 회차는 이용권을 사용해 열람합니다.\n코인은 시간이 지나면 모이고, 코인상점에서 이용권으로 바꿀 수 있습니다.",demo:"코인 3개 = 이용권 1장"},
-  {title:"소설 읽기 체험",text:"작품 상세에서 회차를 누르면 본문을 읽습니다.\n무료분은 바로 열리고, 유료분은 이전화를 먼저 읽어야 열람할 수 있습니다.",demo:"무료분 바로 보기 / 유료분은 순서대로 보기"},
-  {title:"검색/요일별 체험",text:"상단 검색창으로 작품명이나 작가명을 검색할 수 있습니다.\n요일별 탭에서는 연재 요일에 맞춰 작품을 확인할 수 있습니다.",demo:"절대신 강림기 → 월·수·금"}
+  {title:"로그인하기",text:"chat웹은 로그인해야 작품을 볼 수 있습니다.\n아래 흰색 칸에 닉네임과 비밀번호를 직접 입력해보세요.",target:null,action:"login"},
+  {title:"홈 화면",text:"여기가 홈입니다.\n추천 작품과 최근 본 작품이 여기에 표시됩니다.",target:"#homePage .section:nth-of-type(2)",page:"home"},
+  {title:"작품 상세",text:"작품 카드를 누르면 작품 상세 화면으로 이동합니다.\n작품 정보와 회차 목록을 볼 수 있습니다.",target:"#workDetailPage #episodes",page:"work"},
+  {title:"회차 읽기",text:"회차 목록에서 무료분은 바로 열 수 있고, 유료분은 이용권이 필요합니다.\n유료분은 이전화를 먼저 읽어야 다음 유료분을 열 수 있습니다.",target:"#episodeList",page:"work"},
+  {title:"프로필",text:"오른쪽 위 닉네임을 누르면 프로필로 이동합니다.\n최근 본 작품, 보고있는 작품, 이용권과 코인을 확인할 수 있습니다.",target:"#profilePage .profile-card",page:"profile"},
+  {title:"요일별",text:"요일별 탭에서는 작품의 연재 요일을 확인합니다.\n절대신 강림기는 월·수·금 연재입니다.",target:"#weekdayPage .section",page:"weekday"},
+  {title:"검색",text:"상단 검색창에 작품명이나 작가명을 입력하면 작품을 찾을 수 있습니다.\n예: 세계를, 킬 게이지, 절대신, 고쓰비",target:".search-area",page:"home"}
 ];
 
 function shouldShowTutorial(){
   const nextAt=Number(localStorage.getItem(TUTORIAL_NEXT_KEY)||0);
   return !nextAt||Date.now()>=nextAt;
 }
-
 function maybeStartTutorial(){
   if(!shouldShowTutorial())return;
   setTimeout(()=>startTutorial(),450);
 }
-
 function startTutorial(){
   if(!shouldShowTutorial())return;
   tutorialIndex=currentUser?1:0;
@@ -16441,123 +16785,94 @@ function startTutorial(){
   overlay.classList.add("open");
   renderTutorialStep();
 }
-
+function moveTutorialPage(step){
+  if(!currentUser)return;
+  if(step.page==="home"){renderHome();showPage("homePage","navHome");}
+  else if(step.page==="work"){openWorkDetail("absolute");}
+  else if(step.page==="profile"){openProfile();}
+  else if(step.page==="weekday"){openTabPage("weekdayPage","navWeekday");showWeekday("fri");}
+}
+function positionTutorialHighlight(selector){
+  const highlight=document.getElementById("tutorialHighlight");
+  if(!highlight)return;
+  if(!selector){highlight.classList.remove("open");return;}
+  const el=document.querySelector(selector);
+  if(!el){highlight.classList.remove("open");return;}
+  const rect=el.getBoundingClientRect();
+  highlight.style.left=Math.max(8,rect.left-8)+"px";
+  highlight.style.top=Math.max(8,rect.top-8)+"px";
+  highlight.style.width=Math.min(window.innerWidth-16,rect.width+16)+"px";
+  highlight.style.height=Math.min(window.innerHeight-16,rect.height+16)+"px";
+  highlight.classList.add("open");
+}
 function renderTutorialStep(){
   const step=tutorialSteps[tutorialIndex];
+  if(!step)return;
+  moveTutorialPage(step);
+  const overlay=document.getElementById("tutorialOverlay");
   const stepLabel=document.getElementById("tutorialStepLabel");
   const title=document.getElementById("tutorialTitle");
   const text=document.getElementById("tutorialText");
-  const progress=document.getElementById("tutorialProgress");
   const loginArea=document.getElementById("tutorialLoginArea");
-  const demoBox=document.getElementById("tutorialDemoBox");
-
+  const nextBtn=document.getElementById("tutorialNextBtn");
+  if(overlay)overlay.classList.toggle("login-mode",step.action==="login");
   if(stepLabel)stepLabel.textContent=`${tutorialIndex+1} / ${tutorialSteps.length}`;
   if(title)title.textContent=step.title;
   if(text)text.textContent=step.text;
-
-  if(loginArea)loginArea.classList.toggle("active",step.demo==="login");
-  if(demoBox){
-    if(step.demo&&step.demo!=="login"){
-      demoBox.textContent=step.demo;
-      demoBox.classList.add("active");
-    }else{
-      demoBox.textContent="";
-      demoBox.classList.remove("active");
-    }
+  if(loginArea)loginArea.classList.toggle("active",step.action==="login");
+  if(nextBtn){
+    nextBtn.textContent=tutorialIndex===tutorialSteps.length-1?"끝내기":"다음";
+    nextBtn.style.display=step.action==="login"&&!currentUser?"none":"block";
   }
-
-  if(progress){
-    if(step.demo==="login")progress.textContent="직접 로그인하면 다음 설명으로 넘어갑니다.";
-    else progress.textContent=tutorialIndex===tutorialSteps.length-1?"화면을 누르면 튜토리얼이 끝납니다.":"화면을 누르면 다음 설명으로 넘어갑니다.";
-  }
+  setTimeout(()=>positionTutorialHighlight(step.target),120);
 }
-
 function tutorialLogin(){
   const nickname=document.getElementById("tutorialNicknameInput").value.trim();
   const password=document.getElementById("tutorialPasswordInput").value.trim();
-
   if(!nickname){showToast("닉네임을 입력하세요.");return}
   if(!password){showToast("비밀번호를 입력하세요.");return}
-
   if(nickname===AUTHOR_NAME){
     if(password!==AUTHOR_PASSWORD){showToast("고쓰비 계정의 비밀번호가 다릅니다.");return}
     const user=getAuthorAccount();
     currentUser={nickname:user.nickname,kind:"author",isAuthor:true};
-    saveCurrentLogin(currentUser);
-    updateAccountButton();
-    renderHome();
-    showPage("homePage","navHome");
-    showToast("작가 계정으로 로그인되었습니다.");
-    finishTutorial();
-    return;
+    saveCurrentLogin(currentUser);updateAccountButton();renderHome();showPage("homePage","navHome");
+    showToast("작가 계정으로 로그인되었습니다.");finishTutorial();return;
   }
-
   const saved=getNormalAccount();
-
-  if(saved){
-    if(saved.nickname!==nickname){
-      localStorage.removeItem(NORMAL_ACCOUNT_KEY);
-      const newUser={
-        nickname,password,kind:"normal",isAuthor:false,createdAt:new Date().toISOString(),
-        recentWorks:[],watchingWorks:[],readEpisodes:[],ownedEpisodes:[],
-        tickets:0,coins:0,coinBank:0,coinStartedAt:0,
-        avatar:{color:"green",shape:"circle",photo:""}
-      };
-      saveNormalAccount(newUser);
-      currentUser={nickname:newUser.nickname,kind:"normal",isAuthor:false};
-      saveCurrentLogin(currentUser);
-      updateAccountButton();
-      renderHome();
-      showPage("homePage","navHome");
-      maybeShowFreeTicketModal();
-    }else{
-      if(saved.password!==password){showToast("비밀번호가 다릅니다.");return}
-      currentUser={nickname:saved.nickname,kind:"normal",isAuthor:false};
-      saveCurrentLogin(currentUser);
-      updateAccountButton();
-      renderHome();
-      showPage("homePage","navHome");
-      maybeShowFreeTicketModal();
-    }
+  if(saved&&saved.nickname===nickname){
+    if(saved.password!==password){showToast("비밀번호가 다릅니다.");return}
+    currentUser={nickname:saved.nickname,kind:"normal",isAuthor:false};
   }else{
-    const newUser={
-      nickname,password,kind:"normal",isAuthor:false,createdAt:new Date().toISOString(),
-      recentWorks:[],watchingWorks:[],readEpisodes:[],ownedEpisodes:[],
-      tickets:0,coins:0,coinBank:0,coinStartedAt:0,
-      avatar:{color:"green",shape:"circle",photo:""}
-    };
+    if(saved&&saved.nickname!==nickname)localStorage.removeItem(NORMAL_ACCOUNT_KEY);
+    const newUser={nickname,password,kind:"normal",isAuthor:false,createdAt:new Date().toISOString(),recentWorks:[],watchingWorks:[],readEpisodes:[],ownedEpisodes:[],tickets:0,coins:0,coinBank:0,coinStartedAt:0,avatar:{color:"green",shape:"circle",photo:""}};
     saveNormalAccount(newUser);
     currentUser={nickname:newUser.nickname,kind:"normal",isAuthor:false};
-    saveCurrentLogin(currentUser);
-    updateAccountButton();
-    renderHome();
-    showPage("homePage","navHome");
-    maybeShowFreeTicketModal();
   }
-
-  showToast("로그인되었습니다.");
-  tutorialIndex=1;
-  renderTutorialStep();
+  saveCurrentLogin(currentUser);updateAccountButton();renderHome();showPage("homePage","navHome");maybeShowFreeTicketModal();showToast("로그인되었습니다.");
+  tutorialIndex=1;renderTutorialStep();
 }
-
 function nextTutorialStep(){
   const step=tutorialSteps[tutorialIndex];
-  if(step&&step.demo==="login"&&!currentUser)return;
-
+  if(step&&step.action==="login"&&!currentUser)return;
   tutorialIndex++;
-  if(tutorialIndex>=tutorialSteps.length){
-    finishTutorial();
-    return;
-  }
+  if(tutorialIndex>=tutorialSteps.length){finishTutorial();return;}
   renderTutorialStep();
 }
-
 function finishTutorial(){
   const oneWeek=7*24*60*60*1000;
   localStorage.setItem(TUTORIAL_NEXT_KEY,String(Date.now()+oneWeek));
   const overlay=document.getElementById("tutorialOverlay");
-  if(overlay)overlay.classList.remove("open");
+  const highlight=document.getElementById("tutorialHighlight");
+  if(overlay)overlay.classList.remove("open","login-mode");
+  if(highlight)highlight.classList.remove("open");
 }
+window.addEventListener("resize",()=>{
+  const overlay=document.getElementById("tutorialOverlay");
+  if(overlay&&overlay.classList.contains("open")){
+    const step=tutorialSteps[tutorialIndex];
+    if(step)positionTutorialHighlight(step.target);
+  }
+});
 
 function showToast(message){
   toast.textContent=message;
