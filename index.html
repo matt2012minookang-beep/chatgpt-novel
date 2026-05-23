@@ -846,6 +846,7 @@ const reader=document.getElementById("reader"),readerScroll=document.getElementB
 const readerMiniTitle=document.getElementById("readerMiniTitle"),readerSeriesMini=document.getElementById("readerSeriesMini"),readerSeriesName=document.getElementById("readerSeriesName"),readerTitle=document.getElementById("readerTitle"),readerSub=document.getElementById("readerSub"),novelBody=document.getElementById("novelBody"),prevBtn=document.getElementById("prevBtn"),nextBtn=document.getElementById("nextBtn");
 let currentUser=null,currentWorkId="world",currentEpisode=1,pendingEpisodeNumber=null,pendingWorkId=null,avatarDraft={color:"green",shape:"circle",photo:""};
 const AUTHOR_NAME="고쓰비",AUTHOR_PASSWORD="2012424!",COIN_INTERVAL=2700000,COIN_BANK_MAX=10,TUTORIAL_NEXT_KEY="chatweb_tutorial_next_at_v1";
+const BROWSER_HISTORY_KEY="chatweb_browser_recent_works_v1",BROWSER_READ_KEY="chatweb_browser_read_episodes_v1";
 const NORMAL_ACCOUNT_KEY="chatweb_single_normal_account",AUTHOR_ACCOUNT_KEY="chatweb_author_account",CURRENT_LOGIN_KEY="chatweb_current_login",FREE_TICKET_KEY="chatweb_free_ticket_claimed";
 const AVATAR_COLORS=["red","orange","yellow","green","blue","pink","white"],AVATAR_SHAPES=["circle","square","triangle","star"];
 
@@ -15812,10 +15813,10 @@ Lv.2 → Lv.3
 
 [복제 대상 확정]
 
-능력이 흘러 들어온다.
-
 “중력압착” → 완전 동일 재현 (위력 2배)
 “궤도절단” → 완전 동일 재현 (위력 2배)
+
+능력이 흘러 들어온다.
 
 도현은 바로 움직였다.
 
@@ -15977,18 +15978,20 @@ function rawToHtml(raw){
   const sourceBlocks=String(raw||"").trim().split(/\n\s*\n/g).map(block=>block.trim()).filter(Boolean);
   const blocks=[];
 
-  function isAbsoluteSystemStart(block){
-    return /^\[[^\]]+\]/.test(block.trim());
+  function isSystemStart(block){
+    return /^\[[^\]]+\]/.test(String(block||"").trim());
   }
 
-  function isAbsoluteSystemContinuation(block){
+  function isSystemContinuation(block){
     const lines=String(block||"").trim().split(/\n+/).map(line=>line.trim()).filter(Boolean);
     if(!lines.length)return false;
 
     return lines.every(line=>{
       return (
         /^\[[^\]]+\]$/.test(line)||
-        /^(이름|레벨|경험치|직업|체력|마력|힘|재생력|특성|스킬|퀘스트|포인트|능력|설명|특성|가격|목표|거리|내용|위험도|보상|성공|실패|제한 시간|반응|총 능력치|누적 경험치|현재 생존자 수|대상|전투력)\s*:/.test(line)||
+        /^[“"][^”"]+[”"]\s*→/.test(line)||
+        /^(이름|레벨|경험치|직업|체력|마력|힘|재생력|특성|스킬|퀘스트|포인트|능력|설명|가격|목표|거리|내용|위험도|보상|성공|실패|제한 시간|반응|총 능력치|누적 경험치|현재 생존자 수|대상|전투력)\s*:/.test(line)||
+        /^(능력치|스킬|특성)\s*:/.test(line)||
         /^(일반|희귀|유니크|전설|신화|성유물)$/.test(line)||
         /^(일반|희귀|유니크|전설|신화|성유물)\s*\d+%/.test(line)||
         /^\(.*\)$/.test(line)||
@@ -15997,11 +16000,13 @@ function rawToHtml(raw){
         /^\d+\s*XP/.test(line)||
         /^[0-9,]+\s*포인트/.test(line)||
         /^(체력|마력|힘|재생력)\s*\+\d+/.test(line)||
+        /^(마지막 발악|절대신의 손|절대신의 방패)\s*\(MAX\)/.test(line)||
+        /^절대신$/.test(line)||
         /^(철검|가죽 갑옷|탐지 구슬|랜덤 박스|포인트)\s*(획득|이용 안내|완료|상승|제공|시작)/.test(line)||
         /^(능력치 강화|구매 완료|소모|상점|길드|여관|현재 상태|지급된 무기)/.test(line)||
         /^(포인트는|포인트를|스킬을|장비 및|모든 것은|퀘스트를|이제 1일|이 시간|지역 곳곳|길드에서|상점에서|이곳에서는)/.test(line)||
-        /^(마지막 발악|절대신의 손|절대신의 방패|절대적인 손|절대적인 방패|죽을 시 발동|모든 능력치|막타를|해당 적을|사용 중|쿨타임|발악당)/.test(line)||
-        /^(마포구를 점령한 조직|방어력 강화|충격 완화|무게 최소화|능력치:|중력압착|궤도절단)/.test(line)
+        /^(절대적인 손|절대적인 방패|죽을 시 발동|모든 능력치|막타를|해당 적을|사용 중|쿨타임|발악당)/.test(line)||
+        /^(마포구를 점령한 조직|방어력 강화|충격 완화|무게 최소화)/.test(line)
       );
     });
   }
@@ -16009,33 +16014,24 @@ function rawToHtml(raw){
   for(let i=0;i<sourceBlocks.length;i++){
     let block=sourceBlocks[i];
 
-    if(currentWorkId==="absolute"){
-      if(isAbsoluteSystemStart(block)){
-        while(i+1<sourceBlocks.length){
-          const next=sourceBlocks[i+1].trim();
+    // 시스템창은 반드시 []로 시작하는 블록에서만 시작한다.
+    // 일반 서술문이 우연히 "마지막 발악", "스킬" 같은 단어로 시작해도 시스템창으로 만들지 않는다.
+    if(currentWorkId==="absolute"&&isSystemStart(block)){
+      while(i+1<sourceBlocks.length){
+        const next=sourceBlocks[i+1].trim();
 
-          if(next==="—")break;
+        if(next==="—")break;
 
-          if(isAbsoluteSystemStart(next)||isAbsoluteSystemContinuation(next)){
-            block+="\n"+sourceBlocks[++i];
-            continue;
-          }
+        // 다른 [] 시스템 제목이 나오면 새 시스템창으로 분리한다.
+        // 예: [스테이터스] 다음 [진행 중 퀘스트]는 반드시 별도 붉은 창이어야 함.
+        if(isSystemStart(next))break;
 
-          break;
+        if(isSystemContinuation(next)){
+          block+="\n"+sourceBlocks[++i];
+          continue;
         }
-      }else if(isAbsoluteSystemContinuation(block)){
-        while(i+1<sourceBlocks.length){
-          const next=sourceBlocks[i+1].trim();
 
-          if(next==="—")break;
-
-          if(isAbsoluteSystemStart(next)||isAbsoluteSystemContinuation(next)){
-            block+="\n"+sourceBlocks[++i];
-            continue;
-          }
-
-          break;
-        }
+        break;
       }
     }
 
@@ -16049,17 +16045,17 @@ function rawToHtml(raw){
     text=text.replace(/(\(?[0-9]+차\s*(?:개방\s*)?[-–—]\s*[^)<br\]]+\)?)/g,'<span class="rank-skill">$1</span>');
 
     if(currentWorkId==="absolute"){
-      const isAbsSystem=isAbsoluteSystemStart(trimmed)||isAbsoluteSystemContinuation(trimmed);
+      const isAbsSystem=isSystemStart(trimmed);
 
       if(/^\[스테이터스\]/.test(trimmed)){
         return`<div class="absolute-status-system">${text}</div>`;
       }
 
       if(isAbsSystem){
-        const isForcedGodQuest=/\[퀘스트: 신의 자격\]|직업: 절대신|\[절대신 각성\]|\[비정상 데이터 감지\]|\[직업 재설정 진행\]|\[패널티 적용\]|\[퀘스트 생성\]|\[강제 퀘스트 발동\]|\[진행 중 퀘스트\]|마포구를 점령한 조직|성공:|실패: 사망|제한 시간:/.test(trimmed);
+        const isQuestSystem=/\[퀘스트: 신의 자격\]|\[퀘스트\]|\[강제 퀘스트 발동\]|\[진행 중 퀘스트\]|마포구를 점령한 조직|성공:|실패: 사망|제한 시간:|보상:/.test(trimmed);
 
-        if(isForcedGodQuest){
-          text=text.replace(/(퀘스트: 신의 자격|직업: 절대신|절대신 각성|비정상 데이터 감지|직업 재설정 진행|패널티 적용|퀘스트 생성|강제 퀘스트 발동|진행 중 퀘스트|마포구를 점령한 조직을 무너뜨리십시오|성공: 1500 포인트 \+ 중급 랜덤 상자|일반 30%|희귀 50%|유니크 19%|전설 1%|플레이어 1명|실패: 사망|제한 시간: 3일)/g,'<span class="absolute-alert-word">$1</span>');
+        if(isQuestSystem){
+          text=text.replace(/(퀘스트: 신의 자격|퀘스트|강제 퀘스트 발동|진행 중 퀘스트|마포구를 점령한 조직을 무너뜨리십시오|성공: 1500 포인트 \+ 중급 랜덤 상자|보상: 1500 포인트 \+ 중급 랜덤 상자|일반 30%|희귀 50%|유니크 19%|전설 1%|플레이어 1명|실패: 사망|제한 시간: 3일)/g,'<span class="absolute-alert-word">$1</span>');
           return`<div class="absolute-alert-system">${text}</div>`;
         }
 
@@ -16875,6 +16871,27 @@ function goHome(){
 function cleanWorkIds(arr){
   return (arr||[]).filter(id=>works[id]);
 }
+function uniqueList(arr){
+  return Array.from(new Set((arr||[]).filter(Boolean)));
+}
+function getBrowserRecentWorks(){
+  try{return cleanWorkIds(JSON.parse(localStorage.getItem(BROWSER_HISTORY_KEY)||"[]"))}catch(e){return[]}
+}
+function saveBrowserRecentWorks(list){
+  localStorage.setItem(BROWSER_HISTORY_KEY,JSON.stringify(cleanWorkIds(uniqueList(list))));
+}
+function getBrowserReadEpisodes(){
+  try{return uniqueList(JSON.parse(localStorage.getItem(BROWSER_READ_KEY)||"[]"))}catch(e){return[]}
+}
+function saveBrowserReadEpisodes(list){
+  localStorage.setItem(BROWSER_READ_KEY,JSON.stringify(uniqueList(list)));
+}
+function getMergedReadEpisodes(user){
+  return uniqueList([...(user&&user.readEpisodes?user.readEpisodes:[]),...getBrowserReadEpisodes()]);
+}
+function getMergedRecentWorks(user){
+  return cleanWorkIds(uniqueList([...getBrowserRecentWorks(),...(user&&user.recentWorks?user.recentWorks:[])]));
+}
 
 function renderHome(){
   const user=getUserData();
@@ -16885,7 +16902,7 @@ function renderHome(){
 
   document.getElementById("homeGreeting").textContent=currentUser.nickname+"님의 홈";
   const recentWorksBox=document.getElementById("recentWorksBox");
-  const recentWorks=user.recentWorks||[];
+  const recentWorks=getMergedRecentWorks(user);
   document.getElementById("recentCountText").textContent=recentWorks.length+"개";
 
   if(recentWorks.length){
@@ -16930,7 +16947,7 @@ function openProfile(){
   const watchingWorksBox=document.getElementById("watchingWorksBox");
   user.watchingWorks=cleanWorkIds(user.watchingWorks);
   saveUserData(user);
-  const watching=user.watchingWorks||[];
+  const watching=cleanWorkIds(uniqueList([...(user.watchingWorks||[]),...getBrowserRecentWorks()]));
 
   if(watching.length){
     watchingWorksBox.innerHTML=watching.map(id=>workRowHtml(id,"보기")).join("");
@@ -17036,7 +17053,7 @@ function hasReadPreviousPaidRequired(workId,num){
 
   const user=getUserData();
   ensureAccountShape(user);
-  return user.readEpisodes.includes(`${workId}-${prevNum}`);
+  return getMergedReadEpisodes(user).includes(`${workId}-${prevNum}`);
 }
 
 function requestPaidEpisode(workId,num){
@@ -17155,6 +17172,14 @@ function addViewedWork(workId,episodeNumber){
   const key=`${workId}-${episodeNumber}`;
   if(!user.readEpisodes.includes(key))user.readEpisodes.push(key);
 
+  const browserRecent=getBrowserRecentWorks().filter(id=>id!==workId);
+  browserRecent.unshift(workId);
+  saveBrowserRecentWorks(browserRecent);
+
+  const browserRead=getBrowserReadEpisodes();
+  if(!browserRead.includes(key))browserRead.push(key);
+  saveBrowserReadEpisodes(browserRead);
+
   saveUserData(user);
 }
 
@@ -17162,7 +17187,7 @@ function updateReadEpisodeStyles(){
   if(!currentUser)return;
   const user=getUserData();
   ensureAccountShape(user);
-  const readEpisodes=user.readEpisodes||[];
+  const readEpisodes=getMergedReadEpisodes(user);
 
   document.querySelectorAll(".episode[data-work][data-episode]").forEach(el=>{
     const workId=el.dataset.work;
