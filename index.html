@@ -382,23 +382,7 @@ body.logged-in .page.active{display:block}
 
 
 
-/* 밝기/표지 최종 수정: 내부 목록 표지 흰색 + 사회진화론 일러스트 밝기/위치 보정 */
-#workDetailPage #workCover.cover,
-#workDetailPage #workCover.cover.kill-cover,
-#workDetailPage #workCover.cover.absolute-cover,
-#workDetailPage #workCover.cover.social-cover{
-  background:#ffffff !important;
-  border:1px solid #d9d9d9 !important;
-  box-shadow:0 10px 24px rgba(0,0,0,.06) !important;
-}
-#workDetailPage #workCover.cover::after,
-#workDetailPage #workCover.cover.kill-cover::after,
-#workDetailPage #workCover.cover.absolute-cover::after,
-#workDetailPage #workCover.cover.social-cover::after{
-  color:#111111 !important;
-  text-shadow:none !important;
-}
-
+/* 사회진화론 일러스트 밝기/위치 보정 */
 #workHero.hero::after{
   background:
     linear-gradient(90deg,rgba(0,0,0,.90) 0%,rgba(0,0,0,.80) 30%,rgba(0,0,0,.46) 52%,rgba(0,0,0,.16) 74%,rgba(0,0,0,.02) 100%),
@@ -432,6 +416,36 @@ body.logged-in .page.active{display:block}
   #workHero.hero .hero-content{
     padding:278px 20px 34px !important;
   }
+}
+
+
+/* 이용권/코인 유도 알림 */
+.account-btn{position:relative}
+.alert-mark{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:18px;
+  height:18px;
+  margin-left:6px;
+  padding:0 5px;
+  border-radius:999px;
+  background:#ff2d2d;
+  color:#fff;
+  font-size:12px;
+  font-weight:900;
+  line-height:1;
+  vertical-align:middle;
+  box-shadow:0 0 0 2px #fff;
+}
+.ticket-btn.alerting,
+.start-coin-btn.alerting,
+.collect-btn.alerting{
+  animation:ticketAlertPulse 1.2s ease-in-out infinite;
+}
+@keyframes ticketAlertPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(255,45,45,0)}
+  50%{box-shadow:0 0 0 4px rgba(255,45,45,.22)}
 }
 
 </style>
@@ -688,7 +702,7 @@ body.logged-in .page.active{display:block}
         <button class="logout-btn" onclick="logout()">로그아웃</button>
         <button class="edit-profile-btn" onclick="openProfileEditModal()">프로필 편집</button>
         <button class="avatar-edit-btn" onclick="openAvatarModal()">표지 편집</button>
-        <button class="ticket-btn" onclick="openTicketModal()">내 이용권</button>
+        <button class="ticket-btn" id="profileTicketBtn" onclick="openTicketModal()">내 이용권<span id="profileTicketAlert"></span></button>
       </div>
       <div class="profile-ticket-info">
         <span id="profileTicketCount">보유 이용권 0장</span>
@@ -869,8 +883,8 @@ body.logged-in .page.active{display:block}
       <strong>코인 얻기</strong>
       <p id="coinBankText">쌓인 코인: 0개 / 최대 10개</p>
       <p id="coinTimerText">코인 생성 대기 중</p>
-      <button class="start-coin-btn" onclick="startCoinGenerator()">코인 얻기 시작</button>
-      <button class="collect-btn" onclick="collectCoins()">쌓인 코인 회수</button>
+      <button class="start-coin-btn" id="startCoinBtn" onclick="startCoinGenerator()">코인 얻기 시작<span id="startCoinAlert"></span></button>
+      <button class="collect-btn" id="collectCoinBtn" onclick="collectCoins()">쌓인 코인 회수<span id="collectCoinAlert"></span></button>
     </div>
     <div class="ticket-box">
       <strong>코인상점</strong>
@@ -914,10 +928,15 @@ body.logged-in .page.active{display:block}
 <section class="login-modal" id="freeTicketModal">
   <div class="login-panel">
     <h2>처음 오셨군요?</h2>
-    <p>chat웹 첫 방문 보상으로 무료 이용권 3장을 받을 수 있습니다.<br>이 보상은 같은 브라우저에서 한 번만 받을 수 있습니다.</p>
-    <div class="ticket-box"><strong>무료 이용권 받기!</strong><p>받는 즉시 이용권 3장이 지급됩니다.</p></div>
-    <button class="go-ticket-btn" onclick="claimFreeTickets()">무료 이용권 3장 받기</button>
-    <div class="login-actions"><button class="cancel-login" onclick="closeFreeTicketModal()">나중에 받기</button></div>
+    <p>chat웹 첫 방문 보상으로 이용권 3장을 드립니다. 무료분 이후의 유료 회차를 읽을 때 사용할 수 있어요.</p>
+    <div class="ticket-box">
+      <strong>첫 방문 보상</strong>
+      <p>이용권 3장</p>
+    </div>
+    <div class="login-actions">
+      <button class="confirm-login" onclick="claimFreeTickets()">이용권 3장 받기</button>
+      <button class="cancel-login" onclick="closeFreeTicketModal()">나중에 받기</button>
+    </div>
   </div>
 </section>
 
@@ -951,6 +970,7 @@ const reader=document.getElementById("reader"),readerScroll=document.getElementB
 const readerMiniTitle=document.getElementById("readerMiniTitle"),readerSeriesMini=document.getElementById("readerSeriesMini"),readerSeriesName=document.getElementById("readerSeriesName"),readerTitle=document.getElementById("readerTitle"),readerSub=document.getElementById("readerSub"),novelBody=document.getElementById("novelBody"),prevBtn=document.getElementById("prevBtn"),nextBtn=document.getElementById("nextBtn");
 let currentUser=null,currentWorkId="world",currentEpisode=1,pendingEpisodeNumber=null,pendingWorkId=null,avatarDraft={color:"green",shape:"circle",photo:""};
 const AUTHOR_NAME="고쓰비",AUTHOR_PASSWORD="2012424!",COIN_INTERVAL=2700000,COIN_BANK_MAX=10,TUTORIAL_NEXT_KEY="chatweb_tutorial_next_at_v1";
+const FIRST_TICKET_GRANT=3,TICKET_GUIDE_SEEN_KEY="chatweb_ticket_guide_seen_v1",COIN_FULL_ALERT_ACK_KEY="chatweb_coin_full_alert_ack_v1";
 const BROWSER_HISTORY_KEY="chatweb_browser_recent_works_v1",BROWSER_READ_KEY="chatweb_browser_read_episodes_v1";
 const NORMAL_ACCOUNT_KEY="chatweb_single_normal_account",AUTHOR_ACCOUNT_KEY="chatweb_author_account",CURRENT_LOGIN_KEY="chatweb_current_login",FREE_TICKET_KEY="chatweb_free_ticket_claimed";
 const AVATAR_COLORS=["red","orange","yellow","green","blue","pink","white"],AVATAR_SHAPES=["circle","square","triangle","star"];
@@ -17087,6 +17107,7 @@ function updateCoinBank(){
 function updateProfileCounts(){
   if(!currentUser)return;
   updateCoinBank();
+  checkRemoteBuildQuietly();
   const user=getUserData();
   if(!user)return;
   ensureAccountShape(user);
@@ -17097,6 +17118,7 @@ function updateProfileCounts(){
   if(coinEl)coinEl.textContent=`보유 코인 ${user.coins}개`;
 
   updateEpisodeBadges();
+  updateAlertMarks();
 }
 
 function updateEpisodeBadges(){
@@ -17182,7 +17204,7 @@ function updateAccountButton(){
   }
 
   document.body.classList.add("logged-in");
-  accountBtn.textContent=currentUser.nickname;
+  accountBtn.innerHTML=currentUser.nickname+(hasProfileTicketAlert()?alertBang():"");
   accountBtn.classList.add("logged");
   if(currentUser.isAuthor)accountBtn.classList.add("author");
   else accountBtn.classList.remove("author");
@@ -17282,8 +17304,14 @@ function changePassword(){
 
 function openTicketModal(){
   if(!currentUser){openLogin();return}
+  localStorage.setItem(TICKET_GUIDE_SEEN_KEY,"1");
+  markCoinFullAlertSeen();
   updateTicketModal();
   ticketModal.classList.add("open");
+  updateAlertMarks();
+  if(needsFreeTicketGuide()){
+    setTimeout(()=>freeTicketModal.classList.add("open"),180);
+  }
 }
 
 function closeTicketModal(){
@@ -17311,9 +17339,8 @@ function closePaidEpisodeModal(){
 }
 
 function maybeShowFreeTicketModal(){
-  if(!currentUser||currentUser.isAuthor)return;
-  const already=localStorage.getItem(FREE_TICKET_KEY);
-  if(!already)setTimeout(()=>freeTicketModal.classList.add("open"),500);
+  showFreeTicketGuideIfNeeded();
+  updateAlertMarks();
 }
 
 function claimFreeTickets(){
@@ -17337,6 +17364,7 @@ function claimFreeTickets(){
   closeFreeTicketModal();
   updateProfileCounts();
   showToast("무료 이용권 3장을 받았습니다.");
+  updateAlertMarks();
 }
 
 function formatTime(ms){
@@ -17369,6 +17397,7 @@ function updateTicketModal(){
 
   document.getElementById("coinTimerText").textContent=timerText;
   updateProfileCounts();
+  updateAlertMarks();
 }
 
 function startCoinGenerator(){
@@ -17392,6 +17421,7 @@ function startCoinGenerator(){
   }
 
   updateTicketModal();
+  updateAlertMarks();
 }
 
 function collectCoins(){
@@ -17408,6 +17438,7 @@ function collectCoins(){
   user.coins+=user.coinBank;
   const got=user.coinBank;
   user.coinBank=0;
+  resetCoinFullAlertSeen();
   if(!user.coinStartedAt)user.coinStartedAt=Date.now();
   saveUserData(user);
   showToast(`코인 ${got}개를 회수했습니다.`);
@@ -17530,6 +17561,8 @@ function confirmLogin(){
   showPage("homePage","navHome");
   maybeShowFreeTicketModal();
   showToast("로그인되었습니다.");
+  showFreeTicketGuideIfNeeded();
+  updateAlertMarks();
   
 }
 
@@ -17616,6 +17649,122 @@ function getMergedRecentWorks(user){
   return cleanWorkIds(uniqueList([...getBrowserRecentWorks(),...(user&&user.recentWorks?user.recentWorks:[])]));
 }
 
+function alertBang(){
+  return `<span class="alert-mark">!</span>`;
+}
+function isNormalUser(){
+  return !!currentUser&&!currentUser.isAuthor;
+}
+function grantFirstTicketsIfNeeded(){
+  // 자동 지급 금지. "처음 오셨군요?" 안내에서 직접 받기를 눌러야 지급된다.
+  return false;
+}
+function needsFreeTicketGuide(){
+  return isNormalUser()&&!localStorage.getItem(FREE_TICKET_KEY);
+}
+function showFreeTicketGuideIfNeeded(){
+  if(needsFreeTicketGuide()){
+    setTimeout(()=>{
+      const modal=document.getElementById("freeTicketModal");
+      if(modal)modal.classList.add("open");
+    },450);
+  }
+}
+function needsTicketGuide(){
+  return needsFreeTicketGuide()||isNormalUser()&&!localStorage.getItem(TICKET_GUIDE_SEEN_KEY);
+}
+function getCoinFullAlertCount(user){
+  if(!isNormalUser()||!user)return 0;
+  updateCoinBank();
+  const fresh=getUserData();
+  if(!fresh)return 0;
+  ensureAccountShape(fresh);
+  const bank=Number(fresh.coinBank)||0;
+  const ack=Number(localStorage.getItem(COIN_FULL_ALERT_ACK_KEY)||0);
+  return bank>=COIN_BANK_MAX&&ack<COIN_BANK_MAX?bank:0;
+}
+function markCoinFullAlertSeen(){
+  const user=getUserData();
+  if(!user)return;
+  updateCoinBank();
+  localStorage.setItem(COIN_FULL_ALERT_ACK_KEY,String(Number(user.coinBank)||0));
+}
+function resetCoinFullAlertSeen(){
+  localStorage.setItem(COIN_FULL_ALERT_ACK_KEY,"0");
+}
+function hasProfileTicketAlert(){
+  const user=getUserData();
+  return needsTicketGuide()||getCoinFullAlertCount(user)>0;
+}
+function updateAlertMarks(){
+  if(!currentUser)return;
+  const user=getUserData();
+  const profileAlert=hasProfileTicketAlert();
+
+  const accountBtnEl=document.getElementById("accountBtn");
+  if(accountBtnEl){
+    const base=currentUser.nickname;
+    accountBtnEl.innerHTML=base+(profileAlert?alertBang():"");
+  }
+
+  const profileName=document.getElementById("profileNickname");
+  if(profileName){
+    profileName.innerHTML=currentUser.nickname+(profileAlert?alertBang():"");
+  }
+
+  const ticketAlert=document.getElementById("profileTicketAlert");
+  const profileTicketBtn=document.getElementById("profileTicketBtn");
+  if(ticketAlert)ticketAlert.innerHTML=profileAlert?alertBang():"";
+  if(profileTicketBtn)profileTicketBtn.classList.toggle("alerting",profileAlert);
+
+  const startBtn=document.getElementById("startCoinBtn");
+  const startAlert=document.getElementById("startCoinAlert");
+  const shouldStartAlert=isNormalUser()&&!user.coinStartedAt&&Number(user.coinBank||0)<=0;
+  if(startAlert)startAlert.innerHTML=shouldStartAlert?alertBang():"";
+  if(startBtn)startBtn.classList.toggle("alerting",shouldStartAlert);
+
+  const collectBtn=document.getElementById("collectCoinBtn");
+  const collectAlert=document.getElementById("collectCoinAlert");
+  const shouldCollectAlert=getCoinFullAlertCount(user)>0||Number(user.coinBank||0)>0;
+  if(collectAlert)collectAlert.innerHTML=shouldCollectAlert?alertBang():"";
+  if(collectBtn)collectBtn.classList.toggle("alerting",shouldCollectAlert);
+}
+
+let latestBuildNoticeShown=false;
+async function checkRemoteBuildQuietly(){
+  if(latestBuildNoticeShown)return;
+  if(location.protocol==="file:")return;
+  try{
+    const res=await fetch(location.href.split("#")[0].split("?")[0]+"?v="+Date.now(),{cache:"no-store"});
+    const text=await res.text();
+    const match=text.match(/const CHATWEB_BUILD_SIGNATURE="([^"]+)"/);
+    if(match&&match[1]&&match[1]!==CHATWEB_BUILD_SIGNATURE){
+      latestBuildNoticeShown=true;
+      showToast("새 회차/업데이트가 올라왔습니다. 새로고침하면 적용됩니다.");
+    }
+  }catch(e){}
+}
+
+function silentContentRefresh(){
+  if(!currentUser)return;
+  const openedReader=document.getElementById("reader")&&document.getElementById("reader").classList.contains("open");
+  const readerScrollEl=document.getElementById("readerScroll");
+  const readerTop=readerScrollEl?readerScrollEl.scrollTop:0;
+  const scrollTop=window.scrollY;
+
+  updateCoinBank();
+  if(typeof updateProfileCounts==="function")updateProfileCounts();
+  if(document.getElementById("ticketModal")&&document.getElementById("ticketModal").classList.contains("open")){
+    updateTicketModal();
+  }else{
+    updateAlertMarks();
+  }
+
+  if(openedReader&&readerScrollEl)readerScrollEl.scrollTop=readerTop;
+  if(!openedReader)window.scrollTo(0,scrollTop);
+}
+
+
 function renderHome(){
   const user=getUserData();
   ensureAccountShape(user);
@@ -17661,7 +17810,7 @@ function openProfile(){
   const user=getUserData();
   ensureAccountShape(user);
 
-  document.getElementById("profileNickname").textContent=currentUser.nickname;
+  document.getElementById("profileNickname").innerHTML=currentUser.nickname+(hasProfileTicketAlert()?alertBang():"");
   const profileRole=document.getElementById("profileRole");
   profileRole.textContent=currentUser.isAuthor?"작가 계정":"일반 계정";
   profileRole.classList.toggle("author",currentUser.isAuthor);
@@ -18177,14 +18326,27 @@ paidEpisodeModal.addEventListener("click",e=>{if(e.target===paidEpisodeModal)clo
 setInterval(()=>{
   if(currentUser){
     updateCoinBank();
-    updateTicketModal();
-    updateProfileCounts();
+    if(document.getElementById("ticketModal")&&document.getElementById("ticketModal").classList.contains("open")){
+      updateTicketModal();
+    }else{
+      updateProfileCounts();
+      updateAlertMarks();
+    }
   }
 },1000);
+
+setInterval(()=>{
+  if(currentUser){
+    silentContentRefresh();
+  }
+},15000);
 
 if(!restoreLogin()){
   initLoggedOut();
   
+}else{
+  showFreeTicketGuideIfNeeded();
+  updateAlertMarks();
 }
 </script>
 
