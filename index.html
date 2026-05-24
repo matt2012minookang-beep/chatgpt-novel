@@ -380,6 +380,60 @@ body.logged-in .page.active{display:block}
   }
 }
 
+
+
+/* 밝기/표지 최종 수정: 내부 목록 표지 흰색 + 사회진화론 일러스트 밝기/위치 보정 */
+#workDetailPage #workCover.cover,
+#workDetailPage #workCover.cover.kill-cover,
+#workDetailPage #workCover.cover.absolute-cover,
+#workDetailPage #workCover.cover.social-cover{
+  background:#ffffff !important;
+  border:1px solid #d9d9d9 !important;
+  box-shadow:0 10px 24px rgba(0,0,0,.06) !important;
+}
+#workDetailPage #workCover.cover::after,
+#workDetailPage #workCover.cover.kill-cover::after,
+#workDetailPage #workCover.cover.absolute-cover::after,
+#workDetailPage #workCover.cover.social-cover::after{
+  color:#111111 !important;
+  text-shadow:none !important;
+}
+
+#workHero.hero::after{
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.90) 0%,rgba(0,0,0,.80) 30%,rgba(0,0,0,.46) 52%,rgba(0,0,0,.16) 74%,rgba(0,0,0,.02) 100%),
+    linear-gradient(0deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.04) 54%,rgba(0,0,0,.24) 100%) !important;
+}
+#workHero.hero::before{
+  opacity:.99 !important;
+  filter:brightness(1.02) saturate(1.04) contrast(1.02) !important;
+}
+#workHero.hero.social-hero::before{
+  background-size:auto 102% !important;
+  background-position:calc(100% - 6px) 18px !important;
+  opacity:.98 !important;
+  filter:brightness(.98) contrast(1.03) saturate(1.00) !important;
+}
+@media(max-width:900px){
+  #workHero.hero.social-hero::before{
+    background-size:auto 88% !important;
+    background-position:calc(100% + 6px) 26px !important;
+    opacity:.96 !important;
+  }
+}
+@media(max-width:720px){
+  #workHero.hero{min-height:500px !important;}
+  #workHero.hero.social-hero::before{
+    background-size:auto 78% !important;
+    background-position:center 34px !important;
+    opacity:.98 !important;
+    filter:brightness(1.02) contrast(1.02) saturate(1.02) !important;
+  }
+  #workHero.hero .hero-content{
+    padding:278px 20px 34px !important;
+  }
+}
+
 </style>
 </head>
 
