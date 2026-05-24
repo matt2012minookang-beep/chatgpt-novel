@@ -54,6 +54,17 @@ body.logged-in .page.active{display:block}
 .main-btn.absolute{background:#6d35d8}
 .series-name.absolute-name{color:#6d35d8}
 
+.mini-cover.social,.weekday-cover.social{background:linear-gradient(to top,rgba(0,0,0,.92),rgba(40,0,0,.08)),radial-gradient(circle at 76% 18%,#d91b3a,transparent 18%),radial-gradient(circle at 24% 70%,#67d6d1,transparent 26%),linear-gradient(135deg,#06151b,#163842 58%,#081014)}
+.mini-cover.social::after,.weekday-cover.social::after{content:"사회진화론";font-size:11px;line-height:1.2;white-space:pre}
+.hero.social-hero{background:linear-gradient(135deg,#081319,#132a31 44%,#3d0d16)}
+.badge.social-badge{background:rgba(217,27,58,.14);border-color:rgba(217,27,58,.46);color:#ff8da2}
+.cover.social-cover{background:linear-gradient(to top,rgba(0,0,0,.96),rgba(18,50,58,.10)),radial-gradient(circle at 74% 18%,#d91b3a,transparent 19%),radial-gradient(circle at 24% 70%,#66d3cf,transparent 26%),linear-gradient(135deg,#071218,#183840 58%,#13060a)}
+.cover.social-cover::after{content:"사회진화론\A고등학교";font-size:22px}
+.thumb.social{background:linear-gradient(to top,rgba(0,0,0,.84),rgba(30,0,0,.10)),radial-gradient(circle at 74% 24%,#d91b3a,#19343a 44%,#061014)}
+.main-btn.social{background:#9f1730}
+.series-name.social-name{color:#9f1730}
+
+
 .work-row-info{flex:1;min-width:0}
 .work-row-info h3{font-size:18px;margin-bottom:5px;letter-spacing:-.5px}
 .work-row-info p{font-size:13px;color:#777;line-height:1.5}
@@ -303,6 +314,18 @@ body.logged-in .page.active{display:block}
   border-color:rgba(246,211,101,.65)!important;
   color:#ffe28a!important;
 }
+#workHero.hero.social-hero::before{
+  background-image:url("social_detail_cut.png")!important;
+  background-size:auto 110%!important;
+  background-position:calc(100% - 10px) bottom!important;
+  opacity:.92!important;
+  filter:brightness(.72) contrast(1.06) saturate(.94)!important;
+}
+#workHero.hero.social-hero::after{
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.98) 0%,rgba(0,0,0,.94) 28%,rgba(0,0,0,.76) 46%,rgba(0,0,0,.34) 67%,rgba(0,0,0,.18) 100%),
+    linear-gradient(0deg,rgba(0,0,0,.82) 0%,rgba(0,0,0,.08) 54%,rgba(0,0,0,.42) 100%)!important;
+}
 @media(max-width:900px){
   #workHero.hero{min-height:410px!important}
   #workHero.hero.world-hero::before{
@@ -318,6 +341,11 @@ body.logged-in .page.active{display:block}
   #workHero.hero.absolute-hero::before{
     background-position:68% center!important;
     opacity:.78!important;
+  }
+  #workHero.hero.social-hero::before{
+    background-size:auto 92%!important;
+    background-position:calc(100% + 18px) bottom!important;
+    opacity:.80!important;
   }
   #workHero.hero::after{
     background:
@@ -418,6 +446,14 @@ body.logged-in .page.active{display:block}
       </div>
       <div class="work-row-badge">8화 공개</div>
     </div>
+    <div class="work-row" onclick="openWorkDetail('social')">
+      <div class="mini-cover social"></div>
+      <div class="work-row-info">
+        <h3>사회진화론 고등학교</h3>
+        <p>작가 고쓰비 · 식민지처럼 굴러가는 학교에서, 밑바닥 학생의 복수가 시작된다.</p>
+      </div>
+      <div class="work-row-badge">신작</div>
+    </div>
   </section>
 </main>
 
@@ -438,15 +474,15 @@ body.logged-in .page.active{display:block}
     <div class="weekday-panel active" id="weekdayPanelMon">
       <div class="weekday-work-row" onclick="openWorkDetail('absolute')">
         <div class="weekday-cover absolute"></div>
-        <div class="work-row-info"><h3>절대신 강림기</h3><p>작가 고쓰비 · 월·수·금 연재</p></div>
+        <div class="work-row-info"><h3>절대신 강림기</h3><p>작가 고쓰비 · 월·금 연재</p></div>
         <div class="work-row-badge">월</div>
       </div>
     </div>
     <div class="weekday-panel" id="weekdayPanelTue"><div class="weekday-empty-wrap">화요일 작품은 아직 없습니다.</div></div>
     <div class="weekday-panel" id="weekdayPanelWed">
-      <div class="weekday-work-row" onclick="openWorkDetail('absolute')">
-        <div class="weekday-cover absolute"></div>
-        <div class="work-row-info"><h3>절대신 강림기</h3><p>작가 고쓰비 · 월·수·금 연재</p></div>
+      <div class="weekday-work-row" onclick="openWorkDetail('social')">
+        <div class="weekday-cover social"></div>
+        <div class="work-row-info"><h3>사회진화론 고등학교</h3><p>작가 고쓰비 · 수 연재</p></div>
         <div class="work-row-badge">수</div>
       </div>
     </div>
@@ -454,7 +490,7 @@ body.logged-in .page.active{display:block}
     <div class="weekday-panel" id="weekdayPanelFri">
       <div class="weekday-work-row" onclick="openWorkDetail('absolute')">
         <div class="weekday-cover absolute"></div>
-        <div class="work-row-info"><h3>절대신 강림기</h3><p>작가 고쓰비 · 월·수·금 연재</p></div>
+        <div class="work-row-info"><h3>절대신 강림기</h3><p>작가 고쓰비 · 월·금 연재</p></div>
         <div class="work-row-badge">금</div>
       </div>
     </div>
@@ -500,7 +536,7 @@ body.logged-in .page.active{display:block}
 <main class="page" id="actionPage">
   <h1 class="dashboard-title">액션</h1>
   <section class="section">
-    <div class="section-head"><h2>액션 작품</h2><span>3개</span></div>
+    <div class="section-head"><h2>액션 작품</h2><span>4개</span></div>
     <div class="work-row" onclick="openWorkDetail('world')">
       <div class="mini-cover"></div>
       <div class="work-row-info"><h3>세계를 구하고, 버려졌다</h3><p>작가 고쓰비 · 권능 액션</p></div>
@@ -516,13 +552,23 @@ body.logged-in .page.active{display:block}
       <div class="work-row-info"><h3>절대신 강림기</h3><p>작가 고쓰비 · 시스템 액션</p></div>
       <div class="work-row-badge">신작</div>
     </div>
+    <div class="work-row" onclick="openWorkDetail('social')">
+      <div class="mini-cover social"></div>
+      <div class="work-row-info"><h3>사회진화론 고등학교</h3><p>작가 고쓰비 · 학원 액션</p></div>
+      <div class="work-row-badge">신작</div>
+    </div>
   </section>
 </main>
 
 <main class="page" id="newPage">
   <h1 class="dashboard-title">신작</h1>
   <section class="section">
-    <div class="section-head"><h2>신작 작품</h2><span>2개</span></div>
+    <div class="section-head"><h2>신작 작품</h2><span>3개</span></div>
+    <div class="work-row" onclick="openWorkDetail('social')">
+      <div class="mini-cover social"></div>
+      <div class="work-row-info"><h3>사회진화론 고등학교</h3><p>작가 고쓰비 · 신작 · 프롤로그 공개</p></div>
+      <div class="work-row-badge">신작</div>
+    </div>
     <div class="work-row" onclick="openWorkDetail('kill')">
       <div class="mini-cover kill"></div>
       <div class="work-row-info"><h3>킬 게이지 시스템</h3><p>작가 고쓰비 · 신작 · 14화 공개</p></div>
@@ -613,6 +659,11 @@ body.logged-in .page.active{display:block}
           <div class="work-row-info"><h3>절대신 강림기</h3><p>작가 고쓰비 · 제작중</p></div>
           <div class="work-row-badge">신작</div>
         </div>
+        <div class="work-row" onclick="openWorkDetail('social')">
+          <div class="mini-cover social"></div>
+          <div class="work-row-info"><h3>사회진화론 고등학교</h3><p>작가 고쓰비 · 제작중</p></div>
+          <div class="work-row-badge">신작</div>
+        </div>
       </div>
       <div class="profile-section">
         <h2>보고있는 작품</h2>
@@ -663,7 +714,7 @@ body.logged-in .page.active{display:block}
   </div>
   <div class="reader-scroll" id="readerScroll">
     <article class="novel-wrap">
-      <header class="novel-header">
+      <header class="novel-header" id="readerHeader">
         <div class="series-name" id="readerSeriesName">세계를 구하고, 버려졌다</div>
         <h1 id="readerTitle">1화 - 귀환</h1>
         <div class="novel-sub" id="readerSub">강도윤 · 소환의 권능 · 귀환</div>
@@ -15965,6 +16016,624 @@ Lv.2 → Lv.3
 보상: 1500 포인트 + 중급 랜덤 상자
 제한 시간: 3일`}
 }
+},
+
+social:{
+id:"social",
+title:"사회진화론 고등학교",
+author:"고쓰비",
+firstEpisode:1,
+type:"social",
+heroTitle:"사회진화론<br>고등학교",
+heroDesc:"반이 곧 국가가 되고, 약한 반은 식민지가 되는 학교. 한국 반 No.25였던 소년은 어머니를 잃고, 이 미친 학교를 무너뜨리겠다고 결심한다.",
+badge:"고쓰비 · 학원 액션",
+meta:["학원","식민지","복수","성장"],
+summary:"식민지처럼 굴러가는 학교에서, 한국 반 No.25였던 소년이 빼앗긴 존엄과 가족의 원한을 되찾기 위해 반란을 시작한다.",
+stats:["★ 0","조회 0","관심 0","총 1화 공개"],
+aliases:["사회진화론","사회진화론고등학교","구공남자고등학교","한국 반","일본 반","No.25","고쓰비"],
+episodes:{
+1:{title:"프롤로그",sub:"구공남자고등학교 · 식민지 · No.25",desc:"식민지처럼 지배당하는 학교에서, 한국 반 No.25였던 나는 가장 밑바닥에서 복수를 다짐한다.",date:"2026.05.24",raw:`사람이 정말 많은 학교였다.
+
+
+
+복도에는 늘 학생들이 넘쳐났고, 점심시간만 되면 운동장은 전쟁터처럼 시끄러웠다.
+
+
+
+하지만 그 많은 사람들 중에서, 이 학교를 평범한 학교라고 생각하는 사람은 아무도 없었다.
+
+
+
+구공남자고등학교.
+
+
+
+전국 3대 노답고 중 하나.
+
+
+
+이 학교는 이상했고, 위험했고, 무엇보다도 미쳐 있었다.
+
+
+
+이 학교에는 오래전 제국주의 시대, 식민지 침략을 정당화하기 위해 쓰였던 이론이 그대로 살아 있었다.
+
+
+
+사회진화론.
+
+
+
+“우월한 인종이 열등한 인종을 지배한다.”
+
+
+
+구공남자고등학교에서는 그 말이 농담이 아니었다.
+
+
+
+각 반은 하나의 나라였다.
+
+
+
+강한 반은 약한 반을 지배했고, 약한 반은 강한 반에게 굴복했다.
+
+
+
+선생님들은 모른 척했고, 학생들은 그것을 당연하게 받아들였다.
+
+
+
+아니, 정확히 말하면 강한 쪽만 당연하게 받아들였다.
+
+
+
+약한 쪽은 매일 버티고 있을 뿐이었다.
+
+
+
+나는 1학년.
+
+
+
+그것도 무려 24반 중 하나에 속해 있었다.
+
+
+
+한 반의 인원은 30명.
+
+
+
+그 안에서도 순위가 있었다.
+
+
+
+힘, 싸움 실력, 영향력, 돈, 인맥.
+
+
+
+그 모든 것을 합쳐 학생들은 서로의 등급을 매겼다.
+
+
+
+내가 속한 반의 나라 이름은 ‘한국’.
+
+
+
+그리고 우리 반은 약했다.
+
+
+
+정말 약했다.
+
+
+
+약한 애들만 모아놓은 것처럼, 싸움 좀 한다는 애는 거의 없었고, 목소리 큰 애도 별로 없었다.
+
+
+
+그래서 우리는 옆 반에게 지배당했다.
+
+
+
+옆 반의 이름은 ‘일본’.
+
+
+
+일본 반은 1학년 반들 중에서도 열강에 속했다.
+
+
+
+그들은 우리를 식민지라고 불렀다.
+
+
+
+“야, 한국.”
+
+
+
+복도에서 일본 반 애들이 나를 부르면, 나는 멈춰야 했다.
+
+
+
+“이번 주 상납금은?”
+
+
+
+그 말에 나는 주머니를 뒤졌다.
+
+
+
+손에 잡힌 건 구겨진 천 원짜리 몇 장뿐이었다.
+
+
+
+“이게 다냐?”
+
+
+
+“……이번 주엔 조금만 봐주면 안 돼?”
+
+
+
+그 말을 꺼낸 순간, 내 고개가 옆으로 돌아갔다.
+
+
+
+뺨이 뜨거웠다.
+
+
+
+일본 반 학생 하나가 내 멱살을 잡고 낮게 말했다.
+
+
+
+“식민지가 말대꾸를 하네?”
+
+
+
+주변에 있던 학생들은 봤다.
+
+
+
+하지만 아무도 말리지 않았다.
+
+
+
+그게 이 학교였다.
+
+
+
+식민지는 지배하는 반에 매주 상납금을 내야 했다.
+
+
+
+돈을 내지 못하면 맞았다.
+
+
+
+반 전체가 불이익을 받았다.
+
+
+
+청소 당번이 늘어나고, 급식 줄에서 밀리고, 체육관 사용도 못 했다.
+
+
+
+심하면 사물함까지 뒤져졌다.
+
+
+
+하지만 우리는 저항하지 못했다.
+
+
+
+저항할 힘이 없었으니까.
+
+
+
+그리고 나는 그 한국 반 안에서도 약했다.
+
+
+
+No.25.
+
+
+
+30명 중 25위.
+
+
+
+거의 바닥이었다.
+
+
+
+누군가 나를 괴롭혀도, 나는 제대로 맞서 싸우지 못했다.
+
+
+
+입을 열어도 달라지는 건 없었다.
+
+
+
+주먹을 쥐어도 손만 떨렸다.
+
+
+
+나는 매일 생각했다.
+
+
+
+언젠가는 이 학교를 나가겠다고.
+
+
+
+언젠가는 이 지옥 같은 곳에서 벗어나겠다고.
+
+
+
+그런데 그 언젠가는 너무 멀었다.
+
+
+
+그리고 내가 버티는 동안, 내 주변은 하나씩 무너져 갔다.
+
+
+
+그날도 평소와 다르지 않은 날이었다.
+
+
+
+나는 일본 반에게 상납금을 빼앗기고 집으로 돌아갔다.
+
+
+
+주머니는 비어 있었고, 얼굴에는 멍이 남아 있었다.
+
+
+
+집 문을 열었을 때, 어머니는 방 안에 누워 있었다.
+
+
+
+“왔니?”
+
+
+
+어머니는 웃으려고 했다.
+
+
+
+하지만 그 웃음은 너무 힘겨워 보였다.
+
+
+
+“엄마, 또 아파?”
+
+
+
+“아니야. 그냥 조금 피곤해서 그래.”
+
+
+
+거짓말이었다.
+
+
+
+나는 알고 있었다.
+
+
+
+어머니의 얼굴은 점점 창백해지고 있었고, 기침은 하루가 다르게 심해졌다.
+
+
+
+며칠 뒤, 결국 병원에 가야 한다는 말을 들었다.
+
+
+
+입원이 필요하다고 했다.
+
+
+
+그런데 돈이 필요했다.
+
+
+
+큰돈이었다.
+
+
+
+우리 집에는 그런 돈이 없었다.
+
+
+
+내가 학교에서 빼앗기지 않았다면 조금은 모을 수 있었을지도 모른다.
+
+
+
+상납금으로 뜯기지 않았다면.
+
+
+
+식민지라는 이유로 매주 돈을 빼앗기지 않았다면.
+
+
+
+어머니를 조금이라도 더 빨리 병원에 데려갈 수 있었을지도 모른다.
+
+
+
+나는 병원 복도에서 의사에게 물었다.
+
+
+
+“입원…… 지금 바로 안 되나요?”
+
+
+
+의사는 곤란한 표정을 지었다.
+
+
+
+“보호자분, 절차랑 비용 문제가 있어서요. 우선 준비가 필요합니다.”
+
+
+
+준비.
+
+
+
+그 말이 너무 잔인하게 들렸다.
+
+
+
+사람이 아픈데도 준비가 필요했다.
+
+
+
+돈이 없으면 아픈 사람도 기다려야 했다.
+
+
+
+나는 집으로 돌아와 어머니 손을 붙잡았다.
+
+
+
+어머니의 손은 차가웠다.
+
+
+
+“미안해.”
+
+
+
+내가 말했다.
+
+
+
+“내가 돈을 어떻게든 구했어야 했는데.”
+
+
+
+어머니는 힘겹게 고개를 저었다.
+
+
+
+“네 잘못 아니야.”
+
+
+
+하지만 나는 알고 있었다.
+
+
+
+내 잘못이 아니라고 해도, 내가 아무것도 못 한 건 사실이었다.
+
+
+
+나는 약했다.
+
+
+
+학교에서도 약했고, 세상에서도 약했다.
+
+
+
+그래서 빼앗겼다.
+
+
+
+돈도.
+
+
+
+존엄도.
+
+
+
+그리고 결국 어머니까지.
+
+
+
+며칠 뒤, 어머니는 병원에 제대로 입원하지 못한 채 세상을 떠났다.
+
+
+
+장례식장은 조용했다.
+
+
+
+찾아오는 사람도 많지 않았다.
+
+
+
+나는 영정사진 앞에 앉아 한참 동안 아무 말도 하지 않았다.
+
+
+
+눈물도 나오지 않았다.
+
+
+
+너무 화가 나면 눈물도 마르는 건지, 그때 처음 알았다.
+
+
+
+내 머릿속에는 계속 같은 말만 맴돌았다.
+
+
+
+식민지.
+
+
+
+상납금.
+
+
+
+열강.
+
+
+
+사회진화론.
+
+
+
+우월한 자가 열등한 자를 지배한다.
+
+
+
+그 말도 안 되는 규칙 때문에, 나는 모든 걸 잃었다.
+
+
+
+그날 밤, 나는 학교 운동장에 혼자 서 있었다.
+
+
+
+불 꺼진 교실들이 괴물의 눈처럼 보였다.
+
+
+
+나는 주먹을 쥐었다.
+
+
+
+손은 여전히 떨리고 있었다.
+
+
+
+하지만 이번에는 무서워서 떠는 게 아니었다.
+
+
+
+분해서.
+
+
+
+너무 분해서.
+
+
+
+나는 이를 악물고 중얼거렸다.
+
+
+
+“강해질 거야.”
+
+
+
+아무도 듣지 못했다.
+
+
+
+그래도 상관없었다.
+
+
+
+이건 누군가에게 보여주기 위한 다짐이 아니었으니까.
+
+
+
+“한국 반을 식민지에서 벗어나게 할 거야.”
+
+
+
+나는 고개를 들어 학교 건물을 바라봤다.
+
+
+
+일본 반.
+
+
+
+그리고 그 위에 있는 더 강한 반들.
+
+
+
+이 학교를 지배하는 열강들.
+
+
+
+그 모두가 내 적이었다.
+
+
+
+나는 약했다.
+
+
+
+No.25.
+
+
+
+누가 봐도 반란을 일으킬 수 있는 사람은 아니었다.
+
+
+
+하지만 이제 상관없었다.
+
+
+
+바닥이라면 올라갈 일만 남았으니까.
+
+
+
+나는 그날부터 특훈을 시작하기로 했다.
+
+
+
+이 학교의 규칙이 힘이라면, 나도 힘으로 부숴버릴 것이다.
+
+
+
+우월한 자가 열등한 자를 지배한다는 그 썩어빠진 논리를, 내가 직접 뒤집어버릴 것이다.
+
+
+
+구공남자고등학교.
+
+
+
+이 미친 학교를.
+
+
+
+이 사회진화론의 세계를.
+
+
+
+내 손으로 깨부술 것이다.
+
+
+
+그리고 나는 조용히 말했다.
+
+
+
+“이건 내 어머니의 복수극이다.”`}
+}
 }
 };
 
@@ -16732,7 +17401,7 @@ function confirmLogin(){
     renderHome();
     showPage("homePage","navHome");
     showToast("작가 계정으로 로그인되었습니다.");
-    maybeStartTutorial();
+    
     return;
   }
 
@@ -16766,7 +17435,7 @@ function confirmLogin(){
       showPage("homePage","navHome");
       maybeShowFreeTicketModal();
       showToast("기존 일반 계정을 지우고 새 계정으로 시작했습니다.");
-      maybeStartTutorial();
+      
       return;
     }
 
@@ -16807,7 +17476,7 @@ function confirmLogin(){
   showPage("homePage","navHome");
   maybeShowFreeTicketModal();
   showToast("로그인되었습니다.");
-  maybeStartTutorial();
+  
 }
 
 function restoreLogin(){
@@ -16837,7 +17506,7 @@ function restoreLogin(){
   updateAccountButton();
   renderHome();
   showPage("homePage","navHome");
-  maybeStartTutorial();
+  
   return true;
 }
 
@@ -16918,7 +17587,7 @@ function renderHome(){
 function workRowHtml(id,badgeText="바"){
   const work=works[id];
   if(!work)return "";
-  const coverClass=id==="kill"?"mini-cover kill":id==="absolute"?"mini-cover absolute":"mini-cover";
+  const coverClass=id==="kill"?"mini-cover kill":id==="absolute"?"mini-cover absolute":id==="social"?"mini-cover social":"mini-cover";
 
   return `
     <div class="work-row" onclick="openWorkDetail('${id}')">
@@ -16995,9 +17664,18 @@ function openWorkDetail(id="world"){
     readBtn.classList.add("absolute");
     firstBtn.classList.add("absolute");
   }
+  if(id==="social"){
+    hero.classList.add("social-hero");
+    badge.classList.add("social-badge");
+    cover.classList.add("social-cover");
+    readBtn.classList.add("social");
+    firstBtn.classList.add("social");
+  }
 
   badge.textContent=work.badge;
-  document.getElementById("workHeroTitle").innerHTML=work.heroTitle;
+  const workHeroTitleEl=document.getElementById("workHeroTitle");
+  workHeroTitleEl.classList.remove("social-blood-title");
+  workHeroTitleEl.innerHTML=work.heroTitle;
   document.getElementById("workHeroDesc").textContent=work.heroDesc;
   document.getElementById("workInfoAuthor").textContent=`작가 · ${work.author}`;
   document.getElementById("workTitle").textContent=work.title;
@@ -17015,7 +17693,7 @@ function renderEpisodeList(id){
   const list=document.getElementById("episodeList");
 
   list.innerHTML=Object.entries(work.episodes).map(([num,ep])=>{
-    const thumbClass=id==="kill"?"thumb kill":id==="absolute"?"thumb absolute":"thumb";
+    const thumbClass=id==="kill"?"thumb kill":id==="absolute"?"thumb absolute":id==="social"?"thumb social":"thumb";
     const badge=ep.preview
       ? `<div class="work-row-badge preview" id="episodeBadge-${id}-${num}">이용권</div>`
       : `<div class="ep-date">${ep.date}</div>`;
@@ -17248,6 +17926,7 @@ function actuallyOpenReader(episodeNumber,workId=currentWorkId){
   readerSeriesName.textContent=work.title;
   readerSeriesName.classList.toggle("kill-name",workId==="kill");
   readerSeriesName.classList.toggle("absolute-name",workId==="absolute");
+  readerSeriesName.classList.toggle("social-name",workId==="social");
   readerTitle.textContent=ep.title;
   readerSub.textContent=ep.sub;
   novelBody.innerHTML=rawToHtml(ep.raw);
@@ -17292,7 +17971,7 @@ const tutorialSteps=[
   {title:"작품 상세",text:"작품 카드를 누르면 작품 상세 화면으로 이동합니다.\n작품 정보와 회차 목록을 볼 수 있습니다.",target:"#workDetailPage #episodes",page:"work"},
   {title:"회차 읽기",text:"회차 목록에서 무료분은 바로 열 수 있고, 유료분은 이용권이 필요합니다.\n유료분은 이전화를 먼저 읽어야 다음 유료분을 열 수 있습니다.",target:"#episodeList",page:"work"},
   {title:"프로필",text:"오른쪽 위 닉네임을 누르면 프로필로 이동합니다.\n최근 본 작품, 보고있는 작품, 이용권과 코인을 확인할 수 있습니다.",target:"#profilePage .profile-card",page:"profile"},
-  {title:"요일별",text:"요일별 탭에서는 작품의 연재 요일을 확인합니다.\n절대신 강림기는 월·수·금 연재입니다.",target:"#weekdayPage .section",page:"weekday"},
+  {title:"요일별",text:"요일별 탭에서는 작품의 연재 요일을 확인합니다.\n절대신 강림기는 월·금 연재입니다.",target:"#weekdayPage .section",page:"weekday"},
   {title:"검색",text:"상단 검색창에 작품명이나 작가명을 입력하면 작품을 찾을 수 있습니다.\n예: 세계를, 킬 게이지, 절대신, 고쓰비",target:".search-area",page:"home"}
 ];
 
@@ -17451,8 +18130,26 @@ setInterval(()=>{
 
 if(!restoreLogin()){
   initLoggedOut();
-  maybeStartTutorial();
+  
 }
 </script>
+
+<script>
+/* 튜토리얼 제거 */
+function shouldShowTutorial(){return false}
+function maybeStartTutorial(){}
+function startTutorial(){}
+function renderTutorialStep(){}
+function nextTutorial(){}
+function skipTutorial(){}
+function finishTutorial(){}
+function tutorialLogin(){}
+</script>
+
+
+<script>
+if(typeof readerHeader==="undefined"){var readerHeader=document.getElementById("readerHeader");}
+</script>
+
 </body>
 </html>
