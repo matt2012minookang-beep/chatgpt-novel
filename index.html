@@ -448,6 +448,53 @@ body.logged-in .page.active{display:block}
   50%{box-shadow:0 0 0 4px rgba(255,45,45,.22)}
 }
 
+
+/* 랭킹 4위 작은 표지형 */
+.rank-small-cover-only{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin:12px 18px 16px;
+  padding:10px;
+  border:1px solid #eee;
+  border-radius:14px;
+  background:#fff;
+  cursor:pointer;
+  vertical-align:top;
+}
+.rank-small-cover-only:hover{background:#f8fff9}
+.rank-small-cover-only .rank-num{
+  width:30px;
+  height:30px;
+  border-radius:9px;
+  font-size:15px;
+}
+.rank-small-cover-only .mini-cover{
+  width:54px;
+  height:70px;
+  border-radius:9px;
+}
+.rank-small-cover-only .mini-cover::after{
+  font-size:10px;
+  left:6px;
+  bottom:6px;
+}
+.rank-small-info{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  min-width:110px;
+}
+.rank-small-info strong{
+  font-size:14px;
+  font-weight:900;
+}
+.rank-small-info span{
+  font-size:12px;
+  color:#777;
+  font-weight:800;
+}
+
 </style>
 </head>
 
@@ -631,20 +678,10 @@ body.logged-in .page.active{display:block}
 <main class="page" id="newPage">
   <h1 class="dashboard-title">신작</h1>
   <section class="section">
-    <div class="section-head"><h2>신작 작품</h2><span>3개</span></div>
+    <div class="section-head"><h2>최근 연재</h2><span>1개</span></div>
     <div class="work-row" onclick="openWorkDetail('social')">
       <div class="mini-cover social"></div>
       <div class="work-row-info"><h3>사회진화론 고등학교</h3><p>작가 고쓰비 · 신작 · 2화 공개</p></div>
-      <div class="work-row-badge">신작</div>
-    </div>
-    <div class="work-row" onclick="openWorkDetail('kill')">
-      <div class="mini-cover kill"></div>
-      <div class="work-row-info"><h3>킬 게이지 시스템</h3><p>작가 고쓰비 · 신작 · 14화 공개</p></div>
-      <div class="work-row-badge">휴재</div>
-    </div>
-    <div class="work-row" onclick="openWorkDetail('absolute')">
-      <div class="mini-cover absolute"></div>
-      <div class="work-row-info"><h3>절대신 강림기</h3><p>작가 고쓰비 · 신작 · 9화 공개</p></div>
       <div class="work-row-badge">신작</div>
     </div>
   </section>
@@ -672,11 +709,13 @@ body.logged-in .page.active{display:block}
       <div class="work-row-info"><h3>절대신 강림기</h3><p>작가 고쓰비 · 랭킹 3위</p></div>
       <div class="work-row-badge">신작</div>
     </div>
-    <div class="rank-row" onclick="openWorkDetail('kill')">
+    <div class="rank-small-cover-only" onclick="openWorkDetail('kill')">
       <div class="rank-num">4</div>
       <div class="mini-cover kill"></div>
-      <div class="work-row-info"><h3>킬 게이지 시스템</h3><p>작가 고쓰비 · 랭킹 4위</p></div>
-      <div class="work-row-badge">휴재</div>
+      <div class="rank-small-info">
+        <strong>킬 게이지 시스템</strong>
+        <span>랭킹 4위 · 휴재</span>
+      </div>
     </div>
   </section>
 </main>
