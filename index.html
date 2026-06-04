@@ -495,6 +495,18 @@ body.logged-in .page.active{display:block}
   font-weight:800;
 }
 
+
+.reader-author-box{max-width:760px;margin:42px auto 0;padding:0 2px;text-align:left}
+.reader-author-name{border:1px solid #ddd;background:#fff;color:#111;border-radius:999px;padding:10px 15px;font-size:14px;font-weight:900;cursor:pointer}
+.reader-author-name:hover{background:#f7f7f7}
+.reader-author-comment{display:none;max-width:760px;margin:24px auto 0;padding:18px 18px;border:1px solid #e8e8e8;border-radius:14px;background:#fafafa;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",Arial,sans-serif}
+.reader-author-comment strong{display:block;font-size:15px;font-weight:900;margin-bottom:8px}
+.reader-author-comment p{margin:0;font-size:15px;line-height:1.7;color:#333;font-weight:700}
+.profile-card.author-public .profile-buttons,.profile-card.author-public .profile-ticket-info{display:none!important}
+.author-profile-note{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.author-profile-note h2{padding:16px 18px;font-size:18px;border-bottom:1px solid var(--line)}
+.author-profile-note p{padding:18px;font-size:15px;font-weight:800;line-height:1.7;color:#333;margin:0}
+
 </style>
 </head>
 
@@ -681,7 +693,7 @@ body.logged-in .page.active{display:block}
     <div class="section-head"><h2>최근 연재</h2><span>1개</span></div>
     <div class="work-row" onclick="openWorkDetail('social')">
       <div class="mini-cover social"></div>
-      <div class="work-row-info"><h3>사회진화론 고등학교</h3><p>작가 고쓰비 · 신작 · 6화 공개</p></div>
+      <div class="work-row-info"><h3>사회진화론 고등학교</h3><p>작가 고쓰비 · 신작 · 7화 공개</p></div>
       <div class="work-row-badge">신작</div>
     </div>
   </section>
@@ -782,6 +794,10 @@ body.logged-in .page.active{display:block}
         <h2>보고있는 작품</h2>
         <div id="watchingWorksBox"></div>
       </div>
+      <div class="author-profile-note" id="authorProfileNote">
+        <h2>작가의 말</h2>
+        <p>늦어서 죄송합니다.</p>
+      </div>
     </div>
   </div>
 </main>
@@ -837,6 +853,13 @@ body.logged-in .page.active{display:block}
         <button id="prevBtn" onclick="moveEpisode(-1)">&lt;- 이전화</button>
         <button onclick="closeReader()">목록</button>
         <button id="nextBtn" onclick="moveEpisode(1)">다음화 -&gt;</button>
+      </div>
+      <div class="reader-author-box">
+        <button class="reader-author-name" onclick="openAuthorProfile()">작가 고쓰비</button>
+      </div>
+      <div class="reader-author-comment" id="readerAuthorComment">
+        <strong>작가의 말</strong>
+        <p>늦어서 죄송합니다.</p>
       </div>
     </article>
   </div>
@@ -17962,7 +17985,7 @@ heroDesc:"반이 곧 국가가 되고, 약한 반은 식민지가 되는 학교.
 badge:"고쓰비 · 학원 액션",
 meta:["학원","식민지","복수","성장"],
 summary:"식민지처럼 굴러가는 학교에서, 한국 반 No.25였던 소년이 빼앗긴 존엄과 가족의 원한을 되찾기 위해 반란을 시작한다.",
-stats:["★ 0","조회 0","관심 0","총 6화 공개"],
+stats:["★ 0","조회 0","관심 0","총 7화 공개"],
 aliases:["사회진화론","사회진화론고등학교","구공남자고등학교","한국 반","일본 반","No.25","고쓰비"],
 episodes:{
 1:{title:"프롤로그",sub:"구공남자고등학교 · 식민지 · No.25",desc:"식민지처럼 지배당하는 학교에서, 한국 반 No.25였던 나는 가장 밑바닥에서 복수를 다짐한다.",date:"2026.05.24",raw:`사람이 정말 많은 학교였다.
@@ -20390,7 +20413,7 @@ No.2가 낮게 중얼거렸다.
 
 
 “너네 한국 아니야?”`},
-4:{title:"3화",sub:"식민지 맹세 · No.27 · No.28",desc:"일본 반 하위권에게 훈련이 들킨 순간, 서지후는 식민지 맹세를 걸고 링 위에 오른다.",date:"2026.05.25",preview:true,cost:3,ownCost:5,raw:`“어?”
+4:{title:"3화",sub:"식민지 맹세 · No.27 · No.28",desc:"일본 반 하위권에게 훈련이 들킨 순간, 서지후는 식민지 맹세를 걸고 링 위에 오른다.",date:"2026.05.25",raw:`“어?”
 
 
 
@@ -28305,7 +28328,1468 @@ No.10이 고개를 들었다.
 
 
 
-나의 눈이 감겼...`}
+나의 눈이 감겼...`},
+8:{title:"7화",sub:"서울 · 도쿄 · 친교국",desc:"국가대항전 이후 서지후는 한국 No.1, 서울이 되고 도쿄와 새로운 관계를 맺는다.",date:"2026.05.26",preview:true,cost:3,ownCost:5,raw:`눈을 떴다.
+
+
+
+처음 보인 건 하얀 천장이었다.
+
+
+
+머리가 멍했다.
+
+
+
+몸은 내 것이 아닌 것처럼 무거웠고, 팔과 다리는 납덩이처럼 움직이기 힘들었다.
+
+
+
+숨을 들이쉬자 옆구리가 욱신거렸다.
+
+
+
+“윽…….”
+
+
+
+나는 천천히 고개를 돌렸다.
+
+
+
+주변을 보니 병원이 아니었다.
+
+
+
+교실.
+
+
+
+한국 반 교실이었다.
+
+
+
+책상 몇 개를 붙여놓고 그 위에 내가 누워 있었다.
+
+
+
+창밖으로는 오후 햇빛이 들어오고 있었고, 주변에는 한국 반 애들이 몇 명 앉아 있었다.
+
+
+
+No.7이 나를 보고 눈을 크게 떴다.
+
+
+
+“야!”
+
+
+
+그 소리에 교실 안에 있던 애들이 일제히 돌아봤다.
+
+
+
+“깼다!”
+
+
+
+“서지후 깼어!”
+
+
+
+“진짜 깼어!”
+
+
+
+문 쪽에서 발소리가 들렸다.
+
+
+
+거칠게 달려오는 소리였다.
+
+
+
+쾅!
+
+
+
+교실 문이 열리더니 한도윤이 뛰어 들어왔다.
+
+
+
+팔에는 아직 깁스가 되어 있었고, 얼굴에도 멍이 남아 있었다.
+
+
+
+그런데도 표정은 이상할 정도로 밝았다.
+
+
+
+“깼냐! 서지후!”
+
+
+
+나는 천천히 몸을 일으키려 했다.
+
+
+
+“으…….”
+
+
+
+“야야, 천천히 일어나.”
+
+
+
+한도윤이 내 어깨를 잡아 받쳐줬다.
+
+
+
+나는 겨우 앉은 자세가 됐다.
+
+
+
+머리가 아직 조금 어지러웠다.
+
+
+
+“나…… 얼마나 잤어?”
+
+
+
+“하루.”
+
+
+
+“하루?”
+
+
+
+“어제 국가대항전 끝나고 바로 기절했잖아.”
+
+
+
+기억이 조금씩 돌아왔다.
+
+
+
+강당.
+
+
+
+도쿄.
+
+
+
+마지막 스트레이트.
+
+
+
+그리고 쓰러지는 몸.
+
+
+
+흐려지던 함성.
+
+
+
+나는 급히 물었다.
+
+
+
+“결과는?”
+
+
+
+한도윤이 잠깐 나를 보더니 씩 웃었다.
+
+
+
+“축하한다.”
+
+
+
+“뭐가?”
+
+
+
+그가 내 어깨를 세게 두드렸다.
+
+
+
+“한국 No.1, 서울.”
+
+
+
+나는 그대로 굳었다.
+
+
+
+“뭐?”
+
+
+
+교실 안에 있던 애들이 웃음을 터뜨렸다.
+
+
+
+No.7이 말했다.
+
+
+
+“야, 서울 반응 왜 이래?”
+
+
+
+No.14가 작게 웃었다.
+
+
+
+“본인이 제일 모르는 것 같은데.”
+
+
+
+나는 한도윤을 바라봤다.
+
+
+
+“내가 No.1?”
+
+
+
+“그래.”
+
+
+
+한도윤이 당연하다는 듯 말했다.
+
+
+
+“네가 나도 못 이긴 도쿄를 이겼잖냐. 이번 전투로 바뀌었어.”
+
+
+
+나는 멍하니 입을 벌렸다.
+
+
+
+“정말?”
+
+
+
+“정말이지, 그럼 가짜겠냐?”
+
+
+
+한도윤은 피식 웃었다.
+
+
+
+하지만 그 웃음 안에는 이상한 씁쓸함도 조금 섞여 있었다.
+
+
+
+그래도 그는 숨기려는 듯 일부러 가볍게 말했다.
+
+
+
+“우리 학교 규칙 알잖아. 순위는 말로 정하는 게 아니라 결과로 정해지는 거. 네가 도쿄를 이겼고, 나는 도쿄한테 졌어. 그럼 네가 위지.”
+
+
+
+“근데 그건…….”
+
+
+
+나는 말을 멈췄다.
+
+
+
+운이 좋았다.
+
+
+
+도쿄가 봐줬다.
+
+
+
+마지막 한 방이 어쩌다 들어갔다.
+
+
+
+그런 말들이 머릿속에 떠올랐다.
+
+
+
+하지만 한도윤은 내 말을 끊었다.
+
+
+
+“그런데고 뭐고 없어.”
+
+
+
+그가 진지한 얼굴로 나를 봤다.
+
+
+
+“네가 마지막까지 서 있었고, 도쿄가 쓰러졌어. 그게 전부야.”
+
+
+
+교실 안이 조용해졌다.
+
+
+
+나는 주먹을 내려다봤다.
+
+
+
+손등에는 붕대가 감겨 있었다.
+
+
+
+주먹을 쥐려 하자 손가락이 욱신거렸다.
+
+
+
+한국 No.1.
+
+
+
+서울.
+
+
+
+그 이름이 너무 무겁게 느껴졌다.
+
+
+
+어제까지만 해도 나는 No.25였다.
+
+
+
+맞고, 버티고, 고개를 숙이던 쪽이었다.
+
+
+
+그런데 하루 만에 No.1이라니.
+
+
+
+믿기지 않았다.
+
+
+
+그때였다.
+
+
+
+교실 앞문 쪽이 조용해졌다.
+
+
+
+복도 쪽에서 누군가 걸어오는 소리가 들렸다.
+
+
+
+뚜벅.
+
+
+
+뚜벅.
+
+
+
+분위기가 이상하게 가라앉았다.
+
+
+
+한국 반 애들이 하나둘 문 쪽을 바라봤다.
+
+
+
+그리고 문 앞에 선 사람을 본 순간, 교실 안의 공기가 차갑게 굳었다.
+
+
+
+도쿄.
+
+
+
+일본 반 No.1.
+
+
+
+어제 내가 쓰러뜨렸던 남자.
+
+
+
+그가 한국 반 교실 앞에 서 있었다.
+
+
+
+여전히 체격은 컸고, 얼굴에는 어제 싸움의 흔적이 남아 있었다.
+
+
+
+입가에는 작은 밴드가 붙어 있었고, 턱 근처도 살짝 부어 있었다.
+
+
+
+하지만 눈빛은 여전히 강했다.
+
+
+
+한도윤이 바로 앞으로 나섰다.
+
+
+
+그의 표정이 날카로워졌다.
+
+
+
+“넌 도쿄?”
+
+
+
+한국 반 애들이 긴장했다.
+
+
+
+몇몇은 자리에서 일어섰다.
+
+
+
+예전 같았으면 일본이라는 이름만으로 고개를 숙였을 것이다.
+
+
+
+하지만 이제는 아니었다.
+
+
+
+한국은 더 이상 일본의 식민지가 아니었다.
+
+
+
+한도윤이 낮게 말했다.
+
+
+
+“지금은 식민지가 아니라서 강제로 무력 행사 못 할 텐데.”
+
+
+
+그는 도쿄를 노려봤다.
+
+
+
+“왜 온 거냐?”
+
+
+
+도쿄는 한도윤을 잠깐 바라봤다.
+
+
+
+그리고 천천히 말했다.
+
+
+
+“한국의 서울과 이야기하고 싶다.”
+
+
+
+그 말에 교실 안 시선이 나에게 꽂혔다.
+
+
+
+나는 눈을 깜빡였다.
+
+
+
+“나?”
+
+
+
+도쿄가 고개를 끄덕였다.
+
+
+
+“그래.”
+
+
+
+한도윤은 나를 돌아봤다.
+
+
+
+눈빛으로 묻고 있었다.
+
+
+
+괜찮겠냐고.
+
+
+
+나는 잠깐 고민했다.
+
+
+
+솔직히 몸은 아직 엉망이었다.
+
+
+
+도쿄가 마음먹고 무슨 짓을 하면 제대로 막을 자신도 없었다.
+
+
+
+하지만 그가 여기서 무력 행사를 할 수는 없었다.
+
+
+
+한국은 이제 일본의 식민지가 아니니까.
+
+
+
+나는 천천히 일어났다.
+
+
+
+다리가 조금 휘청거렸다.
+
+
+
+한도윤이 바로 잡아주려 했지만, 나는 손을 들어 괜찮다는 표시를 했다.
+
+
+
+“괜찮아.”
+
+
+
+나는 도쿄 쪽으로 걸어갔다.
+
+
+
+교실 밖 복도.
+
+
+
+학생들이 멀리서 우리를 힐끔거렸다.
+
+
+
+어제 국가대항전의 결과는 이미 학교 전체에 퍼진 듯했다.
+
+
+
+“저 사람이 한국 새 서울이래.”
+
+
+
+“진짜 No.25였다고?”
+
+
+
+“도쿄를 이겼다며?”
+
+
+
+“말이 되냐?”
+
+
+
+속삭임이 들렸다.
+
+
+
+나는 그 말들이 어색해서 일부러 못 들은 척했다.
+
+
+
+도쿄는 복도 창가 쪽에 멈춰 섰다.
+
+
+
+나도 그 앞에 섰다.
+
+
+
+잠시 침묵이 흘렀다.
+
+
+
+먼저 입을 연 건 도쿄였다.
+
+
+
+“이번에 내가 봐주긴 했지만, 날 쓰러뜨리다니 대단하다.”
+
+
+
+나는 눈썹을 살짝 찌푸렸다.
+
+
+
+역시 봐준 게 맞았다.
+
+
+
+그런데 이상하게 분하지는 않았다.
+
+
+
+나도 알고 있었으니까.
+
+
+
+도쿄가 처음부터 진심이었다면, 나는 훨씬 빨리 쓰러졌을 것이다.
+
+
+
+도쿄는 내 얼굴을 보며 말했다.
+
+
+
+“언제 이렇게 강해졌나?”
+
+
+
+나는 짧게 대답했다.
+
+
+
+“훈련을 좀 했어.”
+
+
+
+“훈련?”
+
+
+
+도쿄가 피식 웃었다.
+
+
+
+“하하하! 뒤통수 맞았군.”
+
+
+
+그는 창밖을 보며 고개를 살짝 끄덕였다.
+
+
+
+“그동안 한국이 조용하길래 완전히 꺾인 줄 알았다. 그런데 뒤에서 칼을 갈고 있었을 줄은 몰랐어.”
+
+
+
+“칼까지는 아니고.”
+
+
+
+“아니, 칼이지.”
+
+
+
+도쿄는 다시 나를 바라봤다.
+
+
+
+“식민지가 지배국을 이겼으니까.”
+
+
+
+나는 아무 말도 하지 않았다.
+
+
+
+그 말은 아직 현실감이 없었다.
+
+
+
+도쿄는 입가에 붙은 밴드를 손가락으로 살짝 건드렸다.
+
+
+
+“마지막 주먹은 꽤 좋았다.”
+
+
+
+“운이 좋았어.”
+
+
+
+“운만으로 내 턱을 맞히진 못해.”
+
+
+
+그는 낮게 웃었다.
+
+
+
+“다음에 진심으로 한번 떠보지, 서울.”
+
+
+
+나는 바로 고개를 저었다.
+
+
+
+“아니, 됐는데…….”
+
+
+
+몸이 아직 욱신거렸다.
+
+
+
+도쿄와 다시 싸운다는 말만 들어도 옆구리가 아픈 것 같았다.
+
+
+
+하지만 도쿄는 내 대답을 별로 신경 쓰지 않는 얼굴이었다.
+
+
+
+“그나저나.”
+
+
+
+그가 살짝 고개를 기울였다.
+
+
+
+“우리 서로 친교 맺지 않을래?”
+
+
+
+나는 멍하니 물었다.
+
+
+
+“뭐?”
+
+
+
+“내가 너희를 도와주지.”
+
+
+
+이번에는 정말 이해가 안 됐다.
+
+
+
+일본.
+
+
+
+어제까지 한국을 식민지로 삼았던 반.
+
+
+
+그 일본의 No.1이 한국을 도와주겠다고 말하고 있었다.
+
+
+
+나는 조심스럽게 물었다.
+
+
+
+“어? 왜?”
+
+
+
+도쿄는 아주 자연스럽게 대답했다.
+
+
+
+“너에게 관심이 생겨서 말이다.”
+
+
+
+“나한테?”
+
+
+
+“그래.”
+
+
+
+도쿄의 눈빛이 묘하게 빛났다.
+
+
+
+“네가 어디까지 강해질지 궁금하거든.”
+
+
+
+나는 말문이 막혔다.
+
+
+
+도쿄는 적이었다.
+
+
+
+분명 적이었다.
+
+
+
+상납금을 걷고, 한국을 지배하던 일본의 중심.
+
+
+
+그런데 지금 그의 말에는 이상하게 거짓이 느껴지지 않았다.
+
+
+
+그는 정말로 궁금해하는 것 같았다.
+
+
+
+내가 앞으로 어디까지 갈 수 있을지.
+
+
+
+나는 어색하게 고개를 끄덕였다.
+
+
+
+“그…… 그래주면 고맙지.”
+
+
+
+도쿄는 만족한 듯 웃었다.
+
+
+
+“좋다. 그럼 오늘부터 한국과 일본은 친교국이다.”
+
+
+
+“그렇게 바로 되는 거야?”
+
+
+
+“내가 도쿄다.”
+
+
+
+그는 당연하다는 듯 말했다.
+
+
+
+“일본에서 내 말이면 되지.”
+
+
+
+나는 잠깐 할 말을 잃었다.
+
+
+
+확실히 도쿄다운 말이었다.
+
+
+
+도쿄는 돌아서며 말했다.
+
+
+
+“곧 다시 보자, 서울.”
+
+
+
+“아니, 꼭 다시 볼 필요는…….”
+
+
+
+내 말이 끝나기도 전에 그는 복도를 걸어갔다.
+
+
+
+그 뒷모습을 보며 나는 작게 한숨을 쉬었다.
+
+
+
+교실 안으로 돌아오자마자 한국 반 애들이 몰려들었다.
+
+
+
+“No.1, 무슨 얘기했어?”
+
+
+
+“도쿄가 왜 왔대?”
+
+
+
+“싸우자고 했어?”
+
+
+
+“설마 다시 식민지 하자는 건 아니지?”
+
+
+
+나는 손을 들어 애들을 진정시켰다.
+
+
+
+“친교 맺자고 하던데.”
+
+
+
+교실 안이 조용해졌다.
+
+
+
+그리고 곧바로 터졌다.
+
+
+
+“뭐?”
+
+
+
+“일본이?”
+
+
+
+“도쿄가?”
+
+
+
+“친교를?”
+
+
+
+한도윤은 팔짱을 낀 채 나를 바라봤다.
+
+
+
+“수상한데.”
+
+
+
+“나도 그렇게 생각하긴 해.”
+
+
+
+“근데?”
+
+
+
+“일단 도와주겠대.”
+
+
+
+한도윤은 잠깐 생각하더니 말했다.
+
+
+
+“이용할 수 있으면 이용해야지.”
+
+
+
+그 말은 냉정했지만 맞았다.
+
+
+
+한국은 이제 막 식민지에서 벗어났다.
+
+
+
+하지만 강한 국가는 아니었다.
+
+
+
+오히려 어제의 승리로 더 많은 시선을 받게 됐다.
+
+
+
+다른 반이 우리를 노릴 수도 있었다.
+
+
+
+그런 상황에서 일본과 친교를 맺는 건 위험하면서도 도움이 될 수 있었다.
+
+
+
+한도윤은 낮게 말했다.
+
+
+
+“근데 조심해. 도쿄는 절대 호락호락한 놈 아니야.”
+
+
+
+나는 고개를 끄덕였다.
+
+
+
+“알아.”
+
+
+
+방과 후.
+
+
+
+우리는 다시 체육관에 모였다.
+
+
+
+국가대항전에서 이겼다고 해서 훈련이 끝나는 건 아니었다.
+
+
+
+오히려 이제부터가 시작이었다.
+
+
+
+한국은 더 이상 식민지가 아니었다.
+
+
+
+그 말은 이제 스스로를 지켜야 한다는 뜻이기도 했다.
+
+
+
+민재삼촌은 우리를 보자마자 말했다.
+
+
+
+“이겼다고 놀러 온 거 아니지?”
+
+
+
+No.7이 조심스럽게 말했다.
+
+
+
+“오늘은 조금만 쉬면 안 됩니까?”
+
+
+
+민재삼촌은 대답 대신 줄넘기를 던졌다.
+
+
+
+“10분 추가.”
+
+
+
+“아…….”
+
+
+
+“말대꾸하면 20분.”
+
+
+
+No.7은 바로 줄넘기를 잡았다.
+
+
+
+체육관 안에 다시 훈련 소리가 울렸다.
+
+
+
+줄넘기 소리.
+
+
+
+샌드백 치는 소리.
+
+
+
+미트가 터지는 소리.
+
+
+
+숨을 몰아쉬는 소리.
+
+
+
+나는 아직 몸이 완전히 회복되지 않아 가벼운 훈련만 했다.
+
+
+
+민재삼촌도 내 상태를 보고 무리시키지는 않았다.
+
+
+
+대신 자세를 계속 고쳤다.
+
+
+
+“서지후, 어깨 올라간다.”
+
+
+
+“네.”
+
+
+
+“몸이 아프다고 자세 무너지면 그게 버릇 된다.”
+
+
+
+“알겠습니다.”
+
+
+
+한도윤도 옆에서 훈련했다.
+
+
+
+팔에 깁스를 하고 있어서 평소처럼 움직일 수는 없었지만, 하체 운동과 스텝 연습은 멈추지 않았다.
+
+
+
+그는 이제 No.1이 아니었다.
+
+
+
+하지만 훈련하는 모습은 전보다 더 날카로웠다.
+
+
+
+자존심이 상했을 것이다.
+
+
+
+그래도 그는 티 내지 않았다.
+
+
+
+오히려 더 조용히 이를 갈고 있었다.
+
+
+
+전체 훈련이 끝난 뒤.
+
+
+
+애들이 하나둘 체육관을 나갔다.
+
+
+
+나는 물을 마시며 링 근처에 앉아 있었다.
+
+
+
+그때 하린 누나가 체육관 안쪽에서 걸어왔다.
+
+
+
+그녀는 나를 보더니 입꼬리를 올렸다.
+
+
+
+“이기고 왔냐?”
+
+
+
+나는 살짝 웃었다.
+
+
+
+“네, 이겼어요.”
+
+
+
+하린 누나는 팔짱을 꼈다.
+
+
+
+“그럼 이제 코칭 필요 없지?”
+
+
+
+나는 바로 고개를 저었다.
+
+
+
+“네? 아…… 아니요.”
+
+
+
+“왜? 도쿄도 이겼다며.”
+
+
+
+“그건 거의 진 거였어요.”
+
+
+
+“그래?”
+
+
+
+하린 누나가 장난스럽게 웃었다.
+
+
+
+“그래도 마지막에 눕힌 건 너잖아.”
+
+
+
+“하지만 도쿄가 처음부터 진심이었으면 제가 졌을 거예요.”
+
+
+
+그 말에 하린 누나의 눈빛이 살짝 달라졌다.
+
+
+
+장난기가 조금 사라졌다.
+
+
+
+나는 주먹을 내려다봤다.
+
+
+
+“저는 더 가야 해요.”
+
+
+
+“어디까지?”
+
+
+
+“모르겠어요.”
+
+
+
+나는 솔직하게 말했다.
+
+
+
+“근데 지금 멈추면 안 될 것 같아요. 한국은 이제 식민지는 아니지만, 아직 약해요. 저도 마찬가지고요.”
+
+
+
+하린 누나는 잠깐 나를 바라봤다.
+
+
+
+그러더니 피식 웃었다.
+
+
+
+“좋아.”
+
+
+
+“네?”
+
+
+
+“그 대답이면 됐어.”
+
+
+
+그녀가 손목을 풀었다.
+
+
+
+“그럼 오늘부터 코칭 강도 올린다.”
+
+
+
+나는 순간 굳었다.
+
+
+
+“얼마나요?”
+
+
+
+“네가 방금 더 가야 한다며.”
+
+
+
+“그건 맞는데…….”
+
+
+
+“말 조심했어야지.”
+
+
+
+하린 누나는 웃으며 링 위로 올라갔다.
+
+
+
+“올라와.”
+
+
+
+나는 한숨을 쉬며 링 위로 올라갔다.
+
+
+
+하린 누나는 내 앞에 섰다.
+
+
+
+“오늘은 네 약점부터 고친다.”
+
+
+
+“제 약점이요?”
+
+
+
+“힘 부족.”
+
+
+
+정확했다.
+
+
+
+나는 반박하지 못했다.
+
+
+
+“도쿄한테 턱을 맞혔는데도 바로 못 끝냈다며. 그러면 타격의 힘을 더 키워야지. 단순히 근육만 붙이라는 게 아니라, 몸 전체를 써서 치는 법을 배워야 해.”
+
+
+
+나는 고개를 끄덕였다.
+
+
+
+“네.”
+
+
+
+“그리고 두 번째.”
+
+
+
+하린 누나가 내 어깨를 툭 쳤다.
+
+
+
+“네가 기술을 너무 따로 써. 복싱 따로, 로우킥 따로, 클린치 따로. 그러면 읽혀.”
+
+
+
+도쿄에게 했던 싸움이 떠올랐다.
+
+
+
+같은 로우킥을 몇 번 쓰자마자 읽혔고, 클린치도 제대로 들어가기 전에 막혔다.
+
+
+
+“연결해야 해. 잽으로 시선 올리고, 로우킥으로 다리 죽이고, 상대가 내려보면 스트레이트. 붙으면 팔꿈치. 밀면 다시 빠지고.”
+
+
+
+하린 누나는 손가락을 하나씩 접으며 말했다.
+
+
+
+“싸움은 기술 모음집이 아니야. 흐름이야.”
+
+
+
+나는 그 말을 조용히 새겼다.
+
+
+
+흐름.
+
+
+
+그때였다.
+
+
+
+딸랑.
+
+
+
+체육관 문에 달린 종이 울렸다.
+
+
+
+나는 반사적으로 고개를 돌렸다.
+
+
+
+한도윤인가?
+
+
+
+아니면 다른 한국 반 애가 놓고 간 물건이라도 찾으러 온 건가?
+
+
+
+하지만 문 앞에 선 사람은 전혀 달랐다.
+
+
+
+커다란 체격.
+
+
+
+차가운 눈빛.
+
+
+
+입가의 밴드.
+
+
+
+도쿄.
+
+
+
+그가 체육관 안으로 들어왔다.
+
+
+
+그리고 나를 보자마자 입을 열었다.
+
+
+
+“서울!”
+
+
+
+나는 멍하니 그를 바라봤다.
+
+
+
+“어?”
+
+
+
+하린 누나도 도쿄를 바라봤다.
+
+
+
+민재삼촌은 안쪽에서 나오다 말고 눈썹을 올렸다.
+
+
+
+체육관 안의 공기가 묘하게 굳었다.
+
+
+
+나는 겨우 입을 열었다.
+
+
+
+“도쿄?”`}
 }
 }
 };
@@ -29278,17 +30762,28 @@ function cleanWorkIds(arr){
 function uniqueList(arr){
   return Array.from(new Set((arr||[]).filter(Boolean)));
 }
+function getAccountRecordSuffix(){
+  if(!currentUser)return "guest";
+  if(currentUser.isAuthor)return "author";
+  return "normal";
+}
+function getBrowserHistoryKey(){
+  return `${BROWSER_HISTORY_KEY}_${getAccountRecordSuffix()}`;
+}
+function getBrowserReadKey(){
+  return `${BROWSER_READ_KEY}_${getAccountRecordSuffix()}`;
+}
 function getBrowserRecentWorks(){
-  try{return cleanWorkIds(JSON.parse(localStorage.getItem(BROWSER_HISTORY_KEY)||"[]"))}catch(e){return[]}
+  try{return cleanWorkIds(JSON.parse(localStorage.getItem(getBrowserHistoryKey())||"[]"))}catch(e){return[]}
 }
 function saveBrowserRecentWorks(list){
-  localStorage.setItem(BROWSER_HISTORY_KEY,JSON.stringify(cleanWorkIds(uniqueList(list))));
+  localStorage.setItem(getBrowserHistoryKey(),JSON.stringify(cleanWorkIds(uniqueList(list))));
 }
 function getBrowserReadEpisodes(){
-  try{return uniqueList(JSON.parse(localStorage.getItem(BROWSER_READ_KEY)||"[]"))}catch(e){return[]}
+  try{return uniqueList(JSON.parse(localStorage.getItem(getBrowserReadKey())||"[]"))}catch(e){return[]}
 }
 function saveBrowserReadEpisodes(list){
-  localStorage.setItem(BROWSER_READ_KEY,JSON.stringify(uniqueList(list)));
+  localStorage.setItem(getBrowserReadKey(),JSON.stringify(uniqueList(list)));
 }
 function getMergedReadEpisodes(user){
   return uniqueList([...(user&&user.readEpisodes?user.readEpisodes:[]),...getBrowserReadEpisodes()]);
@@ -29356,7 +30851,8 @@ function updateAlertMarks(){
   }
 
   const profileName=document.getElementById("profileNickname");
-  if(profileName){
+  const publicAuthorCard=document.querySelector("#profilePage .profile-card.author-public");
+  if(profileName&&!publicAuthorCard){
     profileName.innerHTML=currentUser.nickname+(profileAlert?alertBang():"");
   }
 
@@ -29453,15 +30949,33 @@ function workRowHtml(id,badgeText="바"){
 
 function openProfile(){
   if(!currentUser){openLogin();return}
+  openMyProfile();
+}
+
+function openMyProfile(){
+  if(!currentUser){openLogin();return}
   updateCoinBank();
   const user=getUserData();
   ensureAccountShape(user);
+
+  const card=document.querySelector("#profilePage .profile-card");
+  if(card)card.classList.remove("author-public");
+  const myAvatar=document.getElementById("profileAvatar");
+  if(myAvatar){
+    myAvatar.style.background="";
+    myAvatar.style.color="";
+  }
 
   document.getElementById("profileNickname").innerHTML=currentUser.nickname+(hasProfileTicketAlert()?alertBang():"");
   const profileRole=document.getElementById("profileRole");
   profileRole.textContent=currentUser.isAuthor?"작가 계정":"일반 계정";
   profileRole.classList.toggle("author",currentUser.isAuthor);
-  document.getElementById("authorWorksSection").style.display=currentUser.isAuthor?"block":"none";
+
+  const authorWorks=document.getElementById("authorWorksSection");
+  if(authorWorks)authorWorks.style.display=currentUser.isAuthor?"block":"none";
+
+  const note=document.getElementById("authorProfileNote");
+  if(note)note.style.display="none";
 
   const watchingWorksBox=document.getElementById("watchingWorksBox");
   user.watchingWorks=cleanWorkIds(user.watchingWorks);
@@ -29476,6 +30990,50 @@ function openProfile(){
 
   updateProfileCounts();
   updateProfileAvatar();
+  showPage("profilePage","");
+}
+
+function openAuthorProfile(){
+  if(!currentUser){openLogin();return}
+
+  // 리더 오버레이가 열려 있으면 프로필 페이지가 뒤에 깔려서 안 보이므로 먼저 닫는다.
+  if(reader){
+    reader.classList.remove("open");
+    document.body.style.overflow="";
+  }
+
+  if(currentUser.isAuthor){
+    openMyProfile();
+    return;
+  }
+
+  const card=document.querySelector("#profilePage .profile-card");
+  if(card)card.classList.add("author-public");
+
+  document.getElementById("profileNickname").textContent=AUTHOR_NAME;
+  const profileRole=document.getElementById("profileRole");
+  profileRole.textContent="작가계정";
+  profileRole.classList.add("author");
+
+  const authorWorks=document.getElementById("authorWorksSection");
+  if(authorWorks)authorWorks.style.display="block";
+
+  const note=document.getElementById("authorProfileNote");
+  if(note)note.style.display="none";
+
+  const watchingWorksBox=document.getElementById("watchingWorksBox");
+  if(watchingWorksBox){
+    watchingWorksBox.innerHTML=Object.keys(works).map(id=>workRowHtml(id,"보기")).join("");
+  }
+
+  const avatar=document.getElementById("profileAvatar");
+  if(avatar){
+    avatar.className="profile-img";
+    avatar.style.backgroundImage="";
+    avatar.style.background="linear-gradient(135deg,#7a2cff,#c084fc)";
+    avatar.style.color="#fff";
+  }
+
   showPage("profilePage","");
 }
 
@@ -29780,6 +31338,11 @@ function actuallyOpenReader(episodeNumber,workId=currentWorkId){
   readerTitle.textContent=ep.title;
   readerSub.textContent=ep.sub;
   novelBody.innerHTML=rawToHtml(ep.raw);
+
+  const authorComment=document.getElementById("readerAuthorComment");
+  if(authorComment){
+    authorComment.style.display=(workId==="social"&&Number(episodeNumber)===8)?"block":"none";
+  }
 
   prevBtn.disabled=!work.episodes[currentEpisode-1];
   nextBtn.disabled=!work.episodes[currentEpisode+1];
