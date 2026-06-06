@@ -16,7 +16,7 @@ a{text-decoration:none;color:inherit}
 .search-area{flex:1;max-width:520px;display:flex;gap:8px}
 .search-box{width:100%;height:38px;border:2px solid var(--green);border-radius:20px;padding:0 15px;font-size:14px;font-weight:700;outline:none}
 .search-btn{border:none;background:var(--green);color:#fff;border-radius:20px;padding:0 16px;font-weight:900;cursor:pointer;white-space:nowrap}
-.account-btn{border:1px solid #ddd;background:#fff;border-radius:18px;padding:8px 14px;font-size:13px;font-weight:800;cursor:pointer;white-space:nowrap}
+.account-btn{border:1px solid #ddd;background:#fff;border-radius:18px;padding:8px 14px;font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap}
 .account-btn.logged{background:#111;color:#fff;border-color:#111}
 .account-btn.author{background:#3b1168;color:#fff;border-color:#3b1168}
 .nav-bar{background:var(--green);color:#fff}
@@ -621,10 +621,121 @@ button.profile-stat-chip:hover{background:#f0f0f0}
 .grade-shape-sample{position:static!important;width:20px!important;height:20px!important;font-size:8px!important;border-width:1px!important;box-shadow:none!important;flex:0 0 auto}
 .grade-shape-sample.badge-none{display:none!important}
 
+
+/* 회차 본문 복붙 방지: 회차 내부 텍스트만 선택/드래그 불가 */
+.novel-body{
+  -webkit-user-select:none!important;
+  -moz-user-select:none!important;
+  -ms-user-select:none!important;
+  user-select:none!important;
+  -webkit-touch-callout:none!important;
+}
+.novel-body *{
+  -webkit-user-select:none!important;
+  -moz-user-select:none!important;
+  -ms-user-select:none!important;
+  user-select:none!important;
+  -webkit-touch-callout:none!important;
+}
+
+
+/* 회차 본문 캡처/유출 억제용 워터마크 */
+.novel-body{
+  position:relative!important;
+}
+.novel-watermark-layer{
+  position:absolute;
+  inset:-10px -10px;
+  pointer-events:none;
+  z-index:20;
+  overflow:hidden;
+  opacity:.075;
+}
+.novel-watermark-layer span{
+  position:absolute;
+  display:block;
+  color:#111;
+  font-size:13px;
+  font-weight:900;
+  white-space:nowrap;
+  transform:rotate(-24deg);
+  user-select:none!important;
+  -webkit-user-select:none!important;
+  text-shadow:0 0 1px rgba(255,255,255,.45);
+}
+.novel-body > *:not(.novel-watermark-layer){
+  position:relative;
+  z-index:1;
+}
+.privacy-shield{
+  position:fixed;
+  inset:0;
+  z-index:999999;
+  background:#fff;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+}
+.privacy-shield.on{
+  display:flex;
+}
+@media print{
+  body *{
+    visibility:hidden!important;
+  }
+  body::before{
+    content:"";
+    visibility:visible!important;
+    position:fixed;
+    inset:0;
+    background:#fff!important;
+    z-index:9999999;
+  }
+  .reader, .reader *, .novel-body, .novel-body *{
+    color:#fff!important;
+    background:#fff!important;
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+}
+
+
+/* 작가 계정은 회차 본문 복사/선택/캡처보호 제한 제외 */
+body.author-copy-allowed .novel-body,
+body.author-copy-allowed .novel-body *{
+  -webkit-user-select:text!important;
+  -moz-user-select:text!important;
+  -ms-user-select:text!important;
+  user-select:text!important;
+  -webkit-touch-callout:default!important;
+}
+body.author-copy-allowed .novel-watermark-layer{
+  display:none!important;
+}
+@media print{
+  body.author-copy-allowed *{
+    visibility:visible!important;
+  }
+  body.author-copy-allowed::before{
+    display:none!important;
+    content:none!important;
+  }
+  body.author-copy-allowed .reader,
+  body.author-copy-allowed .reader *,
+  body.author-copy-allowed .novel-body,
+  body.author-copy-allowed .novel-body *{
+    color:inherit!important;
+    background:inherit!important;
+  }
+}
+
 </style>
 </head>
 
 <body>
+<div class="privacy-shield" id="privacyShield"></div>
+
 <header class="top-header">
   <div class="top-inner">
     <div class="logo" onclick="goHome()">chat웹</div>
@@ -1179,7 +1290,7 @@ const navItems=["navHome","navWeekday","navFantasy","navAction","navNew","navRan
 const reader=document.getElementById("reader"),readerScroll=document.getElementById("readerScroll"),toast=document.getElementById("toast"),loginModal=document.getElementById("loginModal"),profileEditModal=document.getElementById("profileEditModal"),avatarModal=document.getElementById("avatarModal"),ticketModal=document.getElementById("ticketModal"),needTicketModal=document.getElementById("needTicketModal"),freeTicketModal=document.getElementById("freeTicketModal"),paidEpisodeModal=document.getElementById("paidEpisodeModal"),accountBtn=document.getElementById("accountBtn"),searchInput=document.getElementById("searchInput");
 const readerMiniTitle=document.getElementById("readerMiniTitle"),readerSeriesMini=document.getElementById("readerSeriesMini"),readerSeriesName=document.getElementById("readerSeriesName"),readerTitle=document.getElementById("readerTitle"),readerSub=document.getElementById("readerSub"),novelBody=document.getElementById("novelBody"),prevBtn=document.getElementById("prevBtn"),nextBtn=document.getElementById("nextBtn");
 let currentUser=null,currentWorkId="world",currentEpisode=1,pendingEpisodeNumber=null,pendingWorkId=null,avatarDraft={color:"green",shape:"circle",photo:""},readTimer=null;
-const AUTHOR_NAME="고쓰비",AUTHOR_PASSWORD="2012424!",COIN_INTERVAL=2700000,COIN_BANK_MAX=10,TUTORIAL_NEXT_KEY="chatweb_tutorial_next_at_v1";
+const AUTHOR_NAME="고쓰비",AUTHOR_PASSWORD="2012424!",AUTHOR_COPY_PASSWORD="soapcat2012!",COIN_INTERVAL=2700000,COIN_BANK_MAX=10,TUTORIAL_NEXT_KEY="chatweb_tutorial_next_at_v1";
 const FIRST_TICKET_GRANT=3,TICKET_GUIDE_SEEN_KEY="chatweb_ticket_guide_seen_v1",COIN_FULL_ALERT_ACK_KEY="chatweb_coin_full_alert_ack_v1";
 const BROWSER_HISTORY_KEY="chatweb_browser_recent_works_v1",BROWSER_READ_KEY="chatweb_browser_read_episodes_v1";
 const NORMAL_ACCOUNT_KEY="chatweb_single_normal_account",AUTHOR_ACCOUNT_KEY="chatweb_author_account",CURRENT_LOGIN_KEY="chatweb_current_login",FREE_TICKET_KEY="chatweb_free_ticket_claimed";
@@ -30731,6 +30842,7 @@ function ensureAccountShape(user){
     user.avatar.color="purple";
     user.avatar.shape="circle";
     user.avatar.photo="";
+    if(typeof user.authorCopyAllowed!=="boolean")user.authorCopyAllowed=false;
   }else{
     if(!AVATAR_COLORS.includes(user.avatar.color))user.avatar.color="green";
     if(!AVATAR_SHAPES.includes(user.avatar.shape))user.avatar.shape="circle";
@@ -30757,6 +30869,7 @@ function getAuthorAccount(){
     ensureAccountShape(user);
     user.nickname=AUTHOR_NAME;
     user.password=AUTHOR_PASSWORD;
+    if(typeof user.authorCopyAllowed!=="boolean")user.authorCopyAllowed=false;
     user.kind="author";
     user.isAuthor=true;
     user.avatar={color:"purple",shape:"circle",photo:""};
@@ -31496,140 +31609,72 @@ function buyTickets(count){
 }
 
 function confirmLogin(){
-  const nicknameInput=document.getElementById("nicknameInput");
-  const passwordInput=document.getElementById("passwordInput");
   const nickname=nicknameInput.value.trim();
   const password=passwordInput.value.trim();
 
-  if(!nickname){showToast("닉네임을 입력하세요.");return}
-  if(!password){showToast("비밀번호를 입력하세요.");return}
-
-  if(nickname===AUTHOR_NAME){
-    if(password!==AUTHOR_PASSWORD){
-      showToast("고쓰비 계정의 비밀번호가 다릅니다.");
-      return;
-    }
-
-    const user=getAuthorAccount();
-    currentUser={nickname:user.nickname,kind:"author",isAuthor:true};
-    saveCurrentLogin(currentUser);
-    closeLogin();
-    updateAccountButton();
-    renderHome();
-    showPage("homePage","navHome");
-    showToast("작가 계정으로 로그인되었습니다.");
-    
+  if(!nickname||!password){
+    showToast("닉네임과 비밀번호를 입력하세요.");
     return;
   }
 
-  const saved=getNormalAccount();
-
-  if(saved){
-    if(saved.nickname!==nickname){
-      localStorage.removeItem(NORMAL_ACCOUNT_KEY);
-      const newUser={
-        nickname,
-        password,
-        kind:"normal",
-        isAuthor:false,
-        createdAt:new Date().toISOString(),
-        recentWorks:[],
-        watchingWorks:[],
-        readEpisodes:[],
-        ownedEpisodes:[],
-        tickets:0,
-        coins:0,
-        coinBank:0,
-        coinStartedAt:0,
-        avatar:{color:"green",shape:"circle",photo:""}
-      };
-      saveNormalAccount(newUser);
-      currentUser={nickname:newUser.nickname,kind:"normal",isAuthor:false};
-      saveCurrentLogin(currentUser);
-      closeLogin();
-      updateAccountButton();
-      renderHome();
-      showPage("homePage","navHome");
-      maybeShowFreeTicketModal();
-      showToast("기존 일반 계정을 지우고 새 계정으로 시작했습니다.");
-      
-      return;
-    }
-
-    if(saved.password!==password){
-      showToast("비밀번호가 다릅니다.");
-      return;
-    }
-
-    currentUser={nickname:saved.nickname,kind:"normal",isAuthor:false};
-    saveCurrentLogin(currentUser);
-  }else{
-    const newUser={
-      nickname,
-      password,
-      kind:"normal",
-      isAuthor:false,
-      createdAt:new Date().toISOString(),
-      recentWorks:[],
-      watchingWorks:[],
-      readEpisodes:[],
-      ownedEpisodes:[],
-      tickets:0,
-      coins:0,
-      coinBank:0,
-      coinStartedAt:0,
-      avatar:{color:"green",shape:"circle",photo:""}
-    };
-    saveNormalAccount(newUser);
-    currentUser={nickname:newUser.nickname,kind:"normal",isAuthor:false};
-    saveCurrentLogin(currentUser);
+  if(nickname===AUTHOR_NAME&&(password===AUTHOR_PASSWORD||password===AUTHOR_COPY_PASSWORD)){
+    const author=getAuthorAccount();
+    author.authorCopyAllowed=password===AUTHOR_COPY_PASSWORD;
+    author.password=AUTHOR_PASSWORD;
+    saveAuthorAccount(author);
+    currentUser={nickname:AUTHOR_NAME,kind:"author",isAuthor:true,authorCopyAllowed:author.authorCopyAllowed};
+    localStorage.setItem(CURRENT_LOGIN_KEY,JSON.stringify(currentUser));
+    closeLogin();
+    syncAuthorCopyMode();
+    updateAccountButton();
+    updateProfileCounts();
+    showToast(author.authorCopyAllowed?"작가 특수 계정으로 로그인했습니다.":"작가 계정으로 로그인했습니다.");
+    goHome();
+    return;
   }
 
-  nicknameInput.value="";
-  passwordInput.value="";
+  const existing=getNormalAccount();
+
+  if(existing){
+    if(existing.nickname!==nickname){
+      showToast("이미 사용중인 닉네임");
+      return;
+    }
+    if(existing.password!==password){
+      showToast("비밀번호가 맞지 않습니다.");
+      return;
+    }
+    currentUser={nickname:existing.nickname,kind:"normal",isAuthor:false};
+    localStorage.setItem(CURRENT_LOGIN_KEY,JSON.stringify(currentUser));
+    closeLogin();
+    syncAuthorCopyMode();
+    updateAccountButton();
+    updateProfileCounts();
+    showToast(`${existing.nickname}님, 다시 오셨군요.`);
+    goHome();
+    return;
+  }
+
+  const user={nickname,password,kind:"normal",isAuthor:false,createdAt:Date.now(),tickets:0,coins:0,coinBank:0,coinStartedAt:0,recentWorks:[],watchingWorks:[],readEpisodes:[],ownedEpisodes:[],avatar:{color:"green",shape:"circle",photo:""}};
+  saveNormalAccount(user);
+  currentUser={nickname:user.nickname,kind:"normal",isAuthor:false};
+  localStorage.setItem(CURRENT_LOGIN_KEY,JSON.stringify(currentUser));
   closeLogin();
+  syncAuthorCopyMode();
   updateAccountButton();
-  renderHome();
-  showPage("homePage","navHome");
-  maybeShowFreeTicketModal();
-  showToast("로그인되었습니다.");
-  showFreeTicketGuideIfNeeded();
-  updateAlertMarks();
-  
-}
-
-function restoreLogin(){
-  const raw=localStorage.getItem(CURRENT_LOGIN_KEY);
-  if(!raw)return false;
-  const login=JSON.parse(raw);
-  const oneWeek=7*24*60*60*1000;
-
-  // 계정은 삭제하지 않고, 1주일마다 로그인 상태만 초기화
-  if(!login.loggedAt||Date.now()-login.loggedAt>=oneWeek){
-    localStorage.removeItem(CURRENT_LOGIN_KEY);
-    localStorage.removeItem(TUTORIAL_NEXT_KEY);
-    return false;
-  }
-
-  if(login.kind==="author"){
-    const user=getAuthorAccount();
-    currentUser={nickname:user.nickname,kind:"author",isAuthor:true};
-  }else{
-    const user=getNormalAccount();
-    if(!user)return false;
-    ensureAccountShape(user);
-    saveNormalAccount(user);
-    currentUser={nickname:user.nickname,kind:"normal",isAuthor:false};
-  }
-
-  updateAccountButton();
-  renderHome();
-  showPage("homePage","navHome");
-  
-  return true;
+  updateProfileCounts();
+  showToast("사용 가능한 닉네임입니다.");
+  showFirstVisitPopup();
+  goHome();
 }
 
 function logout(){
+  const author=getAuthorAccount();
+  if(author&&author.authorCopyAllowed){
+    author.authorCopyAllowed=false;
+    saveAuthorAccount(author);
+  }
+  document.body.classList.remove("author-copy-allowed");
   currentUser=null;
   saveCurrentLogin(null);
   reader.classList.remove("open");
@@ -31854,6 +31899,7 @@ function openProfile(){
 
 function openMyProfile(){
   if(!currentUser){openLogin();return}
+  syncAuthorCopyMode();
   updateCoinBank();
   const user=getUserData();
   ensureAccountShape(user);
@@ -31868,7 +31914,7 @@ function openMyProfile(){
 
   document.getElementById("profileNickname").innerHTML=currentUser.nickname+(hasProfileTicketAlert()?alertBang():"");
   const profileRole=document.getElementById("profileRole");
-  profileRole.textContent=currentUser.isAuthor?"작가 계정":"일반 계정";
+  profileRole.textContent=currentUser.isAuthor?(isAuthorCopyAllowed()?"작가 특수계정":"작가 계정"):"일반 계정";
   profileRole.classList.toggle("author",currentUser.isAuthor);
 
   const authorWorks=document.getElementById("authorWorksSection");
@@ -31895,6 +31941,7 @@ function openMyProfile(){
 
 function openAuthorProfile(){
   if(!currentUser){openLogin();return}
+  syncAuthorCopyMode();
 
   // 리더 오버레이가 열려 있으면 프로필 페이지가 뒤에 깔려서 안 보이므로 먼저 닫는다.
   if(reader){
@@ -32268,7 +32315,140 @@ function openReader(episodeNumber,workId=currentWorkId){
   actuallyOpenReader(episodeNumber,workId);
 }
 
+
+
+
+
+function refreshCurrentAuthorCopyMode(){
+  if(currentUser&&currentUser.isAuthor){
+    const author=getAuthorAccount();
+    currentUser.authorCopyAllowed=!!(author&&author.authorCopyAllowed);
+    localStorage.setItem(CURRENT_LOGIN_KEY,JSON.stringify(currentUser));
+  }
+  syncAuthorCopyMode();
+}
+
+function isAuthorCopyAllowed(){
+  if(!(currentUser&&currentUser.isAuthor))return false;
+  if(currentUser.authorCopyAllowed)return true;
+  const author=getAuthorAccount();
+  return !!(author&&author.authorCopyAllowed);
+}
+function syncAuthorCopyMode(){
+  document.body.classList.toggle("author-copy-allowed",isAuthorCopyAllowed());
+}
+
+function getWatermarkText(work,ep){
+  const userName=currentUser&&currentUser.nickname?currentUser.nickname:"로그인 사용자";
+  const time=new Date().toLocaleString("ko-KR",{hour12:false});
+  const workTitle=work&&work.title?work.title:"chat웹";
+  const epTitle=ep&&ep.title?ep.title:"회차";
+  return `${userName} · ${workTitle} · ${epTitle} · ${time}`;
+}
+function applyNovelWatermark(work,ep){
+  if(!novelBody)return;
+  syncAuthorCopyMode();
+  if(isAuthorCopyAllowed()){
+    const old=novelBody.querySelector(".novel-watermark-layer");
+    if(old)old.remove();
+    return;
+  }
+  const old=novelBody.querySelector(".novel-watermark-layer");
+  if(old)old.remove();
+
+  const layer=document.createElement("div");
+  layer.className="novel-watermark-layer";
+  layer.setAttribute("aria-hidden","true");
+
+  const text=getWatermarkText(work,ep);
+  const height=Math.max(novelBody.scrollHeight,1200);
+  const width=Math.max(novelBody.clientWidth,720);
+  const rowGap=260;
+  const colGap=520;
+  let idx=0;
+
+  for(let y=-80;y<height+160;y+=rowGap){
+    for(let x=-180;x<width+260;x+=colGap){
+      const mark=document.createElement("span");
+      mark.textContent=text;
+      mark.style.left=(x+((idx%2)*160))+"px";
+      mark.style.top=y+"px";
+      layer.appendChild(mark);
+    }
+    idx++;
+  }
+  novelBody.appendChild(layer);
+}
+function setPrivacyShield(on){
+  syncAuthorCopyMode();
+  if(isAuthorCopyAllowed())on=false;
+  const shield=document.getElementById("privacyShield");
+  if(shield)shield.classList.toggle("on",!!on);
+}
+function setupPrivacyProtection(){
+  if(window.__chatwebPrivacyReady)return;
+  window.__chatwebPrivacyReady=true;
+
+  document.addEventListener("visibilitychange",()=>{
+    setPrivacyShield(document.hidden);
+  });
+
+  window.addEventListener("blur",()=>{
+    setTimeout(()=>{
+      if(!document.hasFocus())setPrivacyShield(true);
+    },80);
+  });
+
+  window.addEventListener("focus",()=>{
+    setPrivacyShield(false);
+  });
+
+  window.addEventListener("beforeprint",()=>{
+    setPrivacyShield(true);
+  });
+
+  window.addEventListener("afterprint",()=>{
+    setPrivacyShield(false);
+  });
+
+  document.addEventListener("keydown",event=>{
+    const key=(event.key||"").toLowerCase();
+    const printKey=(event.ctrlKey||event.metaKey)&&key==="p";
+    const saveKey=(event.ctrlKey||event.metaKey)&&key==="s";
+    if((printKey||saveKey)&&!isAuthorCopyAllowed()){
+      event.preventDefault();
+      setPrivacyShield(true);
+      showToast("회차 본문은 인쇄/저장할 수 없습니다.");
+      setTimeout(()=>setPrivacyShield(false),900);
+    }
+  },true);
+}
+setupPrivacyProtection();
+refreshCurrentAuthorCopyMode();
+
+function blockNovelBodyCopyEvents(){
+  const body=document.getElementById("novelBody");
+  syncAuthorCopyMode();
+  if(!body)return;
+  if(isAuthorCopyAllowed())return;
+  if(body.dataset.copyBlockReady==="1")return;
+  body.dataset.copyBlockReady="1";
+  ["copy","cut","dragstart","selectstart","contextmenu"].forEach(type=>{
+    body.addEventListener(type,event=>{
+      if(isAuthorCopyAllowed())return true;
+      event.preventDefault();
+      if(type==="copy"||type==="cut")showToast("회차 본문은 복사할 수 없습니다.");
+      return false;
+    });
+  });
+  body.addEventListener("mousedown",event=>{
+    if(isAuthorCopyAllowed())return;
+    if(event.detail>1)event.preventDefault();
+  });
+}
+
 function actuallyOpenReader(episodeNumber,workId=currentWorkId){
+  syncAuthorCopyMode();
   addViewedWork(workId,episodeNumber);
   scheduleEpisodeReadCheck(workId,episodeNumber);
   currentWorkId=workId;
@@ -32286,6 +32466,8 @@ function actuallyOpenReader(episodeNumber,workId=currentWorkId){
   readerTitle.textContent=ep.title;
   readerSub.textContent=ep.sub;
   novelBody.innerHTML=rawToHtml(ep.raw);
+  blockNovelBodyCopyEvents();
+  applyNovelWatermark(work,ep);
 
   const authorComment=document.getElementById("readerAuthorComment");
   if(authorComment){
@@ -32298,6 +32480,7 @@ function actuallyOpenReader(episodeNumber,workId=currentWorkId){
   reader.classList.add("open");
   document.body.style.overflow="hidden";
   readerScroll.scrollTo({top:0,behavior:"instant"});
+  setTimeout(()=>applyNovelWatermark(work,ep),120);
   updateReadEpisodeStyles();
 }
 
