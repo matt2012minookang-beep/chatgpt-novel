@@ -730,6 +730,67 @@ body.author-copy-allowed .novel-watermark-layer{
   }
 }
 
+
+.work-action-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.main-btn.subtle{background:#333}
+.episode-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.episode-tools button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:900;cursor:pointer}
+.new-dot{display:inline-flex;align-items:center;justify-content:center;margin-left:7px;padding:2px 6px;border-radius:999px;background:#ff1744;color:#fff;font-size:10px;font-weight:1000;vertical-align:middle}
+.episode-progress{margin-top:5px;font-size:12px;font-weight:900;color:#00a832}
+.episode.in-progress .ep-title::after{content:" 보는 중";margin-left:6px;color:#0f63ff;font-size:11px;font-weight:1000}
+.episode.read .episode-progress{color:#777}
+body.reader-night .reader,
+body.reader-night .reader-scroll,
+body.reader-night .novel-wrap{background:#111!important;color:#eee!important}
+body.reader-night .novel-header,
+body.reader-night .novel-body p,
+body.reader-night .novel-body .scene,
+body.reader-night .novel-body .quote-strong{color:#eee!important}
+body.reader-night .reader-top{background:#050505!important;border-bottom-color:#333!important}
+body.reader-night .reader-title-mini span{color:#aaa!important}
+body.reader-night .novel-body .system,
+body.reader-night .novel-body .absolute-system{background:#1f1f1f!important;color:#f5f5f5!important;border-color:#444!important}
+body.reader-night .novel-body .absolute-status-system{background:#2a1d08!important;color:#ffd27a!important;border-color:#a86800!important}
+body.reader-night .novel-body .absolute-alert-system{background:#2a0808!important;color:#ffb4b4!important;border-color:#a80000!important}
+
+
+.darkmode-btn{border:none;background:#222;color:#fff;border-radius:999px;padding:9px 16px;font-size:13px;font-weight:900;cursor:pointer}
+.absolute-quest-system{background:#e7f6ff;color:#045e91;border-left:4px solid #27b4ff;padding:14px 16px;border-radius:8px;line-height:1.9;font-size:16px;margin:22px 0;font-weight:900;white-space:normal}
+body.dark-mode{background:#101114;color:#eee}
+body.dark-mode .top-header,
+body.dark-mode .nav-bar,
+body.dark-mode .section,
+body.dark-mode .work-card,
+body.dark-mode .profile-card,
+body.dark-mode .login-panel,
+body.dark-mode .search-empty-page,
+body.dark-mode .episode,
+body.dark-mode .work-row,
+body.dark-mode .weekday-work-row{background:#181a20!important;color:#eee!important;border-color:#333!important}
+body.dark-mode .section-head,
+body.dark-mode .ep-desc,
+body.dark-mode .summary,
+body.dark-mode .profile-ticket-info,
+body.dark-mode .work-row-info p,
+body.dark-mode .reader-title-mini span{color:#aaa!important}
+body.dark-mode .search-box{background:#222!important;color:#eee!important;border-color:#444!important}
+body.dark-mode .episode-tools button,
+body.dark-mode .bottom-nav button{background:#222!important;color:#eee!important;border-color:#444!important}
+body.dark-mode .reader,
+body.dark-mode .reader-scroll,
+body.dark-mode .novel-wrap{background:#111!important;color:#eee!important}
+body.dark-mode .novel-header,
+body.dark-mode .novel-body p,
+body.dark-mode .novel-body .scene,
+body.dark-mode .novel-body .quote-strong{color:#eee!important}
+body.dark-mode .reader-top{background:#050505!important;border-bottom-color:#333!important}
+body.dark-mode .novel-body .system,
+body.dark-mode .novel-body .absolute-system{background:#1f1f1f!important;color:#f5f5f5!important;border-color:#444!important}
+body.dark-mode .novel-body .absolute-status-system{background:#2a1d08!important;color:#ffd27a!important;border-color:#a86800!important}
+body.dark-mode .novel-body .absolute-alert-system{background:#2a0808!important;color:#ffb4b4!important;border-color:#a80000!important}
+body.dark-mode .novel-body .absolute-quest-system{background:#092232!important;color:#9be0ff!important;border-color:#27b4ff!important}
+body.dark-mode .profile-stat-chip{background:#222!important;color:#eee!important;border-color:#444!important}
+
 </style>
 </head>
 
@@ -796,7 +857,7 @@ body.author-copy-allowed .novel-watermark-layer{
         <h3>절대신 강림기</h3>
         <p>작가 고쓰비 · 전장에 소환된 유도현, 절대신의 길이 열린다.</p>
       </div>
-      <div class="work-row-badge">13화 공개</div>
+      <div class="work-row-badge">14화 공개</div>
     </div>
     <div class="work-row" onclick="openWorkDetail('social')">
       <div class="mini-cover social"></div>
@@ -986,6 +1047,7 @@ body.author-copy-allowed .novel-watermark-layer{
         <button class="edit-profile-btn" onclick="openProfileEditModal()">프로필 편집</button>
         <button class="avatar-edit-btn" onclick="openAvatarModal()">표지 편집</button>
         <button class="ticket-btn" id="profileTicketBtn" onclick="openTicketModal()">내 이용권<span id="profileTicketAlert"></span></button>
+        <button class="darkmode-btn" id="profileDarkModeBtn" onclick="toggleReaderNightMode()">다크모드 OFF</button>
       </div>
       <div class="profile-ticket-info">
         <span id="profileTicketCount">보유 이용권 0장</span>
@@ -1036,6 +1098,8 @@ body.author-copy-allowed .novel-watermark-layer{
       <p id="workHeroDesc">마왕을 쓰러뜨리고 돌아온 소년. 하지만 그를 기다리던 것은 가족의 죽음, 사라진 자리, 그리고 아무도 받아주지 않는 세계였다.</p>
       <div class="hero-actions">
         <button class="main-btn" id="firstReadBtn" onclick="openFirstEpisode()">첫 화 바로 읽기</button>
+        <button class="sub-btn" id="recentReadBtnTop" onclick="openRecentEpisode()">최근 본 화 보기</button>
+        <button class="sub-btn" id="newNoticeBtn" onclick="toggleNewNotice()">NEW 표시 ON</button>
         <button class="sub-btn" onclick="scrollToEpisodes()">회차 목록 보기</button>
       </div>
     </div>
@@ -1049,12 +1113,12 @@ body.author-copy-allowed .novel-watermark-layer{
         <div class="meta" id="workMeta"></div>
         <p class="summary" id="workSummary"></p>
         <div class="stats" id="workStats"></div>
-        <button class="main-btn" id="workReadButton" onclick="openFirstEpisode()">첫 화 보기</button>
+        <div class="work-action-row"><button class="main-btn" id="workReadButton" onclick="openFirstEpisode()">첫 화 보기</button><button class="main-btn subtle" id="recentReadBtnInfo" onclick="openRecentEpisode()">최근 본 화 보기</button></div>
       </div>
     </div>
   </section>
   <section class="section" id="episodes">
-    <div class="section-head"><h2>회차 목록</h2><span id="episodeCountText">총 0화 공개</span></div>
+    <div class="section-head"><h2>회차 목록</h2><div class="episode-tools"><button id="episodeSortBtn" onclick="toggleEpisodeSort()">최신화부터</button><span id="episodeCountText">총 0화 공개</span></div></div>
     <div class="episode-list" id="episodeList"></div>
   </section>
 </main>
@@ -1294,6 +1358,7 @@ const AUTHOR_NAME="고쓰비",AUTHOR_PASSWORD="2012424!",AUTHOR_COPY_PASSWORD="s
 const FIRST_TICKET_GRANT=3,TICKET_GUIDE_SEEN_KEY="chatweb_ticket_guide_seen_v1",COIN_FULL_ALERT_ACK_KEY="chatweb_coin_full_alert_ack_v1";
 const BROWSER_HISTORY_KEY="chatweb_browser_recent_works_v1",BROWSER_READ_KEY="chatweb_browser_read_episodes_v1";
 const NORMAL_ACCOUNT_KEY="chatweb_single_normal_account",AUTHOR_ACCOUNT_KEY="chatweb_author_account",CURRENT_LOGIN_KEY="chatweb_current_login",FREE_TICKET_KEY="chatweb_free_ticket_claimed";
+const RECENT_EPISODE_KEY="chatweb_recent_episode_by_work_v1",WORK_SEEN_COUNT_KEY="chatweb_seen_work_episode_count_v1",NEW_NOTICE_SETTING_KEY="chatweb_new_notice_on_v1",EPISODE_SORT_SETTING_KEY="chatweb_episode_sort_v1",READER_NIGHT_SETTING_KEY="chatweb_reader_night_v1";
 const AVATAR_COLORS=["red","orange","yellow","green","blue","pink","white"],AVATAR_SHAPES=["circle","square","triangle","star"];
 
 const works={
@@ -13451,7 +13516,7 @@ heroDesc:"전장으로 소환된 평범한 대학생 유도현. 선택받지 못
 badge:"고쓰비 · 절대신 판타지",
 meta:["시스템","절대신","전장","성장"],
 summary:"지구 인류가 전장으로 소환된 날. 유도현은 직업도 특성도 없는 실패자처럼 보였지만, 비정상 데이터가 감지되며 절대신이라는 직업을 부여받는다.",
-stats:["★ 0","조회 0","관심 0","총 13화 공개"],
+stats:["★ 0","조회 0","관심 0","총 14화 공개"],
 aliases:["절대신","절대신강림기","유도현","마포구","전장","마지막발악","절대신의손","절대신의방패","붉은규칙","고쓰비"],
 episodes:{
 1:{title:"1화 - 선택받지 못한 자",sub:"유도현 · 절대신 · 신의 자격",desc:"전장에 소환된 유도현은 아무 직업도 없는 줄 알았지만, 붉은 퀘스트와 함께 절대신의 길로 들어선다.",date:"2026.05.15",raw:`뜨겁다.
@@ -16993,7 +17058,7 @@ Lv.2 → Lv.3
 
 보상: 1500 포인트 + 중급 랜덤 상자
 제한 시간: 3일`},
-10:{title:"10화 - 짧은 숨, 다음을 위한 준비",sub:"흉식자 · 근력 강화제 · 휴식",desc:"도현은 2급과의 전투 뒤 보충을 위해 길드 퀘스트를 수행하고, 다음 벽을 넘기 위한 준비를 시작한다.",date:"2026.05.25",preview:true,cost:2,ownCost:4,raw:`마포구 외곽.
+10:{title:"10화 - 짧은 숨, 다음을 위한 준비",sub:"흉식자 · 근력 강화제 · 휴식",desc:"도현은 2급과의 전투 뒤 보충을 위해 길드 퀘스트를 수행하고, 다음 벽을 넘기 위한 준비를 시작한다.",date:"2026.05.25",raw:`마포구 외곽.
 
 부서진 건물에서 나오는 순간, 유도현은 한 걸음 멈췄다.
 
@@ -19329,7 +19394,497 @@ Lv.5 → Lv.6
 낡은 시계 (희귀)
 
 진행 중 퀘스트
-없음`}
+없음`},
+14:{title:"14화 - 확장된 전장",sub:"전체 공지 · 전설 등급 · 최상급 퀘스트",desc:"시스템 업데이트 이후 전장이 중지역까지 확장되고, 도현은 망령 갑옷을 구매한 뒤 고대 피라미드로 향한다.",date:"2026.05.29",preview:true,cost:2,ownCost:4,raw:`아침.
+
+여관 밖.
+
+도현이 문을 열고 나오자, 가장 먼저 들어온 것은 사람들의 낮은 웅성거림이었다.
+
+어제와는 달랐다.
+
+어제의 소리는 겁에 눌려 목 안쪽에서 새어 나오던 소리였다.
+
+오늘의 소리는 불안했지만, 그래도 살아 있는 사람들의 소리였다.
+
+누군가는 길가에 깨진 나무판을 치우고 있었고,
+
+누군가는 무너진 벽 앞에서 쓸 만한 벽돌을 골라내고 있었다.
+
+아이 하나가 조심스럽게 골목 밖으로 고개를 내밀었다가, 어머니의 손에 이끌려 다시 뒤로 물러났다.
+
+아직 완전히 돌아온 건 아니다.
+
+하지만 멈춰 있던 마을이 조금씩 숨을 쉬기 시작했다.
+
+도현은 그 모습을 잠깐 바라봤다.
+
+정상림은 죽었다.
+
+잔당도 정리했다.
+
+그러나 세상이 조용해졌다는 뜻은 아니었다.
+
+오히려, 조용한 건 폭풍이 오기 전의 짧은 틈에 가까웠다.
+
+그때—
+
+하늘이 번쩍였다.
+
+햇빛이 아니었다.
+
+구름도 없었다.
+
+그런데 하늘 전체가 거대한 화면처럼 밝아졌다.
+
+사람들이 일제히 고개를 들었다.
+
+누군가는 비명을 삼켰고, 누군가는 무릎을 꿇었다.
+
+마을 위에, 모두가 볼 수 있을 만큼 커다란 창이 떠올랐다.
+
+전체 공지
+전장이 확장되었습니다!
+이제 소지역을 넘어 ‘중지역’까지 이동할 수 있습니다.
+상점에 ‘전설 등급’ 아이템이 추가되었습니다.
+길드에 ‘최상급 퀘스트’가 개방되었습니다.
+1일 동안 모든 지역에서 살상이 금지됩니다.
+그럼, 계속 생존하십시오.
+
+문장은 짧았다.
+
+하지만 그 짧은 문장들이 사람들의 얼굴을 다시 굳게 만들었다.
+
+전장.
+
+확장.
+
+중지역.
+
+전설 등급.
+
+최상급 퀘스트.
+
+도현은 하늘에 떠 있는 글자를 천천히 읽었다.
+
+“…확장.”
+
+짧게 중얼거렸지만, 목소리 끝에는 웃음도 한숨도 섞여 있지 않았다.
+
+마치 예상했던 일이 조금 빨리 온 것뿐이라는 듯.
+
+“이제 진짜 시작이네.”
+
+어제까지는 마을 하나였다.
+
+조직 하나.
+
+보스 하나.
+
+그것만으로도 사람들은 죽고, 빼앗기고, 숨어야 했다.
+
+그런데 이제 소지역을 넘어 중지역까지 열린다.
+
+더 넓은 땅.
+
+더 강한 적.
+
+그리고 그만큼 더 큰 보상.
+
+도현은 하늘의 공지가 사라질 때까지 움직이지 않았다.
+
+살상 금지 1일.
+
+시스템이 일부러 숨을 돌릴 시간을 준 것이다.
+
+준비하라는 뜻.
+
+아니.
+
+살고 싶으면, 준비하지 않으면 죽는다는 뜻이었다.
+
+도현은 곧장 상점으로 향했다.
+
+상점 앞에는 이미 사람들이 몰려 있었다.
+
+공지 직후라 그런지, 모두가 눈에 불을 켜고 목록을 확인하고 있었다.
+
+“전설 등급 떴다!”
+“가격 봤어? 저걸 어떻게 사?”
+“유니크도 오른 것 같은데?”
+
+소리가 여기저기서 튀어나왔다.
+
+도현은 사람들 사이를 조용히 지나쳤다.
+
+누가 길을 막지는 않았다.
+
+마을 사람들은 이제 도현을 알아봤다.
+
+조직을 무너뜨린 사람.
+
+보스를 죽인 사람.
+
+그리고 방금 전 잔당을 정리한 사람.
+
+그 시선이 부담스럽지는 않았다.
+
+다만 귀찮았다.
+
+도현은 상점 목록을 열었다.
+
+창이 뜨는 순간, 가장 위쪽에 새로운 탭이 생겨 있었다.
+
+전설 등급
+
+그는 바로 가격부터 확인했다.
+
+눈이 천천히 움직인다.
+
+시간의 모래시계.
+
+고대 고룡의 갑옷.
+
+파멸의 사신 낫.
+
+이름만 봐도 평범한 장비가 아니다.
+
+설명을 읽기도 전에, 이름이 가진 무게가 달랐다.
+
+“…평균.”
+
+도현이 가격 칸을 내려다봤다.
+
+“…2500 포인트.”
+
+짧은 숨이 새어 나왔다.
+
+비싸다.
+
+지금 도현의 포인트로는 손도 못 댄다.
+
+그렇다고 무리해서 포인트를 모으기 전까지 아무것도 안 살 수는 없다.
+
+중지역이 열린 이상, 바로 움직여야 한다.
+
+“아직은 무리네.”
+
+그는 전설 등급 탭에서 시선을 내렸다.
+
+유니크.
+
+지금 당장 살 수 있고, 전투에서 바로 도움이 되는 장비.
+
+그중 하나가 눈에 들어왔다.
+
+유니크 아이템
+이름: 망령 갑옷
+가격: 1400 포인트
+설명:
+적을 처치하면 망령이 깃든다.
+망령은 일정량 피해를 대신 받아내고 소멸한다.
+냉기 피해 100% 저항
+
+도현의 눈이 잠깐 멈췄다.
+
+피해를 대신 받아낸다.
+
+즉, 방패 하나가 더 생긴다는 뜻이다.
+
+마지막 발악.
+
+절대신의 방패.
+
+절대 보은.
+
+그리고 망령 갑옷.
+
+죽기 직전까지 몰렸을 때 버틸 수 있는 수단은 많을수록 좋다.
+
+게다가 냉기 피해 100% 저항.
+
+중지역이 어디까지 확장될지 모르는 상황에서, 환경 저항은 생각보다 큰 차이를 만들 수 있다.
+
+“…이거다.”
+
+바로 구매.
+
+구매 완료
+포인트: 80
+
+갑옷이 몸을 감싼다.
+
+금속 갑옷처럼 덜그럭거리지 않았다.
+
+두꺼운 가죽처럼 몸을 누르지도 않았다.
+
+검은 안개 같은 것이 어깨에서부터 내려와 가슴과 팔을 감싸더니, 어느 순간 얇은 갑옷의 형태로 굳었다.
+
+가볍다.
+
+차갑지도 않다.
+
+그렇다고 따뜻하지도 않다.
+
+마치 이미 죽은 무언가가 도현의 몸 위에 조용히 달라붙은 느낌이었다.
+
+“…생각보다 괜찮은데.”
+
+도현은 팔을 한 번 움직였다.
+
+걸리는 느낌이 없다.
+
+전투 중에도 방해되지 않을 것이다.
+
+그는 잠시 멈췄다가 낮게 중얼거렸다.
+
+“이제 추위나 더위 때문에 발목 잡힐 일은 줄겠네.”
+
+도현은 다시 목록을 올렸다.
+
+전설 등급.
+
+단순한 호기심이었다.
+
+하지만 눈이 멈춘다.
+
+전설 아이템
+시간의 모래시계 (2700 포인트)
+고대 고룡의 갑옷 (2450 포인트)
+파멸의 사신 낫 (2500 포인트)
+
+“…미쳤네.”
+
+설명은 짧았다.
+
+아니, 거의 없었다.
+
+그런데도 느낌이 달랐다.
+
+유니크 아이템은 강한 장비였다.
+
+전설 아이템은 그보다 위였다.
+
+단순히 숫자가 높은 수준이 아니다.
+
+전투 방식 자체를 바꿀 수 있는 물건.
+
+특히 시간의 모래시계.
+
+그 이름을 보는 순간, 도현은 낡은 시계를 떠올렸다.
+
+시간과 관련된 아이템은 언제나 변수를 만든다.
+
+전장에서 변수는 곧 목숨이다.
+
+“저건….”
+
+도현은 손끝을 잠깐 멈췄다.
+
+지금 사지 못한다고 해서 잊을 물건은 아니다.
+
+언젠가는 반드시 확인해야 한다.
+
+하지만 지금은 아니다.
+
+“나중에 보자.”
+
+도현은 창을 닫았다.
+
+길드 내부.
+
+이전보다 더 시끄럽다.
+
+문을 열자마자 뜨거운 공기가 밀려왔다.
+
+사람들의 목소리.
+
+발소리.
+
+게시판 앞에서 싸우듯 밀치는 손.
+
+어제까지만 해도 길드는 조심스러운 장소였다.
+
+살아남은 사람들이 정보를 얻으러 오는 곳.
+
+하지만 오늘은 달랐다.
+
+마치 전쟁이 시작되기 전의 병영 같았다.
+
+“중지역 열린다!”
+“최상급 떴다!”
+“파티 구함!”
+“전설 장비 봤냐?”
+“살상 금지 하루라며? 오늘 안에 이동해야 돼!”
+
+모두가 급했다.
+
+시스템이 하루 동안 살상을 금지했다는 건, 하루 뒤에는 다시 모든 것이 풀린다는 뜻이기도 하다.
+
+도현은 바로 게시판으로 향했다.
+
+사람들 사이로 들어가자, 누군가 불만스럽게 뒤돌아봤다가 도현의 얼굴을 보고 입을 다물었다.
+
+도현은 신경 쓰지 않았다.
+
+게시판 중앙.
+
+기존의 퀘스트 목록 아래에 새로운 구간이 생겨 있었다.
+
+최상급 퀘스트
+
+손을 뻗는다.
+
+퀘스트
+난이도: 최상급
+내용:
+고대 피라미드 내부 조사
+봉인된 ‘스핑크스의 심장’ 회수
+보상:
+1000 포인트
+하급 랜덤 박스 ×2
+
+도현은 내용을 한 번 더 읽었다.
+
+고대 피라미드.
+
+스핑크스의 심장.
+
+이름부터 평범한 의뢰가 아니다.
+
+단순한 토벌이 아니다.
+
+내부 조사.
+
+회수.
+
+그리고 최상급.
+
+그 말은 내부에 무엇이 있는지 길드도 정확히 모른다는 뜻일 가능성이 높다.
+
+“좋네.”
+
+도현이 짧게 말했다.
+
+옆에 있던 사람이 그 말을 듣고 눈을 크게 떴다.
+
+“저걸 혼자 가려고?”
+
+도현은 그쪽을 보지도 않았다.
+
+“그럼 같이 갈래?”
+
+상대가 바로 입을 다물었다.
+
+도현은 게시판을 눌렀다.
+
+“이 정도면 충분해.”
+
+바로 수락.
+
+퀘스트 수락 완료
+
+길드를 나선다.
+
+하늘.
+
+황무지.
+
+그리고 멀리 이어지는 붉은 지평선.
+
+어제까지만 해도 보이지 않던 길이 지도에 나타났다.
+
+소지역의 경계가 넓어지고, 그 너머로 새로운 선들이 뻗어 나갔다.
+
+중지역 이동 가능
+
+지도 창이 확장된다.
+
+기존의 작은 원이 뒤로 밀려나고, 훨씬 넓은 땅이 펼쳐졌다.
+
+마을은 그 안에서 아주 작은 점에 불과했다.
+
+“…넓어졌네.”
+
+도현은 지도를 바라봤다.
+
+붉은 선.
+
+목표 지점.
+
+고대 피라미드.
+
+거리—
+
+상당하다.
+
+그곳까지 가는 길에는 표시되지 않은 위험도 있을 것이다.
+
+살상 금지 하루가 끝나면, 사람도 몬스터도 다시 움직일 것이다.
+
+그 전에 최대한 이동해야 한다.
+
+도현은 검을 고쳐 쥐었다.
+
+철혈의 검이 허리에서 묵직하게 흔들렸다.
+
+그림자 로프가 손목에 감겨 있고, 망령 갑옷은 피부 위에서 거의 느껴지지 않을 만큼 조용했다.
+
+하지만 도현은 알고 있었다.
+
+이 장비들이 앞으로 몇 번이나 목숨을 붙잡아 줄지 모른다는 것을.
+
+“…가야지.”
+
+한 걸음.
+
+황무지 위를 걷는다.
+
+바람이 불었다.
+
+모래가 발목을 스치고 지나갔다.
+
+도현은 한 번도 뒤돌아보지 않았다.
+
+마을은 작아지고, 길은 넓어졌다.
+
+이제부터는 단순히 살아남는 싸움이 아니다.
+
+더 넓은 전장 안에서, 더 강한 적들 사이를 뚫고 나아가야 한다.
+
+그리고—
+
+도현은 속도를 올렸다.
+
+스테이터스
+이름: 유도현
+직업: 절대신
+레벨: 6
+경험치: 1730 / 3000
+포인트: 80
+능력치:
+체력: 35
+마력: 30
+힘: 74
+재생력: 40
+분배 가능: 5
+스킬:
+마지막 발악 (MAX)
+절대신의 손 (MAX)
+절대신의 방패 (MAX)
+특성:
+절대신
+절대 보은 (상급)
+보유 아이템:
+철혈의 검 (유니크)
+그림자 로프 (유니크)
+망령 갑옷 (유니크)
+낡은 시계 (희귀)
+
+진행 중 퀘스트
+최상급 - 고대 피라미드 내부 조사
+→ 스핑크스의 심장 회수
+성공: 1000 포인트, 하급 랜덤 박스 2개`}
 }
 },
 
@@ -31178,7 +31733,7 @@ function rawToHtml(raw){
   const sourceBlocks=String(raw||"").trim().split(/\n\s*\n/g).map(block=>block.trim()).filter(Boolean);
   const blocks=[];
 
-  const absSystemTitles=["퀘스트 목록","퀘스트 수락","개체 측정","희귀 아이템 - 근력 강화제","스테이터스","진행 중 퀘스트","유니크 아이템","구매 완료","포인트: 30","철혈의 검 효과","전투력 측정","유도현","조건 충족","마지막 발악 발동","능력치 3배 상승","복제 대상: 1급","복제 대상: 정상림","처치 완료","마지막 발악 종료","측정 시작","ERROR","효과 적용","특성 발동","체력 1% 이하 진입 시","블랭크 카드 발동","복제 완료","패널티 제거","절대 보은 (상급)","퀘스트 완료","레벨 업","보상","절대신 특혜 발동","아이템 지급","중급 랜덤 박스 개봉","확률 성공","유니크 아이템 획득","1박: 50 포인트","잔여 포인트: 30","시스템 알림","시스템 업데이트 진행 중","시스템 업데이트 완료되었습니다!","결제 완료","남은 시간: 23:59:43"];
+  const absSystemTitles=["퀘스트 목록","퀘스트 수락","개체 측정","희귀 아이템 - 근력 강화제","스테이터스","진행 중 퀘스트","유니크 아이템","구매 완료","포인트: 30","철혈의 검 효과","전투력 측정","유도현","조건 충족","마지막 발악 발동","능력치 3배 상승","복제 대상: 1급","복제 대상: 정상림","처치 완료","마지막 발악 종료","측정 시작","ERROR","효과 적용","특성 발동","체력 1% 이하 진입 시","블랭크 카드 발동","복제 완료","패널티 제거","절대 보은 (상급)","퀘스트 완료","레벨 업","보상","절대신 특혜 발동","아이템 지급","중급 랜덤 박스 개봉","확률 성공","유니크 아이템 획득","1박: 50 포인트","잔여 포인트: 30","시스템 알림","시스템 업데이트 진행 중","시스템 업데이트 완료되었습니다!","결제 완료","남은 시간: 23:59:43","전체 공지","전장이 확장되었습니다!","전설 등급","전설 아이템","최상급 퀘스트","퀘스트","퀘스트 수락 완료","중지역 이동 가능"];
   function cleanSystemTitleLine(line){
     return String(line||"").trim().replace(/^\[\s*/,"").replace(/\s*\]$/,"").trim();
   }
@@ -31211,7 +31766,7 @@ function rawToHtml(raw){
         /^[0-9,]+\s*포인트/.test(line)||
         /^(체력|마력|힘|재생력)\s*\+\d+/.test(line)||
         /^(마지막 발악|절대신의 손|절대신의 방패)\s*\(MAX\)/.test(line)||
-        /^(블랭크 카드|낡은 시계|근력 강화제|철혈의 검|그림자 로프)\s*\([^)]*\)/.test(line)||
+        /^(블랭크 카드|낡은 시계|근력 강화제|철혈의 검|그림자 로프|망령 갑옷)\s*\([^)]*\)/.test(line)||
         /^[가-힣A-Za-z0-9\s]+\s*\((일반|희귀|유니크|전설|신화|상급|중급|하급|MAX)\)$/.test(line)||
         /^(연쇄 충격|중력 파동|마력 폭주)\s*\([^)]*\)\s*→/.test(line)||
         /^(획득 스킬|아이템 지급|레벨 업|보상|퀘스트 완료|측정 시작|조건 충족|마지막 발악 발동|능력치 3배 상승|복제 대상|처치 완료|마지막 발악 종료|능력치 원상 복구|복제 스킬 소멸|절대신 특혜 발동)$/.test(line)||
@@ -31221,6 +31776,23 @@ function rawToHtml(raw){
         /^완벽 복제 및 저장$/.test(line)||
         /^99999$/.test(line)||
         /^ERROR$/.test(line)||
+        /^이제 소지역을 넘어/.test(line)||
+        /^상점에/.test(line)||
+        /^길드에/.test(line)||
+        /^1일 동안/.test(line)||
+        /^그럼, 계속 생존하십시오/.test(line)||
+        /^적을 처치하면/.test(line)||
+        /^망령은 일정량 피해/.test(line)||
+        /^냉기 피해 100% 저항$/.test(line)||
+        /^시간의 모래시계/.test(line)||
+        /^고대 고룡의 갑옷/.test(line)||
+        /^파멸의 사신 낫/.test(line)||
+        /^고대 피라미드 내부 조사$/.test(line)||
+        /^봉인된/.test(line)||
+        /^1000 포인트$/.test(line)||
+        /^하급 랜덤 박스/.test(line)||
+        /^최상급 -/.test(line)||
+        /^성공:\\s*1000 포인트/.test(line)||
         /^시스템 업데이트 진행 중$/.test(line)||
         /^남은 시간:\s*23:59:43$/.test(line)||
         /^포인트:\s*1480$/.test(line)||
@@ -31308,6 +31880,14 @@ function rawToHtml(raw){
           cleanTitle==="퀘스트: 신의 자격"||
           cleanTitle==="강제 퀘스트 발동"||
           /^\[?(퀘스트: 신의 자격|강제 퀘스트 발동)\]?/.test(trimmed);
+
+        const isSkyQuestSystem=
+          cleanTitle==="진행 중 퀘스트"&&
+          /최상급|고대 피라미드|스핑크스/.test(trimmed);
+
+        if(isSkyQuestSystem){
+          return`<div class="absolute-quest-system">${text}</div>`;
+        }
 
         if(isRedQuestSystem){
           text=text.replace(/(퀘스트: 신의 자격|퀘스트|강제 퀘스트 발동|진행 중 퀘스트|마포구를 점령한 조직을 무너뜨리십시오|성공: 1500 포인트 \+ 중급 랜덤 상자|보상: 1500 포인트 \+ 중급 랜덤 상자|일반 30%|희귀 50%|유니크 19%|전설 1%|플레이어 1명|실패: 사망|제한 시간: 3일)/g,'<span class="absolute-alert-word">$1</span>');
@@ -31810,6 +32390,7 @@ function showPage(pageId,navId){
   if(pageId==="workDetailPage")updateReadEpisodeStyles();
   const publicAuthorCard=document.querySelector("#profilePage .profile-card.author-public");
   if(!(pageId==="profilePage"&&publicAuthorCard))updateProfileCounts();
+  updateNewEpisodeMarks();
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
@@ -31845,6 +32426,9 @@ function showWeekday(day){
 }
 
 function updateAccountButton(){
+  applyReaderNightMode();
+  updateNewNoticeButton();
+  setTimeout(updateNewEpisodeMarks,0);
   if(!currentUser){
     document.body.classList.remove("logged-in");
     accountBtn.textContent="로그인";
@@ -32559,32 +33143,187 @@ function openWorkDetail(id="world"){
   document.getElementById("workStats").innerHTML=work.stats.map(s=>`<span>${s}</span>`).join("");
   document.getElementById("episodeCountText").textContent=`총 ${Object.keys(work.episodes).length}화 공개`;
 
+  updateRecentButtons();
+  updateNewNoticeButton();
+  applyReaderNightMode();
   renderEpisodeList(id);
+  markWorkSeen(id);
   showPage("workDetailPage","");
+}
+
+
+function getJsonStore(key,defaultValue={}){
+  try{return JSON.parse(localStorage.getItem(key)||JSON.stringify(defaultValue))}catch(e){return defaultValue}
+}
+function saveJsonStore(key,value){
+  localStorage.setItem(key,JSON.stringify(value||{}));
+}
+function isNewNoticeOn(){
+  return localStorage.getItem(NEW_NOTICE_SETTING_KEY)!=="off";
+}
+function isReaderNightOn(){
+  return localStorage.getItem(READER_NIGHT_SETTING_KEY)==="on";
+}
+function getEpisodeSortMode(){
+  return localStorage.getItem(EPISODE_SORT_SETTING_KEY)||"asc";
+}
+function getWorkEpisodeCount(workId){
+  const work=works[workId];
+  return work?Object.keys(work.episodes||{}).length:0;
+}
+function hasNewEpisodes(workId){
+  return shouldShowNewBadge(workId,null);
+}
+function markWorkSeen(workId){
+  const seen=getJsonStore(WORK_SEEN_COUNT_KEY,{});
+  seen[workId]=getWorkEpisodeCount(workId);
+  saveJsonStore(WORK_SEEN_COUNT_KEY,seen);
+  updateNewEpisodeMarks();
+}
+function getRecentEpisodeMap(){
+  return getJsonStore(RECENT_EPISODE_KEY,{});
+}
+function getRecentEpisode(workId){
+  const map=getRecentEpisodeMap();
+  const num=Number(map[workId]||0);
+  return works[workId]&&works[workId].episodes[num]?num:null;
+}
+function saveRecentEpisode(workId,num){
+  const map=getRecentEpisodeMap();
+  map[workId]=Number(num);
+  saveJsonStore(RECENT_EPISODE_KEY,map);
+}
+function updateRecentButtons(){
+  const recent=getRecentEpisode(currentWorkId);
+  const ep=recent&&works[currentWorkId]?works[currentWorkId].episodes[recent]:null;
+  const label=ep?`최근 본 화: ${ep.title}`:"최근 본 화 없음";
+  ["recentReadBtnTop","recentReadBtnInfo"].forEach(id=>{
+    const btn=document.getElementById(id);
+    if(!btn)return;
+    btn.textContent=label;
+    btn.disabled=!ep;
+    btn.style.opacity=ep?"1":".45";
+    btn.style.cursor=ep?"pointer":"not-allowed";
+  });
+}
+function openRecentEpisode(){
+  const num=getRecentEpisode(currentWorkId);
+  if(!num){
+    showToast("최근 본 화가 없습니다.");
+    return;
+  }
+  openReader(num,currentWorkId);
+}
+function toggleReaderNightMode(){
+  const next=!isReaderNightOn();
+  localStorage.setItem(READER_NIGHT_SETTING_KEY,next?"on":"off");
+  applyReaderNightMode();
+}
+function applyReaderNightMode(){
+  const on=isReaderNightOn();
+  document.body.classList.toggle("reader-night",on);
+  document.body.classList.toggle("dark-mode",on);
+  const btn=document.getElementById("profileDarkModeBtn");
+  if(btn)btn.textContent=on?"다크모드 ON":"다크모드 OFF";
+}
+function toggleNewNotice(){
+  const next=!isNewNoticeOn();
+  localStorage.setItem(NEW_NOTICE_SETTING_KEY,next?"on":"off");
+  updateNewNoticeButton();
+  updateNewEpisodeMarks();
+  if(currentWorkId)renderEpisodeList(currentWorkId);
+}
+function updateNewNoticeButton(){
+  const btn=document.getElementById("newNoticeBtn");
+  if(btn)btn.textContent=isNewNoticeOn()?"NEW 표시 ON":"NEW 표시 OFF";
+}
+function toggleEpisodeSort(){
+  const next=getEpisodeSortMode()==="asc"?"desc":"asc";
+  localStorage.setItem(EPISODE_SORT_SETTING_KEY,next);
+  renderEpisodeList(currentWorkId);
+}
+function updateSortButton(){
+  const btn=document.getElementById("episodeSortBtn");
+  if(btn)btn.textContent=getEpisodeSortMode()==="asc"?"최신화부터":"1화부터";
+}
+function getEpisodeProgressText(workId,num,user){
+  const key=`${workId}-${num}`;
+  const readEpisodes=getMergedReadEpisodes(user);
+  if(readEpisodes.includes(key))return "읽음";
+  if(getRecentEpisode(workId)===Number(num))return "보는 중";
+  return "";
+}
+
+function getLatestPaidEpisodeNumber(workId){
+  const work=works[workId];
+  if(!work)return null;
+  const nums=Object.keys(work.episodes).map(Number).filter(num=>work.episodes[num]&&work.episodes[num].preview);
+  return nums.length?Math.max(...nums):null;
+}
+function getLatestFreeEpisodeNumber(workId){
+  const work=works[workId];
+  if(!work)return null;
+  const nums=Object.keys(work.episodes).map(Number).filter(num=>work.episodes[num]&&!work.episodes[num].preview);
+  return nums.length?Math.max(...nums):null;
+}
+function shouldShowNewBadge(workId,num=null){
+  if(!isNewNoticeOn())return false;
+  if(workId==="absolute"){
+    const latest=getLatestPaidEpisodeNumber("absolute");
+    return num===null?!!latest:Number(num)===latest;
+  }
+  if(workId==="social"){
+    const latest=getLatestFreeEpisodeNumber("social");
+    return num===null?!!latest:Number(num)===latest;
+  }
+  return false;
+}
+
+function updateNewEpisodeMarks(){
+  document.querySelectorAll("[onclick*=\"openWorkDetail('\"]").forEach(el=>{
+    const match=(el.getAttribute("onclick")||"").match(/openWorkDetail\('([^']+)'\)/);
+    if(!match)return;
+    const workId=match[1];
+    const title=el.querySelector("h3");
+    if(!title)return;
+    const old=title.querySelector(".new-dot");
+    if(old)old.remove();
+    if(hasNewEpisodes(workId))title.insertAdjacentHTML("beforeend",'<span class="new-dot">NEW</span>');
+  });
 }
 
 function renderEpisodeList(id){
   const work=works[id];
   const list=document.getElementById("episodeList");
+  const user=getUserData();
+  if(user)ensureAccountShape(user);
 
-  list.innerHTML=Object.entries(work.episodes).map(([num,ep])=>{
+  let entries=Object.entries(work.episodes);
+  entries.sort((a,b)=>getEpisodeSortMode()==="asc"?Number(a[0])-Number(b[0]):Number(b[0])-Number(a[0]));
+
+  list.innerHTML=entries.map(([num,ep])=>{
     const thumbClass=id==="kill"?"thumb kill":id==="absolute"?"thumb absolute":id==="social"?"thumb social":"thumb";
     const badge=ep.preview
       ? `<div class="work-row-badge preview" id="episodeBadge-${id}-${num}">이용권</div>`
       : `<div class="ep-date">${ep.date}</div>`;
+    const progress=user?getEpisodeProgressText(id,Number(num),user):"";
+    const progressHtml=progress?`<div class="episode-progress">${progress}</div>`:"";
+    const newHtml=shouldShowNewBadge(id,Number(num))?`<span class="new-dot">NEW</span>`:"";
 
     return `
-      <div class="episode" data-work="${id}" data-episode="${num}" onclick="openReader(${Number(num)},'${id}')">
+      <div class="episode ${progress==="보는 중"?"in-progress":""}" data-work="${id}" data-episode="${num}" onclick="openReader(${Number(num)},'${id}')">
         <div class="${thumbClass}" data-ep="${num}화"></div>
         <div>
-          <div class="ep-title">${ep.title}</div>
+          <div class="ep-title">${ep.title}${newHtml}</div>
           <div class="ep-desc">${ep.desc}</div>
+          ${progressHtml}
         </div>
         ${badge}
       </div>
     `;
   }).join("");
 
+  updateSortButton();
   updateReadEpisodeStyles();
   updateEpisodeBadges();
 }
@@ -32954,7 +33693,10 @@ function blockNovelBodyCopyEvents(){
 function actuallyOpenReader(episodeNumber,workId=currentWorkId){
   syncAuthorCopyMode();
   addViewedWork(workId,episodeNumber);
+  saveRecentEpisode(workId,episodeNumber);
   scheduleEpisodeReadCheck(workId,episodeNumber);
+  updateRecentButtons();
+  applyReaderNightMode();
   currentWorkId=workId;
   currentEpisode=episodeNumber;
 
