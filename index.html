@@ -791,6 +791,26 @@ body.dark-mode .novel-body .absolute-alert-system{background:#2a0808!important;c
 body.dark-mode .novel-body .absolute-quest-system{background:#092232!important;color:#9be0ff!important;border-color:#27b4ff!important}
 body.dark-mode .profile-stat-chip{background:#222!important;color:#eee!important;border-color:#444!important}
 
+
+.reader-mode-btn{border:none;background:#5b2cff;color:#fff;border-radius:999px;padding:9px 16px;font-size:13px;font-weight:900;cursor:pointer}
+.ticket-status-btn{width:100%;border:none;background:#0f63ff;color:#fff;border-radius:12px;padding:13px 14px;font-size:14px;font-weight:900;cursor:pointer;margin:12px 0 4px}
+.ticket-status-panel{max-width:560px}
+.ticket-status-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.ticket-status-item{border:1px solid #eee;background:#fafafa;border-radius:12px;padding:10px}
+.ticket-status-item b{display:block;font-size:12px;color:#777;margin-bottom:4px}
+.ticket-status-item span{font-size:18px;font-weight:1000;color:#111}
+.ticket-history-list{max-height:310px;overflow:auto;display:grid;gap:8px;padding-right:2px}
+.ticket-history-row{border:1px solid #eee;background:#fff;border-radius:12px;padding:10px}
+.ticket-history-row strong{display:block;font-size:14px;color:#111;margin-bottom:4px}
+.ticket-history-row span{display:block;font-size:12px;color:#666;line-height:1.45}
+.ticket-history-row.plus strong{color:#008a2e}
+.ticket-history-row.minus strong{color:#c40000}
+body.dark-mode .ticket-status-item,
+body.dark-mode .ticket-history-row{background:#222!important;color:#eee!important;border-color:#444!important}
+body.dark-mode .ticket-status-item span,
+body.dark-mode .ticket-history-row strong{color:#eee!important}
+body.dark-mode .ticket-history-row span{color:#aaa!important}
+
 </style>
 </head>
 
@@ -1048,6 +1068,7 @@ body.dark-mode .profile-stat-chip{background:#222!important;color:#eee!important
         <button class="avatar-edit-btn" onclick="openAvatarModal()">표지 편집</button>
         <button class="ticket-btn" id="profileTicketBtn" onclick="openTicketModal()">내 이용권<span id="profileTicketAlert"></span></button>
         <button class="darkmode-btn" id="profileDarkModeBtn" onclick="toggleReaderNightMode()">다크모드 OFF</button>
+        <button class="reader-mode-btn" id="authorReaderModeBtn" onclick="toggleAuthorReaderMode()">독자모드 OFF</button>
       </div>
       <div class="profile-ticket-info">
         <span id="profileTicketCount">보유 이용권 0장</span>
@@ -1280,7 +1301,22 @@ body.dark-mode .profile-stat-chip{background:#222!important;color:#eee!important
         <button onclick="buyTickets(3)">이용권 3장 구매 · 코인 9개</button>
       </div>
     </div>
+    <button class="ticket-status-btn" onclick="openTicketStatusModal()">이용권 가용 현황</button>
     <div class="login-actions"><button class="cancel-login" onclick="closeTicketModal()">닫기</button></div>
+  </div>
+</section>
+
+
+<section class="login-modal" id="ticketStatusModal">
+  <div class="login-panel ticket-status-panel">
+    <h2>이용권 가용 현황</h2>
+    <p>현재 저장된 기록 기준으로 이용권 지급/사용 내역을 계산합니다.</p>
+    <div class="ticket-status-grid" id="ticketStatusSummary"></div>
+    <div class="ticket-box">
+      <strong>이용권 내역</strong>
+      <div class="ticket-history-list" id="ticketHistoryList"></div>
+    </div>
+    <div class="login-actions"><button class="cancel-login" onclick="closeTicketStatusModal()">닫기</button></div>
   </div>
 </section>
 
@@ -1358,7 +1394,7 @@ const AUTHOR_NAME="고쓰비",AUTHOR_PASSWORD="2012424!",AUTHOR_COPY_PASSWORD="s
 const FIRST_TICKET_GRANT=3,TICKET_GUIDE_SEEN_KEY="chatweb_ticket_guide_seen_v1",COIN_FULL_ALERT_ACK_KEY="chatweb_coin_full_alert_ack_v1";
 const BROWSER_HISTORY_KEY="chatweb_browser_recent_works_v1",BROWSER_READ_KEY="chatweb_browser_read_episodes_v1";
 const NORMAL_ACCOUNT_KEY="chatweb_single_normal_account",AUTHOR_ACCOUNT_KEY="chatweb_author_account",CURRENT_LOGIN_KEY="chatweb_current_login",FREE_TICKET_KEY="chatweb_free_ticket_claimed";
-const RECENT_EPISODE_KEY="chatweb_recent_episode_by_work_v1",WORK_SEEN_COUNT_KEY="chatweb_seen_work_episode_count_v1",NEW_NOTICE_SETTING_KEY="chatweb_new_notice_on_v1",EPISODE_SORT_SETTING_KEY="chatweb_episode_sort_v1",READER_NIGHT_SETTING_KEY="chatweb_reader_night_v1";
+const RECENT_EPISODE_KEY="chatweb_recent_episode_by_work_v1",WORK_SEEN_COUNT_KEY="chatweb_seen_work_episode_count_v1",NEW_NOTICE_SETTING_KEY="chatweb_new_notice_on_v1",EPISODE_SORT_SETTING_KEY="chatweb_episode_sort_v1",READER_NIGHT_SETTING_KEY="chatweb_reader_night_v1",AUTHOR_READER_MODE_KEY="chatweb_author_reader_mode_v1";
 const AVATAR_COLORS=["red","orange","yellow","green","blue","pink","white"],AVATAR_SHAPES=["circle","square","triangle","star"];
 
 const works={
@@ -34448,6 +34484,7 @@ function ensureAccountShape(user){
   if(!Array.isArray(user.watchingWorks))user.watchingWorks=[];
   if(!Array.isArray(user.readEpisodes))user.readEpisodes=[];
   if(!Array.isArray(user.ownedEpisodes))user.ownedEpisodes=[];
+  if(!Array.isArray(user.ticketHistory))user.ticketHistory=[];
   if(typeof user.usedTickets!=="number")user.usedTickets=0;
   if(typeof user.tickets!=="number")user.tickets=0;
   if(typeof user.coinPurchasedTickets!=="number")user.coinPurchasedTickets=0;
@@ -34496,7 +34533,7 @@ function getAuthorAccount(){
     localStorage.setItem(AUTHOR_ACCOUNT_KEY,JSON.stringify(user));
     return user;
   }
-  const user={nickname:AUTHOR_NAME,password:AUTHOR_PASSWORD,kind:"author",isAuthor:true,createdAt:new Date().toISOString(),recentWorks:[],watchingWorks:[],readEpisodes:[],ownedEpisodes:[],tickets:0,coinPurchasedTickets:0,freeTicketGranted:false,coins:0,coinBank:0,coinStartedAt:0,avatar:{color:"purple",shape:"circle",photo:""}};
+  const user={nickname:AUTHOR_NAME,password:AUTHOR_PASSWORD,kind:"author",isAuthor:true,createdAt:new Date().toISOString(),recentWorks:[],watchingWorks:[],readEpisodes:[],ownedEpisodes:[],ticketHistory:[],tickets:0,coinPurchasedTickets:0,freeTicketGranted:false,coins:0,coinBank:0,coinStartedAt:0,avatar:{color:"purple",shape:"circle",photo:""}};
   localStorage.setItem(AUTHOR_ACCOUNT_KEY,JSON.stringify(user));
   return user;
 }
@@ -34916,7 +34953,7 @@ function updateEpisodeBadges(){
       const badge=document.getElementById(`episodeBadge-${workId}-${num}`);
       if(!badge||!ep.preview)return;
 
-      if(currentUser.isAuthor||user.ownedEpisodes.includes(`${workId}-${num}`)){
+      if(hasAuthorFullAccess()||user.ownedEpisodes.includes(`${workId}-${num}`)){
         badge.textContent="소장됨";
         badge.classList.remove("preview");
         badge.classList.add("owned");
@@ -34985,6 +35022,7 @@ function updateAccountButton(){
   applyReaderNightMode();
   updateNewNoticeButton();
   setTimeout(updateNewEpisodeMarks,0);
+  updateAuthorReaderModeButton();
   if(!currentUser){
     document.body.classList.remove("logged-in");
     accountBtn.textContent="로그인";
@@ -35148,6 +35186,7 @@ function claimFreeTickets(){
   const user=getUserData();
   ensureAccountShape(user);
   user.freeTicketGranted=true;
+  addTicketHistory(user,"plus",FIRST_TICKET_GRANT,"첫 방문 보상","이용권 3장");
   syncTicketBalance(user);
   saveUserData(user);
   localStorage.setItem(FREE_TICKET_KEY,"1");
@@ -35189,6 +35228,7 @@ function updateTicketModal(){
   document.getElementById("coinTimerText").textContent=timerText;
   updateProfileCounts();
   updateAlertMarks();
+  if(document.getElementById("ticketStatusModal")?.classList.contains("open"))openTicketStatusModal();
 }
 
 function startCoinGenerator(){
@@ -35249,10 +35289,132 @@ function buyTickets(count){
 
   user.coins-=price;
   user.coinPurchasedTickets=(user.coinPurchasedTickets||0)+count;
+  addTicketHistory(user,"plus",count,"코인 구매",`코인 ${price}개로 이용권 ${count}장 구매`);
   syncTicketBalance(user);
   saveUserData(user);
   showToast(`코인 ${price}개로 이용권 ${count}장을 구매했습니다.`);
   updateTicketModal();
+}
+
+
+function addTicketHistory(user,kind,amount,title,detail=""){
+  if(!user)return;
+  ensureAccountShape(user);
+  user.ticketHistory.unshift({
+    at:Date.now(),
+    kind,
+    amount,
+    title,
+    detail
+  });
+  user.ticketHistory=user.ticketHistory.slice(0,120);
+}
+function getEpisodeKeyLabel(key){
+  const [workId,numStr]=String(key||"").split("-");
+  const work=works[workId];
+  const num=Number(numStr);
+  if(!work||!work.episodes[num])return key;
+  return `${work.title} ${work.episodes[num].title}`;
+}
+function getEpisodeCostByKey(key,mode="view"){
+  const [workId,numStr]=String(key||"").split("-");
+  const work=works[workId];
+  const num=Number(numStr);
+  const ep=work&&work.episodes[num];
+  if(!ep)return mode==="own"?5:3;
+  return mode==="own"?(ep.ownCost||5):(ep.cost||3);
+}
+function getReconstructedTicketUsageRows(user){
+  ensureAccountShape(user);
+  const rows=[];
+  const ownedKeys=[...new Set(user.ownedEpisodes||[])];
+  let ownedCost=0;
+  ownedKeys.forEach(key=>{
+    const cost=getEpisodeCostByKey(key,"own");
+    ownedCost+=cost;
+    rows.push({kind:"minus",amount:-cost,title:`소장 사용: ${getEpisodeKeyLabel(key)}`,detail:"저장된 소장 회차 기준으로 재구성"});
+  });
+
+  const readPaidKeys=[...new Set(getMergedReadEpisodes(user)||[])].filter(key=>{
+    const [workId,numStr]=String(key).split("-");
+    const work=works[workId];
+    const ep=work&&work.episodes[Number(numStr)];
+    return ep&&ep.preview&&!ownedKeys.includes(key);
+  });
+  let readCost=0;
+  readPaidKeys.forEach(key=>{
+    const cost=getEpisodeCostByKey(key,"view");
+    readCost+=cost;
+    rows.push({kind:"minus",amount:-cost,title:`열람 사용: ${getEpisodeKeyLabel(key)}`,detail:"저장된 읽은 유료 회차 기준으로 재구성"});
+  });
+
+  const known=ownedCost+readCost;
+  const rest=Math.max(0,(user.usedTickets||0)-known);
+  if(rest>0){
+    rows.push({kind:"minus",amount:-rest,title:"기존 사용 기록",detail:"반복 열람 또는 과거 기록 미상 사용분"});
+  }
+  return rows;
+}
+function getTicketStatusData(){
+  const user=getUserData();
+  if(!user)return null;
+  ensureAccountShape(user);
+  syncTicketBalance(user);
+  const info=getReadingGradeInfo(user);
+  const claimed=getClaimedGradeRewardIds(user,info);
+  const gradeTickets=claimed.reduce((sum,id)=>sum+getTicketRewardValueById(id),0);
+  const freeTickets=user.freeTicketGranted?FIRST_TICKET_GRANT:0;
+  const coinTickets=user.coinPurchasedTickets||0;
+  const authorTickets=user.isAuthor?getAuthorEpisodeCount():0;
+  const used=user.usedTickets||0;
+  const total=freeTickets+gradeTickets+coinTickets+authorTickets;
+  return {user,info,claimed,freeTickets,gradeTickets,coinTickets,authorTickets,used,total,current:Math.max(0,total-used)};
+}
+function openTicketStatusModal(){
+  if(!currentUser){openLogin();return}
+  const data=getTicketStatusData();
+  if(!data)return;
+  const {user,freeTickets,gradeTickets,coinTickets,authorTickets,used,total,current}=data;
+  const summary=document.getElementById("ticketStatusSummary");
+  if(summary){
+    const items=[
+      ["첫 방문",`${freeTickets}장`],
+      ["등급 보상",`${gradeTickets}장`],
+      ["코인 구매",`${coinTickets}장`],
+      ["작가 보상",`${authorTickets}장`],
+      ["사용",`${used}장`],
+      ["현재",`${current}장`]
+    ];
+    summary.innerHTML=items.map(([k,v])=>`<div class="ticket-status-item"><b>${k}</b><span>${v}</span></div>`).join("");
+  }
+  const historyBox=document.getElementById("ticketHistoryList");
+  if(historyBox){
+    const gradeRows=data.claimed.map(id=>({kind:"plus",amount:getTicketRewardValueById(id),title:`등급 보상: ${READING_GRADES.find(g=>g.id===id)?.name||id}`,detail:"등급별 1회 지급"})).filter(r=>r.amount>0);
+    const baseRows=[
+      ...(freeTickets?[{kind:"plus",amount:freeTickets,title:"첫 방문 보상",detail:"이용권 3장"}]:[]),
+      ...gradeRows,
+      ...(coinTickets?[{kind:"plus",amount:coinTickets,title:"코인 구매 누적",detail:`코인으로 구매한 이용권 ${coinTickets}장`}]:[]),
+      ...(authorTickets?[{kind:"plus",amount:authorTickets,title:"작가 보상",detail:"제작/관리 회차 기준 이용권"}]:[])
+    ];
+    const reconstructed=getReconstructedTicketUsageRows(user);
+    const exact=(user.ticketHistory||[]).map(h=>({
+      kind:h.amount>=0?"plus":"minus",
+      amount:h.amount,
+      title:h.title||"이용권 기록",
+      detail:h.detail||new Date(h.at||Date.now()).toLocaleString()
+    }));
+    const rows=[...baseRows,...reconstructed,...exact];
+    historyBox.innerHTML=rows.length?rows.map(row=>`
+      <div class="ticket-history-row ${row.kind}">
+        <strong>${row.amount>0?"+":""}${row.amount}장 · ${row.title}</strong>
+        <span>${row.detail||""}</span>
+      </div>
+    `).join(""):`<div class="empty-box">표시할 이용권 내역이 없습니다.</div>`;
+  }
+  ticketStatusModal.classList.add("open");
+}
+function closeTicketStatusModal(){
+  ticketStatusModal.classList.remove("open");
 }
 
 function confirmLogin(){
@@ -35523,6 +35685,7 @@ function renderHome(){
 
   updateProfileCounts();
   updateProfileAvatar();
+  updateAuthorReaderModeButton();
 }
 
 function workRowHtml(id,badgeText="바"){
@@ -35900,7 +36063,7 @@ function hasReadPreviousPaidRequired(workId,num){
   if(!work)return true;
   const ep=work.episodes[num];
   if(!ep||!ep.preview)return true;
-  if(currentUser&&currentUser.isAuthor)return true;
+  if(hasAuthorFullAccess())return true;
 
   const prevNum=num-1;
   if(!work.episodes[prevNum])return true;
@@ -35949,6 +36112,7 @@ function confirmPaidView(){
   }
 
   user.usedTickets=(user.usedTickets||0)+(ep.cost||3);
+  addTicketHistory(user,"minus",-(ep.cost||3),`열람: ${works[workId].title} ${ep.title}`,`이용권 ${ep.cost||3}장 사용`);
   syncTicketBalance(user);
   saveUserData(user);
   closePaidEpisodeModal();
@@ -35980,6 +36144,7 @@ function confirmOwnEpisode(){
   }
 
   user.usedTickets=(user.usedTickets||0)+ownCost;
+  addTicketHistory(user,"minus",-ownCost,`소장: ${works[workId].title} ${ep.title}`,`이용권 ${ownCost}장 사용`);
   user.ownedEpisodes.push(key);
   syncTicketBalance(user);
   saveUserData(user);
@@ -35992,7 +36157,7 @@ function confirmOwnEpisode(){
 function checkEpisodeAccess(workId,num){
   const ep=works[workId].episodes[num];
   if(!ep)return false;
-  if(currentUser&&currentUser.isAuthor)return true;
+  if(hasAuthorFullAccess())return true;
 
   // 무료분은 이전화 읽기 조건 없이 바로 열람 가능
   if(!ep.preview)return true;
@@ -36124,6 +36289,37 @@ function openReader(episodeNumber,workId=currentWorkId){
 
 
 
+
+function isAuthorReaderModeOn(){
+  return localStorage.getItem(AUTHOR_READER_MODE_KEY)==="on";
+}
+function hasAuthorFullAccess(){
+  return !!(currentUser&&currentUser.isAuthor&&!isAuthorReaderModeOn());
+}
+function toggleAuthorReaderMode(){
+  if(!currentUser||!currentUser.isAuthor){
+    showToast("작가 계정에서만 사용할 수 있습니다.");
+    return;
+  }
+  const next=!isAuthorReaderModeOn();
+  localStorage.setItem(AUTHOR_READER_MODE_KEY,next?"on":"off");
+  syncAuthorCopyMode();
+  updateAuthorReaderModeButton();
+  updateEpisodeBadges();
+  updateReadEpisodeStyles();
+  showToast(next?"독자모드 ON":"독자모드 OFF");
+}
+function updateAuthorReaderModeButton(){
+  const btn=document.getElementById("authorReaderModeBtn");
+  if(!btn)return;
+  if(currentUser&&currentUser.isAuthor){
+    btn.style.display="";
+    btn.textContent=isAuthorReaderModeOn()?"독자모드 ON":"독자모드 OFF";
+  }else{
+    btn.style.display="none";
+  }
+}
+
 function refreshCurrentAuthorCopyMode(){
   if(currentUser&&currentUser.isAuthor){
     const author=getAuthorAccount();
@@ -36134,6 +36330,7 @@ function refreshCurrentAuthorCopyMode(){
 }
 
 function isAuthorCopyAllowed(){
+  if(isAuthorReaderModeOn())return false;
   if(!(currentUser&&currentUser.isAuthor))return false;
   if(currentUser.authorCopyAllowed)return true;
   const author=getAuthorAccount();
